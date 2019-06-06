@@ -76,7 +76,7 @@
     <Compile Include="syntax\commands\CommandType.cs" />
     <Compile Include="syntax\commands\ICommand.cs" />
     <Compile Include="syntax\commands\VariableDeclaration.cs" />
-    <Compile Include="syntax\Comments.cs" />
+    <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\ElementsType.cs" />
     <Compile Include="syntax\old_expression\FileIntVariable.cs" />
     <Compile Include="syntax\old_expression\FileIntVariableType.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="syntax\Prepare.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\Token.cs" />
+    <Compile Include="syntax\reading\TokenFactory.cs" />
     <Compile Include="syntax\reading\TokenType.cs" />
     <Compile Include="syntax\Subcommand.cs" />
     <Compile Include="syntax\SubcommandType.cs" />

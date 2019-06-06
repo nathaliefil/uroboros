@@ -5,20 +5,20 @@ using System.Text;
 
 namespace DivineScript.syntax.reading
 {
-    class Token
+    public class Token
     {
         TokenType type;
         string content;
 
 
 
-        Token(TokenType type)
+        public Token(TokenType type)
         {
             this.type = type;
             this.content = "";
         }
 
-        Token(TokenType type, string content)
+        public Token(TokenType type, string content)
         {
             this.type = type;
             this.content = content;

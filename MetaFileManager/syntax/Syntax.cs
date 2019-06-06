@@ -12,7 +12,6 @@ namespace DivineScript.syntax
         public static List<ICommand> GenerateCommands(string code){
 
             List<ICommand> commands = new List<ICommand>();
-            code = RemoveComments(code);
 
 
 

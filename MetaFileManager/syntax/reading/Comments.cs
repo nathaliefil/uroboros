@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DivineScript.syntax
+namespace DivineScript.syntax.reading
 {
-    partial class Syntax
+    class Comments
     {
-        public static string RemoveComments(string code)
+        public static string Remove(string code)
         {
             StringBuilder cleanCode = new StringBuilder();
             bool isComment = false;

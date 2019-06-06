@@ -9,23 +9,40 @@ namespace DivineScript.syntax.reading
     {
         private static char[] keySigns = new char[] 
                 {'!', '=', '(', ')', '{', '}', ';', 
-                 '-', '+', '*', '\'', '%', '/', '&', '|', ' '};
+                 '-', '+', '*', '\"', '%', '/', '&', '|', '^', ' '};
 
 
-        public static void CreateTokenlist(string code)
+        public static List<Token> CreateTokenlist(string code)
         {
+            code = Comments.Remove(code);
+
             List<Token> tokens = new List <Token>();
             StringBuilder stringb = new StringBuilder();
+            bool quotationOn = false;
 
             for (int i = 0; i < code.Length; i++)
             {
                 if (keySigns.Contains(code[i]))
                 {
-                    if (stringb.Length > 0)
+                    if (code[i].Equals('\"'))
                     {
-                        // create token from current cumulated string
+                        quotationOn = !quotationOn;
+                        stringb.Append('\"');
+                        if (!quotationOn)
+                        {
+                            tokens.Add(TokenFactory.BuildQuotationToken(stringb.ToString()));
+                            stringb.Clear();
+                        }
                     }
-                    // create token from code[i]
+                    else
+                    {
+                        if (stringb.Length > 0)
+                        {
+                            tokens.Add(TokenFactory.Build(stringb.ToString()));
+                            stringb.Clear();
+                        }
+                        tokens.Add(TokenFactory.Build(code[i]));
+                    }
                 }
                 else
                 {
@@ -34,9 +51,10 @@ namespace DivineScript.syntax.reading
             }
             if (stringb.Length > 0)
             {
-                // create token from current cumulated string
+                tokens.Add(TokenFactory.Build(stringb.ToString()));
+                stringb.Clear();
             }
-            //return list of tokens
+            return tokens;
         }
 
     }

@@ -13,12 +13,12 @@ namespace DivineScript.syntax.reading
         Copy,
         Cut,
         Delete,
-        Dpen,
         Drop,
         For,
         From,
         If,
         Move,
+        Open,
         Or,
         Print,
         Receive,
@@ -33,14 +33,16 @@ namespace DivineScript.syntax.reading
         Name,
         StringName,
 
+        Exclamation,
         Equals,
         Smaller,
         Bigger,
 
         BracketOn,
-        BraketOff,
+        BracketOff,
         CurlyBracketOn,
         CurlyBracketOff,
+        Semicolon,
 
         Plus,
         Minus,
@@ -48,5 +50,6 @@ namespace DivineScript.syntax.reading
         Divide,
         Percent,
         
+        Empty
     }
 }
