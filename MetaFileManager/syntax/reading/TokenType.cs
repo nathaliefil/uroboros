@@ -7,9 +7,8 @@ namespace DivineScript.syntax.reading
 {
     public enum TokenType
     {
-        Name,
-        StringName,
-
+        
+        And,
         Ask,
         Copy,
         Cut,
@@ -20,6 +19,7 @@ namespace DivineScript.syntax.reading
         From,
         If,
         Move,
+        Or,
         Print,
         Receive,
         Rename,
@@ -28,17 +28,25 @@ namespace DivineScript.syntax.reading
         Set,
         To,
         While,
+        Xor,
+
+        Name,
+        StringName,
 
         Equals,
-        NotEquals,
         Smaller,
-        SmallerEquals,
         Bigger,
-        BiggerEquals,
+
         BracketOn,
         BraketOff,
         CurlyBracketOn,
         CurlyBracketOff,
-        Exclamation
+
+        Plus,
+        Minus,
+        Multiply,
+        Divide,
+        Percent,
+        
     }
 }
