@@ -1,0 +1,140 @@
+Every written instruction contains one main command and any number of subcommands. Subcommands are done in order of appearance.
+ Main command is mandatory, subcommands are not.
+These are possible main commands:
+0) print [type]
+  // shows everything in log
+1) select [type]
+  // selects elements in default file explorer
+2) show [type]
+  // this shows table with elements (GUI for noobs)
+3) delete [type]
+4) drop [type]
+  //delete moves files to rubbish bin, drop removes "without return"
+5) copy [type]
+  // copy to clipboard
+6) copy [type] to [string expression]
+7) cut [type]
+  // cut to clipboard
+8) cut [type] to [string expression]
+9) move [type] to [string expression]
+10) rename [type] to [string expression]
+11) create [int expression] catalogs [string expression]
+12) open [type]
+
+After main command there may appear subcommands. 
+These are possible subcommands:
+1) where [bool expression]
+2) where not [bool expression]
+3) first [int expression]
+4) last [int expression]
+5) first part [fraction expression]
+6) last part [fraction expression]
+7) ignore [int expression]
+9) max [int expression] [sizetype]
+  // is total size of all manipulated files is bigger than written, stops working
+10) stop [bool expression]
+  // is found special case, stops working
+11) stop not [bool expression]
+12) order by [any variable] ["asc" or "desc"]
+  // sort like in sql
+13) each [int expression]
+ // example each 3 - every third element is chosen
+
+
+[type] - can be any of these: "files", "catalogs", "*", "all", "deepfiles", "deepcatalogs"
+-> files = for every file in directory
+-> catalogs = for every catalog
+-> all or * = for every catalog and file
+-> deepfiles = for every file in directory tree, as deep as possible
+-> deepcatalogs = analogically
+
+[sizetype] - can be "kb", "mb", "gb", "tb"
+[int expression] - anything that returns integer
+[double expression] - anything that returns double
+[string expression] - return text, can contain any number 
+    of any other expressions joined together by + signs
+[bool expression] - anything that can be true/false
+
+// name - name of file without extension
+// extension lub ext - extension
+// fullname - name with extension
+// .length - string length: name.length, ext.length, fullname.length
+// size - file/catalog size in bytes, without unit is number of bytes
+// creation - creation date
+// modification - modification date
+// variables taken from "modification" and "creation"
+   // modification.day
+   // modification.month
+   // modification.year
+   // modification.hour ... second ... minute
+   // they are all int numbers
+// index - number of element that satisfy condition - it goes 0,1,2,3...(count-1)
+// count - number of all elements (files, catalogs) that satisfy condition
+// bigindex - the same as index, but it filles positions with zeros 
+   so returned string length is always the same example: 000,001,002...756,757,758.
+// letterindex - returns index as letters: a,b,c...x,y,z,aa,ab,ac (like in excel)
+
+// where - condition for files/catalogs
+// where not - opposite of condition
+// empty - condition for empty catalog
+// like - string fits to patters
+// and, or, xor - logic
+// &&, &, ||, |, ^ - also logic
+// + - merging strings
+// _ - any char in string
+// % - any chars in string (look: SQL)
+// "/name" is new catalog in current location, is created if necessary
+// "/name/two/three" is catalog tree
+// // - comment
+// /* */ - more comments
+// there can be many commands run - they are separated by ;
+
+
+
+
+
+
+
+example instructions:
+
+select all;
+select *;
+show files where ext="mp3";
+delete files;
+delete catalogs;
+delete files where name="nazwa";
+delete files where name like "T%" or "K%";
+delete files where not ext="jpg";
+delete files where not extension="jpg";
+delete files where fullname="nazwa.jpg"
+delete files where size <= 10kb and ext="txt";
+drop all;
+drop *;
+drop files;
+drop all;
+drop deepfiles;
+drop catalogs where empty;
+drop files where name.length < 10;
+drop files where ext.length < 3;
+drop files where fullname.length < 13;
+drop files where size < 10 mb;
+drop files where ext="jpg", "png", "bmp";
+copy files to "/allimages"
+	where ext="jpg", "png", "bmp";
+   
+move files to "/starting_from_J"
+	where name like "J%";
+   
+rename files to ("image_"+index)
+   where ext="jpg"
+   order by size desc;
+// all images get new name - image_0, image_1 from the biggest to the smalles by size
+drop files 
+   first part 0.5 
+   order by modification asc; 
+// half of files is deleted - the oldest ones according to modification date
+select files 
+   where ext=("jpg", "png", "bmp")
+   stop name like "T%";
+// selects files that are alphabetically before "T".
+

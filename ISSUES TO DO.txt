@@ -1,0 +1,45 @@
+Graphics
+- resizing window
+   - if resizing down: codeBox and logBox follow resizing
+   - if resizing right: codeBox and logBox follow resizing
+     proportionally, also locationBox follows resizing
+- command "show": appears pop up window (GUI)
+   with table of elements and
+   actions like copy, delete, cut to...
+- numeration of every line of code on left, with vertical line
+- colorize words in codeBox with suggestion:
+   - (green + italics) for comments
+   - (dark blue + bold) for commands keywords
+   - dark blue for subcommands keywords
+   - brown between quotation marks
+- maybe new layout?????
+- menu bar on top
+- functions like undo typing, redo, load, save code
+- keyboard shortcuts for functions
+
+
+//WORKS FOR MAIN AUTHOR (OP):
+Commands
+- where
+- where not
+- select
+- show
+- delete
+- drop
+- copy
+- copy to
+- cut
+- cut to
+- move to
+- rename
+- create
+Subcommands
+- where
+- where not
+- first part
+- last part
+- max
+- stop
+- stop not
+- order by
+
