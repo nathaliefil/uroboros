@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DivineScript.syntax;
 using DivineScript.syntax.commands;
-
+using DivineScript.syntax.reading;
 
 namespace DivineScript
 {
@@ -43,12 +43,19 @@ namespace DivineScript
                 }
                 else
                 {
+                    List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
+
+                    foreach (Token t in tokens)
+                    {
+                        Log(t.Print());
+                    }
+                    /*
                     commands = Syntax.GenerateCommands(codeBox.Text);
                     if (commands.Count > 0)
                     {
                         foreach (ICommand com in commands)
                         {
-                            /*com.PrepareElementsList(locationBox.Text);
+                            com.PrepareElementsList(locationBox.Text);
                             int elementsNumber = com.GetElementsNumber();
                             com.Run();
                             if (com.GetCtype() == CommandType.Print)
@@ -67,9 +74,12 @@ namespace DivineScript
                             if(accessDenied>0)
                             {
                                 Log(ActionLog.BuildAccessDenied(com.GetEtype(), accessDenied));
-                            }*/
+                            }
                         }
+
                     }
+
+                    */
                 }
             }
             Log("STOP PROGRAM");

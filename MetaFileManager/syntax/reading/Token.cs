@@ -7,10 +7,28 @@ namespace DivineScript.syntax.reading
 {
     public class Token
     {
-        TokenType type;
-        string content;
+        private TokenType type;
+        private string content;
 
+        public TokenType GetTokenType()
+        {
+            return type;
+        }
 
+        public string GetContent()
+        {
+            return content;
+        }
+
+        public void SetToNumericConstant()
+        {
+            type = TokenType.NumericConstant;
+        }
+
+        public void PointToComma()
+        {
+            content = content.Replace('.', ',');
+        }
 
         public Token(TokenType type)
         {
@@ -22,6 +40,15 @@ namespace DivineScript.syntax.reading
         {
             this.type = type;
             this.content = content;
+        }
+
+        // method only for testing
+        public string Print()
+        {
+            if (content.Equals(""))
+                return "  " + type.ToString();
+            else
+                return "  " + type.ToString() + ": " + content;
         }
     }
 }

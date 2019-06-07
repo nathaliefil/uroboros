@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DivineScript.syntax.commands;
+using DivineScript.syntax.reading;
 
 namespace DivineScript.syntax
 {
@@ -13,6 +14,13 @@ namespace DivineScript.syntax
 
             List<ICommand> commands = new List<ICommand>();
 
+
+            List<Token> tokens = Reader.CreateTokenlist(code);
+
+            foreach (Token t in tokens)
+            {
+
+            }
 
 
             /*

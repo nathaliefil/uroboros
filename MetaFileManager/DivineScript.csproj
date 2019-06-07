@@ -92,9 +92,11 @@
     <Compile Include="syntax\commands\FiltherBySubcommand.cs" />
     <Compile Include="syntax\Keywords.cs" />
     <Compile Include="syntax\Prepare.cs" />
+    <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
+    <Compile Include="syntax\reading\TokenModifier.cs" />
     <Compile Include="syntax\reading\TokenType.cs" />
     <Compile Include="syntax\Subcommand.cs" />
     <Compile Include="syntax\SubcommandType.cs" />

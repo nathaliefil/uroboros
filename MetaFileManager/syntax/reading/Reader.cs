@@ -8,13 +8,14 @@ namespace DivineScript.syntax.reading
     class Reader
     {
         private static char[] keySigns = new char[] 
-                {'!', '=', '(', ')', '{', '}', ';', 
-                 '-', '+', '*', '\"', '%', '/', '&', '|', '^', ' '};
+                {',', '!', '=', '(', ')', '{', '}', ';', 
+                 '-', '+', '*', '"', '%', '/', '&', '|', '^', ' ', '<', '>'};
 
 
         public static List<Token> CreateTokenlist(string code)
         {
             code = Comments.Remove(code);
+            code = EmptySpaces.Compress(code);
 
             List<Token> tokens = new List <Token>();
             StringBuilder stringb = new StringBuilder();
@@ -24,10 +25,10 @@ namespace DivineScript.syntax.reading
             {
                 if (keySigns.Contains(code[i]))
                 {
-                    if (code[i].Equals('\"'))
+                    if (code[i].Equals('"'))
                     {
                         quotationOn = !quotationOn;
-                        stringb.Append('\"');
+                        stringb.Append('"');
                         if (!quotationOn)
                         {
                             tokens.Add(TokenFactory.BuildQuotationToken(stringb.ToString()));
@@ -36,12 +37,15 @@ namespace DivineScript.syntax.reading
                     }
                     else
                     {
-                        if (stringb.Length > 0)
+                        if (stringb.ToString().Trim().Length > 0)
                         {
                             tokens.Add(TokenFactory.Build(stringb.ToString()));
-                            stringb.Clear();
                         }
-                        tokens.Add(TokenFactory.Build(code[i]));
+                        stringb.Clear();
+                        if (!code[i].Equals(' '))
+                        {
+                            tokens.Add(TokenFactory.Build(code[i]));
+                        }
                     }
                 }
                 else
@@ -49,11 +53,13 @@ namespace DivineScript.syntax.reading
                     stringb.Append(code[i]);
                 }
             }
-            if (stringb.Length > 0)
+            if (stringb.ToString().Trim().Length > 0)
             {
                 tokens.Add(TokenFactory.Build(stringb.ToString()));
-                stringb.Clear();
             }
+
+            tokens = TokenModifier.VariablesToNumeric(tokens);
+
             return tokens;
         }
 
