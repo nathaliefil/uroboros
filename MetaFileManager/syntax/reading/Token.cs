@@ -46,9 +46,9 @@ namespace DivineScript.syntax.reading
         public string Print()
         {
             if (content.Equals(""))
-                return "  " + type.ToString();
+                return "Token." + type.ToString();
             else
-                return "  " + type.ToString() + ": " + content;
+                return "Token." + type.ToString() + ": " + content;
         }
     }
 }

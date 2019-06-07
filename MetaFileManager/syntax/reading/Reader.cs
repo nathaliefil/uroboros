@@ -8,7 +8,7 @@ namespace DivineScript.syntax.reading
     class Reader
     {
         private static char[] keySigns = new char[] 
-                {',', '!', '=', '(', ')', '{', '}', ';', 
+                {',', '!', '=', '(', ')', '{', '}', ';', ':',
                  '-', '+', '*', '"', '%', '/', '&', '|', '^', ' ', '<', '>'};
 
 
@@ -37,14 +37,21 @@ namespace DivineScript.syntax.reading
                     }
                     else
                     {
-                        if (stringb.ToString().Trim().Length > 0)
+                        if (!quotationOn)
                         {
-                            tokens.Add(TokenFactory.Build(stringb.ToString()));
+                            if (stringb.ToString().Trim().Length > 0)
+                            {
+                                tokens.Add(TokenFactory.Build(stringb.ToString()));
+                            }
+                            stringb.Clear();
+                            if (!code[i].Equals(' '))
+                            {
+                                tokens.Add(TokenFactory.Build(code[i]));
+                            }
                         }
-                        stringb.Clear();
-                        if (!code[i].Equals(' '))
+                        else
                         {
-                            tokens.Add(TokenFactory.Build(code[i]));
+                            stringb.Append(code[i]);
                         }
                     }
                 }
@@ -59,6 +66,7 @@ namespace DivineScript.syntax.reading
             }
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
+            tokens = TokenModifier.MergeTokens(tokens);
 
             return tokens;
         }

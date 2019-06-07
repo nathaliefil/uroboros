@@ -7,11 +7,7 @@ namespace DivineScript.syntax.variables
 {
     interface IVariable
     {
-
-        int ToInt();
-        double ToDouble();
         string ToString();
-        bool ToBool();
 
     }
 }

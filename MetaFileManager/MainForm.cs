@@ -30,7 +30,7 @@ namespace DivineScript
 
         private void runButton_Click(object sender, EventArgs e)
         {
-            Log("START PROGRAM");
+            //Log("START PROGRAM");
             if (locationBox.Text.Equals(""))
             {
                 Message.showMessage(-1,0);
@@ -82,7 +82,7 @@ namespace DivineScript
                     */
                 }
             }
-            Log("STOP PROGRAM");
+            //Log("STOP PROGRAM");
             Log("--------------------------");
         }
 

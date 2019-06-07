@@ -18,6 +18,7 @@ namespace DivineScript.syntax.commands
         CutTo,
         MoveTo,
         RenameTo,
-        Create
+        Create,
+        CreateFrom
     }
 }
