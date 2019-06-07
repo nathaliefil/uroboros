@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DivineScript.syntax.commands
+namespace DivineScript.syntax.variables.abstracts
 {
-    interface ICommand
+    interface IVariable
     {
-        void Run();
+        string ToString();
+
     }
 }
