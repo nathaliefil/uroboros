@@ -8,7 +8,7 @@ namespace DivineScript.syntax
 {
     class ActionLog
     {
-        public static string Build(CommandType ctype, ElementsType etype, int count, int maxcount)
+        /*public static string Build(CommandType ctype, ElementsType etype, int count, int maxcount)
         {
             string cstring;
             string estring;
@@ -163,6 +163,6 @@ namespace DivineScript.syntax
             }
 
             return "      ^access denied for " + count + " " + estring;
-        }
+        }*/
     }
 }

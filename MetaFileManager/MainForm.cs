@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DivineScript.syntax;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.reading;
+using DivineScript.syntax.reading.errors;
 
 namespace DivineScript
 {
@@ -43,43 +44,27 @@ namespace DivineScript
                 }
                 else
                 {
-                    List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
-
-                    foreach (Token t in tokens)
+                    try
                     {
-                        Log(t.Print());
-                    }
-                    /*
-                    commands = Syntax.GenerateCommands(codeBox.Text);
-                    if (commands.Count > 0)
-                    {
-                        foreach (ICommand com in commands)
+                        List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
+                        foreach (Token t in tokens)
                         {
-                            com.PrepareElementsList(locationBox.Text);
-                            int elementsNumber = com.GetElementsNumber();
-                            com.Run();
-                            if (com.GetCtype() == CommandType.Print)
-                            {
-                                string[] elements = com.GetElementsToLog(locationBox.Text);
-                                foreach (string el in elements)
-                                {
-                                    Log("  " +el);
-                                }
-                            }
-
-                            Log(ActionLog.Build(com.GetCtype(), com.GetEtype(), 
-                                com.GetElementsNumber(), com.GetTotalElementsNumber()));
-                            
-                            int accessDenied = com.GetAccessDeniedCount();
-                            if(accessDenied>0)
-                            {
-                                Log(ActionLog.BuildAccessDenied(com.GetEtype(), accessDenied));
-                            }
+                            Log(t.Print());
                         }
-
                     }
+                    catch(TokenException te)
+                    {
+                        Log(te.GetMessage());
+                    }
+                    
 
-                    */
+
+                    // this
+
+                    List<Programme> programs = new List<Programme>();
+                    programs.Add(new Programme("main", codeBox.Text));
+
+                    
                 }
             }
             //Log("STOP PROGRAM");

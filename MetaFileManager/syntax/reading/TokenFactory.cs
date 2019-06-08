@@ -50,6 +50,7 @@ namespace DivineScript.syntax.reading
                 case "ask": return new Token(TokenType.Ask);
                 case "asc": return new Token(TokenType.Asc);
                 case "by": return new Token(TokenType.By);
+                case "const": return new Token(TokenType.Const);
                 case "copy": return new Token(TokenType.Copy);
                 case "create": return new Token(TokenType.Create);
                 case "cut": return new Token(TokenType.Cut);

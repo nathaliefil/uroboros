@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DivineScript.syntax.reading.errors;
 
 namespace DivineScript.syntax.reading
 {
@@ -64,6 +65,16 @@ namespace DivineScript.syntax.reading
             {
                 tokens.Add(TokenFactory.Build(stringb.ToString()));
             }
+
+            int bracketsOn = tokens.Where(t => t.GetTokenType()==TokenType.BracketOn).Count();
+            int bracketsOff = tokens.Where(t => t.GetTokenType() == TokenType.BracketOff).Count();
+            int curlyBracketsOn = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOn).Count();
+            int curlyBracketsOff = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOff).Count();
+
+            if (bracketsOn != bracketsOff)
+                throw new TokenException("ERROR! Check brackets ( ).");
+            if (curlyBracketsOn != curlyBracketsOff)
+                throw new TokenException("ERROR! Check brackets { }.");
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
             tokens = TokenModifier.MergeTokens(tokens);

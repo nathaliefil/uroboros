@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DivineScript.syntax.commands
 {
-    partial class CoreCommand
+    partial class old_CoreCommand
     {
-        private void FiltherBySubcommand(int index)
+        /*private void FiltherBySubcommand(int index)
         {
             switch (subcommands[index].GetSType())
             {
@@ -187,6 +187,6 @@ namespace DivineScript.syntax.commands
 
             catalogs = newcatalogs;
             
-        }
+        }*/
     }
 }

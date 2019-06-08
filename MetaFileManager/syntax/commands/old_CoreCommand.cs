@@ -7,9 +7,9 @@ using System.IO;
 
 namespace DivineScript.syntax.commands
 {
-    partial class CoreCommand : ICommand
+    partial class old_CoreCommand
     {
-        private CommandType ctype;
+        /*private CommandType ctype;
         private ElementsType etype;
         private List<Subcommand> subcommands;
         private string[] files;
@@ -266,7 +266,7 @@ namespace DivineScript.syntax.commands
 
 
 
-
+        */
 
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.commands
 {
-    public enum CommandType
+    public enum CoreCommandType
     {
         Print,
         Select,

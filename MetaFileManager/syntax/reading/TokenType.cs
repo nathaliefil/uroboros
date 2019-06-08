@@ -12,6 +12,7 @@ namespace DivineScript.syntax.reading
         Asc,
         Ask,
         By,
+        Const,
         Copy,
         Create,
         Cut,
@@ -80,6 +81,7 @@ namespace DivineScript.syntax.reading
         NotEquals,
         BiggerOrEquals,
         SmallerOrEquals,
-        Arrow
+        Arrow,
+        Block
     }
 }
