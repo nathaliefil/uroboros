@@ -6,12 +6,13 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class NumericConstant : Variable, INumerable
+    class NumericVariable : NamedVariable, INumerable
     {
         private decimal value;
 
-        NumericConstant(decimal value)
+        NumericVariable(string name, decimal value)
         {
+            this.name = name;
             this.value = value;
         }
 
@@ -26,6 +27,11 @@ namespace DivineScript.syntax.variables
         public decimal ToNumber()
         {
             return value;
+        }
+
+        public void SetValue(decimal dec)
+        {
+            value = dec;
         }
 
     }

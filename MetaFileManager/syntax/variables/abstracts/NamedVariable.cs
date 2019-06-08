@@ -5,9 +5,13 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-	interface IVariableNamed: IVariable
+	abstract class NamedVariable: Variable
 	{
-        string GetName();
+        protected string name;
 
+        public string GetName()
+        {
+            return name;
+        }
 	}
 }

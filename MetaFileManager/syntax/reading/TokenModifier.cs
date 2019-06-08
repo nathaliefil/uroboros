@@ -81,6 +81,12 @@ namespace DivineScript.syntax.reading
                         newTokens.Add(new Token(TokenType.Elif));
                         tokensMerged = true;
                     }
+                    if (tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.NotEquals));
+                        tokensMerged = true;
+                    }
+
                     if (tokensMerged)
                         i++;
                     else

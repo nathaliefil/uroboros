@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-    interface IVariable
+    public abstract class Variable
     {
-        string ToString();
-
+        // tutaj metody stringowe - działające dla każdego typu danych
+        // każda zmienna w programie jest Stringable
     }
 }

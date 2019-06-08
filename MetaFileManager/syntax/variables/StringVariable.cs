@@ -6,26 +6,24 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class NumericConstant : Variable, INumerable
+    class StringVariable :  NamedVariable
     {
-        private decimal value;
+        private string value;
 
-        NumericConstant(decimal value)
+        StringVariable(string name, string value)
         {
+            this.name = name;
             this.value = value;
         }
 
         public override string ToString()
         {
-            if (value % 1 == 0)
-                return ((int)value).ToString();
-            else
-                return value.ToString();
+            return value;
         }
 
-        public decimal ToNumber()
+        public void SetValue(string str)
         {
-            return value;
+            value = String.Copy(str);
         }
 
     }

@@ -77,6 +77,7 @@ namespace DivineScript.syntax.reading
         PlusPlus,
         MinusMinus,
         EqualsEquals,
+        NotEquals,
         BiggerOrEquals,
         SmallerOrEquals,
         Arrow

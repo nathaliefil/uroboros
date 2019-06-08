@@ -1,0 +1,19 @@
+BINARY (number) -> string
+CEIL (number) -> number
+COUNT (list) -> number
+DIGITS (string) -> string
+E () -> number
+FILLED (number, number) -> string
+FLOOR (number) -> number
+HEX (number) -> string
+LETTER (number) -> string
+LOWER (string) -> string
+MAX (number, number,...) -> number
+MIN (number, number,...) -> number
+NUMBER (string) -> number
+PI () -> number
+POWER (number, number) -> number
+ROUND (number) -> number
+SUBSTRING (string, number) -> number
+SUBSTRING (string, number, number) -> number
+UPPER (string) -> string

@@ -6,12 +6,13 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class BoolConstant : Variable, IBoolable, INumerable
+    class BoolVariable : NamedVariable, IBoolable, INumerable
     {
         private bool value;
 
-        BoolConstant(bool value)
+        BoolVariable(string name, bool value)
         {
+            this.name = name;
             this.value = value;
         }
 
@@ -34,6 +35,11 @@ namespace DivineScript.syntax.variables
                 return 1;
             else
                 return 0;
+        }
+
+        public void SetValue(bool b)
+        {
+            value = b;
         }
 
     }
