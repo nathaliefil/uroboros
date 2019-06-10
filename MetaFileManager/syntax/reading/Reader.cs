@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading.errors;
+using DivineScript.syntax;
 
 namespace DivineScript.syntax.reading
 {
@@ -71,10 +71,12 @@ namespace DivineScript.syntax.reading
             int curlyBracketsOn = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOn).Count();
             int curlyBracketsOff = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOff).Count();
 
+            if (tokens.Count() == 0)
+                throw new SyntaxErrorException("ERROR! Code is empty.");
             if (bracketsOn != bracketsOff)
-                throw new TokenException("ERROR! Check brackets ( ).");
+                throw new SyntaxErrorException("ERROR! Check brackets ( ).");
             if (curlyBracketsOn != curlyBracketsOff)
-                throw new TokenException("ERROR! Check brackets { }.");
+                throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
             tokens = TokenModifier.MergeTokens(tokens);

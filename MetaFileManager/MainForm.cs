@@ -9,13 +9,11 @@ using System.Windows.Forms;
 using DivineScript.syntax;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.reading;
-using DivineScript.syntax.reading.errors;
 
 namespace DivineScript
 {
     public partial class MainForm : Form
     {
-        List <ICommand> commands;
 
         public MainForm()
         {
@@ -52,7 +50,7 @@ namespace DivineScript
                             Log(t.Print());
                         }
                     }
-                    catch(TokenException te)
+                    catch(DivineScript.syntax.SyntaxErrorException te)
                     {
                         Log(te.GetMessage());
                     }

@@ -16,10 +16,6 @@ namespace DivineScript.syntax.runtime
             InitializeInnerVariables();
         }
 
-        private static void InitializeInnerVariables()
-        {
-        }
-
         public static void Actualize(NamedVariable variable)
         {
             if (variables.Where(v => v.GetName().Equals(variable.GetName())).Count() == 0)
@@ -28,7 +24,10 @@ namespace DivineScript.syntax.runtime
             }
             if (variables.Where(v => v.GetName().Equals(variable.GetName())).Count() == 1)
             {
-                variables.Add(variable);
+                /*NamedVariable nv = variables.First(v => v.GetName().Equals(variable.GetName()));
+                if (nv is IBoolable)
+                    nv.Set
+                variables.Add(variable);*/
             }
         }
 
@@ -84,6 +83,11 @@ namespace DivineScript.syntax.runtime
                 }
             }
             return false;
+        }
+
+
+        private static void InitializeInnerVariables()
+        {
         }
 
     }

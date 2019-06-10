@@ -20,6 +20,11 @@ namespace DivineScript.syntax.reading
             return content;
         }
 
+        public void SetContent(string content)
+        {
+            this.content = content;
+        }
+
         public void SetToNumericConstant()
         {
             type = TokenType.NumericConstant;

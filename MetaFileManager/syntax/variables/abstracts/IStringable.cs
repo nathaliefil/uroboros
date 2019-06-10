@@ -5,14 +5,8 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-    public abstract class Variable
+    interface IStringable
     {
-        private bool constant;
-
-        public bool IsConstant()
-        {
-            return constant;
-        }
-
+        string ToString();
     }
 }

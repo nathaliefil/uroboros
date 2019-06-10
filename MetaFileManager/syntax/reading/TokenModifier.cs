@@ -13,10 +13,13 @@ namespace DivineScript.syntax.reading
             {
                 if (t.GetTokenType() == TokenType.Variable)
                 {
+                    string previous = t.GetContent();
                     t.PointToComma();
                     decimal value;
                     if (Decimal.TryParse(t.GetContent(), out value))
                         t.SetToNumericConstant();
+                    else
+                        t.SetContent(previous);
                 }
             }
             return tokens;
@@ -24,6 +27,9 @@ namespace DivineScript.syntax.reading
 
         public static List<Token> MergeTokens (List<Token> tokens)
         {
+            // this method needs serious refactoring
+            /// todo
+
             List<Token> newTokens = new List<Token>() ;
             bool tokensMerged = false;
             int i = 0;
@@ -84,6 +90,21 @@ namespace DivineScript.syntax.reading
                     if (tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)
                     {
                         newTokens.Add(new Token(TokenType.NotEquals));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Force && tokens[i + 1].GetTokenType() == TokenType.To)
+                    {
+                        newTokens.Add(new Token(TokenType.ForceTo));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Create && tokens[i + 1].GetTokenType() == TokenType.File)
+                    {
+                        newTokens.Add(new Token(TokenType.CreateFile));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Create && tokens[i + 1].GetTokenType() == TokenType.Directory)
+                    {
+                        newTokens.Add(new Token(TokenType.CreateDirectory));
                         tokensMerged = true;
                     }
 

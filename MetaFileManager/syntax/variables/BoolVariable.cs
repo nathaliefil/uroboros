@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class BoolVariable : NamedVariable, IBoolable, INumerable
+    class BoolVariable : NamedVariable, IBoolable, INumerable, IStringable
     {
         private bool value;
 

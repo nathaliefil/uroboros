@@ -71,12 +71,14 @@
     <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="syntax\commands\blocks\Block.cs" />
+    <Compile Include="syntax\commands\blocks\IfBlock.cs" />
     <Compile Include="syntax\commands\CommandListFactory.cs" />
     <Compile Include="syntax\old_BracketsAndQuotations.cs" />
     <Compile Include="syntax\commands\old_CoreCommand.cs" />
     <Compile Include="syntax\commands\CoreCommandType.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
-    <Compile Include="syntax\commands\VariableDeclaration.cs" />
+    <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
     <Compile Include="syntax\Programme.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\old_ElementsType.cs" />
@@ -95,7 +97,6 @@
     <Compile Include="syntax\old_Keywords.cs" />
     <Compile Include="syntax\old_Prepare.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
-    <Compile Include="syntax\reading\errors\TokenException.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
@@ -103,16 +104,22 @@
     <Compile Include="syntax\reading\TokenType.cs" />
     <Compile Include="syntax\old_Subcommand.cs" />
     <Compile Include="syntax\old_SubcommandType.cs" />
+    <Compile Include="syntax\runtime\CommandPerformer.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\Syntax.cs" />
+    <Compile Include="syntax\SyntaxErrorException.cs" />
     <Compile Include="syntax\variables\abstracts\IBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />
+    <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\Variable.cs" />
     <Compile Include="syntax\old_VerifySubcommand.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\VariableType.cs" />
     <Compile Include="syntax\variables\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
+    <Compile Include="syntax\variables\expressions\BoolExpression.cs" />
+    <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
+    <Compile Include="syntax\variables\expressions\StringExpression.cs" />
     <Compile Include="syntax\variables\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
     <Compile Include="syntax\variables\StringConstant.cs" />
@@ -161,6 +168,10 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="syntax\expressions\" />
+    <Folder Include="syntax\runtime\perform\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

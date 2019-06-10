@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class StringVariable :  NamedVariable
+    class StringVariable :  NamedVariable, IStringable
     {
         private string value;
 

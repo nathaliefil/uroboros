@@ -62,8 +62,8 @@ namespace DivineScript.syntax.reading
             }
             if (!isComment)
             {
-                cleanCode.Append(code2[code2.Length - 1]); // przy kodzie z samymi komentarzami wyleciało tu -> OutOfArrayEception
-            } // todo
+                cleanCode.Append(code2[code2.Length - 1]); // when code contains only comments -> OutOfArrayEception
+            } // todo solve bug
             
 
             return cleanCode.ToString();

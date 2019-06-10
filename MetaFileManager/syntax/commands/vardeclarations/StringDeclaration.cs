@@ -5,10 +5,9 @@ using System.Text;
 
 namespace DivineScript.syntax.commands
 {
-    class VariableDeclaration : ICommand
+    class StringDeclaration : ICommand
     {
-        string name;
-
+        
 
         public void Run()
         {

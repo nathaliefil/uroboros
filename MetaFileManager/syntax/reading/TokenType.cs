@@ -82,6 +82,9 @@ namespace DivineScript.syntax.reading
         BiggerOrEquals,
         SmallerOrEquals,
         Arrow,
-        Block
+
+        CreateFile,
+        CreateDirectory,
+        ForceTo
     }
 }

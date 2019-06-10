@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DivineScript.syntax.reading.errors
+namespace DivineScript.syntax
 {
-    class TokenException: Exception
+    class SyntaxErrorException : Exception
     {
         private string message;
 
-        public TokenException(string message)
+        public SyntaxErrorException(string message)
         {
             this.message = message;
         }

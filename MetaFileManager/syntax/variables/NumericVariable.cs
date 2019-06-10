@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class NumericVariable : NamedVariable, INumerable
+    class NumericVariable : NamedVariable, INumerable, IStringable
     {
         private decimal value;
 
