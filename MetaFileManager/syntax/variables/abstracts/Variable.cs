@@ -7,7 +7,7 @@ namespace DivineScript.syntax.variables.abstracts
 {
     public abstract class Variable
     {
-        private bool constant;
+        private bool constant = false;
 
         public bool IsConstant()
         {

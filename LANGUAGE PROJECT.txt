@@ -1,6 +1,6 @@
-Every written core instruction contains one main command and any number of subcommands. Subcommands are done in order of appearance.
- Main command is mandatory, subcommands are not.
-These are possible main commands:
+Language purpose is 
+
+These are possible core commands:
 0) print [type]
   // shows everything in log
 1) select [type]
@@ -24,7 +24,7 @@ These are possible main commands:
 12) create directory [string expression] from [string expression]
 
 
-After main command there may appear subcommands. 
+After core command there may appear subcommands. 
 These are possible subcommands:
 1) where [bool expression]
 2) where not [bool expression]
@@ -62,7 +62,7 @@ These are possible subcommands:
    // modification.year
    // modification.hour ... second ... minute
    // they are all int numbers
-// index - number of element that satisfy condition - it goes 0,1,2,3...(count-1)
+// index - number of element  - it goes 0,1,2,3...
 
 // where - condition for files/catalogs
 // where not - opposite of condition

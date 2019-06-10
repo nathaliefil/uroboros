@@ -8,9 +8,9 @@ namespace DivineScript.syntax.commands.blocks
 {
     class Block : ICommand
     {
-        List<ICommand> commands;
+        protected List<ICommand> commands;
 
-        Block(List<ICommand> commands)
+        public Block(List<ICommand> commands)
         {
             this.commands = commands;
         }

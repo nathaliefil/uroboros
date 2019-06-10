@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="syntax\commands\blocks\Block.cs" />
     <Compile Include="syntax\commands\blocks\IfBlock.cs" />
+    <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\CommandListFactory.cs" />
     <Compile Include="syntax\old_BracketsAndQuotations.cs" />
     <Compile Include="syntax\commands\old_CoreCommand.cs" />
