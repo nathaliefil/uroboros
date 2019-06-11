@@ -13,7 +13,6 @@ These are possible core commands:
 6) copy [type] to [string expression]
 7) cut [type]
   // cut to clipboard
-8) cut [type] to [string expression]
 9) move [type] to [string expression]
 10) rename [type] to [string expression]
 11) open [type]

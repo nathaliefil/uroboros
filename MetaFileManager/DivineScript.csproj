@@ -73,8 +73,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="syntax\commands\blocks\Block.cs" />
     <Compile Include="syntax\commands\blocks\IfBlock.cs" />
+    <Compile Include="syntax\commands\blocks\RepeatBlock.cs" />
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\CommandListFactory.cs" />
+    <Compile Include="syntax\commands\core\CoreCommand.cs" />
+    <Compile Include="syntax\commands\core\Select.cs" />
     <Compile Include="syntax\old_BracketsAndQuotations.cs" />
     <Compile Include="syntax\commands\old_CoreCommand.cs" />
     <Compile Include="syntax\commands\CoreCommandType.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="syntax\Syntax.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
     <Compile Include="syntax\variables\abstracts\IBoolable.cs" />
+    <Compile Include="syntax\variables\abstracts\IListable.cs" />
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\Variable.cs" />
@@ -121,6 +125,8 @@
     <Compile Include="syntax\variables\expressions\BoolExpression.cs" />
     <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
     <Compile Include="syntax\variables\expressions\StringExpression.cs" />
+    <Compile Include="syntax\variables\ListConstant.cs" />
+    <Compile Include="syntax\variables\ListVariable.cs" />
     <Compile Include="syntax\variables\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
     <Compile Include="syntax\variables\StringConstant.cs" />
