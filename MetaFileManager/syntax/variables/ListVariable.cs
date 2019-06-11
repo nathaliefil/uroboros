@@ -10,12 +10,12 @@ namespace DivineScript.syntax.variables
     {
         private List<string> values;
 
-        ListVariable(List<string> values)
+        public ListVariable(List<string> values)
         {
             this.values = values;
         }
 
-        ListVariable(string value)
+        public ListVariable(string value)
         {
             this.values = new List<string>();
             values.Add(value);

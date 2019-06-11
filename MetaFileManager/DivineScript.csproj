@@ -76,8 +76,18 @@
     <Compile Include="syntax\commands\blocks\RepeatBlock.cs" />
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\CommandListFactory.cs" />
+    <Compile Include="syntax\commands\core\Copy.cs" />
+    <Compile Include="syntax\commands\core\CopyTo.cs" />
     <Compile Include="syntax\commands\core\CoreCommand.cs" />
+    <Compile Include="syntax\commands\core\Cut.cs" />
+    <Compile Include="syntax\commands\core\MoveTo.cs" />
+    <Compile Include="syntax\commands\core\Delete.cs" />
+    <Compile Include="syntax\commands\core\Drop.cs" />
+    <Compile Include="syntax\commands\core\Open.cs" />
     <Compile Include="syntax\commands\core\Select.cs" />
+    <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
+    <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
+    <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
     <Compile Include="syntax\old_BracketsAndQuotations.cs" />
     <Compile Include="syntax\commands\old_CoreCommand.cs" />
     <Compile Include="syntax\commands\CoreCommandType.cs" />
@@ -108,7 +118,7 @@
     <Compile Include="syntax\reading\TokenType.cs" />
     <Compile Include="syntax\old_Subcommand.cs" />
     <Compile Include="syntax\old_SubcommandType.cs" />
-    <Compile Include="syntax\runtime\CommandPerformer.cs" />
+    <Compile Include="syntax\runtime\ActualizeVariables.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\Syntax.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
@@ -123,6 +133,7 @@
     <Compile Include="syntax\variables\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\expressions\BoolExpression.cs" />
+    <Compile Include="syntax\variables\expressions\ListExpression.cs" />
     <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
     <Compile Include="syntax\variables\expressions\StringExpression.cs" />
     <Compile Include="syntax\variables\ListConstant.cs" />
@@ -178,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="syntax\expressions\" />
-    <Folder Include="syntax\runtime\perform\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private string value;
 
-        StringConstant(string value)
+        public StringConstant(string value)
         {
             this.value = value;
         }

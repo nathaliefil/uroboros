@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private List<string> values;
 
-        ListConstant(List<string> values)
+        public ListConstant(List<string> values)
         {
             this.values = values;
         }

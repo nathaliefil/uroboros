@@ -7,12 +7,12 @@ using DivineScript.syntax.runtime;
 
 namespace DivineScript.syntax.commands
 {
-    class StringDeclaration : ICommand
+    class ListDeclaration : ICommand
     {
         private string name;
-        private StringExpression value;
+        private ListExpression value;
 
-        StringDeclaration(string name, StringExpression value)
+        ListDeclaration(string name, ListExpression value)
         {
             this.name = name;
             this.value = value;
@@ -20,7 +20,7 @@ namespace DivineScript.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.Actualize(name, value.ToString());
+            RuntimeVariables.Actualize(name, value.ToList());
         }
     }
 }

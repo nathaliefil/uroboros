@@ -7,12 +7,12 @@ using DivineScript.syntax.runtime;
 
 namespace DivineScript.syntax.commands
 {
-    class StringDeclaration : ICommand
+    class BoolDeclaration : ICommand
     {
         private string name;
-        private StringExpression value;
+        private BoolExpression value;
 
-        StringDeclaration(string name, StringExpression value)
+        BoolDeclaration(string name, BoolExpression value)
         {
             this.name = name;
             this.value = value;
@@ -20,7 +20,7 @@ namespace DivineScript.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.Actualize(name, value.ToString());
+            RuntimeVariables.Actualize(name, value.ToBool());
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.commands.core
 {
-    class Open : CoreCommand
+    class Copy : CoreCommand
     {
         public override void Run()
         {

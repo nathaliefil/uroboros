@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private decimal value;
 
-        NumericVariable(string name, decimal value)
+        public NumericVariable(string name, decimal value)
         {
             this.name = name;
             this.value = value;

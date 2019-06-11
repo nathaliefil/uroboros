@@ -13,7 +13,7 @@ namespace DivineScript.syntax.commands.core
         private BoolExpression where;
 
 
-        public void Run()
+        public virtual void Run()
         {
             List<string> elements = list.ToList();
             foreach (string element in elements)
@@ -22,7 +22,7 @@ namespace DivineScript.syntax.commands.core
             }
         }
 
-        private void PerformAction(string element)
+        protected virtual void PerformAction(string element)
         {
         }
     }

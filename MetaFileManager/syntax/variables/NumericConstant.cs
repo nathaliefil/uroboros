@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private decimal value;
 
-        NumericConstant(decimal value)
+        public NumericConstant(decimal value)
         {
             this.value = value;
         }

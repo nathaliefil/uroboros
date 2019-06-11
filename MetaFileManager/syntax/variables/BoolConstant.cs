@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private bool value;
 
-        BoolConstant(bool value)
+        public BoolConstant(bool value)
         {
             this.value = value;
         }

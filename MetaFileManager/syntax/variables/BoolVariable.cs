@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables
     {
         private bool value;
 
-        BoolVariable(string name, bool value)
+        public BoolVariable(string name, bool value)
         {
             this.name = name;
             this.value = value;

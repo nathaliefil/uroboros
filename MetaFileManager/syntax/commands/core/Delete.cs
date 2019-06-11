@@ -7,7 +7,7 @@ namespace DivineScript.syntax.commands.core
 {
     class Delete : CoreCommand
     {
-        public override void PerformAction(string element)
+        protected override void PerformAction(string element)
         {
             //code deleting one file
         }

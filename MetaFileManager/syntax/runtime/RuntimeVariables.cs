@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
+using DivineScript.syntax.variables;
 
 namespace DivineScript.syntax.runtime
 {
-    static class RuntimeVariables
+    static partial class RuntimeVariables
     {
         private static List<NamedVariable> variables;
 
@@ -14,21 +15,6 @@ namespace DivineScript.syntax.runtime
         {
             variables = new List<NamedVariable>();
             InitializeInnerVariables();
-        }
-
-        public static void Actualize(NamedVariable variable)
-        {
-            if (variables.Where(v => v.GetName().Equals(variable.GetName())).Count() == 0)
-            {
-                variables.Add(variable);
-            }
-            if (variables.Where(v => v.GetName().Equals(variable.GetName())).Count() == 1)
-            {
-                /*NamedVariable nv = variables.First(v => v.GetName().Equals(variable.GetName()));
-                if (nv is IBoolable)
-                    nv.Set
-                variables.Add(variable);*/
-            }
         }
 
         public static void BracketsUp()

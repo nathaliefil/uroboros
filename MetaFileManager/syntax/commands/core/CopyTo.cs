@@ -10,7 +10,7 @@ namespace DivineScript.syntax.commands.core
     {
         StringExpression destination;
 
-        public override void PerformAction(string element)
+        protected override void PerformAction(string element)
         {
             //code copying one file to another destination
         }
