@@ -17,12 +17,12 @@ namespace DivineScript.syntax.commands.blocks
 
         public void Run()
         {
-            RuntimeVariables.BracketsUp();
+            RuntimeVariables.GetInstance().BracketsUp();
             foreach (ICommand command in commands)
             {
                 command.Run();
             }
-            RuntimeVariables.BracketsDown();
+            RuntimeVariables.GetInstance().BracketsDown();
         }
     }
 }

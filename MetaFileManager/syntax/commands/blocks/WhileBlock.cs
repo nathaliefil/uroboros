@@ -22,7 +22,7 @@ namespace DivineScript.syntax.commands.blocks
 
         new public void Run()
         {
-            RuntimeVariables.BracketsUp();
+            RuntimeVariables.GetInstance().BracketsUp();
             while (condition.ToBool())
             {
                 foreach (ICommand command in commands)
@@ -30,7 +30,7 @@ namespace DivineScript.syntax.commands.blocks
                     command.Run();
                 }
             }
-            RuntimeVariables.BracketsDown();
+            RuntimeVariables.GetInstance().BracketsDown();
         }
     }
 }

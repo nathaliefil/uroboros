@@ -7,10 +7,10 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.runtime
 {
-    static partial class RuntimeVariables
+    public partial class RuntimeVariables
     {
 
-        public static void Actualize(string name, string value)
+        public void Actualize(string name, string value)
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
             {
@@ -24,7 +24,7 @@ namespace DivineScript.syntax.runtime
             }
         }
 
-        public static void Actualize(string name, decimal value)
+        public void Actualize(string name, decimal value)
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
             {
@@ -38,7 +38,7 @@ namespace DivineScript.syntax.runtime
             }
         }
 
-        public static void Actualize(string name, bool value)
+        public void Actualize(string name, bool value)
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
             {
@@ -52,7 +52,7 @@ namespace DivineScript.syntax.runtime
             }
         }
 
-        public static void Actualize(string name, List<string> value)
+        public void Actualize(string name, List<string> value)
         {
             /*
              * 

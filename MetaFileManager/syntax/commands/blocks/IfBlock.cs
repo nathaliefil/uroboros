@@ -34,23 +34,23 @@ namespace DivineScript.syntax.commands.blocks
         {
             if (condition.ToBool())
             {
-                RuntimeVariables.BracketsUp();
+                RuntimeVariables.GetInstance().BracketsUp();
                 foreach (ICommand command in commands)
                 {
                     command.Run();
                 }
-                RuntimeVariables.BracketsDown();
+                RuntimeVariables.GetInstance().BracketsDown();
             }
             else
             {
                 if (elseCommands.Count() > 0)
                 {
-                    RuntimeVariables.BracketsUp();
+                    RuntimeVariables.GetInstance().BracketsUp();
                     foreach (ICommand elseCommand in elseCommands)
                     {
                         elseCommand.Run();
                     }
-                    RuntimeVariables.BracketsDown();
+                    RuntimeVariables.GetInstance().BracketsDown();
                 }
             }
         }

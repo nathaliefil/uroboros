@@ -7,17 +7,30 @@ using DivineScript.syntax.variables;
 
 namespace DivineScript.syntax.runtime
 {
-    static partial class RuntimeVariables
+    public partial class RuntimeVariables
     {
-        private static List<NamedVariable> variables;
+        private static RuntimeVariables INSTANCE = new RuntimeVariables();
+        private List<NamedVariable> variables;
 
-        static RuntimeVariables()
+        private RuntimeVariables()
         {
             variables = new List<NamedVariable>();
             InitializeInnerVariables();
         }
 
-        public static void BracketsUp()
+        public static RuntimeVariables GetInstance()
+        {
+            return INSTANCE;
+        }
+
+
+        /*static RuntimeVariables()
+        {
+            variables = new List<NamedVariable>();
+            InitializeInnerVariables();
+        }*/
+
+        public void BracketsUp()
         {
             foreach (NamedVariable var in variables)
             {
@@ -25,7 +38,7 @@ namespace DivineScript.syntax.runtime
             }
         }
 
-        public static void BracketsDown()
+        public void BracketsDown()
         {
             foreach (NamedVariable var in variables)
             {
@@ -35,7 +48,7 @@ namespace DivineScript.syntax.runtime
             }
         }
 
-        public static string GetValueString(string name)
+        public string GetValueString(string name)
         {
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
             if (!nv.Equals(null))
@@ -45,7 +58,7 @@ namespace DivineScript.syntax.runtime
             return "";
         }
 
-        public static decimal GetValueNumber(string name)
+        public decimal GetValueNumber(string name)
         {
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
             if (!nv.Equals(null))
@@ -58,7 +71,7 @@ namespace DivineScript.syntax.runtime
             return 0;
         }
 
-        public static bool GetValueBool(string name)
+        public bool GetValueBool(string name)
         {
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
             if (!nv.Equals(null))
@@ -72,7 +85,7 @@ namespace DivineScript.syntax.runtime
         }
 
 
-        private static void InitializeInnerVariables()
+        private void InitializeInnerVariables()
         {
         }
 

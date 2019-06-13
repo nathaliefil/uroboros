@@ -20,7 +20,7 @@ namespace DivineScript.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.Actualize(name, value.ToNumber());
+            RuntimeVariables.GetInstance().Actualize(name, value.ToNumber());
         }
     }
 }
