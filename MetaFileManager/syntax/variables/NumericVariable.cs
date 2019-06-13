@@ -34,5 +34,40 @@ namespace DivineScript.syntax.variables
             value = dec;
         }
 
+        public void PlusPlus()
+        {
+            value++;
+        }
+
+        public void MinusMinus()
+        {
+            value--;
+        }
+
+        public void IncreaseBy(decimal dec)
+        {
+            value += dec;
+        }
+
+        public void DecreaseBy(decimal dec)
+        {
+            value -= dec;
+        }
+
+        public void MultiplyBy(decimal dec)
+        {
+            value *= dec;
+        }
+
+        public void DivideBy(decimal dec)
+        {
+            if (dec == 0)
+            {
+                // throw some exception
+                /// todo
+            }
+            value /= dec;
+        }
+
     }
 }

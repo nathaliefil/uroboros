@@ -14,7 +14,6 @@ namespace DivineScript.syntax.runtime
 
         private RuntimeVariables()
         {
-            variables = new List<NamedVariable>();
             InitializeInnerVariables();
         }
 
@@ -22,13 +21,6 @@ namespace DivineScript.syntax.runtime
         {
             return INSTANCE;
         }
-
-
-        /*static RuntimeVariables()
-        {
-            variables = new List<NamedVariable>();
-            InitializeInnerVariables();
-        }*/
 
         public void BracketsUp()
         {
@@ -87,6 +79,23 @@ namespace DivineScript.syntax.runtime
 
         private void InitializeInnerVariables()
         {
+            variables = new List<NamedVariable>();
+
+            ListVariable empty = new ListVariable(new List<string>());
+            empty.SetConstant();
+
+            variables.Add(empty);
+            variables.Add(new Files());
+            variables.Add(new Directories());
+            variables.Add(new Everything());
+
+            variables.Add(new StringVariable("location", ""));
+            variables.Add(new StringVariable("name", ""));
+            variables.Add(new StringVariable("fullname", ""));
+            variables.Add(new StringVariable("extension", ""));
+
+            variables.Add(new NumericVariable("index", 0));
+
         }
 
     }

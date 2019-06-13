@@ -61,5 +61,45 @@ namespace DivineScript.syntax.runtime
              * */
         }
 
+        public void PlusPlus(string name)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is NumericVariable)
+                    (nv as NumericVariable).PlusPlus();
+            }
+        }
+
+        public void MinusMinus(string name)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is NumericVariable)
+                    (nv as NumericVariable).MinusMinus();
+            }
+        }
+
+        public void MultiplyBy(string name, decimal value)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is NumericVariable)
+                    (nv as NumericVariable).MultiplyBy(value);
+            }
+        }
+
+        public void DivideBy(string name, decimal value)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is NumericVariable)
+                    (nv as NumericVariable).DivideBy(value);
+            }
+        }
+
     }
 }

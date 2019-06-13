@@ -115,11 +115,7 @@ rename files to ("image_"+index)
    order by size desc;
 // all images get new name - image_0, image_1 from the biggest to the smalles by size
 drop files 
-   first part 0.5 
+   first 10
    order by modification asc; 
-// half of files is deleted - the oldest ones according to modification date
-select files 
-   where ext=("jpg", "png", "bmp")
-   stop name like "T%";
-// selects files that are alphabetically before "T".
+// half of files is deleted - the oldest ten according to modification date
 

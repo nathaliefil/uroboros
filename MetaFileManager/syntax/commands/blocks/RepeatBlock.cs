@@ -35,8 +35,7 @@ namespace DivineScript.syntax.commands.blocks
                     command.Run();
                 }
                 i++;
-                // set runtime variable index++
-                /// todo
+                //RuntimeVariables.GetInstance().Ac
             }
             RuntimeVariables.GetInstance().BracketsDown();
         }

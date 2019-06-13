@@ -14,5 +14,10 @@ namespace DivineScript.syntax.variables.abstracts
             return constant;
         }
 
+        public void SetConstant()
+        {
+            constant = true;
+        }
+
     }
 }
