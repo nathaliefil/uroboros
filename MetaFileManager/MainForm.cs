@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DivineScript.syntax;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.reading;
+using DivineScript.syntax.runtime;
 
 namespace DivineScript
 {
@@ -22,6 +23,8 @@ namespace DivineScript
             locationBox.TextAlign = HorizontalAlignment.Right;
             codeBox.AcceptsTab = true;
             logBox.ScrollBars = ScrollBars.Vertical;
+            Logger.GetInstance().SetOutputBox(logBox);
+
 
             Log("Welcome to Meta File Manager.");
             Log("--------------------------");
@@ -29,7 +32,6 @@ namespace DivineScript
 
         private void runButton_Click(object sender, EventArgs e)
         {
-            //Log("START PROGRAM");
             if (locationBox.Text.Equals(""))
             {
                 Message.showMessage(-1,0);
@@ -65,7 +67,6 @@ namespace DivineScript
                     
                 }
             }
-            //Log("STOP PROGRAM");
             Log("--------------------------");
         }
 
@@ -82,10 +83,7 @@ namespace DivineScript
 
         private void Log(string text)
         {
-            if (logBox.Text.Length == 0)
-                logBox.AppendText(text);
-            else
-                logBox.AppendText(Environment.NewLine + text);
+            Logger.GetInstance().Log(text);
         }
 
         private void MainForm_Load(object sender, EventArgs e)

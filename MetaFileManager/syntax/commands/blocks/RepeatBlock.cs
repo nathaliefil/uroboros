@@ -27,6 +27,7 @@ namespace DivineScript.syntax.commands.blocks
             decimal i = 0;
             decimal times = repeats.ToNumber();
 
+            RuntimeVariables.GetInstance().Actualize("index", 0);
             RuntimeVariables.GetInstance().BracketsUp();
             while (i < times)
             {
@@ -35,7 +36,7 @@ namespace DivineScript.syntax.commands.blocks
                     command.Run();
                 }
                 i++;
-                //RuntimeVariables.GetInstance().Ac
+                RuntimeVariables.GetInstance().PlusPlus("index");
             }
             RuntimeVariables.GetInstance().BracketsDown();
         }
