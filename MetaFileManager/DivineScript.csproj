@@ -91,35 +91,18 @@
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
     <Compile Include="syntax\FileValidator.cs" />
-    <Compile Include="syntax\old_BracketsAndQuotations.cs" />
     <Compile Include="syntax\commands\old_CoreCommand.cs" />
     <Compile Include="syntax\commands\CoreCommandType.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
-    <Compile Include="syntax\old_ElementsType.cs" />
-    <Compile Include="syntax\old_expression\old_FileIntVariable.cs" />
-    <Compile Include="syntax\old_expression\old_FileIntVariableType.cs" />
-    <Compile Include="syntax\old_expression\old_FileStringVariable.cs" />
-    <Compile Include="syntax\old_expression\old_FileStringVariableType.cs" />
-    <Compile Include="syntax\old_expression\old_Numberable.cs" />
-    <Compile Include="syntax\old_expression\old_RawDouble.cs" />
-    <Compile Include="syntax\old_expression\old_RawInt.cs" />
-    <Compile Include="syntax\old_expression\old_RawString.cs" />
-    <Compile Include="syntax\old_expression\old_Stringable.cs" />
-    <Compile Include="syntax\old_expression\old_StringExpression.cs" />
-    <Compile Include="syntax\old_expression\old_StringLength.cs" />
     <Compile Include="syntax\commands\old_FiltherBySubcommand.cs" />
-    <Compile Include="syntax\old_Keywords.cs" />
-    <Compile Include="syntax\old_Prepare.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
     <Compile Include="syntax\reading\TokenModifier.cs" />
     <Compile Include="syntax\reading\TokenType.cs" />
-    <Compile Include="syntax\old_Subcommand.cs" />
-    <Compile Include="syntax\old_SubcommandType.cs" />
     <Compile Include="syntax\runtime\ActualizeVariables.cs" />
     <Compile Include="syntax\runtime\Logger.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
@@ -131,7 +114,6 @@
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\Variable.cs" />
-    <Compile Include="syntax\old_VerifySubcommand.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\VariableType.cs" />
     <Compile Include="syntax\variables\BoolConstant.cs" />
@@ -194,9 +176,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="syntax\expressions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
