@@ -12,6 +12,7 @@ using DivineScript.syntax.reading;
 using DivineScript.syntax.runtime;
 using DivineScript.syntax.commands.core;
 using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.commands.create;
 
 namespace DivineScript
 {
@@ -63,7 +64,7 @@ namespace DivineScript
                         files.Add("info5.txt");
                         files.Add("info.txt");
                         files.Add("33");
-                        Copy comopen = new Copy(new ListExpression(files));
+                        CreateFile comopen = new CreateFile(new ListExpression(files));
                         commands.Add(comopen);
 
 

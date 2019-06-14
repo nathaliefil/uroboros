@@ -75,6 +75,7 @@
     <Compile Include="syntax\commands\arithmetic\PlusPlus.cs" />
     <Compile Include="syntax\commands\blocks\Block.cs" />
     <Compile Include="syntax\commands\blocks\IfBlock.cs" />
+    <Compile Include="syntax\commands\blocks\ListBlock.cs" />
     <Compile Include="syntax\commands\blocks\RepeatBlock.cs" />
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\CommandListFactory.cs" />
@@ -87,16 +88,16 @@
     <Compile Include="syntax\commands\core\Drop.cs" />
     <Compile Include="syntax\commands\core\Open.cs" />
     <Compile Include="syntax\commands\core\Select.cs" />
+    <Compile Include="syntax\commands\create\CreateDirectory.cs" />
+    <Compile Include="syntax\commands\create\CreateFile.cs" />
     <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
     <Compile Include="syntax\FileValidator.cs" />
-    <Compile Include="syntax\commands\old_CoreCommand.cs" />
     <Compile Include="syntax\commands\CoreCommandType.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
-    <Compile Include="syntax\commands\old_FiltherBySubcommand.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\Token.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="syntax\runtime\Logger.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
-    <Compile Include="syntax\Syntax.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
     <Compile Include="syntax\variables\abstracts\IBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\IListable.cs" />
