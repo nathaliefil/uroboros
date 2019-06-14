@@ -77,11 +77,11 @@ namespace DivineScript.syntax.runtime
         }
 
 
-        private void InitializeInnerVariables()
+        public void InitializeInnerVariables()
         {
             variables = new List<NamedVariable>();
 
-            ListVariable empty = new ListVariable(new List<string>());
+            ListVariable empty = new ListVariable("empty",new List<string>());
             empty.SetConstant();
 
             variables.Add(empty);

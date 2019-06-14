@@ -8,7 +8,13 @@ namespace DivineScript.syntax.variables.expressions
 {
     class ListExpression: Variable, IListable
     {
-        List<string> elements;
+        private List<string> elements;
+        private BoolExpression where;
+
+        public ListExpression(List<string> elements)
+        {
+            this.elements = elements;
+        }
 
         /*''
          * 

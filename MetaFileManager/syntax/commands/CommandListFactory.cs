@@ -8,7 +8,7 @@ namespace DivineScript.syntax.commands
 {
     class CommandListFactory
     {
-        static List<ICommand> Build(List<Token> tokens)
+        public static List<ICommand> Build(List<Token> tokens)
         {
             List<ICommand> commands = new List<ICommand>();
 

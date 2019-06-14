@@ -10,10 +10,10 @@ namespace DivineScript.syntax.commands.core
     {
         StringExpression destination;
 
-        protected override void PerformAction(string element)
+        /*protected override void PerformAction(string element)
         {
             //code moving one file to another destination
-        }
+        }*/
 
     }
 }

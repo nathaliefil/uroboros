@@ -10,11 +10,14 @@ using DivineScript.syntax;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.reading;
 using DivineScript.syntax.runtime;
+using DivineScript.syntax.commands.core;
+using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript
 {
     public partial class MainForm : Form
     {
+        List<ICommand> commands;
 
         public MainForm()
         {
@@ -34,37 +37,56 @@ namespace DivineScript
         {
             if (locationBox.Text.Equals(""))
             {
-                Message.showMessage(-1,0);
+                Log("Error! Location not found.");
             }
             else
             {
                 if (codeBox.Text.Length == 0)
                 {
-                    Message.showMessage(-2,0);
+                    Log("Error! No command found.");
                 }
                 else
                 {
                     try
                     {
+                        RuntimeVariables.GetInstance().InitializeInnerVariables();
+                        RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
                         List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
-                        foreach (Token t in tokens)
+                        commands = CommandListFactory.Build(tokens);
+                        //
+
+
+
+
+                        List<string> files = new List<string>();
+                        files.Add("dokumenty");
+                        files.Add("info2.txt");
+                        Open comopen = new Open(new ListExpression(files));
+                        commands.Add(comopen);
+
+
+
+                        //
+                        try
                         {
-                            Log(t.Print());
+                            foreach (ICommand command in commands)
+                            {
+                                command.Run();
+                            }
+                        }
+                        catch (DivineScript.syntax.RuntimeException re)
+                        {
+                            Logger.GetInstance().Log(re.GetMessage());
                         }
                     }
-                    catch(DivineScript.syntax.SyntaxErrorException te)
+                    catch (DivineScript.syntax.SyntaxErrorException te)
                     {
-                        Log(te.GetMessage());
-                    }
-                    
-
-
-                    // this
-
-                    List<Programme> programs = new List<Programme>();
-                    programs.Add(new Programme("main", codeBox.Text));
-
-                    
+                        Logger.GetInstance().Log(te.GetMessage());
+                    }/*
+                    catch (NullReferenceException nre)
+                    {
+                        Logger.GetInstance().Log("Error! NullReferenceException");
+                    }*/
                 }
             }
             Log("--------------------------");
