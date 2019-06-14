@@ -26,7 +26,7 @@ namespace DivineScript.syntax.commands.blocks
             RuntimeVariables.GetInstance().BracketsUp();
             foreach(string element in list.ToList())
             {
-                RuntimeVariables.GetInstance().Actualize("*element*", element);
+                RuntimeVariables.GetInstance().Actualize("this", element);
                 foreach (ICommand command in commands)
                 {
                     command.Run();
@@ -35,7 +35,7 @@ namespace DivineScript.syntax.commands.blocks
             }
             RuntimeVariables.GetInstance().BracketsDown();
             RuntimeVariables.GetInstance().Actualize("index", 0);
-            RuntimeVariables.GetInstance().Actualize("*element*", "");
+            RuntimeVariables.GetInstance().Actualize("this", "");
         }
     }
 }

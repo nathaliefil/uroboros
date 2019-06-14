@@ -10,7 +10,7 @@ namespace DivineScript.syntax.commands.create
 {
     class CreateFile : ICommand
     {
-        StringExpression name;
+        private StringExpression name;
 
         public CreateFile(StringExpression name)
         {

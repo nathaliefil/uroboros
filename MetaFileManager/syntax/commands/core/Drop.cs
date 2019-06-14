@@ -50,7 +50,7 @@ namespace DivineScript.syntax.commands.core
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! Unknown problem occured to " + element + ".");
+                    Logger.GetInstance().Log("Error! Something went wrong during dropping " + element + ".");
                 }
             }
         }
