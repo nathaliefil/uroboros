@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables.expressions
     {
         List<INumerable> elements;
 
-        NumericExpression(List<INumerable> elements)
+        public NumericExpression(List<INumerable> elements)
         {
             this.elements = elements;
         }

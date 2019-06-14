@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables.expressions
     {
         List<IBoolable> elements;
 
-        BoolExpression(List<IBoolable> elements)
+        public BoolExpression(List<IBoolable> elements)
         {
             this.elements = elements;
         }

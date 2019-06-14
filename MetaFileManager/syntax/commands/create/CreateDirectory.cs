@@ -10,50 +10,47 @@ namespace DivineScript.syntax.commands.create
 {
     class CreateDirectory : ICommand
     {
-        ListExpression list;
+        StringExpression name;
 
-        public CreateDirectory(ListExpression list)
+        public CreateDirectory(StringExpression name)
         {
-            this.list = list;
+            this.name = name;
         }
 
         public void Run()
         {
-            foreach (string name in list.ToList())
+            string sname = name.ToString();
+            if (FileValidator.IsNameCorrect(sname))
             {
-                if (FileValidator.IsNameCorrect(name))
+                string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
+                if (FileValidator.IsDirectory(sname))
                 {
-                    string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + name;
-                    if (FileValidator.IsDirectory(name))
+                    if (Directory.Exists(@location))
                     {
-                        if (Directory.Exists(@location))
-                        {
-                            Logger.GetInstance().Log("Error! Directory " + name + " already exists.");
-                        }
-                        else
-                        {
-                            try
-                            {
-                                Directory.CreateDirectory(@location);
-                                Logger.GetInstance().Log("Create directory " + name);
-                            }
-                            catch (Exception)
-                            {
-                                Logger.GetInstance().Log("Error! Something went wrong during creating " + name + ".");
-                            }
-                        }
+                        Logger.GetInstance().Log("Error! Directory " + sname + " already exists.");
                     }
                     else
                     {
-                        Logger.GetInstance().Log("Error! " + name + " is not a directory.");
+                        try
+                        {
+                            Directory.CreateDirectory(@location);
+                            Logger.GetInstance().Log("Create directory " + sname);
+                        }
+                        catch (Exception)
+                        {
+                            Logger.GetInstance().Log("Error! Something went wrong during creating " + sname + ".");
+                        }
                     }
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! " + name + " contains not allowed characters.");
+                    Logger.GetInstance().Log("Error! " + sname + " is not a directory.");
                 }
             }
+            else
+            {
+                Logger.GetInstance().Log("Error! " + sname + " contains not allowed characters.");
+            }
         }
-
     }
 }

@@ -13,6 +13,8 @@ using DivineScript.syntax.runtime;
 using DivineScript.syntax.commands.core;
 using DivineScript.syntax.variables.expressions;
 using DivineScript.syntax.commands.create;
+using DivineScript.syntax.variables.abstracts;
+using DivineScript.syntax.variables;
 
 namespace DivineScript
 {
@@ -56,7 +58,13 @@ namespace DivineScript
                         commands = CommandListFactory.Build(tokens);
                         //
 
+                        List<IStringable> lstrin= new List<IStringable>();
+                        lstrin.Add(new StringConstant("info"));
+                        StringExpression strin = new StringExpression(lstrin);
 
+                        List<IStringable> lstrin2 = new List<IStringable>();
+                        lstrin2.Add(new StringConstant("info_kopia"));
+                        StringExpression strin2 = new StringExpression(lstrin2);
 
 
                         List<string> files = new List<string>();
@@ -64,7 +72,9 @@ namespace DivineScript
                         files.Add("info5.txt");
                         files.Add("info.txt");
                         files.Add("33");
-                        CreateFile comopen = new CreateFile(new ListExpression(files));
+
+
+                        CreateDirectory comopen = new CreateDirectory(strin);
                         commands.Add(comopen);
 
 

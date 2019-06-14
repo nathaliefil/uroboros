@@ -10,7 +10,7 @@ namespace DivineScript.syntax.variables.expressions
     {
         List<IStringable> elements;
 
-        StringExpression(List<IStringable> elements)
+        public StringExpression(List<IStringable> elements)
         {
             this.elements = elements;
         }
@@ -20,7 +20,7 @@ namespace DivineScript.syntax.variables.expressions
             StringBuilder sb = new StringBuilder();
             foreach (IStringable element in elements)
             {
-                sb.Append(sb.ToString());
+                sb.Append(element.ToString());
             }
             return sb.ToString();
         }

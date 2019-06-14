@@ -90,6 +90,7 @@
     <Compile Include="syntax\commands\core\Select.cs" />
     <Compile Include="syntax\commands\create\CreateDirectory.cs" />
     <Compile Include="syntax\commands\create\CreateFile.cs" />
+    <Compile Include="syntax\commands\create\CreateFileFrom.cs" />
     <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
