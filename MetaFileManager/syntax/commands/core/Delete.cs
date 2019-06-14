@@ -2,15 +2,57 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.runtime;
+using System.IO;
 
 namespace DivineScript.syntax.commands.core
 {
     class Delete : CoreCommand
     {
-        /*protected override void PerformAction(string element)
+        /*public Delete(ListExpression list)
         {
-            //code deleting one file
-        }*/
+            this.list = list;
+        }
 
+        protected override void PerformDirectoryAction(string element, string location)
+        {
+            try
+            {
+                Directory.Delete(@location);
+                Logger.GetInstance().Log("Delete " + element);
+            }
+            catch (Exception ex)
+            {
+                if (ex is IOException || ex is UnauthorizedAccessException)
+                {
+                    Logger.GetInstance().Log("Error! Access denied to " + element + ".");
+                }
+                else
+                {
+                    Logger.GetInstance().Log("Error! Unknown problem occured to " + element + ".");
+                }
+            }
+        }
+
+        protected override void PerformFileAction(string element, string location)
+        {
+            try
+            {
+                File.Delete(@location);
+                Logger.GetInstance().Log("Delete " + element);
+            }
+            catch (Exception ex)
+            {
+                if (ex is IOException || ex is UnauthorizedAccessException)
+                {
+                    Logger.GetInstance().Log("Error! Access denied to " + element + ".");
+                }
+                else
+                {
+                    Logger.GetInstance().Log("Error! Unknown problem occured to " + element + ".");
+                }
+            }
+        }*/
     }
 }

@@ -21,9 +21,10 @@ namespace DivineScript.syntax.commands.core
             {
                 if (FileValidator.IsNameCorrect(element))
                 {
+                    string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + element;
+
                     if (FileValidator.IsDirectory(element))
                     {
-                        string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + element;
                         if (!Directory.Exists(@location))
                         {
                             Logger.GetInstance().Log("Error! Directory " + element + " not found.");
@@ -35,7 +36,6 @@ namespace DivineScript.syntax.commands.core
                     }
                     else
                     {
-                        string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + element;
                         if (!File.Exists(@location))
                         {
                             Logger.GetInstance().Log("Error! File " + element + " not found.");
@@ -48,7 +48,7 @@ namespace DivineScript.syntax.commands.core
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! " + element + " contains not allowed chaaracters.");
+                    Logger.GetInstance().Log("Error! " + element + " contains not allowed characters.");
                 }
             }
         }

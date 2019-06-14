@@ -59,9 +59,11 @@ namespace DivineScript
 
 
                         List<string> files = new List<string>();
-                        files.Add("dokumenty");
-                        files.Add("info2.txt");
-                        Open comopen = new Open(new ListExpression(files));
+                        files.Add("3");
+                        files.Add("info5.txt");
+                        files.Add("info.txt");
+                        files.Add("33");
+                        Copy comopen = new Copy(new ListExpression(files));
                         commands.Add(comopen);
 
 
