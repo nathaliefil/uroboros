@@ -8,36 +8,34 @@ using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript.syntax.commands.blocks
 {
-    class RepeatBlock : Block, ICommand
+    class ListBlock : Block, ICommand
     {
 
-        private NumericExpression repeats;
+        private ListExpression list;
 
-        public RepeatBlock(List<ICommand> commands, NumericExpression repeats)
+        public ListBlock(List<ICommand> commands, ListExpression list)
             : base(commands)
         {
             this.commands = commands;
-            this.repeats = repeats;
+            this.list = list;
         }
 
         new public void Run()
         {
-            decimal i = 0;
-            decimal times = repeats.ToNumber();
-
             RuntimeVariables.GetInstance().Actualize("index", 0);
             RuntimeVariables.GetInstance().BracketsUp();
-            while (i < times)
+            foreach(string element in list.ToList())
             {
+                RuntimeVariables.GetInstance().Actualize("*element*", element);
                 foreach (ICommand command in commands)
                 {
                     command.Run();
                 }
-                i++;
                 RuntimeVariables.GetInstance().PlusPlus("index");
             }
             RuntimeVariables.GetInstance().BracketsDown();
             RuntimeVariables.GetInstance().Actualize("index", 0);
+            RuntimeVariables.GetInstance().Actualize("*element*", "");
         }
     }
 }

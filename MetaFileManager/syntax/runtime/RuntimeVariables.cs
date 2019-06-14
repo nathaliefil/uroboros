@@ -89,11 +89,11 @@ namespace DivineScript.syntax.runtime
             variables.Add(new Directories());
             variables.Add(new Everything());
 
+            variables.Add(new StringVariable("*element*", ""));
             variables.Add(new StringVariable("location", ""));
             variables.Add(new StringVariable("name", ""));
             variables.Add(new StringVariable("fullname", ""));
             variables.Add(new StringVariable("extension", ""));
-
             variables.Add(new NumericVariable("index", 0));
 
         }

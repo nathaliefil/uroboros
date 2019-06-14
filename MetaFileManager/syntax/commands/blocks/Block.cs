@@ -8,6 +8,7 @@ namespace DivineScript.syntax.commands.blocks
 {
     class Block : ICommand
     {
+
         protected List<ICommand> commands;
 
         public Block(List<ICommand> commands)
