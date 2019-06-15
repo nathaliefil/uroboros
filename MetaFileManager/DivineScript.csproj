@@ -126,6 +126,9 @@
     <Compile Include="syntax\functions\strings\FuncLower.cs" />
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
+    <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
+    <Compile Include="syntax\interpretation\tokenlists\ITokenList.cs" />
+    <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
     <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
@@ -213,9 +216,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="syntax\interpretation\tokenlists\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.reading;
+using DivineScript.syntax.interpretation.tokenlists;
 
 namespace DivineScript.syntax.commands
 {
@@ -12,12 +13,7 @@ namespace DivineScript.syntax.commands
         {
             List<ICommand> commands = new List<ICommand>();
 
-            for (int i = 0; i < tokens.Count; i++)
-            {
-
-
-
-            }
+            BlockTokenList mainBlock = new BlockTokenList(tokens);
 
 
 
