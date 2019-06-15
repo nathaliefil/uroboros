@@ -29,7 +29,7 @@ namespace DivineScript.syntax.functions.numeric
             }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             decimal value = ToNumber();
 

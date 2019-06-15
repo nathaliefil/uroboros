@@ -26,7 +26,7 @@ namespace DivineScript.syntax.functions.numeric
             /// todo
         }
 
-        public string ToString()
+        public override string ToString()
         {
             decimal value = ToNumber();
 

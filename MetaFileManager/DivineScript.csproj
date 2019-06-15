@@ -101,7 +101,24 @@
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
     <Compile Include="syntax\functions\numeric\abstracts\INumericFunction.cs" />
+    <Compile Include="syntax\functions\FunctionTypes.cs" />
     <Compile Include="syntax\functions\numeric\FuncCeil.cs" />
+    <Compile Include="syntax\functions\numeric\FuncCount.cs" />
+    <Compile Include="syntax\functions\numeric\FuncE.cs" />
+    <Compile Include="syntax\functions\numeric\FuncFloor.cs" />
+    <Compile Include="syntax\functions\numeric\FuncLength.cs" />
+    <Compile Include="syntax\functions\numeric\FuncMax.cs" />
+    <Compile Include="syntax\functions\numeric\FuncMin.cs" />
+    <Compile Include="syntax\functions\numeric\FuncNumber.cs" />
+    <Compile Include="syntax\functions\numeric\FuncPi.cs" />
+    <Compile Include="syntax\functions\numeric\FuncPower.cs" />
+    <Compile Include="syntax\functions\numeric\FuncRound.cs" />
+    <Compile Include="syntax\functions\strings\abstracts\IStringFunction.cs" />
+    <Compile Include="syntax\functions\strings\FuncBinary.cs" />
+    <Compile Include="syntax\functions\strings\FuncDigits.cs" />
+    <Compile Include="syntax\functions\strings\FuncHex.cs" />
+    <Compile Include="syntax\functions\strings\FuncLower.cs" />
+    <Compile Include="syntax\functions\strings\FuncUpper.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
@@ -181,9 +198,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="syntax\functions\string\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

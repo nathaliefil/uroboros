@@ -2,30 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.functions.numeric.abstracts;
+using DivineScript.syntax.functions.strings.abstracts;
 using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript.syntax.functions.numeric
 {
-    class FuncLength : INumericFunction
+    class FuncUpper : IStringFunction
     {
         private StringExpression arg0;
 
-        public FuncLength(StringExpression arg0)
+        public FuncUpper(StringExpression arg0)
         {
             this.arg0 = arg0;
         }
 
-        public decimal ToNumber()
-        {
-            return arg0.ToString().Length;
-        }
-
         public override string ToString()
         {
-            decimal value = ToNumber();
-
-            return ((int)value).ToString();
+            return (arg0.ToString()).ToUpper();
         }
     }
 }

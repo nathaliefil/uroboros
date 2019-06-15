@@ -21,7 +21,7 @@ namespace DivineScript.syntax.functions.numeric
             return arg0.Min(x => x.ToNumber()); 
         }
 
-        public string ToString()
+        public override string ToString()
         {
             decimal value = ToNumber();
 

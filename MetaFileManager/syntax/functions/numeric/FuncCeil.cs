@@ -21,7 +21,7 @@ namespace DivineScript.syntax.functions.numeric
             return Decimal.Ceiling(arg0.ToNumber());
         }
 
-        public string ToString()
+        public override string ToString()
         {
             decimal value = ToNumber();
 

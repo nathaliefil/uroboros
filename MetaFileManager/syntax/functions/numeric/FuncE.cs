@@ -18,7 +18,7 @@ namespace DivineScript.syntax.functions.numeric
             return (decimal) Math.E;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             decimal value = ToNumber();
 
