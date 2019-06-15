@@ -67,17 +67,7 @@ namespace DivineScript.syntax.reading
                 tokens.Add(TokenFactory.Build(stringb.ToString()));
             }
 
-            int bracketsOn = tokens.Where(t => t.GetTokenType()==TokenType.BracketOn).Count();
-            int bracketsOff = tokens.Where(t => t.GetTokenType() == TokenType.BracketOff).Count();
-            int curlyBracketsOn = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOn).Count();
-            int curlyBracketsOff = tokens.Where(t => t.GetTokenType() == TokenType.CurlyBracketOff).Count();
-
-            if (tokens.Count() == 0)
-                throw new SyntaxErrorException("ERROR! Code is empty.");
-            if (bracketsOn != bracketsOff)
-                throw new SyntaxErrorException("ERROR! Check brackets ( ).");
-            if (curlyBracketsOn != curlyBracketsOff)
-                throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
+            CheckCorrectness(tokens);
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
             tokens = TokenModifier.MergeTokens(tokens);
@@ -85,5 +75,14 @@ namespace DivineScript.syntax.reading
             return tokens;
         }
 
+        private static void CheckCorrectness(List<Token> tokens)
+        {
+            if (tokens.Count() == 0)
+                throw new SyntaxErrorException("ERROR! Code is empty.");
+            if (Brackets.AreCorrect(tokens, false))
+                throw new SyntaxErrorException("ERROR! Check brackets ( ).");
+            if (Brackets.AreCorrect(tokens, true))
+                throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
+        }
     }
 }

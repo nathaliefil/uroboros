@@ -12,6 +12,12 @@ namespace DivineScript.syntax.commands
         {
             List<ICommand> commands = new List<ICommand>();
 
+            for (int i = 0; i < tokens.Count; i++)
+            {
+
+
+
+            }
 
 
 
