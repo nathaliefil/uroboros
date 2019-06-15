@@ -8,7 +8,7 @@ namespace DivineScript.syntax.variables.abstracts
 	abstract class NamedVariable: Variable
 	{
         protected string name;
-        private int depthInBrackets = 0;
+        protected int depthInBrackets = 0;
 
         public string GetName()
         {

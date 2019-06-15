@@ -91,6 +91,8 @@
     <Compile Include="syntax\commands\create\CreateDirectory.cs" />
     <Compile Include="syntax\commands\create\CreateFile.cs" />
     <Compile Include="syntax\commands\create\CreateFileFrom.cs" />
+    <Compile Include="syntax\commands\print\Print.cs" />
+    <Compile Include="syntax\commands\print\PrintList.cs" />
     <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
@@ -98,6 +100,8 @@
     <Compile Include="syntax\commands\CoreCommandType.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
+    <Compile Include="syntax\functions\numeric\abstracts\INumericFunction.cs" />
+    <Compile Include="syntax\functions\numeric\FuncCeil.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
@@ -177,7 +181,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="syntax\functions\string\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

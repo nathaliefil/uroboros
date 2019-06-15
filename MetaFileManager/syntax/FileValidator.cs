@@ -17,7 +17,7 @@ namespace DivineScript.syntax
         }
         public static bool IsDirectory(string name)
         {
-            return name.Contains('.') ? false : true;
+            return !name.Contains('.');
         }
     }
 }
