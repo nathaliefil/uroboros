@@ -27,7 +27,7 @@ namespace DivineScript.syntax.commands.create
                 {
                     if (File.Exists(@location))
                     {
-                        Logger.GetInstance().Log("Error! File " + sname + " already exists.");
+                        Logger.GetInstance().Log("Action ignored! File " + sname + " already exists.");
                     }
                     else
                     {
@@ -38,18 +38,18 @@ namespace DivineScript.syntax.commands.create
                         }
                         catch (Exception)
                         {
-                            Logger.GetInstance().Log("Error! Something went wrong during creating " + sname + ".");
+                            Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + sname + ".");
                         }
                     }
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! " + sname + " is not a file.");
+                    Logger.GetInstance().Log("Action ignored! " + sname + " is not a file.");
                 }
             }
             else
             {
-                Logger.GetInstance().Log("Error! " + sname + " contains not allowed characters.");
+                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
             }
         }
         

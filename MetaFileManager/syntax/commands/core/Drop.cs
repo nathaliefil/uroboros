@@ -26,11 +26,11 @@ namespace DivineScript.syntax.commands.core
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
                 {
-                    Logger.GetInstance().Log("Error! Access denied to " + element + ".");
+                    Logger.GetInstance().Log("Action ignored! Access denied to " + element + ".");
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! Something went wrong during dropping " + element + ".");
+                    Logger.GetInstance().Log("Action ignored! Something went wrong during dropping " + element + ".");
                 }
             }
         }
@@ -46,11 +46,11 @@ namespace DivineScript.syntax.commands.core
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
                 {
-                    Logger.GetInstance().Log("Error! Access denied to " + element + ".");
+                    Logger.GetInstance().Log("Action ignored! Access denied to " + element + ".");
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! Something went wrong during dropping " + element + ".");
+                    Logger.GetInstance().Log("Action ignored! Something went wrong during dropping " + element + ".");
                 }
             }
         }

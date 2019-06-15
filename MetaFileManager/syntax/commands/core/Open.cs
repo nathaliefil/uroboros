@@ -23,8 +23,16 @@ namespace DivineScript.syntax.commands.core
 
         protected override void PerformFileAction(string element, string location)
         {
-            Process.Start(@location);
-            Logger.GetInstance().Log("Open " + element);
+            try
+            {
+                Process.Start(@location);
+                Logger.GetInstance().Log("Open " + element);
+            }
+            catch (Exception)
+            {
+                Logger.GetInstance().Log("Action ignored! Something went wrong during openning " + element + ".");
+            }
+            
         }
     }
 }

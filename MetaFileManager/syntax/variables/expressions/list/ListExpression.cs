@@ -11,10 +11,18 @@ namespace DivineScript.syntax.variables.expressions
         private List<string> elements;
         private BoolExpression where;
 
+        public List<string> ToList()
+        {
+            return elements;
+        }
+
         public ListExpression(List<string> elements)
         {
             this.elements = elements;
         }
+
+
+
 
         /*''
          * 
@@ -23,9 +31,6 @@ namespace DivineScript.syntax.variables.expressions
          * 
          * */
 
-        public List<string> ToList()
-        {
-            return elements;
-        }
+        
     }
 }

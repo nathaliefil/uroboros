@@ -31,7 +31,7 @@ namespace DivineScript.syntax.commands.core
                     {
                         if (!Directory.Exists(@location))
                         {
-                            Logger.GetInstance().Log("Error! Directory " + element + " not found.");
+                            Logger.GetInstance().Log("Action ignored! Directory " + element + " not found.");
                         }
                         else
                         {
@@ -43,7 +43,7 @@ namespace DivineScript.syntax.commands.core
                     {
                         if (!File.Exists(@location))
                         {
-                            Logger.GetInstance().Log("Error! File " + element + " not found.");
+                            Logger.GetInstance().Log("Action ignored! File " + element + " not found.");
                         }
                         else
                         {
@@ -54,7 +54,7 @@ namespace DivineScript.syntax.commands.core
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! " + element + " contains not allowed characters.");
+                    Logger.GetInstance().Log("Action ignored! " + element + " contains not allowed characters.");
                 }
             }
 

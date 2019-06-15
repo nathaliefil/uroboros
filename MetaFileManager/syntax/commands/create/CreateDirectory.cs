@@ -27,7 +27,7 @@ namespace DivineScript.syntax.commands.create
                 {
                     if (Directory.Exists(@location))
                     {
-                        Logger.GetInstance().Log("Error! Directory " + sname + " already exists.");
+                        Logger.GetInstance().Log("Action ignored! Directory " + sname + " already exists.");
                     }
                     else
                     {
@@ -38,18 +38,18 @@ namespace DivineScript.syntax.commands.create
                         }
                         catch (Exception)
                         {
-                            Logger.GetInstance().Log("Error! Something went wrong during creating " + sname + ".");
+                            Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + sname + ".");
                         }
                     }
                 }
                 else
                 {
-                    Logger.GetInstance().Log("Error! " + sname + " is not a directory.");
+                    Logger.GetInstance().Log("Action ignored! " + sname + " is not a directory.");
                 }
             }
             else
             {
-                Logger.GetInstance().Log("Error! " + sname + " contains not allowed characters.");
+                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
             }
         }
     }

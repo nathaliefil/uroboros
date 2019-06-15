@@ -26,34 +26,34 @@ namespace DivineScript.syntax.commands.create
 
             if (!FileValidator.IsNameCorrect(sname))
             {
-                Logger.GetInstance().Log("Error! " + sname + " contains not allowed characters.");
+                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
                 return;
             }
             if (!FileValidator.IsNameCorrect(nname))
             {
-                Logger.GetInstance().Log("Error! " + nname + " contains not allowed characters.");
+                Logger.GetInstance().Log("Action ignored! " + nname + " contains not allowed characters.");
                 return;
             }
             if (FileValidator.IsDirectory(sname))
             {
-                Logger.GetInstance().Log("Error! " + sname + " is not a file.");
+                Logger.GetInstance().Log("Action ignored! " + sname + " is not a file.");
                 return;
             }
             if (FileValidator.IsDirectory(nname))
             {
-                Logger.GetInstance().Log("Error! " + nname + " is not a file.");
+                Logger.GetInstance().Log("Action ignored! " + nname + " is not a file.");
                 return;
             }
             string slocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
             string nlocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + nname;
             if (!File.Exists(@slocation))
             {
-                Logger.GetInstance().Log("Error! Source file " + sname + " do not exist.");
+                Logger.GetInstance().Log("Action ignored! Source file " + sname + " do not exist.");
                 return;
             }
             if (File.Exists(@nlocation))
             {
-                Logger.GetInstance().Log("Error! File " + nname + " already exists.");
+                Logger.GetInstance().Log("Action ignored!! File " + nname + " already exists.");
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace DivineScript.syntax.commands.create
             }
             catch (Exception)
             {
-                Logger.GetInstance().Log("Error! Something went wrong during creating " + nname + " from " + nname + ".");
+                Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + nname + " from " + nname + ".");
             }
         }
     }
