@@ -80,6 +80,7 @@ namespace DivineScript.syntax.reading
                 case "receive": return new Token(TokenType.Receive);
                 case "remove": return new Token(TokenType.Remove);
                 case "rename": return new Token(TokenType.Rename);
+                case "reverse": return new Token(TokenType.Reverse);
                 case "run": return new Token(TokenType.Run);
                 case "select": return new Token(TokenType.Select);
                 case "set": return new Token(TokenType.Set);

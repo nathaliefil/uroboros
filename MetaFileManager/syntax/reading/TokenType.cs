@@ -41,6 +41,7 @@ namespace DivineScript.syntax.reading
         Receive,
         Remove,
         Rename,
+        Reverse,
         Run,
         Select,
         Set,

@@ -9,6 +9,10 @@ namespace DivineScript.syntax.runtime
 {
     public partial class RuntimeVariables
     {
+        public void Remove(string name)
+        {
+            variables.Remove(variables.Where(v => v.GetName().Equals(name)).First());
+        }
 
         public void Actualize(string name, string value)
         {

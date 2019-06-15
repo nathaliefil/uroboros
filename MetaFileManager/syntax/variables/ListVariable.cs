@@ -16,12 +16,6 @@ namespace DivineScript.syntax.variables
             this.values = values;
         }
 
-        public ListVariable(string value)
-        {
-            this.values = new List<string>();
-            values.Add(value);
-        }
-
         public List<string> ToList()
         {
             return values;
@@ -37,5 +31,19 @@ namespace DivineScript.syntax.variables
             values.AddRange(values);
         }
 
+        public void Reverse()
+        {
+            values.Reverse();
+        }
+
+        public void Remove(string value)
+        {
+            values.RemoveAll(v => v.Equals(value));
+        }
+
+        public void Remove(List<string> valuess)
+        {
+            values.RemoveAll(v => valuess.Contains(v));
+        }
     }
 }

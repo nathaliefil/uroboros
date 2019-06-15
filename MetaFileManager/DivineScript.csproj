@@ -80,6 +80,9 @@
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\core\RenameTo.cs" />
     <Compile Include="syntax\commands\create\CreateDirectoryFrom.cs" />
+    <Compile Include="syntax\commands\list\Add.cs" />
+    <Compile Include="syntax\commands\list\Remove.cs" />
+    <Compile Include="syntax\commands\list\Reverse.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="syntax\reading\TokenModifier.cs" />
     <Compile Include="syntax\reading\TokenType.cs" />
     <Compile Include="syntax\runtime\ActualizeVariables.cs" />
+    <Compile Include="syntax\runtime\ListOperations.cs" />
     <Compile Include="syntax\runtime\Logger.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
