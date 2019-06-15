@@ -33,7 +33,7 @@ namespace DivineScript.syntax.commands.list
             if (single)
                 RuntimeVariables.GetInstance().Add(name, value);
             else
-                Logger.GetInstance().Log("Add multiple elements to " + name);
+                RuntimeVariables.GetInstance().Add(name, values);
         }
     }
 }

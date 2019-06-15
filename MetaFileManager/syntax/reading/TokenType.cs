@@ -83,6 +83,10 @@ namespace DivineScript.syntax.reading
         BiggerOrEquals,
         SmallerOrEquals,
         Arrow,
+        PlusEquals,
+        MinusEquals,
+        MultiplyEquals,
+        DivideEquals,
 
         CreateFile,
         CreateDirectory,

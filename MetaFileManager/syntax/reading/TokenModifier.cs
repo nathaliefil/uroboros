@@ -13,13 +13,13 @@ namespace DivineScript.syntax.reading
             {
                 if (t.GetTokenType() == TokenType.Variable)
                 {
-                    string previous = t.GetContent();
-                    t.PointToComma();
+                    string ss = (t.GetContent()).Replace('.', ',');
                     decimal value;
-                    if (Decimal.TryParse(t.GetContent(), out value))
+                    if (Decimal.TryParse(ss, out value))
+                    {
+                        t.PointToComma();
                         t.SetToNumericConstant();
-                    else
-                        t.SetContent(previous);
+                    }
                 }
             }
             return tokens;
@@ -77,7 +77,7 @@ namespace DivineScript.syntax.reading
                         newTokens.Add(new Token(TokenType.SmallerOrEquals));
                         tokensMerged = true;
                     }
-                    if (tokens[i].GetTokenType() == TokenType.Minus && tokens[i+1].GetTokenType() == TokenType.Bigger)
+                    if (tokens[i].GetTokenType() == TokenType.Equals && tokens[i+1].GetTokenType() == TokenType.Bigger)
                     {
                         newTokens.Add(new Token(TokenType.Arrow));
                         tokensMerged = true;
@@ -107,6 +107,31 @@ namespace DivineScript.syntax.reading
                         newTokens.Add(new Token(TokenType.CreateDirectory));
                         tokensMerged = true;
                     }
+
+
+
+                    if (tokens[i].GetTokenType() == TokenType.Plus && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.PlusEquals));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Minus && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.MinusEquals));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Multiply && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.MultiplyEquals));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Divide && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.DivideEquals));
+                        tokensMerged = true;
+                    }
+
+
 
                     if (tokensMerged)
                         i++;
