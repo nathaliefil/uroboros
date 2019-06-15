@@ -69,7 +69,6 @@ namespace DivineScript.syntax.reading
                 case "from": return new Token(TokenType.From);
                 case "here": return new Token(TokenType.Here);
                 case "if": return new Token(TokenType.If);
-                case "ignore": return new Token(TokenType.Ignore);
                 case "last": return new Token(TokenType.Last);
                 case "like": return new Token(TokenType.Like);
                 case "move": return new Token(TokenType.Move);
@@ -84,6 +83,7 @@ namespace DivineScript.syntax.reading
                 case "run": return new Token(TokenType.Run);
                 case "select": return new Token(TokenType.Select);
                 case "set": return new Token(TokenType.Set);
+                case "skip": return new Token(TokenType.Skip);
                 case "this": return new Token(TokenType.This);
                 case "to": return new Token(TokenType.To);
                 case "true": return new Token(TokenType.BoolConstant);

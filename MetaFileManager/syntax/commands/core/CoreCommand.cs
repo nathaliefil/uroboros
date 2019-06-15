@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables.expressions;
 using DivineScript.syntax.runtime;
 using System.IO;
+using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.core
 {

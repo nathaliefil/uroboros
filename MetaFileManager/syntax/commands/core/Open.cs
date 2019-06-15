@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.expressions.list;
 using DivineScript.syntax.runtime;
 using System.IO;
 using System.Diagnostics;

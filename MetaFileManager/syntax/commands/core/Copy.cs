@@ -6,7 +6,7 @@ using DivineScript.syntax.runtime;
 using System.IO;
 using System.Collections.Specialized;
 using System.Windows.Forms;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.core
 {

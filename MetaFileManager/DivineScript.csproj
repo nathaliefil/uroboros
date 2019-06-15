@@ -78,7 +78,9 @@
     <Compile Include="syntax\commands\blocks\ListBlock.cs" />
     <Compile Include="syntax\commands\blocks\RepeatBlock.cs" />
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
-    <Compile Include="syntax\commands\CommandListFactory.cs" />
+    <Compile Include="syntax\commands\core\RenameTo.cs" />
+    <Compile Include="syntax\commands\create\CreateDirectoryFrom.cs" />
+    <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
     <Compile Include="syntax\commands\core\CoreCommand.cs" />
@@ -97,7 +99,6 @@
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
     <Compile Include="syntax\FileValidator.cs" />
-    <Compile Include="syntax\commands\CoreCommandType.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\vardeclarations\StringDeclaration.cs" />
     <Compile Include="syntax\functions\numeric\abstracts\INumericFunction.cs" />
@@ -116,9 +117,13 @@
     <Compile Include="syntax\functions\strings\abstracts\IStringFunction.cs" />
     <Compile Include="syntax\functions\strings\FuncBinary.cs" />
     <Compile Include="syntax\functions\strings\FuncDigits.cs" />
+    <Compile Include="syntax\functions\strings\FuncFilled.cs" />
     <Compile Include="syntax\functions\strings\FuncHex.cs" />
+    <Compile Include="syntax\functions\strings\FuncLetter.cs" />
     <Compile Include="syntax\functions\strings\FuncLower.cs" />
+    <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
+    <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
@@ -143,7 +148,13 @@
     <Compile Include="syntax\variables\Directories.cs" />
     <Compile Include="syntax\variables\Everything.cs" />
     <Compile Include="syntax\variables\expressions\BoolExpression.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\ISubcommand.cs" />
     <Compile Include="syntax\variables\expressions\list\ListExpression.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\NumericSubcommand.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\NumericSubcommandType.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\OrderBy.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\OrderByType.cs" />
+    <Compile Include="syntax\variables\expressions\list\subcommands\Where.cs" />
     <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
     <Compile Include="syntax\variables\expressions\StringExpression.cs" />
     <Compile Include="syntax\variables\Files.cs" />
@@ -198,7 +209,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="syntax\interpretation\tokenlists\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

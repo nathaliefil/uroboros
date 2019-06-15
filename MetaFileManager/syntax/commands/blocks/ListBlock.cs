@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.blocks
 {

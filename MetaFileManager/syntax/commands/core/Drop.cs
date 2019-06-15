@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
 using System.IO;
 using DivineScript.syntax.runtime;
+using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.core
 {

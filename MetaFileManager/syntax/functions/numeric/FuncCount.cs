@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.functions.numeric.abstracts;
 using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.functions.numeric
 {
