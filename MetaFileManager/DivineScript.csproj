@@ -156,10 +156,10 @@
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
-    <Compile Include="syntax\variables\BoolConstant.cs" />
+    <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
-    <Compile Include="syntax\variables\Directories.cs" />
-    <Compile Include="syntax\variables\Everything.cs" />
+    <Compile Include="syntax\variables\from_directory\Directories.cs" />
+    <Compile Include="syntax\variables\from_directory\Everything.cs" />
     <Compile Include="syntax\variables\expressions\BoolExpression.cs" />
     <Compile Include="syntax\variables\expressions\list\subcommands\ISubcommand.cs" />
     <Compile Include="syntax\variables\expressions\list\ListExpression.cs" />
@@ -170,15 +170,18 @@
     <Compile Include="syntax\variables\expressions\list\subcommands\Where.cs" />
     <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
     <Compile Include="syntax\variables\expressions\StringExpression.cs" />
-    <Compile Include="syntax\variables\Files.cs" />
-    <Compile Include="syntax\variables\ListConstant.cs" />
+    <Compile Include="syntax\variables\from_directory\Files.cs" />
+    <Compile Include="syntax\variables\from_location\Extension.cs" />
+    <Compile Include="syntax\variables\from_location\Fullname.cs" />
+    <Compile Include="syntax\variables\from_location\Name.cs" />
+    <Compile Include="syntax\variables\constants\ListConstant.cs" />
     <Compile Include="syntax\variables\ListVariable.cs" />
-    <Compile Include="syntax\variables\NumericConstant.cs" />
+    <Compile Include="syntax\variables\constants\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
     <Compile Include="syntax\variables\refers\BoolVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\NumericVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\StringVariableRefer.cs" />
-    <Compile Include="syntax\variables\StringConstant.cs" />
+    <Compile Include="syntax\variables\constants\StringConstant.cs" />
     <Compile Include="syntax\variables\StringVariable.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
