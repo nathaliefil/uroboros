@@ -5,13 +5,12 @@ using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 using System.IO;
-using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.core
 {
     abstract class CoreCommand: ICommand
     {
-        protected ListExpression list;
+        protected IListable list;
 
 
         public virtual void Run()

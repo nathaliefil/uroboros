@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript.syntax.commands.blocks
 {
     class WhileBlock : Block, ICommand
     {
 
-        private BoolExpression condition;
+        private IBoolable condition;
 
-        public WhileBlock(List<ICommand> commands, BoolExpression condition)
+        public WhileBlock(List<ICommand> commands, IBoolable condition)
             : base(commands)
         {
             this.commands = commands;

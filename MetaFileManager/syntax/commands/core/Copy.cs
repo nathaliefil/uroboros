@@ -6,13 +6,13 @@ using DivineScript.syntax.runtime;
 using System.IO;
 using System.Collections.Specialized;
 using System.Windows.Forms;
-using DivineScript.syntax.variables.expressions.list;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.commands.core
 {
     class Copy : CoreCommand
     {
-        public Copy(ListExpression list)
+        public Copy(IListable list)
         {
             this.list = list;
         }

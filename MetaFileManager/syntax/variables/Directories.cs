@@ -13,7 +13,6 @@ namespace DivineScript.syntax.variables
         public Directories()
         {
             name = "directories";
-            SetConstant();
         }
 
         public List<string> ToList()

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-    interface INumerable
+    interface INumerable : IStringable
     {
         decimal ToNumber();
 

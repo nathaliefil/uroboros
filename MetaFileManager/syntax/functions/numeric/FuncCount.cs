@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.functions.numeric.abstracts;
-using DivineScript.syntax.variables.expressions;
-using DivineScript.syntax.variables.expressions.list;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.numeric
 {
     class FuncCount : INumericFunction
     {
-        private ListExpression arg0;
+        private IListable arg0;
 
-        public FuncCount(ListExpression arg0)
+        public FuncCount(IListable arg0)
         {
             this.arg0 = arg0;
         }

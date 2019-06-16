@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.commands.arithmetic
 {
     class MultiplyBy : ICommand
     {
         string variable;
-        NumericExpression value;
+        INumerable value;
 
-        public MultiplyBy(string variable, NumericExpression value)
+        public MultiplyBy(string variable, INumerable value)
         {
             this.variable = variable;
             this.value = value;

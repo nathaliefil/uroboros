@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables.expressions
 {
-    class StringExpression : Variable, IStringable
+    class StringExpression : IStringable
     {
         List<IStringable> elements;
 

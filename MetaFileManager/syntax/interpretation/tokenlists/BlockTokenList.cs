@@ -10,24 +10,25 @@ namespace DivineScript.syntax.interpretation.tokenlists
     class BlockTokenList : ITokenList
     {
         List<Token> precedingTokens;
-        List<TokenList> elements;
+        List<ITokenList> elements;
+        bool precedings;
 
         public BlockTokenList(List<Token> precedingTokens, List<Token> tokens)
         {
             this.precedingTokens = precedingTokens;
-            elements = new List<TokenList>();
+            precedings = true;
             BuildItself();
         }
 
         public BlockTokenList(List<Token> tokens)
         {
-            this.precedingTokens = new List<Token>();
-            elements = new List<TokenList>();
+            precedings = false;
             BuildItself();
         }
 
         private void BuildItself()
         {
+            elements = new List<ITokenList>();
             // here we go
         }
 

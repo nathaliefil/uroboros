@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript.syntax.commands.blocks
 {
@@ -12,9 +11,9 @@ namespace DivineScript.syntax.commands.blocks
     {
 
         private List<ICommand> elseCommands;
-        private BoolExpression condition;
+        private IBoolable condition;
 
-        public IfBlock (List<ICommand> commands, BoolExpression condition ,List<ICommand> elseCommands) 
+        public IfBlock(List<ICommand> commands, IBoolable condition, List<ICommand> elseCommands) 
             : base (commands)
         {
             this.commands = commands;
@@ -22,7 +21,7 @@ namespace DivineScript.syntax.commands.blocks
             this.condition = condition;
         }
 
-        public IfBlock(List<ICommand> commands, BoolExpression condition) 
+        public IfBlock(List<ICommand> commands, IBoolable condition) 
             : base(commands)
         {
             this.commands = commands;

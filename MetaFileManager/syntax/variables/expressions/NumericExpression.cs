@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables.expressions
 {
-    class NumericExpression : Variable, INumerable, IStringable
+    class NumericExpression : INumerable
     {
         List<INumerable> elements;
 

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.functions.numeric.abstracts;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.numeric
 {
     class FuncCeil : INumericFunction
     {
-        private NumericExpression arg0;
+        private INumerable arg0;
 
-        public FuncCeil(NumericExpression arg0)
+        public FuncCeil(INumerable arg0)
         {
             this.arg0 = arg0;
         }

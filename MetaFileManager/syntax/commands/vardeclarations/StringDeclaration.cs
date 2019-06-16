@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 
 namespace DivineScript.syntax.commands
@@ -10,9 +10,9 @@ namespace DivineScript.syntax.commands
     class StringDeclaration : ICommand
     {
         private string name;
-        private StringExpression value;
+        private IStringable value;
 
-        StringDeclaration(string name, StringExpression value)
+        StringDeclaration(string name, IStringable value)
         {
             this.name = name;
             this.value = value;

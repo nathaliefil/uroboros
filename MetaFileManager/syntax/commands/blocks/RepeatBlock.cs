@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions;
 
 namespace DivineScript.syntax.commands.blocks
 {
     class RepeatBlock : Block, ICommand
     {
 
-        private NumericExpression repeats;
+        private INumerable repeats;
 
-        public RepeatBlock(List<ICommand> commands, NumericExpression repeats)
+        public RepeatBlock(List<ICommand> commands, INumerable repeats)
             : base(commands)
         {
             this.commands = commands;

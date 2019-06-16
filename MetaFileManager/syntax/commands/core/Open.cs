@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions.list;
+using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 using System.IO;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ namespace DivineScript.syntax.commands.core
 {
     class Open : CoreCommand
     {
-        public Open(ListExpression list)
+        public Open(IListable list)
         {
             this.list = list;
         }

@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions.list;
 
 namespace DivineScript.syntax.commands.blocks
 {
     class ListBlock : Block, ICommand
     {
 
-        private ListExpression list;
+        private IListable list;
 
-        public ListBlock(List<ICommand> commands, ListExpression list)
+        public ListBlock(List<ICommand> commands, IListable list)
             : base(commands)
         {
             this.commands = commands;

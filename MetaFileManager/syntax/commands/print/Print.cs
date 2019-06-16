@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 
 namespace DivineScript.syntax.commands.print
 {
     class Print : ICommand
     {
-        private StringExpression text;
+        private IStringable text;
 
-        public Print(StringExpression text)
+        public Print(IStringable text)
         {
             this.text = text;
         }

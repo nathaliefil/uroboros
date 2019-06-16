@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 using System.IO;
 
@@ -10,10 +10,10 @@ namespace DivineScript.syntax.commands.create
 {
     class CreateDirectoryFrom : ICommand
     {
-        private StringExpression name;
-        private StringExpression source;
+        private IStringable name;
+        private IStringable source;
 
-        public CreateDirectoryFrom(StringExpression source, StringExpression name)
+        public CreateDirectoryFrom(IStringable source, IStringable name)
         {
             this.name = name;
             this.source = source;

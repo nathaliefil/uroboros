@@ -147,9 +147,8 @@
     <Compile Include="syntax\variables\abstracts\IListable.cs" />
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
-    <Compile Include="syntax\variables\abstracts\Variable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
-    <Compile Include="syntax\variables\abstracts\VariableType.cs" />
+    <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
     <Compile Include="syntax\variables\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\Directories.cs" />

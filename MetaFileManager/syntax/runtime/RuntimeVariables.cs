@@ -82,7 +82,6 @@ namespace DivineScript.syntax.runtime
             variables = new List<NamedVariable>();
 
             ListVariable empty = new ListVariable("empty",new List<string>());
-            empty.SetConstant();
 
             variables.Add(empty);
             variables.Add(new Files());

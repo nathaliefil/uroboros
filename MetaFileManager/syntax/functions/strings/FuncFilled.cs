@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.functions.strings.abstracts;
-using DivineScript.syntax.variables.expressions;
 using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.numeric
 {
     class FuncFilled : IStringFunction
     {
-        private StringExpression arg0;
-        private NumericExpression arg1;
+        private IStringable arg0;
+        private INumerable arg1;
 
-        public FuncFilled(StringExpression arg0, NumericExpression arg1)
+        public FuncFilled(IStringable arg0, INumerable arg1)
         {
             this.arg0 = arg0;
             this.arg1 = arg1;

@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables.expressions
 {
-    class BoolExpression : Variable, IBoolable, INumerable, IStringable
+    class BoolExpression : IBoolable
     {
         List<IBoolable> elements;
 

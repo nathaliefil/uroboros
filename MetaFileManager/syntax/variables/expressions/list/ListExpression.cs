@@ -7,7 +7,7 @@ using DivineScript.syntax.variables.expressions.list.subcommands;
 
 namespace DivineScript.syntax.variables.expressions.list
 {
-    class ListExpression: Variable, IListable
+    class ListExpression: IListable
     {
         private IListable elements;
         private List<ISubcommand> subcommands;

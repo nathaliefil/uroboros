@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.runtime;
 
 namespace DivineScript.syntax.commands
@@ -10,9 +10,9 @@ namespace DivineScript.syntax.commands
     class BoolDeclaration : ICommand
     {
         private string name;
-        private BoolExpression value;
+        private IBoolable value;
 
-        BoolDeclaration(string name, BoolExpression value)
+        BoolDeclaration(string name, IBoolable value)
         {
             this.name = name;
             this.value = value;

@@ -13,7 +13,6 @@ namespace DivineScript.syntax.variables
         public Everything()
         {
             name = "everything";
-            SetConstant();
         }
 
         public List<string> ToList()

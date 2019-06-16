@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.runtime;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.commands.list
 {
     class Add : ICommand
     {
         private string name;
-        private string value;
-        private List<string> values;
+        private IStringable value;
+        private IListable values;
         private bool single;
 
-        public Add(string name, string value)
+        public Add(string name, IStringable value)
         {
             this.name = name;
             this.value = value;
             single = true;
         }
 
-        public Add(string name, List<string> values)
+        public Add(string name, IListable values)
         {
             this.name = name;
             this.values = values;
@@ -31,9 +32,9 @@ namespace DivineScript.syntax.commands.list
         public void Run()
         {
             if (single)
-                RuntimeVariables.GetInstance().Add(name, value);
+                RuntimeVariables.GetInstance().Add(name, value.ToString());
             else
-                RuntimeVariables.GetInstance().Add(name, values);
+                RuntimeVariables.GetInstance().Add(name, values.ToList());
         }
     }
 }

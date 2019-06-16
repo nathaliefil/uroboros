@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.variables
 {
-    class ListConstant : Variable, IListable
+    class ListConstant : IListable
     {
         private List<string> values;
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-    interface IBoolable
+    interface IBoolable : INumerable
     {
         bool ToBool();
     }

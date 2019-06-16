@@ -11,13 +11,8 @@ namespace DivineScript.syntax.commands
     {
         public static List<ICommand> Build(List<Token> tokens)
         {
-            List<ICommand> commands = new List<ICommand>();
-
             BlockTokenList mainBlock = new BlockTokenList(tokens);
-
-
-
-            return commands;
+            return mainBlock.ToCommands();
         }
     }
 }

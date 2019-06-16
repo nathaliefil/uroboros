@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.expressions.list;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.commands.core
 {
     class Drop : CoreCommand
     {
-        public Drop(ListExpression list)
+        public Drop(IListable list)
         {
             this.list = list;
         }

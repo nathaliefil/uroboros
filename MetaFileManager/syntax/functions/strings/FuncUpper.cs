@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DivineScript.syntax.functions.strings.abstracts;
-using DivineScript.syntax.variables.expressions;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.numeric
 {
     class FuncUpper : IStringFunction
     {
-        private StringExpression arg0;
+        private IStringable arg0;
 
-        public FuncUpper(StringExpression arg0)
+        public FuncUpper(IStringable arg0)
         {
             this.arg0 = arg0;
         }
