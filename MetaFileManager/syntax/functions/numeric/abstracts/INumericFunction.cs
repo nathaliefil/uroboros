@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.numeric.abstracts
 {
-    interface INumericFunction : INumerable, IStringable
+    interface INumericFunction : INumerable
     {
 
     }

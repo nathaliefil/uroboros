@@ -9,6 +9,14 @@ namespace DivineScript.syntax.commands.core
     class RenameTo : CoreCommand
     {
         IStringable destination;
+        bool forced;
+
+        public RenameTo(IListable list, IStringable destination, bool forced)
+        {
+            this.list = list;
+            this.destination = destination;
+            this.forced = forced;
+        }
 
         /*protected override void PerformAction(string element)
         {

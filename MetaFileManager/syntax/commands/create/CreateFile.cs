@@ -11,10 +11,12 @@ namespace DivineScript.syntax.commands.create
     class CreateFile : ICommand
     {
         private IStringable name;
+        private bool forced;
 
-        public CreateFile(IStringable name)
+        public CreateFile(IStringable name, bool forced)
         {
             this.name = name;
+            this.forced = forced;
         }
 
         public void Run()

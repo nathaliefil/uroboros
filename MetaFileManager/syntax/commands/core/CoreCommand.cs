@@ -11,7 +11,6 @@ namespace DivineScript.syntax.commands.core
     abstract class CoreCommand: ICommand
     {
         protected IListable list;
-        protected bool forceto;
 
         public virtual void Run()
         {

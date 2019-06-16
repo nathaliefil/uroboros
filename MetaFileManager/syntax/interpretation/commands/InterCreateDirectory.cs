@@ -27,7 +27,11 @@ namespace DivineScript.syntax.interpretation.commands
 
         public static ICommand BuildUsual(List<Token> tokens, bool forced)
         {
-            //todo
+            tokens.RemoveAt(0);
+            if (tokens.Count == 0)
+            {
+
+            }
 
             return new NullCommand();
         }

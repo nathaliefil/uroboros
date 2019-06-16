@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="syntax\commands\abstracts\NullCommand.cs" />
     <Compile Include="syntax\commands\arithmetic\DivideBy.cs" />
     <Compile Include="syntax\commands\arithmetic\MinusMinus.cs" />
     <Compile Include="syntax\commands\arithmetic\MultiplyBy.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="syntax\functions\strings\FuncLower.cs" />
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
+    <Compile Include="syntax\interpretation\commands\InterCreateDirectory.cs" />
     <Compile Include="syntax\interpretation\expressions\BoolableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\ListBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
@@ -173,6 +175,9 @@
     <Compile Include="syntax\variables\ListVariable.cs" />
     <Compile Include="syntax\variables\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
+    <Compile Include="syntax\variables\refers\BoolVariableRefer.cs" />
+    <Compile Include="syntax\variables\refers\NumericVariableRefer.cs" />
+    <Compile Include="syntax\variables\refers\StringVariableRefer.cs" />
     <Compile Include="syntax\variables\StringConstant.cs" />
     <Compile Include="syntax\variables\StringVariable.cs" />
     <EmbeddedResource Include="MainForm.resx">

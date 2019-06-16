@@ -12,11 +12,13 @@ namespace DivineScript.syntax.commands.create
     {
         private IStringable name;
         private IStringable source;
+        private bool forced;
 
-        public CreateFileFrom(IStringable source, IStringable name)
+        public CreateFileFrom(IStringable source, IStringable name, bool forced)
         {
             this.name = name;
             this.source = source;
+            this.forced = forced;
         }
 
         public void Run()
