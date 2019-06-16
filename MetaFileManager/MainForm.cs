@@ -57,7 +57,7 @@ namespace DivineScript
                         List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
                         commands = CommandListFactory.Build(tokens);
                         //
-
+                        /*
                         List<IStringable> lstrin= new List<IStringable>();
                         lstrin.Add(new StringConstant("info"));
                         StringExpression strin = new StringExpression(lstrin);
@@ -77,7 +77,7 @@ namespace DivineScript
                         CreateDirectory comopen = new CreateDirectory(strin);
                         commands.Add(comopen);
 
-
+                        */
 
                         //
                         try

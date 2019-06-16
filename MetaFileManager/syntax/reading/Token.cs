@@ -20,6 +20,14 @@ namespace DivineScript.syntax.reading
             return content;
         }
 
+        public Token Clone()
+        {
+            if (content == null)
+                return new Token(type);
+            else
+                return new Token(type, content);
+        }
+
         public void SetContent(string content)
         {
             this.content = content;

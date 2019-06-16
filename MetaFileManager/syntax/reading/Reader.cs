@@ -79,9 +79,9 @@ namespace DivineScript.syntax.reading
         {
             if (tokens.Count() == 0)
                 throw new SyntaxErrorException("ERROR! Code is empty.");
-            if (Brackets.AreCorrect(tokens, false))
+            if (!Brackets.AreCorrect(tokens, false))
                 throw new SyntaxErrorException("ERROR! Check brackets ( ).");
-            if (Brackets.AreCorrect(tokens, true))
+            if (!Brackets.AreCorrect(tokens, true))
                 throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
         }
     }
