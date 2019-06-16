@@ -28,5 +28,9 @@ namespace DivineScript.syntax.variables
             return value;
         }
 
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

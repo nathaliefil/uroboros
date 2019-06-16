@@ -25,6 +25,11 @@ namespace DivineScript.syntax.variables.expressions
             return sb.ToString();
         }
 
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
+
         public void Add(IStringable element)
         {
             elements.Add(element);

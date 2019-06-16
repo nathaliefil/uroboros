@@ -20,5 +20,10 @@ namespace DivineScript.syntax.variables.refers
         {
             return RuntimeVariables.GetInstance().GetValueString(name);
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace DivineScript.syntax.variables.expressions
             else
                 return value.ToString();
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

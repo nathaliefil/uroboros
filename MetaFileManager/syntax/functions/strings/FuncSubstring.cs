@@ -57,5 +57,10 @@ namespace DivineScript.syntax.functions.numeric
                 return source.Substring(arg1v, arg2v);
             }
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

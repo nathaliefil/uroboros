@@ -16,6 +16,11 @@ namespace DivineScript.syntax.variables.refers
             this.name = name;
         }
 
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
+
         public bool ToBool()
         {
             return RuntimeVariables.GetInstance().GetValueBool(name);

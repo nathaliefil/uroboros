@@ -41,5 +41,10 @@ namespace DivineScript.syntax.functions.numeric
             }
             return string.Concat(Enumerable.Repeat("0", number - value.Length));
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

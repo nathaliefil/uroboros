@@ -24,6 +24,11 @@ namespace DivineScript.syntax.variables
                 return "false";
         }
 
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
+
         public bool ToBool()
         {
             return value;
@@ -41,6 +46,5 @@ namespace DivineScript.syntax.variables
         {
             value = b;
         }
-
     }
 }

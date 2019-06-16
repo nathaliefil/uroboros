@@ -27,5 +27,10 @@ namespace DivineScript.syntax.functions.numeric
 
             return ((int)value).ToString();
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

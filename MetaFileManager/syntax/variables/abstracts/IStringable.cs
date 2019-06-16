@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-    interface IStringable
+    interface IStringable : IListable
     {
         string ToString();
     }

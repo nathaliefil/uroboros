@@ -26,21 +26,24 @@ namespace DivineScript.syntax.variables.from_location
 
             try
             {
+                string value;
+
                 if (FileValidator.IsDirectory(thiss))
-                {
-                    string value = Path.GetDirectoryName(@location);
-                    return value;
-                }
+                    value = Path.GetDirectoryName(@location);
                 else
-                {
-                    string value = Path.GetFileName(@location);
-                    return value;
-                }
+                    value = Path.GetFileName(@location);
+
+                return value;
             }
             catch (Exception)
             {
                 return "";
             }
+        }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
         }
     }
 }

@@ -22,5 +22,10 @@ namespace DivineScript.syntax.functions.numeric
             if (string.IsNullOrEmpty(value)) return value;
             return new string(value.Where(char.IsDigit).ToArray());
         }
+
+        public List<string> ToList()
+        {
+            return new List<string> { ToString() };
+        }
     }
 }

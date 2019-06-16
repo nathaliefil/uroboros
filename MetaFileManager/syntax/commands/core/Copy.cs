@@ -58,7 +58,9 @@ namespace DivineScript.syntax.commands.core
                 }
             }
 
-            Clipboard.SetFileDropList(paths);
+            Clipboard.Clear();
+            if (paths.Count>0)
+                Clipboard.SetFileDropList(paths);
         }
     }
 }
