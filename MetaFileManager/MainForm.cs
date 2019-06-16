@@ -33,7 +33,7 @@ namespace DivineScript
 
 
             Log("Welcome to Meta File Manager.");
-            Log("--------------------------");
+            Log("------------------------------------");
         }
 
         private void runButton_Click(object sender, EventArgs e)
@@ -79,7 +79,9 @@ namespace DivineScript
 
                         */
 
-                        //
+                        Cut com = new Cut(new StringConstant("info.txt"));
+                        commands.Add(com);
+
                         try
                         {
                             foreach (ICommand command in commands)
@@ -102,7 +104,7 @@ namespace DivineScript
                     }*/
                 }
             }
-            Log("--------------------------");
+            Log("------------------------------------");
         }
 
         private void directoryButton_Click(object sender, EventArgs e)

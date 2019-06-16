@@ -29,7 +29,23 @@ namespace DivineScript.syntax.commands.create
                 {
                     if (Directory.Exists(@location))
                     {
-                        Logger.GetInstance().Log("Action ignored! Directory " + sname + " already exists.");
+                        if (!forced)
+                        {
+                            Logger.GetInstance().Log("Action ignored! Directory " + sname + " already exists.");
+                        }
+                        else 
+                        {
+                            try
+                            {
+                                Directory.Delete(@location);
+                                Directory.CreateDirectory(@location);
+                                Logger.GetInstance().Log("Create directory " + sname + " replacing existing one");
+                            }
+                            catch (Exception)
+                            {
+                                Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing directory " + sname + ".");
+                            }
+                        }
                     }
                     else
                     {

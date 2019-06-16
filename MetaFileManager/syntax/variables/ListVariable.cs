@@ -45,5 +45,10 @@ namespace DivineScript.syntax.variables
         {
             values.RemoveAll(v => valuess.Contains(v));
         }
+
+        public void SetValue(List<string> valuess)
+        {
+            values = valuess;
+        }
     }
 }

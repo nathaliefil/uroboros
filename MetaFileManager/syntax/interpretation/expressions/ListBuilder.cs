@@ -12,6 +12,12 @@ namespace DivineScript.syntax.interpretation.expressions
     {
         public static IListable Build(List<Token> tokens)
         {
+            IStringable ist = StringableBuilder.Build(tokens);
+            if (!(ist is NullVariable))
+            {
+                return ist;
+            }
+
             //code
 
             return new ListConstant(new List<string>());

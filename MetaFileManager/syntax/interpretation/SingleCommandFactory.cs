@@ -29,9 +29,12 @@ namespace DivineScript.syntax.interpretation
             {
                 case TokenType.CreateDirectory:
                 {
-                    return InterCreateDirectory.Build(tokens, forced);
+                    return InterCreate.Build(tokens, forced, true);
                 }
-
+                case TokenType.CreateFile:
+                {
+                    return InterCreate.Build(tokens, forced, false);
+                }
 
             }
 

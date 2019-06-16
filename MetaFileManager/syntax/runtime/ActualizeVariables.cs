@@ -58,11 +58,19 @@ namespace DivineScript.syntax.runtime
 
         public void Actualize(string name, List<string> value)
         {
-            /*
-             * 
-             *  to do
-             * 
-             * */
+            List<string> copy = value.Select(item => item+"").ToList();
+            // not sure if this makes deep copy
+
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
+            {
+                variables.Add(new ListVariable(name, copy));
+            }
+            else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is ListVariable)
+                    (nv as ListVariable).SetValue(copy);
+            }
         }
 
         public void PlusPlus(string name)

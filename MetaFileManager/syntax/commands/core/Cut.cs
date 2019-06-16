@@ -62,8 +62,9 @@ namespace DivineScript.syntax.commands.core
             if (paths.Count > 0)
             {
                 DataObject data = new DataObject();
+                data.SetFileDropList(paths);
                 data.SetData("Preferred DropEffect", DragDropEffects.Move);
-                Clipboard.SetDataObject(data);
+                Clipboard.SetDataObject(data, true);
             }
         }
 

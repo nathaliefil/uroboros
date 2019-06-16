@@ -29,7 +29,23 @@ namespace DivineScript.syntax.commands.create
                 {
                     if (File.Exists(@location))
                     {
-                        Logger.GetInstance().Log("Action ignored! File " + sname + " already exists.");
+                        if (!forced)
+                        {
+                            Logger.GetInstance().Log("Action ignored! File " + sname + " already exists.");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                File.Delete(@location);
+                                File.Create(@location);
+                                Logger.GetInstance().Log("Create file " + sname + " replacing existing one");
+                            }
+                            catch (Exception)
+                            {
+                                Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing file " + sname + ".");
+                            }
+                        }
                     }
                     else
                     {

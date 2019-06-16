@@ -23,6 +23,9 @@ namespace DivineScript.syntax.commands.create
 
         public void Run()
         {
+            // hmmm ugly method
+            // needs refactoring
+            /// todo
             string sname = source.ToString();
             string nname = name.ToString();
 
@@ -55,8 +58,24 @@ namespace DivineScript.syntax.commands.create
             }
             if (File.Exists(@nlocation))
             {
-                Logger.GetInstance().Log("Action ignored!! File " + nname + " already exists.");
-                return;
+                if (!forced)
+                {
+                    Logger.GetInstance().Log("Action ignored!! File " + nname + " already exists.");
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        File.Delete(@nlocation);
+                        File.Copy(@slocation, @nlocation);
+                        Logger.GetInstance().Log("Create " + nname + " from " + sname + " replacing existing one");
+                    }
+                    catch (Exception)
+                    {
+                        Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing file" + nname + " with " + sname + ".");
+                    }
+                }
             }
 
             try
@@ -66,7 +85,7 @@ namespace DivineScript.syntax.commands.create
             }
             catch (Exception)
             {
-                Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + nname + " from " + nname + ".");
+                Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + nname + " from " + sname + ".");
             }
         }
     }
