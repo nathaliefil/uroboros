@@ -37,7 +37,7 @@
             // 
             // runButton
             // 
-            this.runButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.runButton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.runButton.Location = new System.Drawing.Point(12, 12);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(66, 32);
@@ -49,7 +49,7 @@
             // locationBox
             // 
             this.locationBox.Enabled = false;
-            this.locationBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.locationBox.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.locationBox.Location = new System.Drawing.Point(84, 12);
             this.locationBox.Name = "locationBox";
             this.locationBox.Size = new System.Drawing.Size(978, 32);
@@ -57,7 +57,7 @@
             // 
             // directoryButton
             // 
-            this.directoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.directoryButton.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.directoryButton.Location = new System.Drawing.Point(1068, 11);
             this.directoryButton.Name = "directoryButton";
             this.directoryButton.Size = new System.Drawing.Size(35, 32);
@@ -68,16 +68,17 @@
             // 
             // codeBox
             // 
-            this.codeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.codeBox.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.codeBox.Location = new System.Drawing.Point(12, 50);
             this.codeBox.Multiline = true;
             this.codeBox.Name = "codeBox";
+            this.codeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.codeBox.Size = new System.Drawing.Size(586, 529);
             this.codeBox.TabIndex = 3;
             // 
             // logBox
             // 
-            this.logBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.logBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.logBox.Location = new System.Drawing.Point(604, 50);
             this.logBox.Multiline = true;
             this.logBox.Name = "logBox";

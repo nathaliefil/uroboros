@@ -51,7 +51,7 @@ namespace DivineScript.syntax.interpretation.tokenlists
 
                         List<Token> got2 = got.Select(t => (Token)t.Clone()).ToList();
                         got2.Reverse();
-                        got.Clear();
+                        
 
                         foreach (Token tk in got)
                         {
@@ -72,6 +72,7 @@ namespace DivineScript.syntax.interpretation.tokenlists
                         {
                             elements.Add(new TokenList(got2));
                         }
+                        got.Clear();
                     }
                 }
                 else
