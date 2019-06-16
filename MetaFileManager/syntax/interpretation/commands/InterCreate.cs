@@ -27,7 +27,8 @@ namespace DivineScript.syntax.interpretation.commands
             {
                 return BuildFrom(tokens, forced, directory);
             }
-            throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") + " creation command syntax.");
+            throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") 
+                + " creation command syntax.");
         }
 
         public static ICommand BuildUsual(List<Token> tokens, bool forced, bool directory)
@@ -43,7 +44,8 @@ namespace DivineScript.syntax.interpretation.commands
 
 
             if (istring is NullVariable)
-                throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") + " creation command syntax.");
+                throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") 
+                    + " creation command syntax.");
             if (directory)
                 return new CreateDirectory(istring, forced);
             else
@@ -70,9 +72,8 @@ namespace DivineScript.syntax.interpretation.commands
                 }
             }
             if (part2.Count == 0)
-            {
-                throw new SyntaxErrorException("ERROR! Source in " + (directory ? "directory" : "file") + " creation command is empty.");
-            }
+                throw new SyntaxErrorException("ERROR! Source in " + (directory ? "directory" : "file") 
+                    + " creation command is empty.");
 
             IStringable istring1;
             IStringable istring2 = StringableBuilder.Build(part2);

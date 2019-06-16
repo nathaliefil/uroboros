@@ -97,7 +97,6 @@
     <Compile Include="syntax\commands\create\CreateDirectory.cs" />
     <Compile Include="syntax\commands\create\CreateFile.cs" />
     <Compile Include="syntax\commands\create\CreateFileFrom.cs" />
-    <Compile Include="syntax\commands\print\Print.cs" />
     <Compile Include="syntax\commands\print\PrintList.cs" />
     <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />

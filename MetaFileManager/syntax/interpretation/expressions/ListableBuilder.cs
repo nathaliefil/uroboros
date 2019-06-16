@@ -8,7 +8,7 @@ using DivineScript.syntax.reading;
 
 namespace DivineScript.syntax.interpretation.expressions
 {
-    class ListBuilder
+    class ListableBuilder
     {
         public static IListable Build(List<Token> tokens)
         {

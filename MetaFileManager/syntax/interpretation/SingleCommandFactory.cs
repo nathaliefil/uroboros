@@ -35,6 +35,10 @@ namespace DivineScript.syntax.interpretation
                 {
                     return InterCreate.Build(tokens, forced, false);
                 }
+                case TokenType.Print:
+                {
+                    return InterPrint.Build(tokens);
+                }
 
             }
 
