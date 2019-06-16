@@ -48,32 +48,61 @@ namespace DivineScript.syntax.variables.expressions.list
                 if (subcom is NumericSubcommand)
                 {
                     int number = (subcom as NumericSubcommand).GetValue();
-                    if (number > 0)
+                    switch ((subcom as NumericSubcommand).GetNumericSubcommandType())
                     {
-                        switch ((subcom as NumericSubcommand).GetNumericSubcommandType())
+                        case NumericSubcommandType.First:
                         {
-                            case NumericSubcommandType.First:
+                            if (number <= 0)
+                                return new List<string>();
+                            else
                             {
-                                // todo
-                                break;
+                                if (number < result.Count)
+                                    result.RemoveRange(number, result.Count - number);
                             }
-                            case NumericSubcommandType.Last:
+                            break;
+                        }
+                        case NumericSubcommandType.Last:
+                        {
+                            if (number <= 0)
+                                return new List<string>();
+                            else
                             {
-                                // todo
-                                break;
+                                if (number < result.Count)
+                                    result.RemoveRange(0, result.Count - number);
                             }
-                            case NumericSubcommandType.Skip:
+                            break;
+                        }
+                        case NumericSubcommandType.Skip:
+                        {
+                            if (number >= result.Count)
+                                return new List<string>();
+                            else
                             {
-                                //todo
-                                break;
+                                if (number > 0)
+                                    result.RemoveRange(0, number);
                             }
+                            break;
+                        }
+                        case NumericSubcommandType.Each:
+                        {
+                            if (number > 1)
+                            {
+                                List<string> newresult = new List<string>();
+                                int c = 0;
+                                do
+                                {
+                                    newresult.Add(result[c]);
+                                    c += number;
+                                } while (c < result.Count);
+
+                                result = newresult;
+                            }
+                            break;
                         }
                     }
                 }
-
             }
-
-            return elements.ToList(); ;
+            return result.ToList();
         }
 
     }

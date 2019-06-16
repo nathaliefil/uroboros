@@ -26,8 +26,16 @@ namespace DivineScript.syntax.variables.from_location
 
             try
             {
-                string value = Path.GetFileName(@location);
-                return value;
+                if (FileValidator.IsDirectory(thiss))
+                {
+                    string value = Path.GetDirectoryName(@location);
+                    return value;
+                }
+                else
+                {
+                    string value = Path.GetFileName(@location);
+                    return value;
+                }
             }
             catch (Exception)
             {

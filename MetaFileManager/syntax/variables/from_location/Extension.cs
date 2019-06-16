@@ -18,7 +18,7 @@ namespace DivineScript.syntax.variables.from_location
         public override string ToString()
         {
             string thiss = RuntimeVariables.GetInstance().GetValueString("this");
-            if (this.Equals(""))
+            if (this.Equals("") || FileValidator.IsDirectory(thiss))
             {
                 return "";
             }

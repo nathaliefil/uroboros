@@ -9,6 +9,7 @@ namespace DivineScript.syntax.variables.expressions.list.subcommands
     {
         First,
         Last,
-        Skip
+        Skip,
+        Each
     }
 }
