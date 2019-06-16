@@ -127,6 +127,10 @@
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
     <Compile Include="syntax\interpretation\expressions\BoolableBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\ListBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
+    <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\ITokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />

@@ -40,13 +40,13 @@ namespace DivineScript
         {
             if (locationBox.Text.Equals(""))
             {
-                Log("Error! Location not found.");
+                Log("ERROR! Location not found.");
             }
             else
             {
                 if (codeBox.Text.Length == 0)
                 {
-                    Log("Error! No command found.");
+                    Log("ERROR! No command found.");
                 }
                 else
                 {
