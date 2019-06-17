@@ -42,6 +42,30 @@ namespace DivineScript.syntax.interpretation
                 {
                     return InterReverse.Build(tokens);
                 }
+                case TokenType.Copy:
+                {
+                    return InterCore.Build(tokens);
+                }
+                case TokenType.Cut:
+                {
+                    return InterCore.Build(tokens);
+                }
+                case TokenType.Delete:
+                {
+                    return InterCore.Build(tokens);
+                }
+                case TokenType.Drop:
+                {
+                    return InterCore.Build(tokens);
+                }
+                case TokenType.Open:
+                {
+                    return InterCore.Build(tokens);
+                }
+                case TokenType.Select:
+                {
+                    return InterCore.Build(tokens);
+                }
                     // more more more
             }
 
