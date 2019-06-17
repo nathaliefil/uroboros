@@ -5,16 +5,20 @@ using System.Text;
 using DivineScript.syntax.reading;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.runtime;
+using DivineScript.syntax.commands.blocks;
+using DivineScript.syntax.interpretation.expressions;
+using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.interpretation.tokenlists
 {
-    class BlockTokenList : ITokenList
+    class BlockTokenList : TokenList
     {
-        List<Token> precedingTokens;
-        List<ITokenList> elements;
-        bool precedings;
+        private List<Token> precedingTokens;
+        private List<TokenList> elements;
+        private bool precedings;
 
         public BlockTokenList(List<Token> precedingTokens, List<Token> tokens)
+            : base(tokens)
         {
             this.precedingTokens = precedingTokens;
             precedings = true;
@@ -22,6 +26,7 @@ namespace DivineScript.syntax.interpretation.tokenlists
         }
 
         public BlockTokenList(List<Token> tokens)
+            : base(tokens)
         {
             precedings = false;
             BuildItself(tokens);
@@ -29,7 +34,7 @@ namespace DivineScript.syntax.interpretation.tokenlists
 
         private void BuildItself(List<Token> tokens)
         {
-            elements = new List<ITokenList>();
+            elements = new List<TokenList>();
 
             bool fillingBlock = false;
             int level = 0;
@@ -46,9 +51,6 @@ namespace DivineScript.syntax.interpretation.tokenlists
                     }
                     else
                     {
-                        ///todo
-                        ///this not works
-                        ///
                         fillingBlock = true;
                         level++;
                         int position;
@@ -110,8 +112,8 @@ namespace DivineScript.syntax.interpretation.tokenlists
                             {
                                 elements.Add(new BlockTokenList(got.Select(t => (Token)t.Clone()).ToList()));
                             }
+                            got.Clear();
                         }
-                        got.Clear();
                     }
                 }
             }
@@ -123,13 +125,58 @@ namespace DivineScript.syntax.interpretation.tokenlists
             Logger.GetInstance().Log(" "+elements.Count);
         }
 
-        public List<ICommand> ToCommands()
+        public override List<ICommand> ToCommands()
         {
+            List<ICommand> block = new List<ICommand>();
             List<ICommand> commands = new List<ICommand>();
 
-            // code
+            foreach (TokenList tl in elements)
+            {
+                commands.AddRange(tl.ToCommands());
+            }
+            if (!precedings)
+            {
+                block.Add(new Block(commands));
+                return block;
+            }
+            else
+            {
+                switch (precedingTokens[0].GetTokenType())
+                {
+                    case TokenType.If:
+                    {
+                        precedingTokens.RemoveAt(0);
+                        IBoolable iboo = BoolableBuilder.Build(precedingTokens);
+                        if (iboo is NullVariable)
+                            throw new SyntaxErrorException("ERROR! There are is something wrong with condition in IF statement.");
+                        block.Add(new IfBlock(commands, iboo));
+                        return block;
+                    }
+                    case TokenType.While:
+                    {
+                        precedingTokens.RemoveAt(0);
+                        IBoolable iboo = BoolableBuilder.Build(precedingTokens);
+                        if (iboo is NullVariable)
+                            throw new SyntaxErrorException("ERROR! There are is something wrong with condition in WHILE statement.");
+                        block.Add(new WhileBlock(commands, iboo));
+                        return block;
+                    }
+                }
+                INumerable inum = NumerableBuilder.Build(precedingTokens);
+                if (inum is NullVariable)
+                {
+                    IListable ilist = ListableBuilder.Build(precedingTokens);
+                    if (ilist is NullVariable)
+                        throw new SyntaxErrorException("ERROR! There are is something wrong with code preceding block of instructions.");
+                    block.Add(new ListBlock(commands, ilist));
+                }
+                else
+                {
+                    block.Add(new RepeatBlock(commands, inum));
+                }
+                return block;
+            }
 
-            return commands;
         }
 
     }

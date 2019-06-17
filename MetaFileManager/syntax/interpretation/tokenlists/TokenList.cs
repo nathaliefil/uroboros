@@ -7,7 +7,7 @@ using DivineScript.syntax.commands;
 
 namespace DivineScript.syntax.interpretation.tokenlists
 {
-    class TokenList : ITokenList
+    class TokenList
     {
         private List<Token> tokens;
 
@@ -16,11 +16,16 @@ namespace DivineScript.syntax.interpretation.tokenlists
             this.tokens = tokens;
         }
 
-        public List<ICommand> ToCommands()
+        public virtual List<ICommand> ToCommands()
+        {
+            return BuildSingleCommands();
+        }
+
+        protected List<ICommand> BuildSingleCommands()
         {
             List<ICommand> commands = new List<ICommand>();
 
-            // code
+
 
             return commands;
         }

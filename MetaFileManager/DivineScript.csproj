@@ -134,7 +134,6 @@
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
-    <Compile Include="syntax\interpretation\tokenlists\ITokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
     <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
