@@ -185,6 +185,7 @@
     <Compile Include="syntax\variables\constants\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
     <Compile Include="syntax\variables\refers\BoolVariableRefer.cs" />
+    <Compile Include="syntax\variables\refers\ListVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\NumericVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\StringVariableRefer.cs" />
     <Compile Include="syntax\variables\constants\StringConstant.cs" />

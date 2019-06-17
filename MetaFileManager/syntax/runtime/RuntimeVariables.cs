@@ -42,6 +42,19 @@ namespace DivineScript.syntax.runtime
             }
         }
 
+        public List<string> GetValueList(string name)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return new List<string>();
+
+            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is IListable)
+            {
+                return (nv as IListable).ToList();
+            }
+            return new List<string>();
+        }
+
         public string GetValueString(string name)
         {
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)

@@ -9,7 +9,6 @@ namespace DivineScript.syntax.reading
     {
         private TokenType type;
         private string content;
-        private decimal numericContent;
 
         public TokenType GetTokenType()
         {
@@ -23,7 +22,7 @@ namespace DivineScript.syntax.reading
 
         public decimal GetNumericContent()
         {
-            return numericContent;
+            return Convert.ToDecimal(content);
         }
 
         public Token Clone()
@@ -39,10 +38,9 @@ namespace DivineScript.syntax.reading
             this.content = content;
         }
 
-        public void SetToNumericConstant(decimal value)
+        public void SetToNumericConstant()
         {
             type = TokenType.NumericConstant;
-            numericContent = value;
         }
 
         public void PointToComma()

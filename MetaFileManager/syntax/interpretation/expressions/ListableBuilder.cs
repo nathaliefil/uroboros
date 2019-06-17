@@ -20,6 +20,14 @@ namespace DivineScript.syntax.interpretation.expressions
                 return ist;
             }
 
+            if (tokens.Count == 1 && tokens[0].GetTokenType().Equals(TokenType.Variable))
+            {
+                string str = tokens[0].GetContent();
+                if (InterVariables.GetInstance().Contains(str, InterVarType.List))
+                    return new ListVariableRefer(str);
+                else
+                    return new NullVariable();
+            }
             
 
             //code
