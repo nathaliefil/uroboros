@@ -18,7 +18,7 @@ namespace DivineScript.syntax.reading
                     if (Decimal.TryParse(ss, out value))
                     {
                         t.PointToComma();
-                        t.SetToNumericConstant();
+                        t.SetToNumericConstant(value);
                     }
                 }
             }

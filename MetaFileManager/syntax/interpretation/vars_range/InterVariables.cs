@@ -76,9 +76,6 @@ namespace DivineScript.syntax.interpretation.vars_range
 
             InterVar iv = variables.First(v => name.Equals(v.GetName()));
 
-            if (iv.IsChangeable())
-                return false;
-
             switch (type)
             {
                 case InterVarType.Bool:
@@ -98,6 +95,18 @@ namespace DivineScript.syntax.interpretation.vars_range
                     return iv.IsList() ? true : false;
                 }
             }
+            return false;
+        }
+
+        public bool ContainsChangable(string name, InterVarType type)
+        {
+            if (!Contains(name, type))
+                return false;
+
+            InterVar iv = variables.First(v => name.Equals(v.GetName()));
+
+            if (iv.IsChangeable())
+                return true;
             return false;
         }
     }

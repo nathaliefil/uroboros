@@ -132,7 +132,7 @@
     <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
-    <Compile Include="syntax\interpretation\list\InterReverse.cs" />
+    <Compile Include="syntax\interpretation\commands\InterReverse.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
@@ -163,7 +163,6 @@
     <Compile Include="syntax\variables\bools\Empty.cs" />
     <Compile Include="syntax\variables\bools\False.cs" />
     <Compile Include="syntax\variables\bools\True.cs" />
-    <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\from_directory\Directories.cs" />
     <Compile Include="syntax\variables\from_directory\Everything.cs" />
@@ -237,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="syntax\interpretation\arithmetic\" />
+    <Folder Include="syntax\interpretation\list\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

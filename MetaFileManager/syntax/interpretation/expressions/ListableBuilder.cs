@@ -5,6 +5,8 @@ using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.variables;
 using DivineScript.syntax.reading;
+using DivineScript.syntax.interpretation.vars_range;
+using DivineScript.syntax.variables.refers;
 
 namespace DivineScript.syntax.interpretation.expressions
 {
@@ -18,9 +20,11 @@ namespace DivineScript.syntax.interpretation.expressions
                 return ist;
             }
 
+            
+
             //code
 
-            return new ListConstant(new List<string>());
+            return new NullVariable();
         }
     }
 }

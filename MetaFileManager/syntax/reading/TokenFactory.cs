@@ -61,7 +61,6 @@ namespace DivineScript.syntax.reading
                 case "each": return new Token(TokenType.Each);
                 case "else": return new Token(TokenType.Else);
                 case "elif": return new Token(TokenType.Elif);
-                case "false": return new Token(TokenType.BoolConstant);
                 case "file": return new Token(TokenType.File);
                 case "first": return new Token(TokenType.First);
                 case "for": return new Token(TokenType.For);
@@ -87,7 +86,6 @@ namespace DivineScript.syntax.reading
                 case "skip": return new Token(TokenType.Skip);
                 case "this": return new Token(TokenType.This);
                 case "to": return new Token(TokenType.To);
-                case "true": return new Token(TokenType.BoolConstant);
                 case "where": return new Token(TokenType.Where);
                 case "while": return new Token(TokenType.While);
                 case "xor": return new Token(TokenType.Xor);

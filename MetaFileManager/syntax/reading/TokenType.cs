@@ -55,7 +55,6 @@ namespace DivineScript.syntax.reading
         Variable,
         StringConstant,
         NumericConstant,
-        BoolConstant,
 
         Comma,
         Exclamation,

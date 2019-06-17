@@ -22,7 +22,7 @@ namespace DivineScript.syntax.interpretation.list
 
             string str = tokens[1].GetContent();
 
-            if (!InterVariables.GetInstance().Contains(str, InterVarType.String) && InterVariables.GetInstance().Contains(str, InterVarType.List))
+            if (!InterVariables.GetInstance().ContainsChangable(str, InterVarType.String) && InterVariables.GetInstance().ContainsChangable(str, InterVarType.List))
                 return new Reverse(str);
             else
                 throw new SyntaxErrorException("ERROR! In reverse command variable " + str + " do not exist, cannnot be read as list or cannot be modified.");
