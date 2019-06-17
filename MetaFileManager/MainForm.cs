@@ -15,6 +15,7 @@ using DivineScript.syntax.variables.expressions;
 using DivineScript.syntax.commands.create;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.variables;
+using DivineScript.syntax.interpretation.vars_range;
 
 namespace DivineScript
 {
@@ -52,6 +53,7 @@ namespace DivineScript
                 {
                     try
                     {
+                        InterVariables.GetInstance().Clear();
                         RuntimeVariables.GetInstance().InitializeInnerVariables();
                         RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
                         List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);

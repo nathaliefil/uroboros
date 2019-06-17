@@ -6,6 +6,7 @@ using DivineScript.syntax.reading;
 using DivineScript.syntax.commands;
 using DivineScript.syntax.commands.abstracts;
 using DivineScript.syntax.interpretation.commands;
+using DivineScript.syntax.interpretation.list;
 
 namespace DivineScript.syntax.interpretation
 {
@@ -37,8 +38,14 @@ namespace DivineScript.syntax.interpretation
                 {
                     return InterPrint.Build(tokens);
                 }
-
+                case TokenType.Reverse:
+                {
+                    return InterReverse.Build(tokens);
+                }
+                    // more more more
             }
+
+
 
 
             return new NullCommand ();

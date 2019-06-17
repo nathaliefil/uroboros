@@ -7,6 +7,16 @@ namespace DivineScript.syntax.interpretation.vars_range
 {
     public class InterVariables
     {
+        /*
+         
+        this is a simplified model of runtime variables
+        it is used to determine during interpretation,
+        if variables in expressions are declared
+        and if they are in block range
+
+        */
+
+
         private static InterVariables INSTANCE = new InterVariables();
         private List<InterVar> variables;
 
@@ -57,6 +67,38 @@ namespace DivineScript.syntax.interpretation.vars_range
             variables.Add(new InterVar("name", InterVarType.String, false));
             variables.Add(new InterVar("fullname", InterVarType.String, false));
             variables.Add(new InterVar("extension", InterVarType.String, false));
+        }
+
+        public bool Contains(string name, InterVarType type)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return false;
+
+            InterVar iv = variables.First(v => name.Equals(v.GetName()));
+
+            if (iv.IsChangeable())
+                return false;
+
+            switch (type)
+            {
+                case InterVarType.Bool:
+                {
+                    return iv.IsBool() ? true : false;
+                }
+                case InterVarType.Number:
+                {
+                    return iv.IsNumber() ? true : false;
+                }
+                case InterVarType.String:
+                {
+                    return iv.IsString() ? true : false;
+                }
+                case InterVarType.List:
+                {
+                    return iv.IsList() ? true : false;
+                }
+            }
+            return false;
         }
     }
 }

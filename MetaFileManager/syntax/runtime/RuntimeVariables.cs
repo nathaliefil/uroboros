@@ -44,36 +44,35 @@ namespace DivineScript.syntax.runtime
 
         public string GetValueString(string name)
         {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return "";
+
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
-            if (!nv.Equals(null))
-            {
-                return nv.ToString();
-            }
-            return "";
+            return nv.ToString();
         }
 
         public decimal GetValueNumber(string name)
         {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return 0;
+
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
-            if (!nv.Equals(null))
+            if (nv is INumerable)
             {
-                if (nv is INumerable)
-                {
-                    return (nv as INumerable).ToNumber();
-                }
+                return (nv as INumerable).ToNumber();
             }
             return 0;
         }
 
         public bool GetValueBool(string name)
         {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return false;
+
             NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
-            if (!nv.Equals(null))
+            if (nv is IBoolable)
             {
-                if (nv is IBoolable)
-                {
-                    return (nv as IBoolable).ToBool();
-                }
+                return (nv as IBoolable).ToBool();
             }
             return false;
         }

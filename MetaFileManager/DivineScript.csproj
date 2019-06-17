@@ -132,6 +132,7 @@
     <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
+    <Compile Include="syntax\interpretation\list\InterReverse.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
@@ -234,7 +235,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="syntax\interpretation\arithmetic\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

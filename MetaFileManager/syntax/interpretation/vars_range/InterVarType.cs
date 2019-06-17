@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.interpretation.vars_range
 {
-    enum InterVarType
+    public enum InterVarType
     {
         Bool,
         Number,
