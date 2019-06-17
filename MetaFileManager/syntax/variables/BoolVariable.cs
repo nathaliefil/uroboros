@@ -19,9 +19,9 @@ namespace DivineScript.syntax.variables
         public override string ToString()
         {
             if (value)
-                return "true";
+                return "1";
             else
-                return "false";
+                return "0";
         }
 
         public bool ToBool()

@@ -35,9 +35,9 @@ namespace DivineScript.syntax.variables.expressions
         {
             bool value = ToBool();
             if (value)
-                return "true";
+                return "1";
             else
-                return "false";
+                return "0";
         }
 
         public List<string> ToList()

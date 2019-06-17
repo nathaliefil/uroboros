@@ -37,9 +37,9 @@ namespace DivineScript.syntax.variables.refers
         public override string ToString()
         {
             if (ToBool())
-                return "true";
+                return "1";
             else
-                return "false";
+                return "0";
         }
 
     }
