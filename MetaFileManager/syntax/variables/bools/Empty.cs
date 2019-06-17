@@ -75,10 +75,5 @@ namespace DivineScript.syntax.variables.bools
         {
             return ToBool() ? "1" : "0";
         }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
-        }
     }
 }

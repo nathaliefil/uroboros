@@ -152,6 +152,7 @@
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
+    <Compile Include="syntax\variables\abstracts\DefaultToListMethod.cs" />
     <Compile Include="syntax\variables\abstracts\IBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\IListable.cs" />
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />

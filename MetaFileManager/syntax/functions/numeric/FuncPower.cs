@@ -18,7 +18,7 @@ namespace DivineScript.syntax.functions.numeric
             this.arg1 = arg1;
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             return (decimal)Math.Pow((double)arg0.ToNumber(), (double)arg1.ToNumber());
             // maybe there is a better way to do that (without losing decimal precision)
@@ -34,11 +34,6 @@ namespace DivineScript.syntax.functions.numeric
                 return ((int)value).ToString();
             else
                 return value.ToString();
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
     }
 }

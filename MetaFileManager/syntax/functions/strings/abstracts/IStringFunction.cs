@@ -6,7 +6,7 @@ using DivineScript.syntax.variables.abstracts;
 
 namespace DivineScript.syntax.functions.strings.abstracts
 {
-	interface IStringFunction : IStringable
+	abstract class IStringFunction : DefaultToListMethod, IStringable
 	{
 
 	}

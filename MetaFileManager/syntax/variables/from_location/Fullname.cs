@@ -40,10 +40,5 @@ namespace DivineScript.syntax.variables.from_location
                 return "";
             }
         }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
-        }
     }
 }

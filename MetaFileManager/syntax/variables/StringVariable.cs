@@ -21,11 +21,6 @@ namespace DivineScript.syntax.variables
             return value;
         }
 
-        public List<string> ToList()
-        {
-            return new List<string>{ToString()};
-        }
-
         public void SetValue(string str)
         {
             value = String.Copy(str);

@@ -29,10 +29,5 @@ namespace DivineScript.syntax.functions.numeric
             /// todo
             return "";
         }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
-        }
     }
 }

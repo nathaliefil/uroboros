@@ -16,7 +16,7 @@ namespace DivineScript.syntax.variables
             this.values = values;
         }
 
-        public List<string> ToList()
+        public override List<string> ToList()
         {
             return values;
         }

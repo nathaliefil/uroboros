@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.variables.abstracts
 {
-	abstract class NamedVariable
+    abstract class NamedVariable : DefaultToListMethod
 	{
         protected string name;
         protected int depthInBrackets = 0;

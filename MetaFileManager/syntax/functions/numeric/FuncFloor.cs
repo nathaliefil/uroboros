@@ -16,7 +16,7 @@ namespace DivineScript.syntax.functions.numeric
             this.arg0 = arg0;
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             return Decimal.Floor(arg0.ToNumber());
         }
@@ -26,11 +26,6 @@ namespace DivineScript.syntax.functions.numeric
             decimal value = ToNumber();
 
             return ((int)value).ToString();
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
     }
 }

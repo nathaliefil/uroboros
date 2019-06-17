@@ -20,10 +20,5 @@ namespace DivineScript.syntax.functions.numeric
         {
             return (arg0.ToString()).ToUpper();
         }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
-        }
     }
 }

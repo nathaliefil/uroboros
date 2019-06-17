@@ -15,7 +15,7 @@ namespace DivineScript.syntax.variables
             name = "directories";
         }
 
-        public List<string> ToList()
+        public override List<string> ToList()
         {
             string location = RuntimeVariables.GetInstance().GetValueString("location");
             return Directory.GetDirectories(location).ToList();

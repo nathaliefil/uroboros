@@ -20,10 +20,5 @@ namespace DivineScript.syntax.functions.numeric
         {
             return Convert.ToString((int)arg0.ToNumber(), 16);
         }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
-        }
     }
 }
