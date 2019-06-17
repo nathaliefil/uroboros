@@ -41,6 +41,10 @@ namespace DivineScript.syntax.interpretation.tokenlists
                     currentTokens.Clear();
                 }
             }
+            if (currentTokens.Count > 0)
+            {
+                commands.Add(SingleCommandFactory.Build(currentTokens));
+            }
             return commands;
         }
     }

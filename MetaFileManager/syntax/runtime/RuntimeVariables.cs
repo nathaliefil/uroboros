@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.variables;
+using DivineScript.syntax.variables.from_location;
+using DivineScript.syntax.variables.bools;
 
 namespace DivineScript.syntax.runtime
 {
@@ -81,20 +83,21 @@ namespace DivineScript.syntax.runtime
         {
             variables = new List<NamedVariable>();
 
-            ListVariable empty = new ListVariable("empty",new List<string>());
-
-            variables.Add(empty);
             variables.Add(new Files());
             variables.Add(new Directories());
             variables.Add(new Everything());
 
+            variables.Add(new True());
+            variables.Add(new False());
+            variables.Add(new Empty());
+
             variables.Add(new StringVariable("this", ""));
             variables.Add(new StringVariable("location", ""));
-            variables.Add(new StringVariable("name", ""));
-            variables.Add(new StringVariable("fullname", ""));
-            variables.Add(new StringVariable("extension", ""));
             variables.Add(new NumericVariable("index", 0));
 
+            variables.Add(new Name());
+            variables.Add(new Fullname());
+            variables.Add(new Extension());
         }
 
     }

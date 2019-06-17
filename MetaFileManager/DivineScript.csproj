@@ -135,6 +135,9 @@
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
+    <Compile Include="syntax\interpretation\vars_range\InterVar.cs" />
+    <Compile Include="syntax\interpretation\vars_range\InterVariables.cs" />
+    <Compile Include="syntax\interpretation\vars_range\InterVarType.cs" />
     <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
@@ -155,6 +158,9 @@
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
+    <Compile Include="syntax\variables\bools\Empty.cs" />
+    <Compile Include="syntax\variables\bools\False.cs" />
+    <Compile Include="syntax\variables\bools\True.cs" />
     <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\from_directory\Directories.cs" />
