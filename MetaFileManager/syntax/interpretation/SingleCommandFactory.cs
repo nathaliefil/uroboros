@@ -20,9 +20,7 @@ namespace DivineScript.syntax.interpretation
                 forced = true;
                 tokens.RemoveAt(0);
                 if (tokens.Count() == 0)
-                {
                     throw new SyntaxErrorException("ERROR! One command contains only two keywords: 'force to'.");
-                }
             }
 
             switch (tokens.First().GetTokenType())

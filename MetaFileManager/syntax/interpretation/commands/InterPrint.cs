@@ -17,9 +17,7 @@ namespace DivineScript.syntax.interpretation.commands
         {
             tokens.RemoveAt(0);
             if (tokens.Count == 0)
-            {
                 return new Print(new StringVariableRefer("this"));
-            }
             IListable ilist = ListableBuilder.Build(tokens);
             if (ilist is NullVariable)
                 throw new SyntaxErrorException("ERROR! There are is something wrong with print command.");

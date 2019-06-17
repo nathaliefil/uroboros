@@ -20,13 +20,10 @@ namespace DivineScript.syntax.interpretation.commands
             tokens.RemoveAt(0);
 
             if (froms == 0)
-            {
                 return BuildUsual(tokens, forced, directory);
-            }
             if (froms == 1)
-            {
                 return BuildFrom(tokens, forced, directory);
-            }
+
             throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") 
                 + " creation command syntax.");
         }
@@ -60,9 +57,7 @@ namespace DivineScript.syntax.interpretation.commands
             foreach (Token tok in tokens)
             {
                 if (tok.GetTokenType().Equals(TokenType.From))
-                {
                     pastFrom = true;
-                }
                 else
                 {
                     if(pastFrom)

@@ -97,7 +97,7 @@
     <Compile Include="syntax\commands\create\CreateDirectory.cs" />
     <Compile Include="syntax\commands\create\CreateFile.cs" />
     <Compile Include="syntax\commands\create\CreateFileFrom.cs" />
-    <Compile Include="syntax\commands\print\PrintList.cs" />
+    <Compile Include="syntax\commands\print\Print.cs" />
     <Compile Include="syntax\commands\vardeclarations\BoolDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\ListDeclaration.cs" />
     <Compile Include="syntax\commands\vardeclarations\NumericDeclaration.cs" />
@@ -127,8 +127,9 @@
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
     <Compile Include="syntax\interpretation\commands\InterCreate.cs" />
+    <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
     <Compile Include="syntax\interpretation\expressions\BoolableBuilder.cs" />
-    <Compile Include="syntax\interpretation\expressions\ListBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />

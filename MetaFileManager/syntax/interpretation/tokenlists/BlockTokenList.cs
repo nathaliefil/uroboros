@@ -51,29 +51,31 @@ namespace DivineScript.syntax.interpretation.tokenlists
                         ///
                         fillingBlock = true;
                         level++;
+                        int position;
 
-                        List<Token> got2 = got.Select(t => (Token)t.Clone()).ToList();
-                        got2.Reverse();
-                        
-
-                        foreach (Token tk in got)
+                        for (position = got.Count - 1; position >= 0; position--)
                         {
-                            if (tk.GetTokenType().Equals(TokenType.CurlyBracketOff)
-                                || tk.GetTokenType().Equals(TokenType.Semicolon))
+                            if (got[position].GetTokenType().Equals(TokenType.CurlyBracketOff)
+                                || got[position].GetTokenType().Equals(TokenType.Semicolon))
                             {
                                 break;
                             }
-                            else
-                            {
-                                pre.Add(tk);
-                                got2.Remove(tk);
-                            }
                         }
-                        pre.Reverse();
-                        got2.Reverse();
-                        if (got2.Count > 0)
+                        pre = new List<Token>();
+                        List<Token> lis = new List<Token>();
+
+                        for (int i = position + 1; i < got.Count; i++)
                         {
-                            elements.Add(new TokenList(got2));
+                            pre.Add(got[i].Clone());
+                        }
+
+                        for (int i = 0; i < position; i++)
+                        {
+                            lis.Add(got[i].Clone());
+                        }
+                        if (lis.Count > 0)
+                        {
+                            elements.Add(new TokenList(lis));
                         }
                         got.Clear();
                     }
@@ -98,9 +100,17 @@ namespace DivineScript.syntax.interpretation.tokenlists
                         fillingBlock = false;
                         if (got.Count > 0)
                         {
-                            elements.Add(new BlockTokenList(pre, got));
+                            if (pre.Count > 0)
+                            {
+                                elements.Add(new BlockTokenList(pre.Select(t => (Token)t.Clone()).ToList(),
+                                    got.Select(t => (Token)t.Clone()).ToList())); // create deep copy 'just in case'
+                                pre.Clear();
+                            }
+                            else
+                            {
+                                elements.Add(new BlockTokenList(got.Select(t => (Token)t.Clone()).ToList()));
+                            }
                         }
-                        pre.Clear();
                         got.Clear();
                     }
                 }
