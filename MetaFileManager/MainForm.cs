@@ -79,8 +79,8 @@ namespace DivineScript
 
                         */
 
-                        Cut com = new Cut(new StringConstant("info.txt"));
-                        commands.Add(com);
+                        //Cut com = new Cut(new StringConstant("info.txt"));
+                        //commands.Add(com);
 
                         try
                         {
@@ -97,11 +97,7 @@ namespace DivineScript
                     catch (DivineScript.syntax.SyntaxErrorException te)
                     {
                         Logger.GetInstance().Log(te.GetMessage());
-                    }/*
-                    catch (NullReferenceException nre)
-                    {
-                        Logger.GetInstance().Log("Error! NullReferenceException");
-                    }*/
+                    }
                 }
             }
             Log("------------------------------------");

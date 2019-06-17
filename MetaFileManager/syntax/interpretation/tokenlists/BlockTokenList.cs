@@ -121,8 +121,6 @@ namespace DivineScript.syntax.interpretation.tokenlists
             {
                 elements.Add(new TokenList(got));
             }
-
-            Logger.GetInstance().Log(" "+elements.Count);
         }
 
         public override List<ICommand> ToCommands()
@@ -146,6 +144,9 @@ namespace DivineScript.syntax.interpretation.tokenlists
                     case TokenType.If:
                     {
                         precedingTokens.RemoveAt(0);
+                        if (precedingTokens.Count == 0)
+                            throw new SyntaxErrorException("ERROR! IF statement is empty.");
+                        
                         IBoolable iboo = BoolableBuilder.Build(precedingTokens);
                         if (iboo is NullVariable)
                             throw new SyntaxErrorException("ERROR! There are is something wrong with condition in IF statement.");
@@ -155,6 +156,9 @@ namespace DivineScript.syntax.interpretation.tokenlists
                     case TokenType.While:
                     {
                         precedingTokens.RemoveAt(0);
+                        if (precedingTokens.Count == 0)
+                            throw new SyntaxErrorException("ERROR! WHILE statement is empty.");
+
                         IBoolable iboo = BoolableBuilder.Build(precedingTokens);
                         if (iboo is NullVariable)
                             throw new SyntaxErrorException("ERROR! There are is something wrong with condition in WHILE statement.");
@@ -176,8 +180,6 @@ namespace DivineScript.syntax.interpretation.tokenlists
                 }
                 return block;
             }
-
         }
-
     }
 }
