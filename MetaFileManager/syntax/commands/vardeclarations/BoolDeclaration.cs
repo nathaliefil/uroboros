@@ -12,7 +12,7 @@ namespace DivineScript.syntax.commands
         private string name;
         private IBoolable value;
 
-        BoolDeclaration(string name, IBoolable value)
+        public BoolDeclaration(string name, IBoolable value)
         {
             this.name = name;
             this.value = value;

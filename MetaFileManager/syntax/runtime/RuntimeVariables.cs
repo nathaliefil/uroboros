@@ -34,12 +34,20 @@ namespace DivineScript.syntax.runtime
 
         public void BracketsDown()
         {
+            bool modified = false;
+            List<NamedVariable> copy = new List<NamedVariable>(variables.ToArray());
+
             foreach (NamedVariable var in variables)
             {
                 var.BracketsDown();
                 if (var.NegativeDepth())
-                    variables.Remove(var);
+                {
+                    modified = true;
+                    copy.Remove(var);
+                }
             }
+            if (modified)
+                variables = copy;
         }
 
         public List<string> GetValueList(string name)

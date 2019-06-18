@@ -8,6 +8,7 @@ using DivineScript.syntax.runtime;
 using DivineScript.syntax.commands.blocks;
 using DivineScript.syntax.interpretation.expressions;
 using DivineScript.syntax.variables.abstracts;
+using DivineScript.syntax.interpretation.vars_range;
 
 namespace DivineScript.syntax.interpretation.tokenlists
 {
@@ -128,10 +129,13 @@ namespace DivineScript.syntax.interpretation.tokenlists
             List<ICommand> block = new List<ICommand>();
             List<ICommand> commands = new List<ICommand>();
 
+            InterVariables.GetInstance().BracketsUp();
             foreach (TokenList tl in elements)
             {
                 commands.AddRange(tl.ToCommands());
             }
+            InterVariables.GetInstance().BracketsDown();
+
             if (!precedings)
             {
                 block.Add(new Block(commands));

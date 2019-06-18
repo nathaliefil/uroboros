@@ -12,7 +12,7 @@ namespace DivineScript.syntax.commands
         private string name;
         private IStringable value;
 
-        StringDeclaration(string name, IStringable value)
+        public StringDeclaration(string name, IStringable value)
         {
             this.name = name;
             this.value = value;

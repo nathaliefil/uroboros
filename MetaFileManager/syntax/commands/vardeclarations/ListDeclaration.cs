@@ -12,7 +12,7 @@ namespace DivineScript.syntax.commands
         private string name;
         private IListable value;
 
-        ListDeclaration(string name, IListable value)
+        public ListDeclaration(string name, IListable value)
         {
             this.name = name;
             this.value = value;

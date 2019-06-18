@@ -12,7 +12,7 @@ namespace DivineScript.syntax.commands
         private string name;
         private INumerable value;
 
-        NumericDeclaration(string name, INumerable value)
+        public NumericDeclaration(string name, INumerable value)
         {
             this.name = name;
             this.value = value;

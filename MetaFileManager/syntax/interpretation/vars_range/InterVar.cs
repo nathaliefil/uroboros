@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DivineScript.syntax.interpretation.vars_range
 {
-    class InterVar
+    public class InterVar
     {
         private string name;
         private InterVarType type;

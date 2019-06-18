@@ -69,6 +69,15 @@ namespace DivineScript.syntax.interpretation
                     // more more more
             }
 
+            if (tokens.Count >= 2 && tokens[0].GetTokenType().Equals(TokenType.Variable))
+            {
+                if (tokens[1].GetTokenType().Equals(TokenType.Equals))
+                {
+                    return InterVariableDeclaration.Build(tokens);
+
+
+                }
+            }
 
 
 

@@ -30,6 +30,11 @@ namespace DivineScript.syntax.interpretation.vars_range
             return INSTANCE;
         }
 
+        public void Add(string name, InterVarType type)
+        {
+            variables.Add(new InterVar(name, type, true));
+        }
+
         public void BracketsUp()
         {
             foreach (InterVar var in variables)
@@ -40,12 +45,20 @@ namespace DivineScript.syntax.interpretation.vars_range
 
         public void BracketsDown()
         {
+            bool modified = false;
+            List<InterVar> copy = new List<InterVar>(variables.ToArray());
+
             foreach (InterVar var in variables)
             {
                 var.BracketsDown();
                 if (var.NegativeDepth())
-                    variables.Remove(var);
+                {
+                    modified = true;
+                    copy.Remove(var);
+                }
             }
+            if (modified)
+                variables = copy;
         }
 
         public void Clear()
@@ -67,6 +80,13 @@ namespace DivineScript.syntax.interpretation.vars_range
             variables.Add(new InterVar("name", InterVarType.String, false));
             variables.Add(new InterVar("fullname", InterVarType.String, false));
             variables.Add(new InterVar("extension", InterVarType.String, false));
+        }
+
+        public bool Contains(string name)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return false;
+            return true;
         }
 
         public bool Contains(string name, InterVarType type)
@@ -108,6 +128,12 @@ namespace DivineScript.syntax.interpretation.vars_range
             if (iv.IsChangeable())
                 return true;
             return false;
+        }
+
+        public InterVar GetVar(string name)
+        {
+            InterVar result = variables.Where(v => v.GetName().Equals(name)).First();
+            return result;
         }
     }
 }
