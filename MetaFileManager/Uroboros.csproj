@@ -186,8 +186,12 @@
     <Compile Include="syntax\variables\expressions\NumericExpression.cs" />
     <Compile Include="syntax\variables\expressions\StringExpression.cs" />
     <Compile Include="syntax\variables\from_directory\Files.cs" />
+    <Compile Include="syntax\variables\from_location\date\Creation.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateBuilder.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateVariableType.cs" />
     <Compile Include="syntax\variables\from_location\Extension.cs" />
     <Compile Include="syntax\variables\from_location\Fullname.cs" />
+    <Compile Include="syntax\variables\from_location\date\Modification.cs" />
     <Compile Include="syntax\variables\from_location\Name.cs" />
     <Compile Include="syntax\variables\constants\ListConstant.cs" />
     <Compile Include="syntax\variables\ListVariable.cs" />

@@ -80,6 +80,8 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("name", InterVarType.String, false));
             variables.Add(new InterVar("fullname", InterVarType.String, false));
             variables.Add(new InterVar("extension", InterVarType.String, false));
+            variables.Add(new InterVar("creation", InterVarType.String, false));
+            variables.Add(new InterVar("modification", InterVarType.String, false));
         }
 
         public bool Contains(string name)

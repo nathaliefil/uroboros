@@ -6,6 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
 using Uroboros.syntax.variables.from_location;
 using Uroboros.syntax.variables.bools;
+using Uroboros.syntax.variables.from_location.date;
 
 namespace Uroboros.syntax.runtime
 {
@@ -118,6 +119,9 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Name());
             variables.Add(new Fullname());
             variables.Add(new Extension());
+
+            variables.Add(new Modification());
+            variables.Add(new Creation());
         }
 
     }
