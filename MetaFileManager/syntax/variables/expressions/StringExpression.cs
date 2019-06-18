@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables.expressions
 {
-    class StringExpression : IStringable
+    class StringExpression : DefaultToListMethod, IStringable
     {
         List<IStringable> elements;
 
@@ -23,11 +23,6 @@ namespace Uroboros.syntax.variables.expressions
                 sb.Append(element.ToString());
             }
             return sb.ToString();
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
 
         public void Add(IStringable element)

@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class StringConstant : IStringable
+    class StringConstant : DefaultToListMethod, IStringable
     {
         private string value;
 
@@ -18,11 +18,6 @@ namespace Uroboros.syntax.variables
         public override string ToString()
         {
             return value;
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
     }
 }

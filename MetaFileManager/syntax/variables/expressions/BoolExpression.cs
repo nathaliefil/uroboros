@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables.expressions
 {
-    class BoolExpression : IBoolable
+    class BoolExpression : DefaultToListMethod, IBoolable
     {
         List<IBoolable> elements;
 
@@ -38,11 +38,6 @@ namespace Uroboros.syntax.variables.expressions
                 return "1";
             else
                 return "0";
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Uroboros.syntax.variables.abstracts
 
         public bool NegativeDepth()
         {
-            return (depthInBrackets<0? true: false);
+            return depthInBrackets<0? true: false;
         }
 	}
 }

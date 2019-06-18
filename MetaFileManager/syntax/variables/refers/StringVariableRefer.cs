@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.refers
 {
-    class StringVariableRefer : IStringable
+    class StringVariableRefer : DefaultToListMethod, IStringable
     {
         private string name;
 
@@ -19,11 +19,6 @@ namespace Uroboros.syntax.variables.refers
         public override string ToString()
         {
             return RuntimeVariables.GetInstance().GetValueString(name);
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
     }
 }

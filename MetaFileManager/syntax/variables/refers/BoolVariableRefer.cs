@@ -7,18 +7,13 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.refers
 {
-    class BoolVariableRefer : IBoolable
+    class BoolVariableRefer : DefaultToListMethod, IBoolable
     {
         private string name;
 
         public BoolVariableRefer(string name)
         {
             this.name = name;
-        }
-
-        public List<string> ToList()
-        {
-            return new List<string> { ToString() };
         }
 
         public bool ToBool()

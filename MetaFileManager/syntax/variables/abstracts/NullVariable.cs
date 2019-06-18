@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    class NullVariable : IBoolable, IListable
+    class NullVariable : IBoolable
     {
         /*
 

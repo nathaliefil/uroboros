@@ -8,6 +8,5 @@ namespace Uroboros.syntax.variables.abstracts
     interface INumerable : IStringable
     {
         decimal ToNumber();
-
     }
 }

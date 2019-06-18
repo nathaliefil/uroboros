@@ -9,6 +9,7 @@ namespace Uroboros.syntax.variables.from_location.date
     {
         Year,
         Month,
+        WeekDay,
         Day,
         Hour,
         Minute,
