@@ -18,10 +18,7 @@ namespace DivineScript.syntax.variables
 
         public override string ToString()
         {
-            if (value % 1 == 0)
-                return ((int)value).ToString();
-            else
-                return value.ToString();
+            return ToNumber().ToString();
         }
 
         public decimal ToNumber()
@@ -44,12 +41,12 @@ namespace DivineScript.syntax.variables
             value--;
         }
 
-        public void IncreaseBy(decimal dec)
+        public void IncrementBy(decimal dec)
         {
             value += dec;
         }
 
-        public void DecreaseBy(decimal dec)
+        public void DecrementBy(decimal dec)
         {
             value -= dec;
         }

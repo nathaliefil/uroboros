@@ -20,15 +20,5 @@ namespace DivineScript.syntax.functions.numeric
         {
             return arg0.Min(x => x.ToNumber()); 
         }
-
-        public override string ToString()
-        {
-            decimal value = ToNumber();
-
-            if (value % 1 == 0)
-                return ((int)value).ToString();
-            else
-                return value.ToString();
-        }
     }
 }

@@ -8,7 +8,6 @@ namespace DivineScript.syntax.functions.numeric
 {
     class FuncE : INumericFunction
     {
-
         public FuncE()
         {
         }
@@ -16,13 +15,6 @@ namespace DivineScript.syntax.functions.numeric
         public override decimal ToNumber()
         {
             return (decimal) Math.E;
-        }
-
-        public override string ToString()
-        {
-            decimal value = ToNumber();
-
-            return value.ToString();
         }
     }
 }

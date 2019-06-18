@@ -20,12 +20,5 @@ namespace DivineScript.syntax.functions.numeric
         {
             return Decimal.Floor(arg0.ToNumber());
         }
-
-        public override string ToString()
-        {
-            decimal value = ToNumber();
-
-            return ((int)value).ToString();
-        }
     }
 }

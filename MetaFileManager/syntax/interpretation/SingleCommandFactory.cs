@@ -80,7 +80,13 @@ namespace DivineScript.syntax.interpretation
                 {
                     return InterVariablePlusMinus.Build(tokens);
                 }
-
+                if (tokens[1].GetTokenType().Equals(TokenType.PlusEquals)
+                    || tokens[1].GetTokenType().Equals(TokenType.MinusEquals)
+                    || tokens[1].GetTokenType().Equals(TokenType.MultiplyEquals)
+                    || tokens[1].GetTokenType().Equals(TokenType.DivideEquals))
+                {
+                    return InterVariableOperation.Build(tokens);
+                }
             }
 
 

@@ -24,11 +24,7 @@ namespace DivineScript.syntax.variables.expressions
 
         public override string ToString()
         {
-            decimal value = ToNumber();
-            if (value % 1 == 0)
-                return ((int)value).ToString();
-            else
-                return value.ToString();
+            return ToNumber().ToString();
         }
 
         public List<string> ToList()

@@ -12,5 +12,10 @@ namespace DivineScript.syntax.functions.numeric.abstracts
         {
             return 0;
         }
+
+        public override string ToString()
+        {
+            return ToNumber().ToString();
+        }
     }
 }
