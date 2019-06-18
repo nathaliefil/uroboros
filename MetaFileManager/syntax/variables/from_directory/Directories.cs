@@ -18,7 +18,19 @@ namespace DivineScript.syntax.variables
         public override List<string> ToList()
         {
             string location = RuntimeVariables.GetInstance().GetValueString("location");
-            return Directory.GetDirectories(location).ToList();
+            int length = location.Length;
+            List<string> list = ((Directory.GetDirectories(location)).Select(s => s.Substring(length))).ToList();
+            List<string> newlist = new List<string>();
+
+            foreach (string l in list)
+            {
+                if (l.StartsWith("\\"))
+                    newlist.Add(l.Substring(1));
+                else
+                    newlist.Add(l);
+            }
+
+            return newlist;
         }
     }
 }

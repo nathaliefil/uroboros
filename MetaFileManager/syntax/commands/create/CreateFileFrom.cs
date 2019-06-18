@@ -73,7 +73,7 @@ namespace DivineScript.syntax.commands.create
                     }
                     catch (Exception)
                     {
-                        Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing file" + nname + " with " + sname + ".");
+                        Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing file " + nname + " with " + sname + ".");
                     }
                 }
             }

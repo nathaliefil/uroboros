@@ -18,21 +18,10 @@ namespace DivineScript.syntax.variables.from_location
         public override string ToString()
         {
             string thiss = RuntimeVariables.GetInstance().GetValueString("this");
-            if (this.Equals("") || FileValidator.IsDirectory(thiss))
-            {
+            if (thiss.LastIndexOf('.') == -1)
                 return "";
-            }
-            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + thiss;
-
-            try
-            {
-                string value = Path.GetExtension(@location);
-                return value;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
+            else
+                return thiss.Substring(thiss.LastIndexOf('.')+1);
         }
     }
 }

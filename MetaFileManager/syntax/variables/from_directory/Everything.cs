@@ -17,9 +17,8 @@ namespace DivineScript.syntax.variables
 
         public override List<string> ToList()
         {
-            string location = RuntimeVariables.GetInstance().GetValueString("location");
-            List<string> everything = Directory.GetDirectories(location).ToList();
-            everything.AddRange(Directory.GetFiles(location).ToList());
+            List<string> everything = RuntimeVariables.GetInstance().GetValueList("directories");
+            everything.AddRange(RuntimeVariables.GetInstance().GetValueList("files"));
             return everything;
         }
     }
