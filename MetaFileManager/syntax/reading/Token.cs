@@ -41,10 +41,6 @@ namespace DivineScript.syntax.reading
         public void SetToNumericConstant()
         {
             type = TokenType.NumericConstant;
-        }
-
-        public void PointToComma()
-        {
             content = content.Replace('.', ',');
         }
 

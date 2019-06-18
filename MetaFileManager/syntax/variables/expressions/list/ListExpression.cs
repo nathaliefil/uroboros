@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using DivineScript.syntax.variables.abstracts;
 using DivineScript.syntax.variables.expressions.list.subcommands;
+using DivineScript.syntax.variables.refers;
 
 namespace DivineScript.syntax.variables.expressions.list
 {
     class ListExpression: IListable
     {
-        private IListable elements;
+        private ListVariableRefer elements;
         private List<ISubcommand> subcommands;
 
 
-        public ListExpression(IListable elements)
+        public ListExpression(ListVariableRefer elements)
         {
             this.elements = elements;
             subcommands = new List<ISubcommand>();
@@ -27,19 +28,21 @@ namespace DivineScript.syntax.variables.expressions.list
 
         public List<string> ToList()
         {
-            List<string> result = elements.ToList() ;
+            List<string> result = elements.ToList();
 
             foreach (ISubcommand subcom in subcommands)
             {
                 if (subcom is Where)
                 {
+                    List<string> newresult = new List<string>();
                     foreach (string s in result)
                     {
-                        if (!(subcom as Where).GetValue())
+                        if ((subcom as Where).GetValue())
                         {
-                            result.Remove(s);
+                            newresult.Add(s);
                         }
                     }
+                    result = newresult;
                 }
                 if (subcom is OrderBy)
                 {

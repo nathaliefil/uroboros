@@ -16,10 +16,7 @@ namespace DivineScript.syntax.reading
                     string ss = (t.GetContent()).Replace('.', ',');
                     decimal value;
                     if (Decimal.TryParse(ss, out value))
-                    {
-                        t.PointToComma();
                         t.SetToNumericConstant();
-                    }
                 }
             }
             return tokens;
@@ -107,7 +104,11 @@ namespace DivineScript.syntax.reading
                         newTokens.Add(new Token(TokenType.CreateDirectory));
                         tokensMerged = true;
                     }
-
+                    if (tokens[i].GetTokenType() == TokenType.Order && tokens[i + 1].GetTokenType() == TokenType.By)
+                    {
+                        newTokens.Add(new Token(TokenType.OrderBy));
+                        tokensMerged = true;
+                    }
 
 
                     if (tokens[i].GetTokenType() == TokenType.Plus && tokens[i + 1].GetTokenType() == TokenType.Equals)

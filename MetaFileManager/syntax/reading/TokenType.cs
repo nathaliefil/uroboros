@@ -89,6 +89,7 @@ namespace DivineScript.syntax.reading
 
         CreateFile,
         CreateDirectory,
-        ForceTo
+        ForceTo,
+        OrderBy
     }
 }
