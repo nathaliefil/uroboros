@@ -21,7 +21,7 @@ namespace Uroboros.syntax.interpretation
                 forced = true;
                 tokens.RemoveAt(0);
                 if (tokens.Count() == 0)
-                    throw new SyntaxErrorException("ERROR! One command contains only two keywords: 'force to'.");
+                    throw new SyntaxErrorException("ERROR! One command contains only two keywords: 'force to'. Instruction part is empty.");
             }
 
             switch (tokens.First().GetTokenType())
@@ -44,11 +44,17 @@ namespace Uroboros.syntax.interpretation
                 }
                 case TokenType.Copy:
                 {
-                    return InterCore.Build(tokens);
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreTo.Build(tokens, forced);
+                    else
+                        return InterCore.Build(tokens);
                 }
                 case TokenType.Cut:
                 {
-                    return InterCore.Build(tokens);
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreTo.Build(tokens, forced);
+                    else
+                        return InterCore.Build(tokens);
                 }
                 case TokenType.Delete:
                 {
@@ -66,6 +72,21 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterCore.Build(tokens);
                 }
+                case TokenType.Move:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreTo.Build(tokens, forced);
+                    else
+                        throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
+                }
+                case TokenType.Rename:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreTo.Build(tokens, forced);
+                    else
+                        throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
+                }
+
                     // more more more
             }
 
