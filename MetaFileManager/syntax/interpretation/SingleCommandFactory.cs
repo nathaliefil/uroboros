@@ -74,9 +74,13 @@ namespace DivineScript.syntax.interpretation
                 if (tokens[1].GetTokenType().Equals(TokenType.Equals))
                 {
                     return InterVariableDeclaration.Build(tokens);
-
-
                 }
+                if (tokens[1].GetTokenType().Equals(TokenType.PlusPlus) 
+                    || tokens[1].GetTokenType().Equals(TokenType.MinusMinus))
+                {
+                    return InterVariablePlusMinus.Build(tokens);
+                }
+
             }
 
 

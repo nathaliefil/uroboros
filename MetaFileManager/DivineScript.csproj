@@ -130,6 +130,7 @@
     <Compile Include="syntax\interpretation\commands\InterCreate.cs" />
     <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
     <Compile Include="syntax\interpretation\commands\InterVariableDeclaration.cs" />
+    <Compile Include="syntax\interpretation\commands\InterVariablePlusMinus.cs" />
     <Compile Include="syntax\interpretation\expressions\BoolableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />

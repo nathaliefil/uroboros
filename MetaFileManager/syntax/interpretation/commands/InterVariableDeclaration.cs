@@ -93,7 +93,6 @@ namespace DivineScript.syntax.interpretation.commands
                     }
                 }
             }
-            throw new SyntaxErrorException("ERROR! There are is something wrong with print command.");
         }
     }
 }
