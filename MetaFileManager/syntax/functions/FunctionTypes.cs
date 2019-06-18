@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DivineScript.syntax.functions
+namespace Uroboros.syntax.functions
 {
     class NumericFunctionTypes
     {

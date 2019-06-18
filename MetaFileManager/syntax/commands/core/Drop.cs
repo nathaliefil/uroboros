@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using DivineScript.syntax.runtime;
-using DivineScript.syntax.variables.abstracts;
+using Uroboros.syntax.runtime;
+using Uroboros.syntax.variables.abstracts;
 
-namespace DivineScript.syntax.commands.core
+namespace Uroboros.syntax.commands.core
 {
     class Drop : CoreCommand
     {

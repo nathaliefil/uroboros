@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DivineScript.syntax
+namespace Uroboros.syntax
 {
     class RuntimeException : Exception
     {

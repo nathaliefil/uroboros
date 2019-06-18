@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax;
+using Uroboros.syntax;
 
-namespace DivineScript.syntax.reading
+namespace Uroboros.syntax.reading
 {
     class Reader
     {

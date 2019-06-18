@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables;
-using DivineScript.syntax.variables.from_location;
-using DivineScript.syntax.variables.bools;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables;
+using Uroboros.syntax.variables.from_location;
+using Uroboros.syntax.variables.bools;
 
-namespace DivineScript.syntax.runtime
+namespace Uroboros.syntax.runtime
 {
     public partial class RuntimeVariables
     {

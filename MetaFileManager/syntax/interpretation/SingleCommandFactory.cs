@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.commands.abstracts;
-using DivineScript.syntax.interpretation.commands;
-using DivineScript.syntax.interpretation.list;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.commands.abstracts;
+using Uroboros.syntax.interpretation.commands;
+using Uroboros.syntax.interpretation.list;
 
-namespace DivineScript.syntax.interpretation
+namespace Uroboros.syntax.interpretation
 {
     class SingleCommandFactory
     {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.commands;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.commands;
 
-namespace DivineScript.syntax.interpretation.tokenlists
+namespace Uroboros.syntax.interpretation.tokenlists
 {
     class TokenList
     {

@@ -6,18 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DivineScript.syntax;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.runtime;
-using DivineScript.syntax.commands.core;
-using DivineScript.syntax.variables.expressions;
-using DivineScript.syntax.commands.create;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables;
-using DivineScript.syntax.interpretation.vars_range;
+using Uroboros.syntax;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.runtime;
+using Uroboros.syntax.commands.core;
+using Uroboros.syntax.variables.expressions;
+using Uroboros.syntax.commands.create;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables;
+using Uroboros.syntax.interpretation.vars_range;
 
-namespace DivineScript
+namespace Uroboros
 {
     public partial class MainForm : Form
     {
@@ -91,12 +91,12 @@ namespace DivineScript
                                 command.Run();
                             }
                         }
-                        catch (DivineScript.syntax.RuntimeException re)
+                        catch (Uroboros.syntax.RuntimeException re)
                         {
                             Logger.GetInstance().Log(re.GetMessage());
                         }
                     }
-                    catch (DivineScript.syntax.SyntaxErrorException te)
+                    catch (Uroboros.syntax.SyntaxErrorException te)
                     {
                         Logger.GetInstance().Log(te.GetMessage());
                     }

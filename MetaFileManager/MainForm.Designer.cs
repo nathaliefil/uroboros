@@ -1,4 +1,4 @@
-﻿namespace DivineScript
+﻿namespace Uroboros
 {
     partial class MainForm
     {

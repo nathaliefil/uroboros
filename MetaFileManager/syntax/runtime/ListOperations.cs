@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables;
 
-namespace DivineScript.syntax.runtime
+namespace Uroboros.syntax.runtime
 {
     public partial class RuntimeVariables
     {

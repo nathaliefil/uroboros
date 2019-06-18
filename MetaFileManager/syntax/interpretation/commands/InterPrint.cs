@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.interpretation.expressions;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.commands.print;
-using DivineScript.syntax.variables.refers;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.interpretation.expressions;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.commands.print;
+using Uroboros.syntax.variables.refers;
 
-namespace DivineScript.syntax.interpretation.commands
+namespace Uroboros.syntax.interpretation.commands
 {
     class InterPrint
     {

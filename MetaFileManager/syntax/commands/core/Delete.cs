@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.variables.expressions;
+using Uroboros.syntax.runtime;
 using System.IO;
-using DivineScript.syntax.variables.abstracts;
+using Uroboros.syntax.variables.abstracts;
 
-namespace DivineScript.syntax.commands.core
+namespace Uroboros.syntax.commands.core
 {
     class Delete : CoreCommand
     {

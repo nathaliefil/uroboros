@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.runtime;
-using DivineScript.syntax.commands.blocks;
-using DivineScript.syntax.interpretation.expressions;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.interpretation.vars_range;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.runtime;
+using Uroboros.syntax.commands.blocks;
+using Uroboros.syntax.interpretation.expressions;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.interpretation.vars_range;
 
-namespace DivineScript.syntax.interpretation.tokenlists
+namespace Uroboros.syntax.interpretation.tokenlists
 {
     class BlockTokenList : TokenList
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivineScript", "MetaFileManager\DivineScript.csproj", "{C9813B0A-74B8-475B-8B96-6C865C98ABA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uroboros", "MetaFileManager\Uroboros.csproj", "{C9813B0A-74B8-475B-8B96-6C865C98ABA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

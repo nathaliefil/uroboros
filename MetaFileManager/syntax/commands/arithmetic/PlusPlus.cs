@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.runtime;
 
-namespace DivineScript.syntax.commands.arithmetic
+namespace Uroboros.syntax.commands.arithmetic
 {
     class PlusPlus : ICommand
     {

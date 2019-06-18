@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.interpretation.vars_range;
-using DivineScript.syntax.variables.refers;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.interpretation.vars_range;
+using Uroboros.syntax.variables.refers;
 
-namespace DivineScript.syntax.interpretation.expressions
+namespace Uroboros.syntax.interpretation.expressions
 {
     class NumerableBuilder
     {

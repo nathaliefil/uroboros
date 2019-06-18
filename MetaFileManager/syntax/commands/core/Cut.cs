@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
+using Uroboros.syntax.variables.abstracts;
 using System.Collections.Specialized;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.runtime;
 using System.IO;
 using System.Windows.Forms;
 
-namespace DivineScript.syntax.commands.core
+namespace Uroboros.syntax.commands.core
 {
     class Cut : CoreCommand
     {

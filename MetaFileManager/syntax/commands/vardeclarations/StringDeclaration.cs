@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.runtime;
 
-namespace DivineScript.syntax.commands
+namespace Uroboros.syntax.commands
 {
     class StringDeclaration : ICommand
     {

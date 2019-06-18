@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.interpretation.vars_range;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.interpretation.expressions;
-using DivineScript.syntax.commands.arithmetic;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.interpretation.vars_range;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.interpretation.expressions;
+using Uroboros.syntax.commands.arithmetic;
 
-namespace DivineScript.syntax.interpretation.commands
+namespace Uroboros.syntax.interpretation.commands
 {
     class InterVariableOperation
     {

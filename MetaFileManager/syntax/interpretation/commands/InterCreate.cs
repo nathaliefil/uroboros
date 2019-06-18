@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.commands.abstracts;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.commands.create;
-using DivineScript.syntax.variables.refers;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.interpretation.expressions;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.commands.abstracts;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.commands.create;
+using Uroboros.syntax.variables.refers;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.interpretation.expressions;
 
-namespace DivineScript.syntax.interpretation.commands
+namespace Uroboros.syntax.interpretation.commands
 {
     class InterCreate
     {

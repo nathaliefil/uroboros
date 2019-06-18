@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.commands;
-using DivineScript.syntax.interpretation.vars_range;
-using DivineScript.syntax.commands.list;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.commands;
+using Uroboros.syntax.interpretation.vars_range;
+using Uroboros.syntax.commands.list;
 
-namespace DivineScript.syntax.interpretation.list
+namespace Uroboros.syntax.interpretation.list
 {
     class InterReverse
     {

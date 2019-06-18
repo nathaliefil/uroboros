@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.runtime;
 
-namespace DivineScript.syntax.variables
+namespace Uroboros.syntax.variables
 {
     class Files : NamedVariable, IListable
     {

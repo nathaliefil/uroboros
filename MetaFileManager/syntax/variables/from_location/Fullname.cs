@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.runtime;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace DivineScript.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_location
 {
     class Fullname : NamedVariable, IStringable
     {

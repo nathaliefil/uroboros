@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.functions.strings.abstracts;
-using DivineScript.syntax.variables.abstracts;
+using Uroboros.syntax.functions.strings.abstracts;
+using Uroboros.syntax.variables.abstracts;
 
-namespace DivineScript.syntax.functions.numeric
+namespace Uroboros.syntax.functions.numeric
 {
     class FuncFilled : IStringFunction
     {

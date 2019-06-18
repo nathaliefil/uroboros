@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.abstracts;
-using DivineScript.syntax.variables.expressions.list.subcommands;
-using DivineScript.syntax.variables.refers;
+using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables.expressions.list.subcommands;
+using Uroboros.syntax.variables.refers;
 
-namespace DivineScript.syntax.variables.expressions.list
+namespace Uroboros.syntax.variables.expressions.list
 {
     class ListExpression: IListable
     {

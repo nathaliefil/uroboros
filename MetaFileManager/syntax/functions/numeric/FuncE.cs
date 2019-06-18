@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.functions.numeric.abstracts;
+using Uroboros.syntax.functions.numeric.abstracts;
 
-namespace DivineScript.syntax.functions.numeric
+namespace Uroboros.syntax.functions.numeric
 {
     class FuncE : INumericFunction
     {

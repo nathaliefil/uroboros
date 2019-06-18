@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DivineScript.Properties {
+namespace Uroboros.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

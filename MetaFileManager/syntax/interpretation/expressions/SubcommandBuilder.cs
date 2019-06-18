@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.variables.expressions.list.subcommands;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.variables.abstracts;
+using Uroboros.syntax.variables.expressions.list.subcommands;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.variables.abstracts;
 
-namespace DivineScript.syntax.interpretation.expressions
+namespace Uroboros.syntax.interpretation.expressions
 {
     class SubcommandBuilder
     {

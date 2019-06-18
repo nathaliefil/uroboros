@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DivineScript.syntax.reading;
-using DivineScript.syntax.interpretation.tokenlists;
+using Uroboros.syntax.reading;
+using Uroboros.syntax.interpretation.tokenlists;
 
-namespace DivineScript.syntax.commands
+namespace Uroboros.syntax.commands
 {
     class CommandListFactory
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace DivineScript.syntax.runtime
+namespace Uroboros.syntax.runtime
 {
     public class Logger
     {
