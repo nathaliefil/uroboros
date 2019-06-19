@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.variables.abstracts;
 
-namespace Uroboros.syntax.commands.print
+namespace Uroboros.syntax.commands.other
 {
     class Print : ICommand
     {

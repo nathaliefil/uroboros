@@ -17,7 +17,6 @@ namespace Uroboros.syntax.reading
         {
             code = Comments.Remove(code);
             code = EmptySpaces.Compress(code);
-            Console.WriteLine("ridin");
 
             List<Token> tokens = new List <Token>();
             StringBuilder stringb = new StringBuilder();

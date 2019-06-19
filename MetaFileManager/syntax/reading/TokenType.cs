@@ -46,6 +46,7 @@ namespace Uroboros.syntax.reading
         Select,
         Set,
         Skip,
+        Sleep,
         This,
         To,
         Where,

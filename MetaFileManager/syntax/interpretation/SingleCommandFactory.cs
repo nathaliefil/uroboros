@@ -86,6 +86,10 @@ namespace Uroboros.syntax.interpretation
                     else
                         throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
                 }
+                case TokenType.Sleep:
+                {
+                    return InterSleep.Build(tokens);
+                }
 
                     // more more more
             }

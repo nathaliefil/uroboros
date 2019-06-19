@@ -109,6 +109,11 @@ namespace Uroboros.syntax.reading
                         newTokens.Add(new Token(TokenType.OrderBy));
                         tokensMerged = true;
                     }
+                    if (tokens[i].GetTokenType() == TokenType.Sleep && tokens[i + 1].GetTokenType() == TokenType.For)
+                    {
+                        newTokens.Add(new Token(TokenType.Sleep));
+                        tokensMerged = true;
+                    }
 
 
                     if (tokens[i].GetTokenType() == TokenType.Plus && tokens[i + 1].GetTokenType() == TokenType.Equals)
