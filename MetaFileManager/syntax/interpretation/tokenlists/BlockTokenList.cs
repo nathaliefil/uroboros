@@ -150,7 +150,7 @@ namespace Uroboros.syntax.interpretation.tokenlists
                         precedingTokens.RemoveAt(0);
                         if (precedingTokens.Count == 0)
                             throw new SyntaxErrorException("ERROR! IF statement is empty.");
-                        
+
                         IBoolable iboo = BoolableBuilder.Build(precedingTokens);
                         if (iboo is NullVariable)
                             throw new SyntaxErrorException("ERROR! There are is something wrong with condition in IF statement.");

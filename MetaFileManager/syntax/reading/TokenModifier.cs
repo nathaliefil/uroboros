@@ -79,11 +79,6 @@ namespace Uroboros.syntax.reading
                         newTokens.Add(new Token(TokenType.Arrow));
                         tokensMerged = true;
                     }
-                    if (tokens[i].GetTokenType() == TokenType.Else && tokens[i + 1].GetTokenType() == TokenType.If)
-                    {
-                        newTokens.Add(new Token(TokenType.Elif));
-                        tokensMerged = true;
-                    }
                     if (tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)
                     {
                         newTokens.Add(new Token(TokenType.NotEquals));

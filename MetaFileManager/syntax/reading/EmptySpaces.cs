@@ -12,7 +12,7 @@ namespace Uroboros.syntax.reading
             // change all tabs and newlines into spaces
             // only if they are outside quotation marks
 
-            StringBuilder stringb = new StringBuilder(code);
+            StringBuilder stringb = new StringBuilder();
             bool quotationOn = false;
 
             for (int i = 0; i < code.Length; i++)
@@ -21,9 +21,11 @@ namespace Uroboros.syntax.reading
                 {
                     quotationOn = !quotationOn;
                 }
-                if (!quotationOn && (code[i].Equals('\n') || code[i].Equals('\t')))
+                if (!quotationOn && !code[i].Equals('\n') && !code[i].Equals('\t')
+                    && !code[i].Equals('\r') && !code[i].Equals("\r\n")
+                    )
                 {
-                    stringb[i] = ' ';
+                    stringb.Append(code[i]);
                 }
             }
             return stringb.ToString(); ;
