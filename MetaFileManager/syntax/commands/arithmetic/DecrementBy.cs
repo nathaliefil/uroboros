@@ -9,8 +9,8 @@ namespace Uroboros.syntax.commands.arithmetic
 {
     class DecrementBy : ICommand
     {
-        string variable;
-        INumerable value;
+        private string variable;
+        private INumerable value;
 
         public DecrementBy(string variable, INumerable value)
         {

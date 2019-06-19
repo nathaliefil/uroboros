@@ -8,7 +8,7 @@ namespace Uroboros.syntax.commands.arithmetic
 {
     class MinusMinus : ICommand
     {
-        string variable;
+        private string variable;
 
         public MinusMinus(string variable)
         {

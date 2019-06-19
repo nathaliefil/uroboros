@@ -122,6 +122,23 @@ namespace Uroboros.syntax.runtime
 
             variables.Add(new Modification());
             variables.Add(new Creation());
+
+            variables.Add(new DateVariable("modification.year", true, DateVariableType.Year));
+            variables.Add(new DateVariable("modification.month", true, DateVariableType.Month));
+            variables.Add(new DateVariable("modification.weekday", true, DateVariableType.WeekDay));
+            variables.Add(new DateVariable("modification.day", true, DateVariableType.Day));
+            variables.Add(new DateVariable("modification.hour", true, DateVariableType.Hour));
+            variables.Add(new DateVariable("modification.minute", true, DateVariableType.Minute));
+            variables.Add(new DateVariable("modification.second", true, DateVariableType.Second));
+
+            variables.Add(new DateVariable("creation.year", false, DateVariableType.Year));
+            variables.Add(new DateVariable("creation.month", false, DateVariableType.Month));
+            variables.Add(new DateVariable("creation.weekday", false, DateVariableType.WeekDay));
+            variables.Add(new DateVariable("creation.day", false, DateVariableType.Day));
+            variables.Add(new DateVariable("creation.hour", false, DateVariableType.Hour));
+            variables.Add(new DateVariable("creation.minute", false, DateVariableType.Minute));
+            variables.Add(new DateVariable("creation.second", false, DateVariableType.Second));
+
         }
 
     }

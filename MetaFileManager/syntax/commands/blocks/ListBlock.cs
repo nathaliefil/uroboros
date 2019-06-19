@@ -21,6 +21,9 @@ namespace Uroboros.syntax.commands.blocks
 
         new public void Run()
         {
+            decimal oldIndex = RuntimeVariables.GetInstance().GetValueNumber("index");
+            string oldThis = RuntimeVariables.GetInstance().GetValueString("this");
+
             RuntimeVariables.GetInstance().Actualize("index", 0);
             RuntimeVariables.GetInstance().BracketsUp();
             foreach(string element in list.ToList())
@@ -33,8 +36,8 @@ namespace Uroboros.syntax.commands.blocks
                 RuntimeVariables.GetInstance().PlusPlus("index");
             }
             RuntimeVariables.GetInstance().BracketsDown();
-            RuntimeVariables.GetInstance().Actualize("index", 0);
-            RuntimeVariables.GetInstance().Actualize("this", "");
+            RuntimeVariables.GetInstance().Actualize("index", oldIndex);
+            RuntimeVariables.GetInstance().Actualize("this", oldThis);
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Uroboros.syntax.commands.core
 {
     class RenameTo : CoreCommand
     {
-        IStringable destination;
-        bool forced;
+        private IStringable destination;
+        private bool forced;
 
         public RenameTo(IListable list, IStringable destination, bool forced)
         {

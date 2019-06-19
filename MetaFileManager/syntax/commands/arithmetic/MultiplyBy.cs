@@ -9,8 +9,8 @@ namespace Uroboros.syntax.commands.arithmetic
 {
     class MultiplyBy : ICommand
     {
-        string variable;
-        INumerable value;
+        private string variable;
+        private INumerable value;
 
         public MultiplyBy(string variable, INumerable value)
         {

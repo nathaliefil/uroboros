@@ -8,8 +8,8 @@ namespace Uroboros.syntax.commands.core
 {
     class MoveTo : CoreCommand
     {
-        IStringable destination;
-        bool forced;
+        private IStringable destination;
+        private bool forced;
 
         public MoveTo(IListable list, IStringable destination, bool forced)
         {

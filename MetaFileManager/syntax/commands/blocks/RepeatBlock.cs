@@ -23,6 +23,7 @@ namespace Uroboros.syntax.commands.blocks
         {
             decimal i = 0;
             decimal times = repeats.ToNumber();
+            decimal oldIndex = RuntimeVariables.GetInstance().GetValueNumber("index");
 
             RuntimeVariables.GetInstance().Actualize("index", 0);
             RuntimeVariables.GetInstance().BracketsUp();
@@ -36,7 +37,7 @@ namespace Uroboros.syntax.commands.blocks
                 RuntimeVariables.GetInstance().PlusPlus("index");
             }
             RuntimeVariables.GetInstance().BracketsDown();
-            RuntimeVariables.GetInstance().Actualize("index", 0);
+            RuntimeVariables.GetInstance().Actualize("index", oldIndex);
         }
     }
 }

@@ -190,6 +190,8 @@
     <Compile Include="syntax\variables\from_directory\Files.cs" />
     <Compile Include="syntax\variables\from_location\date\Creation.cs" />
     <Compile Include="syntax\variables\from_location\date\DateBuilder.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateExtractor.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateVariable.cs" />
     <Compile Include="syntax\variables\from_location\date\DateVariableType.cs" />
     <Compile Include="syntax\variables\from_location\Extension.cs" />
     <Compile Include="syntax\variables\from_location\Fullname.cs" />

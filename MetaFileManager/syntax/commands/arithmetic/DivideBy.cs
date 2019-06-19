@@ -9,8 +9,8 @@ namespace Uroboros.syntax.commands.arithmetic
 {
     class DivideBy : ICommand
     {
-        string variable;
-        INumerable value;
+        private string variable;
+        private INumerable value;
 
         public DivideBy(string variable, INumerable value)
         {
