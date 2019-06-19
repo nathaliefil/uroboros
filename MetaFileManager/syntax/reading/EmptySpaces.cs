@@ -18,15 +18,16 @@ namespace Uroboros.syntax.reading
             for (int i = 0; i < code.Length; i++)
             {
                 if (code[i].Equals('"'))
-                {
                     quotationOn = !quotationOn;
-                }
-                if (!quotationOn && !code[i].Equals('\n') && !code[i].Equals('\t')
-                    && !code[i].Equals('\r') && !code[i].Equals("\r\n")
-                    )
+
+                if (!quotationOn)
                 {
-                    stringb.Append(code[i]);
+                    if (!code[i].Equals('\n') && !code[i].Equals('\t')
+                    && !code[i].Equals('\r') && !code[i].Equals("\r\n"))
+                        stringb.Append(code[i]);
                 }
+                else
+                    stringb.Append(code[i]);
             }
             return stringb.ToString(); ;
         }
