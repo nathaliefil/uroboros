@@ -57,6 +57,13 @@ namespace Uroboros
                         RuntimeVariables.GetInstance().InitializeInnerVariables();
                         RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
                         List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
+
+                        /*foreach (Token tk in tokens)
+                        {
+                            Log(tk.Print());
+                        }*/
+
+
                         commands = CommandListFactory.Build(tokens);
                         //
                         /*

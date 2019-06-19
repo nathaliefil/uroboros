@@ -20,7 +20,8 @@ namespace Uroboros.syntax.commands.other
         public void Run()
         {
             int howlong = (int)(time.ToNumber() * 1000);
-            Thread.Sleep(howlong);
+            if (howlong > 0)
+                Thread.Sleep(howlong);
         }
     }
 }

@@ -50,7 +50,6 @@ namespace Uroboros.syntax.reading
                 case "ask": return new Token(TokenType.Ask);
                 case "asc": return new Token(TokenType.Asc);
                 case "by": return new Token(TokenType.By);
-                case "const": return new Token(TokenType.Const);
                 case "copy": return new Token(TokenType.Copy);
                 case "create": return new Token(TokenType.Create);
                 case "cut": return new Token(TokenType.Cut);
@@ -60,13 +59,11 @@ namespace Uroboros.syntax.reading
                 case "drop": return new Token(TokenType.Drop);
                 case "each": return new Token(TokenType.Each);
                 case "else": return new Token(TokenType.Else);
-                case "elif": return new Token(TokenType.Elif);
                 case "file": return new Token(TokenType.File);
                 case "first": return new Token(TokenType.First);
                 case "for": return new Token(TokenType.For);
                 case "force": return new Token(TokenType.Force);
                 case "from": return new Token(TokenType.From);
-                case "here": return new Token(TokenType.Here);
                 case "if": return new Token(TokenType.If);
                 case "last": return new Token(TokenType.Last);
                 case "like": return new Token(TokenType.Like);
@@ -76,16 +73,13 @@ namespace Uroboros.syntax.reading
                 case "or": return new Token(TokenType.Or);
                 case "oreder": return new Token(TokenType.Order);
                 case "print": return new Token(TokenType.Print);
-                case "receive": return new Token(TokenType.Receive);
                 case "remove": return new Token(TokenType.Remove);
                 case "rename": return new Token(TokenType.Rename);
                 case "reverse": return new Token(TokenType.Reverse);
                 case "run": return new Token(TokenType.Run);
                 case "select": return new Token(TokenType.Select);
-                case "set": return new Token(TokenType.Set);
                 case "skip": return new Token(TokenType.Skip);
                 case "sleep": return new Token(TokenType.Sleep);
-                case "this": return new Token(TokenType.This);
                 case "to": return new Token(TokenType.To);
                 case "where": return new Token(TokenType.Where);
                 case "while": return new Token(TokenType.While);
