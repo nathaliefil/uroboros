@@ -9,7 +9,7 @@ namespace Uroboros.syntax.reading
     {
         public static string Compress(string code)
         {
-            // change all tabs and newlines into spaces
+            // remove all tabs and newlines
             // only if they are outside quotation marks
 
             StringBuilder stringb = new StringBuilder();

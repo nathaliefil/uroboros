@@ -175,6 +175,7 @@
     <Compile Include="syntax\variables\bools\False.cs" />
     <Compile Include="syntax\variables\bools\True.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
+    <Compile Include="syntax\variables\constants\ListedStringables.cs" />
     <Compile Include="syntax\variables\from_directory\Directories.cs" />
     <Compile Include="syntax\variables\from_directory\Everything.cs" />
     <Compile Include="syntax\variables\expressions\BoolExpression.cs" />

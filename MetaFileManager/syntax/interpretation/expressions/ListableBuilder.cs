@@ -8,6 +8,7 @@ using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.variables.expressions.list;
+using Uroboros.syntax.variables.constants;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -18,6 +19,10 @@ namespace Uroboros.syntax.interpretation.expressions
             IStringable ist = StringableBuilder.Build(tokens);
             if (!(ist is NullVariable))
                 return ist;
+
+            IListable listed = ListableBuilder.BuildListedByComma(tokens);
+            if (!(listed is NullVariable))
+                return listed;
 
             string str = tokens[0].GetContent();
             if (!InterVariables.GetInstance().Contains(str, InterVarType.List))
@@ -54,6 +59,47 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             return list;
+        }
+        
+        public static IListable BuildListedByComma(List<Token> tokens)
+        {
+            List<Token> currentTokens = new List<Token>();
+            List<IStringable> elements = new List<IStringable>();
+
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                if (tokens[i].GetTokenType().Equals(TokenType.Comma))
+                {
+                    if (currentTokens.Count > 0)
+                    {
+                        IStringable ist = StringableBuilder.Build(currentTokens);
+                        currentTokens.Clear();
+                        if (ist is NullVariable)
+                            return new NullVariable();
+                        else
+                            elements.Add(ist);
+                    }
+                }
+                else
+                    currentTokens.Add(tokens[i]);
+            }
+
+            if (currentTokens.Count > 0)
+            {
+                IStringable ist = StringableBuilder.Build(currentTokens);
+                if (ist is NullVariable)
+                    return new NullVariable();
+                else
+                    elements.Add(ist);
+            }
+
+            if (elements.Count == 0)
+                return new NullVariable();
+
+            if (elements.All(e => e is StringConstant))
+                return new ListConstant(elements.Select(e => e.ToString()).ToList());
+            else
+                return new ListedStringables(elements);
         }
     }
 }
