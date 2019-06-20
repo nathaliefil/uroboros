@@ -119,9 +119,9 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Name());
             variables.Add(new Fullname());
             variables.Add(new Extension());
-
             variables.Add(new Modification());
             variables.Add(new Creation());
+            variables.Add(new Size());
 
             variables.Add(new DateVariable("modification.year", true, DateVariableType.Year));
             variables.Add(new DateVariable("modification.month", true, DateVariableType.Month));

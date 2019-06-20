@@ -9,6 +9,7 @@ namespace Uroboros.syntax.reading
     {
         private TokenType type;
         private string content;
+        private SizeSufix sizeUnit;
 
         public TokenType GetTokenType()
         {
@@ -22,15 +23,36 @@ namespace Uroboros.syntax.reading
 
         public decimal GetNumericContent()
         {
+            switch (sizeUnit)
+            {
+                case SizeSufix.None:
+                    return Convert.ToDecimal(content);
+                case SizeSufix.KB:
+                    return Convert.ToDecimal(content) * 1024;
+                case SizeSufix.MB:
+                    return Convert.ToDecimal(content) * 1048576;
+                case SizeSufix.GB:
+                    return Convert.ToDecimal(content) * 1073741824;
+                case SizeSufix.TB:
+                    return Convert.ToDecimal(content) * 1125899906842624;
+                case SizeSufix.PB:
+                    return Convert.ToDecimal(content) * 1152921504606846976;
+            }
             return Convert.ToDecimal(content);
         }
 
         public Token Clone()
         {
             if (content == null)
-                return new Token(type);
+                if (sizeUnit == SizeSufix.None)
+                    return new Token(type);
+                else
+                    return new Token(type, sizeUnit);
             else
-                return new Token(type, content);
+                if (sizeUnit == SizeSufix.None)
+                    return new Token(type, content);
+                else
+                    return new Token(type, content, sizeUnit);
         }
 
         public void SetContent(string content)
@@ -44,16 +66,40 @@ namespace Uroboros.syntax.reading
             content = content.Replace('.', ',');
         }
 
+        public void SetToNumericConstant(SizeSufix sizeU)
+        {
+            this.sizeUnit = sizeU;
+            type = TokenType.NumericConstant;
+            content = content.Substring(0, content.Length - 2);
+            content = content.Replace('.', ',');
+        }
+
         public Token(TokenType type)
         {
             this.type = type;
             this.content = "";
+            this.sizeUnit = SizeSufix.None;
         }
 
         public Token(TokenType type, string content)
         {
             this.type = type;
             this.content = content;
+            this.sizeUnit = SizeSufix.None;
+        }
+
+        public Token(TokenType type, SizeSufix sizeUnit)
+        {
+            this.type = type;
+            this.content = "";
+            this.sizeUnit = sizeUnit;
+        }
+
+        public Token(TokenType type, string content, SizeSufix sizeUnit)
+        {
+            this.type = type;
+            this.content = content;
+            this.sizeUnit = sizeUnit;
         }
 
         // method only for testing

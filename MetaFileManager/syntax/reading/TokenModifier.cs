@@ -13,13 +13,36 @@ namespace Uroboros.syntax.reading
             {
                 if (t.GetTokenType() == TokenType.Variable)
                 {
-                    string ss = (t.GetContent()).Replace('.', ',');
-                    decimal value;
-                    if (Decimal.TryParse(ss, out value))
+                    if (ParsableToNumber(t.GetContent()))
                         t.SetToNumericConstant();
+                    else
+                    {
+                        string content = t.GetContent();
+                        if (content.Length > 2)
+                        {
+                            SizeSufix ssfx = GetSizeSufix(content.Substring(content.Length - 2));
+
+                            if (ssfx != SizeSufix.None)
+                            {
+                                string mainPart = content.Substring(0, content.Length - 2);
+                                if (ParsableToNumber(mainPart))
+                                    t.SetToNumericConstant(ssfx);
+                            }
+                        }
+                    }
                 }
             }
             return tokens;
+        }
+
+        private static bool ParsableToNumber (string s)
+        {
+            string ss = s.Replace('.', ',');
+            decimal value;
+            if (Decimal.TryParse(ss, out value))
+                return true;
+            else
+                return false;
         }
 
         public static List<Token> MergeTokens (List<Token> tokens)
@@ -148,5 +171,34 @@ namespace Uroboros.syntax.reading
             return newTokens;
         }
 
+        private static SizeSufix GetSizeSufix(string str)
+        {
+            switch (str)
+            {
+                case "kB":
+                    return SizeSufix.KB;
+                case "kb":
+                    return SizeSufix.KB;
+                case "mb":
+                    return SizeSufix.MB;
+                case "gb":
+                    return SizeSufix.GB;
+                case "tb":
+                    return SizeSufix.TB;
+                case "pb":
+                    return SizeSufix.PB;
+                case "KB":
+                    return SizeSufix.KB;
+                case "MB":
+                    return SizeSufix.MB;
+                case "GB":
+                    return SizeSufix.GB;
+                case "TB":
+                    return SizeSufix.TB;
+                case "PB":
+                    return SizeSufix.PB;
+            }
+            return SizeSufix.None;
+        }
     }
 }

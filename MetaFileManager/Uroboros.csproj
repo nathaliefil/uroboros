@@ -153,6 +153,7 @@
     <Compile Include="syntax\reading\Comments.cs" />
     <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
+    <Compile Include="syntax\reading\SizeSufix.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
     <Compile Include="syntax\reading\TokenGroups.cs" />
@@ -171,7 +172,7 @@
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
-    <Compile Include="syntax\variables\bools\Empty.cs" />
+    <Compile Include="syntax\variables\from_location\Empty.cs" />
     <Compile Include="syntax\variables\bools\False.cs" />
     <Compile Include="syntax\variables\bools\True.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="syntax\variables\from_location\date\Modification.cs" />
     <Compile Include="syntax\variables\from_location\Name.cs" />
     <Compile Include="syntax\variables\constants\ListConstant.cs" />
+    <Compile Include="syntax\variables\from_location\Size.cs" />
     <Compile Include="syntax\variables\ListVariable.cs" />
     <Compile Include="syntax\variables\constants\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />

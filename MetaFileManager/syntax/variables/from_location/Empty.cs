@@ -15,8 +15,8 @@ namespace Uroboros.syntax.variables.bools
             name = "empty";
         }
 
-        public bool ToBool()
-        {
+        public bool ToBool() // needs to thing about it
+        {                       /// todo
             string thiss = RuntimeVariables.GetInstance().GetValueString("this");
             string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + thiss;
 

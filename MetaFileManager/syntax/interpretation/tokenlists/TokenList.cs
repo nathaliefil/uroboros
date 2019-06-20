@@ -47,5 +47,11 @@ namespace Uroboros.syntax.interpretation.tokenlists
             }
             return commands;
         }
+
+        /*protected List<ICommand> BuildIfBlock(List<Token> precedings, List<ICommand> insides)
+        {
+
+
+        }*/
     }
 }
