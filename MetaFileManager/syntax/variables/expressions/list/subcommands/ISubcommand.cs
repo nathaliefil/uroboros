@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.expressions.list.subcommands
 {
-    class ISubcommand
+    interface ISubcommand
     {
 
     }

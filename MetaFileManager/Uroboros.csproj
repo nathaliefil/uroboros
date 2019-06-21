@@ -84,6 +84,7 @@
     <Compile Include="syntax\commands\core\RenameTo.cs" />
     <Compile Include="syntax\commands\create\CreateDirectoryFrom.cs" />
     <Compile Include="syntax\commands\list\Add.cs" />
+    <Compile Include="syntax\commands\list\Order.cs" />
     <Compile Include="syntax\commands\list\Remove.cs" />
     <Compile Include="syntax\commands\list\Reverse.cs" />
     <Compile Include="syntax\commands\other\Sleep.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="syntax\interpretation\commands\InterCore.cs" />
     <Compile Include="syntax\interpretation\commands\InterCoreTo.cs" />
     <Compile Include="syntax\interpretation\commands\InterCreate.cs" />
+    <Compile Include="syntax\interpretation\commands\InterOrder.cs" />
     <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
     <Compile Include="syntax\interpretation\commands\InterSleep.cs" />
     <Compile Include="syntax\interpretation\commands\InterVariableDeclaration.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="syntax\runtime\ActualizeVariables.cs" />
     <Compile Include="syntax\runtime\ListOperations.cs" />
     <Compile Include="syntax\runtime\Logger.cs" />
+    <Compile Include="syntax\runtime\OrderByExecutor.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />

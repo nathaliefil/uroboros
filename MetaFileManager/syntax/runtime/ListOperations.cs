@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
+using Uroboros.syntax.variables.expressions.list.subcommands;
 
 namespace Uroboros.syntax.runtime
 {
@@ -74,6 +75,16 @@ namespace Uroboros.syntax.runtime
                 NamedVariable nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Remove(values);
+            }
+        }
+
+        public void Order(string name, OrderBy order)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is ListVariable)
+                    (nv as ListVariable).Order(order);
             }
         }
     }

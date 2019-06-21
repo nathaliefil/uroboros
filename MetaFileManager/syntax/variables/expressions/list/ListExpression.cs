@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables.expressions.list.subcommands;
 using Uroboros.syntax.variables.refers;
-using Uroboros.syntax.variables.from_location;
+using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.expressions.list
 {
@@ -47,7 +47,7 @@ namespace Uroboros.syntax.variables.expressions.list
                 }
                 if (subcom is OrderBy)
                 {
-                    result = Order(result, subcom as OrderBy);
+                    result = OrderByExecutor.OrderBy(result, subcom as OrderBy);
                 }
                 if (subcom is NumericSubcommand)
                 {
@@ -107,56 +107,6 @@ namespace Uroboros.syntax.variables.expressions.list
                 }
             }
             return result.ToList();
-        }
-
-        public List<string> Order(List<string> source, OrderBy orders)
-        {
-            if (orders.GetVariables().Count == 1)
-            {
-                switch (orders.GetVariables()[0].variable)
-                {
-                    case OrderByVariable.Creation:
-                        source = source.OrderBy(s => FileInnerVariable.GetCreation(s)).ToList();
-                        break;
-
-                    case OrderByVariable.Extension:
-                        source = source.OrderBy(s => FileInnerVariable.GetExtension(s)).ToList();
-                        break;
-
-                    case OrderByVariable.Fullname:
-                        source = source.OrderBy(s => FileInnerVariable.GetFullname(s)).ToList();
-                        break;
-
-                    case OrderByVariable.Modification:
-                        source = source.OrderBy(s => FileInnerVariable.GetModification(s)).ToList();
-                        break;
-
-                    case OrderByVariable.Name:
-                        source = source.OrderBy(s => FileInnerVariable.GetName(s)).ToList();
-                        break;
-
-                    case OrderByVariable.Size:
-                        source = source.OrderBy(s => FileInnerVariable.GetSize(s)).ToList();
-                        break;
-                }
-                if (orders.GetVariables()[0].type.Equals(OrderByType.DESC))
-                    source.Reverse();
-            }
-            else
-            {
-                foreach (OrderByStruct obs in orders.GetVariables())
-                {
-                    //bool ascending = obs.type.Equals(OrderByType.ASC) ? true : false;
-
-
-                    ///todo
-                    // order by many variables
-                    // needs grouping of string
-                }
-            }
-
-
-            return source;
         }
     }
 }

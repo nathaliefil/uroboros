@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.expressions.list.subcommands
 {
-    class OrderBy : ISubcommand
+    public class OrderBy : ISubcommand
     {
         private List<OrderByStruct> variables;
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables.expressions.list.subcommands;
+using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables
 {
@@ -49,6 +51,11 @@ namespace Uroboros.syntax.variables
         public void SetValue(List<string> valuess)
         {
             values = valuess;
+        }
+
+        public void Order(OrderBy order)
+        {
+            values = OrderByExecutor.OrderBy(values, order);
         }
     }
 }

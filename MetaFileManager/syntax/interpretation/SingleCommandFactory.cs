@@ -68,6 +68,13 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterCore.Build(tokens);
                 }
+                case TokenType.Order:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
+                        return InterOrder.Build(tokens);
+                    else
+                        throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
+                }
                 case TokenType.Select:
                 {
                     return InterCore.Build(tokens);
