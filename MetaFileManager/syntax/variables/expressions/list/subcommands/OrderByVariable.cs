@@ -5,11 +5,14 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.expressions.list.subcommands
 {
-    public enum OrderByType
+    public enum OrderByVariable
     {
         None,
-        ASC,
-        DESC
+        Creation,
+        Extension,
+        Fullname,
+        Modification,
+        Name,
+        Size
     }
-
 }

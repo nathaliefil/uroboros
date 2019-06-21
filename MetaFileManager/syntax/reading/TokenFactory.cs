@@ -48,13 +48,11 @@ namespace Uroboros.syntax.reading
                 case "add": return new Token(TokenType.Add);
                 case "and": return new Token(TokenType.And);
                 case "ask": return new Token(TokenType.Ask);
-                case "asc": return new Token(TokenType.Asc);
                 case "by": return new Token(TokenType.By);
                 case "copy": return new Token(TokenType.Copy);
                 case "create": return new Token(TokenType.Create);
                 case "cut": return new Token(TokenType.Cut);
                 case "delete": return new Token(TokenType.Delete);
-                case "desc": return new Token(TokenType.Desc);
                 case "directory": return new Token(TokenType.Directory);
                 case "drop": return new Token(TokenType.Drop);
                 case "each": return new Token(TokenType.Each);
@@ -72,7 +70,7 @@ namespace Uroboros.syntax.reading
                 case "not": return new Token(TokenType.Not);
                 case "open": return new Token(TokenType.Open);
                 case "or": return new Token(TokenType.Or);
-                case "oreder": return new Token(TokenType.Order);
+                case "order": return new Token(TokenType.Order);
                 case "print": return new Token(TokenType.Print);
                 case "remove": return new Token(TokenType.Remove);
                 case "rename": return new Token(TokenType.Rename);

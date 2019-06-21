@@ -2,7 +2,10 @@
 - green
 - italics
 
-=> Quoted text, raw number (example: 2137, 14.88, ...)
+=> Quoted text
+- orange
+
+=>  Raw number (example: 2137, 14.88, ...)
 - orange
 
 => Cardinal Keywords
@@ -19,12 +22,12 @@
 
 
 Cardinal Keywords:
-add, ask, copy, create, cut, delete, directory, drop, file, move, open, order, print, remove, rename, reverse, run, select, sleep
+add, ask, copy, create, cut, delete, directory, drop, file, move, open, order, paste, print, remove, rename, reverse, run, select, sleep
 
 Usual Keywords:
 and, asc, by, desc, each, else, first, for, force, from, if, last, like, not, or, order by, skip, to, where, while, xor
 
 Inner Variables:
-creation, directories, empty, extension, everything, false, files, fullname, index, location, modification, this, true +
+creation, directories, empty, extension, everything, false, files, fullname, index, location, modification, size, this, true +
 creation.year, creation.month, ... weekday day hour minute second
 modification.year, modifiction.month, ... weekday day hour minute second

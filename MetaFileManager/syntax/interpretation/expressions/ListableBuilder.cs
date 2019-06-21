@@ -65,10 +65,16 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             List<Token> currentTokens = new List<Token>();
             List<IStringable> elements = new List<IStringable>();
+            int level = 0;
 
             for (int i = 0; i < tokens.Count; i++)
             {
-                if (tokens[i].GetTokenType().Equals(TokenType.Comma))
+                if (tokens[i].GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+
+                if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
                 {
                     if (currentTokens.Count > 0)
                     {

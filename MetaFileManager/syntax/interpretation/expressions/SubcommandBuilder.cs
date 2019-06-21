@@ -47,11 +47,93 @@ namespace Uroboros.syntax.interpretation.expressions
 
         public static ISubcommand BuildOrderBy(List<Token> tokens)
         {
+            List<OrderByStruct> variables = new List<OrderByStruct>();
+            OrderByVariable waitingVariable = OrderByVariable.None;
+            bool expectedVariable = true;
 
-            // todo
+            foreach (Token tok in tokens)
+            {
+                if (!tok.GetTokenType().Equals(TokenType.Variable))
+                    throw new SyntaxErrorException("ERROR! Expression 'order by' contains not allowed words or characters.");
 
+                if (expectedVariable)
+                {
+                    OrderByVariable obv = BuildOrderByVariable(tok);
+                    if (obv.Equals(OrderByVariable.None))
+                        if(variables.Count == 0)
+                            throw new SyntaxErrorException("ERROR! Expression 'order by' do not start with allowed variable.");
+                        else
+                            throw new SyntaxErrorException("ERROR! Expression 'order by' contains adjacent keywords asc/desc or one not allowed variable.");
+                    else
+                        waitingVariable = obv;
+                        expectedVariable = false;
+                }
+                else
+                {
+                    OrderByType obt = BuildOrderByType(tok);
+                    if (obt.Equals(OrderByType.None))
+                    {
+                        OrderByVariable obv = BuildOrderByVariable(tok);
+                        if (obv.Equals(OrderByVariable.None))
+                            throw new SyntaxErrorException("ERROR! Expression 'order by' contains not allowed variable " + tok.GetContent() + ".");
+                        else
+                        {
+                            if (waitingVariable.Equals(OrderByVariable.None))
+                                waitingVariable = obv;
+                            else
+                            {
+                                variables.Add(new OrderByStruct(waitingVariable, OrderByType.ASC));
+                                waitingVariable = obv;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        variables.Add(new OrderByStruct(waitingVariable, obt));
+                        expectedVariable = true;
+                        waitingVariable = OrderByVariable.None;
+                    }
+                }
+            }
+            if (!waitingVariable.Equals(OrderByVariable.None))
+                variables.Add(new OrderByStruct(waitingVariable, OrderByType.ASC));
 
-            throw new SyntaxErrorException("ERROR! Order by is not implemented yet!");
+            if(variables.Count == 0)
+                throw new SyntaxErrorException("ERROR! Expression 'order by' is empty.");
+
+            return new OrderBy(variables);
+        }
+
+        private static OrderByType BuildOrderByType(Token tok)
+        {
+            switch (tok.GetContent().ToLower())
+            {
+                case "asc":
+                    return OrderByType.ASC;
+                case "desc":
+                    return OrderByType.DESC;
+            }
+            return OrderByType.None;
+        }
+
+        private static OrderByVariable BuildOrderByVariable(Token tok)
+        {
+            switch (tok.GetContent().ToLower())
+            {
+                case "creation":
+                    return OrderByVariable.Creation;
+                case "extension":
+                    return OrderByVariable.Extension;
+                case "fullname":
+                    return OrderByVariable.Fullname;
+                case "modification":
+                    return OrderByVariable.Modification;
+                case "name":
+                    return OrderByVariable.Name;
+                case "size":
+                    return OrderByVariable.Size;
+            }
+            return OrderByVariable.None;
         }
 
         private static string GetName(TokenType type)
@@ -88,10 +170,3 @@ namespace Uroboros.syntax.interpretation.expressions
 
     }
 }
-
-
-
-/*
-            TokenType.Where, TokenType.First, 
-            TokenType.Last, TokenType.Skip,  TokenType.Each, TokenType.OrderBy
-            */

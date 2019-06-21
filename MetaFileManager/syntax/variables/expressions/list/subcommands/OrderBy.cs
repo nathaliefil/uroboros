@@ -7,23 +7,16 @@ namespace Uroboros.syntax.variables.expressions.list.subcommands
 {
     class OrderBy : ISubcommand
     {
-        private string variable;
-        private OrderByType type;
+        private List<OrderByStruct> variables;
 
-        public OrderBy(string variable, OrderByType type)
+        public OrderBy(List<OrderByStruct> variables)
         {
-            this.variable = variable;
-            this.type = type;
+            this.variables = variables;
         }
 
-        public string GetVariable()
+        public List<OrderByStruct> GetVariables()
         {
-            return variable;
-        }
-
-        public OrderByType GetOrderType()
-        {
-            return type;
+            return variables;
         }
     }
 }
