@@ -100,12 +100,12 @@ namespace Uroboros
                         }
                         catch (Uroboros.syntax.RuntimeException re)
                         {
-                            Logger.GetInstance().Log(re.GetMessage());
+                            Log(re.GetMessage());
                         }
                     }
                     catch (Uroboros.syntax.SyntaxErrorException te)
                     {
-                        Logger.GetInstance().Log(te.GetMessage());
+                        Log(te.GetMessage());
                     }
                 }
             }

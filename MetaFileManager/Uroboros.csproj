@@ -143,6 +143,9 @@
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\commands\InterReverse.cs" />
     <Compile Include="syntax\interpretation\expressions\SubcommandBuilder.cs" />
+    <Compile Include="syntax\interpretation\functions\ArgumentsExtractor.cs" />
+    <Compile Include="syntax\interpretation\functions\Argument.cs" />
+    <Compile Include="syntax\interpretation\functions\InterNumericFunction.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
