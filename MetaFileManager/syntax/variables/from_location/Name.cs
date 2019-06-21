@@ -17,15 +17,8 @@ namespace Uroboros.syntax.variables.from_location
 
         public override string ToString()
         {
-            string thiss = RuntimeVariables.GetInstance().GetValueString("this");
-            int position = thiss.LastIndexOf("\\");
-            if (position > -1)
-                thiss = thiss.Substring(position);
-
-            if (thiss.LastIndexOf('.') == -1)
-                return thiss;
-            else
-                return thiss.Substring(0, thiss.LastIndexOf('.'));
+            string file = RuntimeVariables.GetInstance().GetValueString("this");
+            return FileInnerVariable.GetName(file);
         }
     }
 }

@@ -17,12 +17,11 @@ namespace Uroboros.syntax.variables.from_location.date
 
         public override string ToString()
         {
-            string address = RuntimeVariables.GetInstance().GetValueString("location") + 
-                "//" + RuntimeVariables.GetInstance().GetValueString("this");
+            string file = RuntimeVariables.GetInstance().GetValueString("this");
 
             try
             {
-                DateTime time = System.IO.File.GetLastWriteTime(@address);
+                DateTime time = FileInnerVariable.GetModification(file);
                 return DateBuilder.Build(time);
             }
             catch (Exception)

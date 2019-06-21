@@ -17,41 +17,13 @@ namespace Uroboros.syntax.variables.from_location
 
         public decimal ToNumber()
         {
-            string thiss = RuntimeVariables.GetInstance().GetValueString("this");
-            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + thiss;
-
-            try
-            {
-                if (FileValidator.IsDirectory(location))
-                    return (decimal)(DirSize(new DirectoryInfo(@location)));
-                else
-                    return (decimal)(new System.IO.FileInfo(location).Length);
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            string file = RuntimeVariables.GetInstance().GetValueString("this");
+            return FileInnerVariable.GetSize(file);
         }
 
         public override string ToString()
         {
             return ToNumber().ToString();
-        }
-
-        private static long DirSize(DirectoryInfo d)
-        {
-            long size = 0;
-            FileInfo[] fis = d.GetFiles();
-            foreach (FileInfo fi in fis)
-            {
-                size += fi.Length;
-            }
-            DirectoryInfo[] dis = d.GetDirectories();
-            foreach (DirectoryInfo di in dis)
-            {
-                size += DirSize(di);
-            }
-            return size;
         }
     }
 }

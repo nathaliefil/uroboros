@@ -200,6 +200,7 @@
     <Compile Include="syntax\variables\from_location\date\DateVariable.cs" />
     <Compile Include="syntax\variables\from_location\date\DateVariableType.cs" />
     <Compile Include="syntax\variables\from_location\Extension.cs" />
+    <Compile Include="syntax\variables\from_location\FileInnerVariable.cs" />
     <Compile Include="syntax\variables\from_location\Fullname.cs" />
     <Compile Include="syntax\variables\from_location\date\Modification.cs" />
     <Compile Include="syntax\variables\from_location\Name.cs" />

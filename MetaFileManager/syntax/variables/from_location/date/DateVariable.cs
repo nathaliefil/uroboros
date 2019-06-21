@@ -21,13 +21,12 @@ namespace Uroboros.syntax.variables.from_location.date
 
         public decimal ToNumber()
         {
-            string address = RuntimeVariables.GetInstance().GetValueString("location") +
-                "//" + RuntimeVariables.GetInstance().GetValueString("this");
+            string file = RuntimeVariables.GetInstance().GetValueString("this");
 
             try
             {
-                DateTime time = modification ? System.IO.File.GetLastWriteTime(@address) 
-                    : System.IO.File.GetCreationTime(@address);
+                DateTime time = modification ? FileInnerVariable.GetModification(file)
+                    : FileInnerVariable.GetCreation(file);
                 return DateExtractor.GetVariable(type, time);
             }
             catch (Exception)
