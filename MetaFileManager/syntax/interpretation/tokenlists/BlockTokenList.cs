@@ -126,63 +126,26 @@ namespace Uroboros.syntax.interpretation.tokenlists
 
         public override List<ICommand> ToCommands()
         {
-            List<ICommand> block = new List<ICommand>();
             List<ICommand> commands = new List<ICommand>();
 
             InterVariables.GetInstance().BracketsUp();
             foreach (TokenList tl in elements)
-            {
                 commands.AddRange(tl.ToCommands());
-            }
+
             InterVariables.GetInstance().BracketsDown();
 
             if (!precedings)
-            {
-                block.Add(new Block(commands));
-                return block;
-            }
+                return new List<ICommand>{ new Block(commands)};
             else
             {
                 switch (precedingTokens[0].GetTokenType())
                 {
                     case TokenType.If:
-                    {
-                        precedingTokens.RemoveAt(0);
-                        if (precedingTokens.Count == 0)
-                            throw new SyntaxErrorException("ERROR! IF statement is empty.");
-
-                        IBoolable iboo = BoolableBuilder.Build(precedingTokens);
-                        if (iboo is NullVariable)
-                            throw new SyntaxErrorException("ERROR! There are is something wrong with condition in IF statement.");
-                        block.Add(new IfBlock(commands, iboo));
-                        return block;
-                    }
+                        return new List<ICommand>{ BuildIfBlock(precedingTokens, commands)};
                     case TokenType.While:
-                    {
-                        precedingTokens.RemoveAt(0);
-                        if (precedingTokens.Count == 0)
-                            throw new SyntaxErrorException("ERROR! WHILE statement is empty.");
-
-                        IBoolable iboo = BoolableBuilder.Build(precedingTokens);
-                        if (iboo is NullVariable)
-                            throw new SyntaxErrorException("ERROR! There are is something wrong with condition in WHILE statement.");
-                        block.Add(new WhileBlock(commands, iboo));
-                        return block;
-                    }
+                        return new List<ICommand>{ BuildWhileBlock(precedingTokens, commands)};
                 }
-                INumerable inum = NumerableBuilder.Build(precedingTokens);
-                if (inum is NullVariable)
-                {
-                    IListable ilist = ListableBuilder.Build(precedingTokens);
-                    if (ilist is NullVariable)
-                        throw new SyntaxErrorException("ERROR! There are is something wrong with code preceding block of instructions.");
-                    block.Add(new ListBlock(commands, ilist));
-                }
-                else
-                {
-                    block.Add(new RepeatBlock(commands, inum));
-                }
-                return block;
+                return new List<ICommand>{ BuildRepeatingBlock(precedingTokens, commands)};
             }
         }
     }

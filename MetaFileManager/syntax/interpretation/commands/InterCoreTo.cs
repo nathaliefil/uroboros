@@ -23,14 +23,14 @@ namespace Uroboros.syntax.interpretation.commands
 
             List<Token> part1 = new List<Token>();
             List<Token> part2 = new List<Token>();
-            bool pastFrom = false;
+            bool pastTo = false;
             foreach (Token tok in tokens)
             {
                 if (tok.GetTokenType().Equals(TokenType.To))
-                    pastFrom = true;
+                    pastTo = true;
                 else
                 {
-                    if (pastFrom)
+                    if (pastTo)
                         part2.Add(tok);
                     else
                         part1.Add(tok);
