@@ -33,6 +33,7 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
+            Brackets.CheckCorrectness(tokens, false);
 
             //code
 

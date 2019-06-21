@@ -20,6 +20,10 @@ namespace Uroboros.syntax.interpretation.expressions
             if (!(ist is NullVariable))
                 return ist;
 
+            if (tokens.Count == 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable)
+                && tokens[0].GetContent().ToLower().Equals("empty") && tokens[1].GetContent().ToLower().Equals("list"))
+                return new EmptyList();
+
             IListable listed = ListableBuilder.BuildListedByComma(tokens);
             if (!(listed is NullVariable))
                 return listed;

@@ -59,6 +59,8 @@ namespace Uroboros.syntax.reading
         BracketOff,
         CurlyBracketOn,
         CurlyBracketOff,
+        SquareBracketOn,
+        SquareBracketOff,
         Colon,
         Semicolon,
         Plus,

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Uroboros.syntax.variables.abstracts;
+
+namespace Uroboros.syntax.variables
+{
+    class EmptyList : IListable
+    {
+        public EmptyList()
+        {
+        }
+
+        public List<string> ToList()
+        {
+            return new List<string>();
+        }
+    }
+}

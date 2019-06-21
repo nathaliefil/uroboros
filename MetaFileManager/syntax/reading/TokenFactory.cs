@@ -19,6 +19,8 @@ namespace Uroboros.syntax.reading
                 case ')': return new Token(TokenType.BracketOff);
                 case '{': return new Token(TokenType.CurlyBracketOn);
                 case '}': return new Token(TokenType.CurlyBracketOff);
+                case '[': return new Token(TokenType.SquareBracketOn);
+                case ']': return new Token(TokenType.SquareBracketOff);
                 case ':': return new Token(TokenType.Colon);
                 case ';': return new Token(TokenType.Semicolon);
                 case '-': return new Token(TokenType.Minus);

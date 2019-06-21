@@ -9,7 +9,7 @@ namespace Uroboros.syntax.reading
     class Reader
     {
         private static char[] keySigns = new char[] 
-                {',', '!', '=', '(', ')', '{', '}', ';', ':',
+                {',', '!', '=', '(', ')', '{', '}', '[', ']',';', ':',
                  '-', '+', '*', '"', '%', '/', '&', '|', '^', ' ', '<', '>'};
 
 
@@ -57,22 +57,15 @@ namespace Uroboros.syntax.reading
             if (stringb.ToString().Trim().Length > 0)
                 tokens.Add(TokenFactory.Build(stringb.ToString()));
 
-            CheckCorrectness(tokens);
+            if (tokens.Count() == 0)
+                throw new SyntaxErrorException("ERROR! Code is empty.");
+
+            Brackets.CheckCorrectness(tokens, true);
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
             tokens = TokenModifier.MergeTokens(tokens);
 
             return tokens;
-        }
-
-        private static void CheckCorrectness(List<Token> tokens)
-        {
-            if (tokens.Count() == 0)
-                throw new SyntaxErrorException("ERROR! Code is empty.");
-            if (!Brackets.AreCorrect(tokens, false))
-                throw new SyntaxErrorException("ERROR! Check brackets ( ).");
-            if (!Brackets.AreCorrect(tokens, true))
-                throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
         }
     }
 }

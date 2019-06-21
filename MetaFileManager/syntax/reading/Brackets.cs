@@ -7,11 +7,33 @@ namespace Uroboros.syntax.reading
 {
     class Brackets
     {
-        public static bool AreCorrect(List<Token> tokens, bool curly)
+        public static void CheckCorrectness(List<Token> tokens, bool withCurlyBrackets)
         {
-            TokenType open = curly ? TokenType.CurlyBracketOn : TokenType.BracketOn;
-            TokenType close = curly ? TokenType.CurlyBracketOff : TokenType.BracketOff;
+            if (!Brackets.AreCorrect(tokens, BracketsType.Normal))
+                throw new SyntaxErrorException("ERROR! Check brackets ( ).");
+            if (!Brackets.AreCorrect(tokens, BracketsType.Square))
+                throw new SyntaxErrorException("ERROR! Check square brackets [ ].");
+            if (withCurlyBrackets && !Brackets.AreCorrect(tokens, BracketsType.Curly))
+                throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
+        }
+
+        private static bool AreCorrect(List<Token> tokens, BracketsType type)
+        {
+            TokenType open = TokenType.BracketOn;
+            TokenType close = TokenType.BracketOff;
             int level = 0;
+
+            switch (type)
+            {
+                case BracketsType.Curly:
+                    open = TokenType.CurlyBracketOn;
+                    close = TokenType.CurlyBracketOff;
+                    break;
+                case BracketsType.Square:
+                    open = TokenType.SquareBracketOn;
+                    close = TokenType.SquareBracketOff;
+                    break;
+            }
 
             foreach (Token token in tokens) 
             {
@@ -24,5 +46,12 @@ namespace Uroboros.syntax.reading
             }
             return level == 0 ? true : false;
         }
+    }
+
+    public enum BracketsType
+    {
+        Normal,
+        Curly,
+        Square
     }
 }

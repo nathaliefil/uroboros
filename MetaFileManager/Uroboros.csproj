@@ -179,6 +179,7 @@
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
     <Compile Include="syntax\variables\constants\BoolConstant.cs" />
+    <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\variables\expressions\list\subcommands\OrderByStruct.cs" />
     <Compile Include="syntax\variables\expressions\list\subcommands\OrderByVariable.cs" />
     <Compile Include="syntax\variables\from_location\Empty.cs" />
