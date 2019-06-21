@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
+using System.IO;
 
 namespace Uroboros.syntax.variables.from_location
 {
@@ -21,7 +22,10 @@ namespace Uroboros.syntax.variables.from_location
 
             try
             {
-                return (decimal)(new System.IO.FileInfo(location).Length);
+                if (FileValidator.IsDirectory(location))
+                    return (decimal)(DirSize(new DirectoryInfo(@location)));
+                else
+                    return (decimal)(new System.IO.FileInfo(location).Length);
             }
             catch (Exception)
             {
@@ -32,6 +36,22 @@ namespace Uroboros.syntax.variables.from_location
         public override string ToString()
         {
             return ToNumber().ToString();
+        }
+
+        private static long DirSize(DirectoryInfo d)
+        {
+            long size = 0;
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
+                size += fi.Length;
+            }
+            DirectoryInfo[] dis = d.GetDirectories();
+            foreach (DirectoryInfo di in dis)
+            {
+                size += DirSize(di);
+            }
+            return size;
         }
     }
 }

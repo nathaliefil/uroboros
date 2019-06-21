@@ -14,14 +14,25 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IBoolable Build(List<Token> tokens)
         {
-            if (tokens.Count == 1 && tokens[0].GetTokenType().Equals(TokenType.Variable))
+            if (tokens.Count == 1)
             {
-                string str = tokens[0].GetContent();
-                if (InterVariables.GetInstance().Contains(str, InterVarType.Bool))
-                    return new BoolVariableRefer(str);
-                else
-                    return new NullVariable();
+                if (tokens[0].GetTokenType().Equals(TokenType.Variable))
+                {
+                    string str = tokens[0].GetContent();
+                    if (InterVariables.GetInstance().Contains(str, InterVarType.Bool))
+                        return new BoolVariableRefer(str);
+                    else
+                        return new NullVariable();
+                }
+                if (tokens[0].GetTokenType().Equals(TokenType.BoolConstant))
+                {
+                    if (tokens[0].GetContent().Equals("true"))
+                        return new BoolConstant(true);
+                    else
+                        return new BoolConstant(false);
+                }
             }
+
 
             //code
 

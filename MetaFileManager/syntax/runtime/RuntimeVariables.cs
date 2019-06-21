@@ -108,16 +108,13 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Directories());
             variables.Add(new Everything());
 
-            variables.Add(new True());
-            variables.Add(new False());
-            variables.Add(new Empty());
-
             variables.Add(new StringVariable("this", ""));
             variables.Add(new StringVariable("location", ""));
             variables.Add(new NumericVariable("index", 0));
 
             variables.Add(new Name());
             variables.Add(new Fullname());
+            variables.Add(new Empty());
             variables.Add(new Extension());
             variables.Add(new Modification());
             variables.Add(new Creation());

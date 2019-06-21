@@ -172,9 +172,8 @@
     <Compile Include="syntax\variables\abstracts\IStringable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\abstracts\NullVariable.cs" />
+    <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\from_location\Empty.cs" />
-    <Compile Include="syntax\variables\bools\False.cs" />
-    <Compile Include="syntax\variables\bools\True.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\constants\ListedStringables.cs" />
     <Compile Include="syntax\variables\from_directory\Directories.cs" />

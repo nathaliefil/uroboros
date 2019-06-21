@@ -69,10 +69,6 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("directories", InterVarType.List, false));
             variables.Add(new InterVar("everything", InterVarType.List, false));
 
-            variables.Add(new InterVar("true", InterVarType.Bool, false));
-            variables.Add(new InterVar("false", InterVarType.Bool, false));
-            variables.Add(new InterVar("empty", InterVarType.Bool, false));
-
             variables.Add(new InterVar("this", InterVarType.String, true));
             variables.Add(new InterVar("location", InterVarType.String, true));
             variables.Add(new InterVar("index", InterVarType.Number, true));
@@ -80,6 +76,7 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("name", InterVarType.String, false));
             variables.Add(new InterVar("fullname", InterVarType.String, false));
             variables.Add(new InterVar("extension", InterVarType.String, false));
+            variables.Add(new InterVar("empty", InterVarType.Bool, false));
             variables.Add(new InterVar("creation", InterVarType.String, false));
             variables.Add(new InterVar("modification", InterVarType.String, false));
             variables.Add(new InterVar("size", InterVarType.Number, false));

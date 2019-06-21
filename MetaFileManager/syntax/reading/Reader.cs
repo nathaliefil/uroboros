@@ -41,30 +41,21 @@ namespace Uroboros.syntax.reading
                         if (!quotationOn)
                         {
                             if (stringb.ToString().Trim().Length > 0)
-                            {
                                 tokens.Add(TokenFactory.Build(stringb.ToString()));
-                            }
                             stringb.Clear();
+
                             if (!code[i].Equals(' '))
-                            {
                                 tokens.Add(TokenFactory.Build(code[i]));
-                            }
                         }
                         else
-                        {
                             stringb.Append(code[i]);
-                        }
                     }
                 }
                 else
-                {
                     stringb.Append(code[i]);
-                }
             }
             if (stringb.ToString().Trim().Length > 0)
-            {
                 tokens.Add(TokenFactory.Build(stringb.ToString()));
-            }
 
             CheckCorrectness(tokens);
 

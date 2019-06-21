@@ -59,6 +59,7 @@ namespace Uroboros.syntax.reading
                 case "drop": return new Token(TokenType.Drop);
                 case "each": return new Token(TokenType.Each);
                 case "else": return new Token(TokenType.Else);
+                case "false": return new Token(TokenType.BoolConstant);
                 case "file": return new Token(TokenType.File);
                 case "first": return new Token(TokenType.First);
                 case "for": return new Token(TokenType.For);
@@ -81,6 +82,7 @@ namespace Uroboros.syntax.reading
                 case "skip": return new Token(TokenType.Skip);
                 case "sleep": return new Token(TokenType.Sleep);
                 case "to": return new Token(TokenType.To);
+                case "true": return new Token(TokenType.BoolConstant, "true");
                 case "where": return new Token(TokenType.Where);
                 case "while": return new Token(TokenType.While);
                 case "xor": return new Token(TokenType.Xor);

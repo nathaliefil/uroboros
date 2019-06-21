@@ -26,7 +26,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
             string str = tokens[0].GetContent();
             if (!InterVariables.GetInstance().Contains(str, InterVarType.List))
-                throw new SyntaxErrorException("ERROR! In list declaration variable " + str +" do not exist or cannot be read as list.");
+                throw new SyntaxErrorException("ERROR! Variable " + str +" do not exist or cannot be read as list.");
 
             if (tokens.Count == 1 && tokens[0].GetTokenType().Equals(TokenType.Variable))
                 return new ListVariableRefer(str);
