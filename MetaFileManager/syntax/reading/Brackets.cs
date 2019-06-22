@@ -9,6 +9,8 @@ namespace Uroboros.syntax.reading
     {
         public static void CheckCorrectness(List<Token> tokens, bool withCurlyBrackets)
         {
+            if (tokens.Count == 0)
+                return;
             if (!Brackets.AreCorrect(tokens, BracketsType.Normal))
                 throw new SyntaxErrorException("ERROR! Check brackets ( ).");
             if (!Brackets.AreCorrect(tokens, BracketsType.Square))

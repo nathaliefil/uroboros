@@ -14,6 +14,12 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IBoolable Build(List<Token> tokens)
         {
+            Token wwtok = TokenGroups.WrongTokenInExpression(tokens);
+            if (!wwtok.GetTokenType().Equals(TokenType.Null))
+                return new NullVariable();
+
+            Brackets.CheckCorrectness(tokens, false);
+
             if (tokens.Count == 1)
             {
                 if (tokens[0].GetTokenType().Equals(TokenType.Variable))
@@ -33,7 +39,9 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
-            Brackets.CheckCorrectness(tokens, false);
+            
+
+            
 
             //code
 

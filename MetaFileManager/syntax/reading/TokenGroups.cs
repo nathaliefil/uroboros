@@ -10,10 +10,28 @@ namespace Uroboros.syntax.reading
         private static TokenType[] ALLOWED_SUBCOMMAND = new TokenType[] { TokenType.Where, TokenType.First, 
             TokenType.Last, TokenType.Skip,  TokenType.Each, TokenType.OrderBy};
 
+        private static TokenType[] ALLOWED_EXPRESSION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
+            TokenType.Multiply, TokenType.Divide,  TokenType.Percent, TokenType.And, 
+            TokenType.Or, TokenType.Xor,  TokenType.BracketOn, TokenType.BracketOff, 
+            TokenType.SquareBracketOn, TokenType.SquareBracketOff,  TokenType.Comma, TokenType.Equals, 
+            TokenType.Bigger, TokenType.Smaller,  TokenType.BiggerOrEquals, TokenType.SmallerOrEquals, 
+            TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
+            TokenType.NumericConstant, TokenType.BoolConstant};
+
 
         public static bool IsSubcommandKeyword(TokenType type)
         {
             return ALLOWED_SUBCOMMAND.Contains(type) ? true : false;
+        }
+
+        public static Token WrongTokenInExpression(List<Token> tokens)
+        {
+            foreach (Token tok in tokens)
+            {
+                if (!ALLOWED_EXPRESSION.Contains(tok.GetTokenType()))
+                    return tok;
+            }
+            return new Token(TokenType.Null);
         }
 
     }

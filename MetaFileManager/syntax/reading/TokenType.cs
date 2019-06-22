@@ -28,7 +28,6 @@ namespace Uroboros.syntax.reading
         Last,
         Like,
         Move,
-        Not,
         Open,
         Or,
         Order,
@@ -73,7 +72,6 @@ namespace Uroboros.syntax.reading
 
         PlusPlus,
         MinusMinus,
-        EqualsEquals,
         NotEquals,
         BiggerOrEquals,
         SmallerOrEquals,
@@ -86,6 +84,8 @@ namespace Uroboros.syntax.reading
         CreateFile,
         CreateDirectory,
         ForceTo,
-        OrderBy
+        OrderBy,
+
+        Null
     }
 }

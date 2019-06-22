@@ -69,7 +69,7 @@ namespace Uroboros.syntax.reading
                 case "last": return new Token(TokenType.Last);
                 case "like": return new Token(TokenType.Like);
                 case "move": return new Token(TokenType.Move);
-                case "not": return new Token(TokenType.Not);
+                case "not": return new Token(TokenType.Exclamation);
                 case "open": return new Token(TokenType.Open);
                 case "or": return new Token(TokenType.Or);
                 case "order": return new Token(TokenType.Order);

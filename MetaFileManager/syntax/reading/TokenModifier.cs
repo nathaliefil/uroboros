@@ -73,7 +73,7 @@ namespace Uroboros.syntax.reading
                         }
                         if (tokens[i].GetTokenType() == TokenType.Equals)
                         {
-                            newTokens.Add(new Token(TokenType.EqualsEquals));
+                            newTokens.Add(new Token(TokenType.Equals));
                             tokensMerged = true;
                         }
                         if (tokens[i].GetTokenType() == TokenType.And)
