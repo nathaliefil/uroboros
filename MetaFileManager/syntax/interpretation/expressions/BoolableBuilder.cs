@@ -47,11 +47,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
-            
-
-            //code
-
-            return new NullVariable();
+            return BuildExpression(tokens);
         }
 
         private static IBoolable BuildComparison(List<Token> tokens)
@@ -81,7 +77,14 @@ namespace Uroboros.syntax.interpretation.expressions
 
             return new NullVariable();
         }
-    
+
+        private static IBoolable BuildExpression(List<Token> tokens)
+        {
+            // here we go
+            /// todo
+
+            return new NullVariable();
+        }
 
         private static bool ContainsOneComparingToken(List<Token> tokens)
         {
@@ -110,6 +113,5 @@ namespace Uroboros.syntax.interpretation.expressions
             }
             return ComparisonType.Equals; // is never returned
         }
-
     }
 }

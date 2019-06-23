@@ -8,18 +8,52 @@ namespace Uroboros.syntax.expressions.bools
 {
     class BoolExpression : DefaultToListMethod, IBoolable
     {
-        List<IBoolable> elements;
+        List<IBoolExpressionElement> elements;
 
-        public BoolExpression(List<IBoolable> elements)
+        public BoolExpression(List<IBoolExpressionElement> elements)
         {
             this.elements = elements;
         }
 
         public bool ToBool()
         {
-            // here will be a lot of code
-            /// todo
-            return true;
+            //reverse polish notation reader
+
+            Stack<bool> stack = new Stack<bool>();
+            foreach (IBoolExpressionElement el in elements)
+            {
+                if (el is IBoolable)
+                    stack.Push((el as IBoolable).ToBool());
+                else if (el is BoolExpressionOperator)
+                {
+                    if ((el as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
+                    {
+                        bool a = stack.Pop();
+                        stack.Push(!a);
+                    }
+                    else
+                    {
+                        BoolExpressionOperatorType type = (el as BoolExpressionOperator).GetOperatorType();
+
+                        bool a = stack.Pop();
+                        bool b = stack.Pop();
+
+                        switch (type)
+                        {
+                            case BoolExpressionOperatorType.And:
+                                stack.Push(a & b);
+                                break;
+                            case BoolExpressionOperatorType.Or:
+                                stack.Push(a | b);
+                                break;
+                            case BoolExpressionOperatorType.Xor:
+                                stack.Push(a ^ b);
+                                break;
+                        }
+                    }
+                }
+            }
+            return stack.Pop();
         }
 
         public decimal ToNumber()
