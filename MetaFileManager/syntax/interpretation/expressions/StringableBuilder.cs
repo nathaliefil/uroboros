@@ -8,6 +8,7 @@ using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.expressions.strings;
+using Uroboros.syntax.interpretation.functions;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -36,6 +37,15 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new StringConstant(tokens[0].GetContent());
                 }
             }
+
+            if (tokens.Count > 3 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
+                && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
+            {
+                IStringable istr = InterListElement.Build(tokens);
+                if (!(istr is NullVariable))
+                    return istr;
+            }
+
             if(tokens.Any(t => t.GetTokenType().Equals(TokenType.Plus)))
                 return BuildConcatenated(tokens);
             else

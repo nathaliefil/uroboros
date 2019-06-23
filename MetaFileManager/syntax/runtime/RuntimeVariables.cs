@@ -99,6 +99,27 @@ namespace Uroboros.syntax.runtime
             return false;
         }
 
+        public string GetListElement(string name, int index)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return "";
+
+            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is IListable)
+            {
+                List<string> lst = (nv as IListable).ToList();
+                int count = lst.Count;
+
+                if (index > count || index < -count-1)
+                    return "";
+
+                if (index < 0)
+                    index += count;
+
+                return lst[index];
+            }
+            return "";
+        }
 
         public void InitializeInnerVariables()
         {

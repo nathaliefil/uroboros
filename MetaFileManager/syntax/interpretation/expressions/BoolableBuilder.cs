@@ -47,7 +47,10 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
-            return BuildExpression(tokens);
+            if (tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any())
+                return BuildExpression(tokens);
+            else
+                return new NullVariable();
         }
 
         private static IBoolable BuildComparison(List<Token> tokens)

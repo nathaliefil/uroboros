@@ -155,6 +155,7 @@
     <Compile Include="syntax\interpretation\expressions\SubcommandBuilder.cs" />
     <Compile Include="syntax\interpretation\functions\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\Argument.cs" />
+    <Compile Include="syntax\interpretation\functions\InterListElement.cs" />
     <Compile Include="syntax\interpretation\functions\InterNumericFunction.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="syntax\variables\constants\NumericConstant.cs" />
     <Compile Include="syntax\variables\NumericVariable.cs" />
     <Compile Include="syntax\variables\refers\BoolVariableRefer.cs" />
+    <Compile Include="syntax\variables\refers\ListElementRefer.cs" />
     <Compile Include="syntax\variables\refers\ListVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\NumericVariableRefer.cs" />
     <Compile Include="syntax\variables\refers\StringVariableRefer.cs" />
