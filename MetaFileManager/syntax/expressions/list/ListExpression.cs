@@ -35,14 +35,17 @@ namespace Uroboros.syntax.expressions.list
             {
                 if (subcom is Where)
                 {
+                    string oldThis = RuntimeVariables.GetInstance().GetValueString("this");
                     List<string> newresult = new List<string>();
                     foreach (string s in result)
                     {
+                        RuntimeVariables.GetInstance().Actualize("this", s);
                         if ((subcom as Where).GetValue())
                         {
                             newresult.Add(s);
                         }
                     }
+                    RuntimeVariables.GetInstance().Actualize("this", oldThis);
                     result = newresult;
                 }
                 if (subcom is OrderBy)
