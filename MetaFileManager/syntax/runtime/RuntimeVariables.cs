@@ -114,6 +114,7 @@ namespace Uroboros.syntax.runtime
 
             variables.Add(new Name());
             variables.Add(new Fullname());
+            variables.Add(new Exist());
             variables.Add(new Empty());
             variables.Add(new Extension());
             variables.Add(new Modification());

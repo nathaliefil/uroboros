@@ -37,6 +37,10 @@ namespace Uroboros.syntax.reading
                     return Convert.ToDecimal(content) * 1125899906842624;
                 case SizeSufix.PB:
                     return Convert.ToDecimal(content) * 1152921504606846976;
+                case SizeSufix.K:
+                    return Convert.ToDecimal(content) * 1000;
+                case SizeSufix.KK:
+                    return Convert.ToDecimal(content) * 1000000;
             }
             return Convert.ToDecimal(content);
         }
@@ -70,8 +74,11 @@ namespace Uroboros.syntax.reading
         {
             this.sizeUnit = sizeU;
             type = TokenType.NumericConstant;
-            content = content.Substring(0, content.Length - 2);
             content = content.Replace('.', ',');
+            if (sizeU.Equals(SizeSufix.K))
+                content = content.Substring(0, content.Length - 1);
+            else
+                content = content.Substring(0, content.Length - 2);
         }
 
         public Token(TokenType type)

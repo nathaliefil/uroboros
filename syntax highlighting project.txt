@@ -28,6 +28,6 @@ Usual Keywords:
 and, asc, by, desc, each, else, empty list, first, for, force, from, if, last, like, not, or, order by, skip, to, where, while, xor
 
 Inner Variables:
-creation, directories, empty, extension, everything, false, files, fullname, index, location, modification, size, this, true +
+creation, directories, empty, exist, extension, everything, false, files, fullname, index, location, modification, size, this, true +
 creation.year, creation.month, ... weekday day hour minute second
 modification.year, modifiction.month, ... weekday day hour minute second

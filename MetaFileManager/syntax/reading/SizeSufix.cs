@@ -12,6 +12,9 @@ namespace Uroboros.syntax.reading
         MB,
         GB,
         TB,
-        PB
+        PB,
+
+        K,
+        KK
     }
 }

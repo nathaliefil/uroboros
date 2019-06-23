@@ -76,6 +76,7 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("name", InterVarType.String, false));
             variables.Add(new InterVar("fullname", InterVarType.String, false));
             variables.Add(new InterVar("extension", InterVarType.String, false));
+            variables.Add(new InterVar("exist", InterVarType.Bool, false));
             variables.Add(new InterVar("empty", InterVarType.Bool, false));
             variables.Add(new InterVar("creation", InterVarType.String, false));
             variables.Add(new InterVar("modification", InterVarType.String, false));

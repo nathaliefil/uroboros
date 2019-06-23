@@ -29,6 +29,18 @@ namespace Uroboros.syntax.reading
                                     t.SetToNumericConstant(ssfx);
                             }
                         }
+                        if (content.Length > 1)
+                        {
+                            char s = content[content.Length-1];
+
+                            if (s.Equals('k') || s.Equals('K'))
+                            {
+                                string mainPart = content.Substring(0, content.Length - 1);
+                                if (ParsableToNumber(mainPart))
+                                    t.SetToNumericConstant(SizeSufix.K);
+                            }
+                        }
+
                     }
                 }
             }
@@ -197,6 +209,10 @@ namespace Uroboros.syntax.reading
                     return SizeSufix.TB;
                 case "PB":
                     return SizeSufix.PB;
+                case "kk":
+                    return SizeSufix.KK;
+                case "KK":
+                    return SizeSufix.KK;
             }
             return SizeSufix.None;
         }
