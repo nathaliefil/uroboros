@@ -6,13 +6,13 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.bools.comparisons
 {
-    class NumericComparison : Comparison
+    class ListComparison : Comparison
     {
-        private INumerable leftSide;
-        private INumerable rightSide;
+        private IListable leftSide;
+        private IListable rightSide;
         private ComparisonType type;
 
-        public NumericComparison(INumerable leftSide, INumerable rightSide, ComparisonType type)
+        public ListComparison(IListable leftSide, IListable rightSide, ComparisonType type)
         {
             this.leftSide = leftSide;
             this.rightSide = rightSide;
@@ -21,23 +21,23 @@ namespace Uroboros.syntax.expressions.bools.comparisons
 
         public override bool ToBool()
         {
-            decimal leftValue = leftSide.ToNumber();
-            decimal rightValue = rightSide.ToNumber();
+            List<string> leftValue = leftSide.ToList();
+            List<string> rightValue = rightSide.ToList();
 
             switch (type)
             {
                 case ComparisonType.Equals:
-                    return leftValue == rightValue ? true : false;
+                    return leftValue.SequenceEqual(rightValue) ? true : false;
                 case ComparisonType.NotEquals:
-                    return leftValue != rightValue ? true : false;
+                    return leftValue.SequenceEqual(rightValue) ? false : true;
                 case ComparisonType.Bigger:
-                    return leftValue > rightValue ? true : false;
+                    return leftValue.Count > rightValue.Count ? true : false;
                 case ComparisonType.Smaller:
-                    return leftValue < rightValue ? true : false;
+                    return leftValue.Count < rightValue.Count ? true : false;
                 case ComparisonType.BiggerOrEquals:
-                    return leftValue >= rightValue ? true : false;
+                    return leftValue.Count >= rightValue.Count ? true : false;
                 case ComparisonType.SmallerOrEquals:
-                    return leftValue <= rightValue ? true : false;
+                    return leftValue.Count <= rightValue.Count ? true : false;
             }
 
             return false;

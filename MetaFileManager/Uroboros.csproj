@@ -90,7 +90,11 @@
     <Compile Include="syntax\commands\other\Sleep.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
+    <Compile Include="syntax\expressions\bools\comparisons\Comparison.cs" />
+    <Compile Include="syntax\expressions\bools\comparisons\ComparisonType.cs" />
+    <Compile Include="syntax\expressions\bools\comparisons\ListComparison.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\NumericComparison.cs" />
+    <Compile Include="syntax\expressions\bools\comparisons\StringComparison.cs" />
     <Compile Include="syntax\expressions\bools\IBoolExpressionElement.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />

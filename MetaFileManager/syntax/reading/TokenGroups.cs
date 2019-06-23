@@ -18,6 +18,13 @@ namespace Uroboros.syntax.reading
             TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
             TokenType.NumericConstant, TokenType.BoolConstant};
 
+        private static TokenType[] COMPARING = new TokenType[] { TokenType.Equals, TokenType.NotEquals, 
+            TokenType.Smaller, TokenType.SmallerOrEquals,  TokenType.Bigger, TokenType.BiggerOrEquals};
+
+        private static TokenType[] LOGIC= new TokenType[] { TokenType.Exclamation, TokenType.Or, 
+            TokenType.Xor, TokenType.And};
+
+
 
         public static bool IsSubcommandKeyword(TokenType type)
         {
@@ -34,5 +41,14 @@ namespace Uroboros.syntax.reading
             return new Token(TokenType.Null);
         }
 
+        public static bool IsComparingSign(TokenType type)
+        {
+            return COMPARING.Contains(type) ? true : false;
+        }
+
+        public static bool IsLogicSign(TokenType type)
+        {
+            return LOGIC.Contains(type) ? true : false;
+        }
     }
 }
