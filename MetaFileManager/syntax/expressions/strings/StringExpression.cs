@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 
-namespace Uroboros.syntax.variables.expressions
+namespace Uroboros.syntax.expressions.strings
 {
     class StringExpression : DefaultToListMethod, IStringable
     {

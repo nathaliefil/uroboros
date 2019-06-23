@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
-using Uroboros.syntax.variables.expressions.list.subcommands;
+using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.runtime;
 
-namespace Uroboros.syntax.variables.expressions.list
+namespace Uroboros.syntax.expressions.list
 {
     class ListExpression: IListable
     {

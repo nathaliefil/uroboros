@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 
-namespace Uroboros.syntax.variables.expressions.list.subcommands
+namespace Uroboros.syntax.expressions.list.subcommands
 {
     class Where : ISubcommand
     {

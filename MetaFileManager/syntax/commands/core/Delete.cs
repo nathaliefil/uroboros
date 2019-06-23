@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.variables.expressions;
+using Uroboros.syntax.expressions;
 using Uroboros.syntax.runtime;
 using System.IO;
 using Uroboros.syntax.variables.abstracts;

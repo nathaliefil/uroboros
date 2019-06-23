@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.commands;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.vars_range;
-using Uroboros.syntax.variables.expressions.list.subcommands;
+using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.commands.list;
 

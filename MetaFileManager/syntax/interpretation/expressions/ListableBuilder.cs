@@ -7,7 +7,7 @@ using Uroboros.syntax.variables;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
-using Uroboros.syntax.variables.expressions.list;
+using Uroboros.syntax.expressions.list;
 using Uroboros.syntax.variables.constants;
 
 namespace Uroboros.syntax.interpretation.expressions

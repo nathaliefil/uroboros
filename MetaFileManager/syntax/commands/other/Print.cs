@@ -18,9 +18,12 @@ namespace Uroboros.syntax.commands.other
 
         public void Run()
         {
-            foreach (string element in list.ToList())
+            if (list is IStringable)
+                Logger.GetInstance().Log((list as IStringable).ToString());
+            else
             {
-                Logger.GetInstance().Log(element);
+                foreach (string element in list.ToList())
+                    Logger.GetInstance().Log(element);
             }
         }
     }

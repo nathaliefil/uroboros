@@ -5,14 +5,14 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 
-namespace Uroboros.syntax.commands
+namespace Uroboros.syntax.commands.var
 {
-    class NumericDeclaration : ICommand
+    class BoolDeclaration : ICommand
     {
         private string name;
-        private INumerable value;
+        private IBoolable value;
 
-        public NumericDeclaration(string name, INumerable value)
+        public BoolDeclaration(string name, IBoolable value)
         {
             this.name = name;
             this.value = value;
@@ -20,7 +20,7 @@ namespace Uroboros.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.GetInstance().Actualize(name, value.ToNumber());
+            RuntimeVariables.GetInstance().Actualize(name, value.ToBool());
         }
     }
 }

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.variables.abstracts;
 
-namespace Uroboros.syntax.commands
+namespace Uroboros.syntax.commands.var
 {
-    class BoolDeclaration : ICommand
+    class ListDeclaration : ICommand
     {
         private string name;
-        private IBoolable value;
+        private IListable value;
 
-        public BoolDeclaration(string name, IBoolable value)
+        public ListDeclaration(string name, IListable value)
         {
             this.name = name;
             this.value = value;
@@ -20,7 +20,7 @@ namespace Uroboros.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.GetInstance().Actualize(name, value.ToBool());
+            RuntimeVariables.GetInstance().Actualize(name, value.ToList());
         }
     }
 }

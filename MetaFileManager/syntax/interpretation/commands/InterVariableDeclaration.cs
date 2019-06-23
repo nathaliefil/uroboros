@@ -7,6 +7,7 @@ using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.interpretation.vars_range;
+using Uroboros.syntax.commands.var;
 
 namespace Uroboros.syntax.interpretation.commands
 {

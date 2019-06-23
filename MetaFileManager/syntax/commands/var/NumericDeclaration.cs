@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.runtime;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.runtime;
 
-namespace Uroboros.syntax.commands
+namespace Uroboros.syntax.commands.var
 {
-    class ListDeclaration : ICommand
+    class NumericDeclaration : ICommand
     {
         private string name;
-        private IListable value;
+        private INumerable value;
 
-        public ListDeclaration(string name, IListable value)
+        public NumericDeclaration(string name, INumerable value)
         {
             this.name = name;
             this.value = value;
@@ -20,7 +20,7 @@ namespace Uroboros.syntax.commands
 
         public void Run()
         {
-            RuntimeVariables.GetInstance().Actualize(name, value.ToList());
+            RuntimeVariables.GetInstance().Actualize(name, value.ToNumber());
         }
     }
 }

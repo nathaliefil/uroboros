@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 
-namespace Uroboros.syntax.commands
+namespace Uroboros.syntax.commands.var
 {
     class StringDeclaration : ICommand
     {
