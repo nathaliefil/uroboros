@@ -59,6 +59,38 @@ namespace Uroboros.syntax.reading
             }
             return level == 0 ? true : false;
         }
+
+        public static bool ContainsIndependentBracketsPairs(List<Token> tokens, BracketsType type)
+        {
+            TokenType open = TokenType.BracketOn;
+            TokenType close = TokenType.BracketOff;
+
+            switch (type)
+            {
+                case BracketsType.Curly:
+                    open = TokenType.CurlyBracketOn;
+                    close = TokenType.CurlyBracketOff;
+                    break;
+                case BracketsType.Square:
+                    open = TokenType.SquareBracketOn;
+                    close = TokenType.SquareBracketOff;
+                    break;
+            }
+
+            int level = 0;
+
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                if (tokens[i].GetTokenType().Equals(open))
+                    level++;
+                if (tokens[i].GetTokenType().Equals(close))
+                    level--;
+                if (level == 0 && i != tokens.Count - 1 && i != 0)
+                    return true;
+                
+            }
+            return false;
+        }
     }
 
     public enum BracketsType

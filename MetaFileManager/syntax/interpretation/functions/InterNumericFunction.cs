@@ -15,8 +15,8 @@ namespace Uroboros.syntax.interpretation.functions
     {
         public static INumerable Build(List<Token> tokens)
         {
-            bool singlePairOfBrackets = tokens.Where(x => x.GetTokenType().Equals(TokenType.BracketOn)).Count() == 1
-                && tokens.Where(x => x.GetTokenType().Equals(TokenType.BracketOff)).Count() == 1;
+            if (Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+                return new NullVariable();
 
             List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
 
@@ -28,17 +28,17 @@ namespace Uroboros.syntax.interpretation.functions
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
             if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil"))
-                return BuildNum(name, args, singlePairOfBrackets);
+                return BuildNum(name, args);
             if (name.Equals("power"))
-                return BuildNumNum(name, args, singlePairOfBrackets);
+                return BuildNumNum(name, args);
             if (name.Equals("pi") || name.Equals("e"))
-                return BuildEmpty(name, args, singlePairOfBrackets);
+                return BuildEmpty(name, args);
             if (name.Equals("number") || name.Equals("length"))
-                return BuildStr(name, args, singlePairOfBrackets);
+                return BuildStr(name, args);
             if (name.Equals("min") || name.Equals("max"))
-                return BuildNums(name, args, singlePairOfBrackets);
+                return BuildNums(name, args);
             if (name.Equals("count"))
-                return BuildLis(name, args, singlePairOfBrackets);
+                return BuildLis(name, args);
 
             return new NullVariable();
         }
@@ -46,14 +46,14 @@ namespace Uroboros.syntax.interpretation.functions
         // functions are grouped by their arguments
         // every set of arguments is one method below
 
-        public static INumerable BuildNum(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildNum(string name, List<Argument> args)
         {
             if (args.Count != 1)
-                return Error("ERROR! Function " + name + " has to have 1 numeric argument.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 numeric argument.");
 
             INumerable inu = NumerableBuilder.Build(args[0].tokens);
             if (inu is NullVariable)
-                return Error("ERROR! Argument of function " + name + " cannot be read as number.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as number.");
             else
             {
                 if (name.Equals("round"))
@@ -62,61 +62,61 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncRound(inu);
                 if (name.Equals("ceil"))
                     return new FuncRound(inu);
-                return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
 
-        public static INumerable BuildNumNum(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildNumNum(string name, List<Argument> args)
         {
             if (args.Count != 2)
-                return Error("ERROR! Function " + name + " has to have 2 numeric arguments.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 numeric arguments.");
 
             INumerable inu1 = NumerableBuilder.Build(args[0].tokens);
             INumerable inu2 = NumerableBuilder.Build(args[1].tokens);
 
             if (inu1 is NullVariable)
-                return Error("ERROR! First argument of function " + name + " cannot be read as number.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as number.");
             if (inu2 is NullVariable)
-                return Error("ERROR! Second argument of function " + name + " cannot be read as number.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
 
             if (name.Equals("power"))
                 return new FuncPower(inu1, inu2);
-            return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
-        public static INumerable BuildEmpty(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildEmpty(string name, List<Argument> args)
         {
             if (args.Count != 0)
-                return Error("ERROR! Function " + name + " cannot have arguments.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " cannot have arguments.");
 
             if (name.Equals("pi"))
                 return new FuncPi();
             if (name.Equals("e"))
                 return new FuncE();
 
-            return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
-        public static INumerable BuildStr(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildStr(string name, List<Argument> args)
         {
             if (args.Count != 1)
-                return Error("ERROR! Function " + name + " has to have 1 text argument.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 text argument.");
 
             IStringable istr = StringableBuilder.Build(args[0].tokens);
             if (istr is NullVariable)
-                return Error("ERROR! Argument of function " + name + " cannot be read as text.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
             else
             {
                 if (name.Equals("length"))
                     return new FuncLength(istr);
-                return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
 
-        public static INumerable BuildNums(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildNums(string name, List<Argument> args)
         {
             if (args.Count == 0)
-                return Error("ERROR! Function " + name + " has to have at least one numeric argument.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have at least one numeric argument.");
 
             List<INumerable> inus = new List<INumerable>();
 
@@ -124,7 +124,7 @@ namespace Uroboros.syntax.interpretation.functions
             {
                 INumerable inu = NumerableBuilder.Build(args[i].tokens);
                 if (inu is NullVariable)
-                    return Error("ERROR! Argument " + (i + 1) + " of function " + name + " cannot be read as number.", singlePairOfBrackets);
+                    throw new SyntaxErrorException("ERROR! Argument " + (i + 1) + " of function " + name + " cannot be read as number.");
                 else
                     inus.Add(inu);
             }
@@ -134,31 +134,23 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("min"))
                 return new FuncMin(inus);
 
-            return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
-        public static INumerable BuildLis(string name, List<Argument> args, bool singlePairOfBrackets)
+        public static INumerable BuildLis(string name, List<Argument> args)
         {
             if (args.Count != 1)
-                return Error("ERROR! Function " + name + " has to have 1 list argument.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 list argument.");
 
             IListable ilis = ListableBuilder.Build(args[0].tokens);
             if (ilis is NullVariable)
-                return Error("ERROR! Argument of function " + name + " cannot be read as list.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
             else
             {
                 if (name.Equals("count"))
                     return new FuncCount(ilis);
-                return Error("ERROR! Function " + name + " not identified.", singlePairOfBrackets);
+                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
-        }
-
-        private static INumerable Error(string message, bool singlePairOfBrackets)
-        {
-            if (singlePairOfBrackets)
-                throw new SyntaxErrorException(message);
-            else
-                return new NullVariable();
         }
     }
 }

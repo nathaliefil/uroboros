@@ -14,8 +14,8 @@ namespace Uroboros.syntax.interpretation.functions
     {
         public static IStringable Build(List<Token> tokens)
         {
-            bool singlePairOfBrackets = tokens.Where(x => x.GetTokenType().Equals(TokenType.SquareBracketOn)).Count() == 1
-                && tokens.Where(x => x.GetTokenType().Equals(TokenType.SquareBracketOff)).Count() == 1;
+            if (Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Square))
+                return new NullVariable();
 
             string name = tokens[0].GetContent();
             tokens.RemoveAt(tokens.Count-1);
@@ -23,17 +23,11 @@ namespace Uroboros.syntax.interpretation.functions
             tokens.RemoveAt(0);
 
             if (!InterVariables.GetInstance().Contains(name, InterVarType.List))
-                if (singlePairOfBrackets)
-                    throw new SyntaxErrorException("ERROR! List " + name + " not found. Impossible to take element from it.");
-                else 
-                    return new NullVariable();
+                throw new SyntaxErrorException("ERROR! List " + name + " not found. Impossible to take element from it.");
 
             INumerable inu = NumerableBuilder.Build(tokens);
             if (inu is NullVariable)
-                if (singlePairOfBrackets)
-                    throw new SyntaxErrorException("ERROR! Impossible to take element from list " + name + ". Index identificator cannot be read as number.");
-                else
-                    return new NullVariable();
+                throw new SyntaxErrorException("ERROR! Impossible to take element from list " + name + ". Index identificator cannot be read as number.");
             else
                 return new ListElementRefer(name, inu);
         }
