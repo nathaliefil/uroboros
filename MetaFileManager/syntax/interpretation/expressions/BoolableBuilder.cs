@@ -8,6 +8,7 @@ using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.expressions.bools.comparisons;
+using Uroboros.syntax.interpretation.functions;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -44,6 +45,14 @@ namespace Uroboros.syntax.interpretation.expressions
             if (ContainsOneComparingToken(tokens))
             {
                 IBoolable iboo = BuildComparison(tokens);
+                if (!(iboo is NullVariable))
+                    return iboo;
+            }
+
+            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
+                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            {
+                IBoolable iboo = InterBoolFunction.Build(tokens);
                 if (!(iboo is NullVariable))
                     return iboo;
             }

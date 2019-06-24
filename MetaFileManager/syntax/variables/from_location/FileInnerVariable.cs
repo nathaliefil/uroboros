@@ -11,6 +11,9 @@ namespace Uroboros.syntax.variables.from_location
     {
         public static string GetName(string file)
         {
+            if (file.Equals(""))
+                return "";
+
             int position = file.LastIndexOf("\\");
             if (position > -1)
                 file = file.Substring(position);
@@ -23,6 +26,9 @@ namespace Uroboros.syntax.variables.from_location
 
         public static string GetFullname(string file)
         {
+            if (file.Equals(""))
+                return "";
+
             int position = file.LastIndexOf("\\");
             if (position > -1)
                 file = file.Substring(position);
@@ -31,6 +37,9 @@ namespace Uroboros.syntax.variables.from_location
 
         public static string GetExtension(string file)
         {
+            if (file.Equals(""))
+                return "";
+
             if (file.LastIndexOf('.') == -1)
                 return "";
             else
@@ -39,6 +48,9 @@ namespace Uroboros.syntax.variables.from_location
 
         public static DateTime GetCreation(string file)
         {
+            if (file.Equals(""))
+                return DateTime.MinValue;
+
             string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
 
             try
@@ -56,6 +68,9 @@ namespace Uroboros.syntax.variables.from_location
 
         public static DateTime GetModification(string file)
         {
+            if (file.Equals(""))
+                return DateTime.MinValue;
+
             string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
 
             try
@@ -73,6 +88,9 @@ namespace Uroboros.syntax.variables.from_location
 
         public static decimal GetSize(string file)
         {
+            if (file.Equals(""))
+                return 0;
+
             string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
 
             try
@@ -102,6 +120,29 @@ namespace Uroboros.syntax.variables.from_location
                 size += DirSize(di);
             }
             return size;
+        }
+
+        public static bool Exist(string file)
+        {
+            if (file.Equals(""))
+                return false;
+
+            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+
+            if (FileValidator.IsDirectory(file))
+            {
+                if (Directory.Exists(@location))
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                if (File.Exists(@location))
+                    return true;
+                else
+                    return false;
+            }
         }
     }
 }

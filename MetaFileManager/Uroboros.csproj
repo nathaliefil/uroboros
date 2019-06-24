@@ -96,6 +96,10 @@
     <Compile Include="syntax\expressions\bools\comparisons\NumericComparison.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\StringComparison.cs" />
     <Compile Include="syntax\expressions\bools\IBoolExpressionElement.cs" />
+    <Compile Include="syntax\functions\bools\abstracts\IBoolFunction.cs" />
+    <Compile Include="syntax\functions\bools\FuncContain.cs" />
+    <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
+    <Compile Include="syntax\functions\bools\FuncExist.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
@@ -155,6 +159,7 @@
     <Compile Include="syntax\interpretation\expressions\SubcommandBuilder.cs" />
     <Compile Include="syntax\interpretation\functions\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\Argument.cs" />
+    <Compile Include="syntax\interpretation\functions\InterBoolFunction.cs" />
     <Compile Include="syntax\interpretation\functions\InterListElement.cs" />
     <Compile Include="syntax\interpretation\functions\InterNumericFunction.cs" />
     <Compile Include="syntax\interpretation\functions\InterStringFunction.cs" />

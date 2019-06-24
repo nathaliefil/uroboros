@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
-using Uroboros.syntax.runtime;
-using System.IO;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.functions.numeric.abstracts
 {
-    class Exist : NamedVariable, IBoolable
+    abstract class IBoolFunction : DefaultToListMethod, IBoolable
     {
-        public Exist()
+        public virtual bool ToBool()
         {
-            name = "exist";
-        }
-
-        public bool ToBool()
-        {
-            string file = RuntimeVariables.GetInstance().GetValueString("this");
-            return FileInnerVariable.Exist(file);
+            return false;
         }
 
         public decimal ToNumber()
