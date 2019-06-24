@@ -38,6 +38,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
+            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
+                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            {
+                IStringable istr = InterStringFunction.Build(tokens);
+                if (!(istr is NullVariable))
+                    return istr;
+            }
+
             if (tokens.Count > 3 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
                 && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
             {

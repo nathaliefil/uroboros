@@ -35,25 +35,20 @@ namespace Uroboros.syntax.functions.numeric
             int arg1v = (int)arg1.ToNumber();
 
             if (arg1v >= source.Length)
-            {
                 return "";
-            }
 
             if (twoArgs)
-            {
                 return source.Substring(arg1v);
-            }
             else
             {
-                int arg2v = (int)arg1.ToNumber();
+                int arg2v = (int)arg2.ToNumber();
+
                 if (arg2v < 1)
-                {
                     return "";
-                }
+
                 if (arg1v + arg2v > source.Length)
-                {
                     arg2v -= arg1v + arg2v - source.Length;
-                }
+
                 return source.Substring(arg1v, arg2v);
             }
         }

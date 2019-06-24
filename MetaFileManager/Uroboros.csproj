@@ -157,6 +157,7 @@
     <Compile Include="syntax\interpretation\functions\Argument.cs" />
     <Compile Include="syntax\interpretation\functions\InterListElement.cs" />
     <Compile Include="syntax\interpretation\functions\InterNumericFunction.cs" />
+    <Compile Include="syntax\interpretation\functions\InterStringFunction.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
