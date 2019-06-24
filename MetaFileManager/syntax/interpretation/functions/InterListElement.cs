@@ -14,17 +14,26 @@ namespace Uroboros.syntax.interpretation.functions
     {
         public static IStringable Build(List<Token> tokens)
         {
+            bool singlePairOfBrackets = tokens.Where(x => x.GetTokenType().Equals(TokenType.SquareBracketOn)).Count() == 1
+                && tokens.Where(x => x.GetTokenType().Equals(TokenType.SquareBracketOff)).Count() == 1;
+
             string name = tokens[0].GetContent();
             tokens.RemoveAt(tokens.Count-1);
             tokens.RemoveAt(0);
             tokens.RemoveAt(0);
 
-            if(!InterVariables.GetInstance().Contains(name, InterVarType.List))
-                throw new SyntaxErrorException("ERROR! List " + name + " not found. Impossible to take element from it.");
+            if (!InterVariables.GetInstance().Contains(name, InterVarType.List))
+                if (singlePairOfBrackets)
+                    throw new SyntaxErrorException("ERROR! List " + name + " not found. Impossible to take element from it.");
+                else 
+                    return new NullVariable();
 
             INumerable inu = NumerableBuilder.Build(tokens);
             if (inu is NullVariable)
-                throw new SyntaxErrorException("ERROR! Impossible to take element from list " + name + ". Index identificator cannot be read as number.");
+                if (singlePairOfBrackets)
+                    throw new SyntaxErrorException("ERROR! Impossible to take element from list " + name + ". Index identificator cannot be read as number.");
+                else
+                    return new NullVariable();
             else
                 return new ListElementRefer(name, inu);
         }

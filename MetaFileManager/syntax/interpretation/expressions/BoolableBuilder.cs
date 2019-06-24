@@ -19,7 +19,8 @@ namespace Uroboros.syntax.interpretation.expressions
             if (!wwtok.GetTokenType().Equals(TokenType.Null))
                 return new NullVariable();
 
-            Brackets.CheckCorrectness(tokens, false);
+            if (!Brackets.CheckCorrectness(tokens))
+                return new NullVariable();
 
             if (tokens.Count == 1)
             {

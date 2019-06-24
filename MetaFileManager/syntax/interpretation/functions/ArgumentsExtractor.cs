@@ -12,9 +12,6 @@ namespace Uroboros.syntax.interpretation.functions
         {
             List<Argument> arguments = new List<Argument>();
 
-            tokens.RemoveAt(tokens.Count - 1);
-            tokens.RemoveAt(0);
-
             if (tokens.Count == 0)
                 return arguments;
 
@@ -33,7 +30,7 @@ namespace Uroboros.syntax.interpretation.functions
                 {
                     if (currentTokens.Count > 0)
                     {
-                        arguments.Add(new Argument(currentTokens));
+                        arguments.Add(new Argument(currentTokens.Select(t => t.Clone()).ToList()));
                         currentTokens.Clear();
                     }
                 }
@@ -43,9 +40,10 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (currentTokens.Count > 0)
             {
-                arguments.Add(new Argument(currentTokens));
+                arguments.Add(new Argument(currentTokens.Select(t => t.Clone()).ToList()));
                 currentTokens.Clear();
             }
+
 
             return arguments;
         }

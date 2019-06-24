@@ -60,7 +60,7 @@ namespace Uroboros.syntax.reading
             if (tokens.Count() == 0)
                 throw new SyntaxErrorException("ERROR! Code is empty.");
 
-            Brackets.CheckCorrectness(tokens, true);
+            Brackets.InformAboutCorrectness(tokens);
 
             tokens = TokenModifier.VariablesToNumeric(tokens);
             tokens = TokenModifier.MergeTokens(tokens);

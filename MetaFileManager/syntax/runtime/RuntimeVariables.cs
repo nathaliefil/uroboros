@@ -110,7 +110,7 @@ namespace Uroboros.syntax.runtime
                 List<string> lst = (nv as IListable).ToList();
                 int count = lst.Count;
 
-                if (index > count || index < -count-1)
+                if (index >= count || index < -count)
                     return "";
 
                 if (index < 0)

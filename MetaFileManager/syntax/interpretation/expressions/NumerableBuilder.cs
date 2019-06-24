@@ -7,6 +7,7 @@ using Uroboros.syntax.variables;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
+using Uroboros.syntax.interpretation.functions;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -16,9 +17,7 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             IBoolable ibo = BoolableBuilder.Build(tokens);
             if (!(ibo is NullVariable))
-            {
                 return ibo;
-            }
 
             if (tokens.Count == 1)
             {
@@ -31,9 +30,15 @@ namespace Uroboros.syntax.interpretation.expressions
                         return new NullVariable();
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.NumericConstant))
-                {
                     return new NumericConstant(tokens[0].GetNumericContent());
-                }
+            }
+
+            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
+                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            {
+                INumerable inu = InterNumericFunction.Build(tokens);
+                if (!(inu is NullVariable))
+                    return inu;
             }
 
             //code

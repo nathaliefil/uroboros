@@ -7,7 +7,7 @@ namespace Uroboros.syntax.reading
 {
     class Brackets
     {
-        public static void CheckCorrectness(List<Token> tokens, bool withCurlyBrackets)
+        public static void InformAboutCorrectness(List<Token> tokens)
         {
             if (tokens.Count == 0)
                 return;
@@ -15,8 +15,19 @@ namespace Uroboros.syntax.reading
                 throw new SyntaxErrorException("ERROR! Check brackets ( ).");
             if (!Brackets.AreCorrect(tokens, BracketsType.Square))
                 throw new SyntaxErrorException("ERROR! Check square brackets [ ].");
-            if (withCurlyBrackets && !Brackets.AreCorrect(tokens, BracketsType.Curly))
+            if (!Brackets.AreCorrect(tokens, BracketsType.Curly))
                 throw new SyntaxErrorException("ERROR! Check curly brackets { }.");
+        }
+
+        public static bool CheckCorrectness(List<Token> tokens)
+        {
+            if (tokens.Count == 0)
+                return false;
+            if (!Brackets.AreCorrect(tokens, BracketsType.Normal))
+                return false;
+            if (!Brackets.AreCorrect(tokens, BracketsType.Square))
+                return false;
+            return true;
         }
 
         private static bool AreCorrect(List<Token> tokens, BracketsType type)
