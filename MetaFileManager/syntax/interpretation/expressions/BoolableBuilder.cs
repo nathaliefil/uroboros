@@ -9,6 +9,7 @@ using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.expressions.bools.comparisons;
 using Uroboros.syntax.interpretation.functions;
+using Uroboros.syntax.expressions.bools;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -16,13 +17,20 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IBoolable Build(List<Token> tokens)
         {
+            // check is is empty
+            if (tokens.Count == 0)
+                throw new SyntaxErrorException("ERROR! Variable declaration is empty.");
+
+            // check if contains not allowed tokens
             Token wwtok = TokenGroups.WrongTokenInExpression(tokens);
             if (!wwtok.GetTokenType().Equals(TokenType.Null))
                 return new NullVariable();
 
+            // check brackets
             if (!Brackets.CheckCorrectness(tokens))
                 return new NullVariable();
 
+            // try to build simple one-element Boolable
             if (tokens.Count == 1)
             {
                 if (tokens[0].GetTokenType().Equals(TokenType.Variable))
@@ -42,6 +50,16 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
+
+            // try to build IN function
+            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.In)).Count() == 1)
+            {
+                IBoolable iboo = InBuilder.Build(tokens);
+                if (!(iboo is NullVariable))
+                    return iboo;
+            }
+
+            // try to build comparison = != > < >= <=
             if (ContainsOneComparingToken(tokens))
             {
                 IBoolable iboo = BuildComparison(tokens);
@@ -49,6 +67,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
+            // try to build bool function
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
@@ -57,9 +76,10 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
-            if (tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any())
+            // try to build expression: many elements with operators or, and, xor, not
+            /*if (tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any())
                 return BuildExpression(tokens);
-            else
+            else*/
                 return new NullVariable();
         }
 
@@ -93,6 +113,60 @@ namespace Uroboros.syntax.interpretation.expressions
 
         private static IBoolable BuildExpression(List<Token> tokens)
         {
+            // turn list of tokens into list of BoolExpressionElements
+            // they are in usual infix notation
+            // when this is done, their order is changed to Reverse Polish Notation
+
+            List<IBoolExpressionElement> infixList = new List<IBoolExpressionElement>();
+            List<Token> currentTokens = new List<Token>();
+            bool readingFunction = false;
+            int level = 0;
+            int functionLevel = 0;
+            Token previousToken = new Token(TokenType.Null);
+
+            foreach (Token tok in tokens)
+            {
+                currentTokens.Add(tok);
+
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                {
+                    if (!readingFunction && previousToken.GetTokenType().Equals(TokenType.Variable))
+                    {
+                        functionLevel = level;
+                        readingFunction = true;
+                    }
+                    level++;
+                }
+
+                if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                {
+                    level--;
+
+                    if (readingFunction)
+                    {
+                        if (level == functionLevel)
+                        {
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                        }
+                    }
+                }
+
+                if (TokenGroups.IsLogicSign(tok.GetTokenType()))
+                {
+
+                }
+
+
+
+                //todo
+
+                previousToken = tok;
+            }
+            
             // here we go
             /// todo
 

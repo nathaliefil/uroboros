@@ -59,10 +59,7 @@ namespace Uroboros.syntax.variables
         public void DivideBy(decimal dec)
         {
             if (dec == 0)
-            {
-                // throw some exception
-                /// todo
-            }
+                throw new RuntimeException("RUNTIME ERROR! Division by zero occured. Variable: " + name + ".");
             value /= dec;
         }
 

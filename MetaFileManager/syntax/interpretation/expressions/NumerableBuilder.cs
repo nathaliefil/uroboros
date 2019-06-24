@@ -15,10 +15,12 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static INumerable Build(List<Token> tokens)
         {
+            // try to build Boolable
             IBoolable ibo = BoolableBuilder.Build(tokens);
             if (!(ibo is NullVariable))
                 return ibo;
 
+            // try to build simple one-token Numerable
             if (tokens.Count == 1)
             {
                 if (tokens[0].GetTokenType().Equals(TokenType.Variable))
@@ -33,6 +35,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new NumericConstant(tokens[0].GetNumericContent());
             }
 
+            // try to build numeric function
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {

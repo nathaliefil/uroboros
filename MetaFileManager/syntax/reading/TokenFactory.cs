@@ -66,6 +66,7 @@ namespace Uroboros.syntax.reading
                 case "force": return new Token(TokenType.Force);
                 case "from": return new Token(TokenType.From);
                 case "if": return new Token(TokenType.If);
+                case "in": return new Token(TokenType.In);
                 case "last": return new Token(TokenType.Last);
                 case "like": return new Token(TokenType.Like);
                 case "move": return new Token(TokenType.Move);

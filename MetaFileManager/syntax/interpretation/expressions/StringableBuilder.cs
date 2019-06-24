@@ -16,12 +16,12 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IStringable Build(List<Token> tokens)
         {
+            // try to build Numerable
             INumerable inu = NumerableBuilder.Build(tokens);
             if (!(inu is NullVariable))
-            {
                 return inu;
-            }
 
+            // try to build simple one-token Stringable
             if (tokens.Count == 1)
             {
                 if (tokens[0].GetTokenType().Equals(TokenType.Variable))
@@ -33,11 +33,10 @@ namespace Uroboros.syntax.interpretation.expressions
                         return new NullVariable();
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.StringConstant))
-                {
                     return new StringConstant(tokens[0].GetContent());
-                }
             }
 
+            //try to build string function
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
@@ -46,6 +45,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return istr;
             }
 
+            // try to build reference to n-th element of list of strings
             if (tokens.Count > 3 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
                 && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
             {
@@ -54,6 +54,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return istr;
             }
 
+            // try to build concatenated string -> text merged by +
             if(tokens.Any(t => t.GetTokenType().Equals(TokenType.Plus)))
                 return BuildConcatenated(tokens);
             else

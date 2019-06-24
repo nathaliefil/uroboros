@@ -9,6 +9,7 @@ using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.expressions.list;
 using Uroboros.syntax.variables.constants;
+using Uroboros.syntax.interpretation.expressions;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -16,28 +17,35 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IListable Build(List<Token> tokens)
         {
+            // try to build Strinable
             IStringable ist = StringableBuilder.Build(tokens);
             if (!(ist is NullVariable))
                 return ist;
 
+            // try to build 'empty list'
             if (tokens.Count == 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable)
                 && tokens[0].GetContent().ToLower().Equals("empty") && tokens[1].GetContent().ToLower().Equals("list"))
                 return new EmptyList();
 
-            IListable listed = ListableBuilder.BuildListedByComma(tokens);
+            // try to build listed strings: many Stringables divided by commas
+            IListable listed = ListedStringablesBuilder.Build(tokens);
             if (!(listed is NullVariable))
                 return listed;
 
+            // take first token and check if is a name of existing list
             string str = tokens[0].GetContent();
             if (!InterVariables.GetInstance().Contains(str, InterVarType.List))
                 throw new SyntaxErrorException("ERROR! Variable " + str +" do not exist or cannot be read as list.");
 
+            // try to build list variable reference - just one word and it is a name
             if (tokens.Count == 1 && tokens[0].GetTokenType().Equals(TokenType.Variable))
                 return new ListVariableRefer(str);
 
+            // take second word and check if it is subcommand keyword (first, last, where...)
             if (!TokenGroups.IsSubcommandKeyword(tokens[1].GetTokenType()))
                 throw new SyntaxErrorException("ERROR! In list declaration description do not start from keyword.");
             
+            // build ListExpression and add subcommands to it
             ListExpression list = new ListExpression(new ListVariableRefer(str));
             tokens.RemoveAt(0);
             List<Token> currentTokens = new List<Token>();
@@ -58,58 +66,8 @@ namespace Uroboros.syntax.interpretation.expressions
                     currentTokens.Add(tok);
             }
             if (currentTokens.Count > 0)
-            {
                 list.AddSubcommand(SubcommandBuilder.Build(currentTokens, subcommandType));
-            }
-
             return list;
-        }
-        
-        public static IListable BuildListedByComma(List<Token> tokens)
-        {
-            List<Token> currentTokens = new List<Token>();
-            List<IStringable> elements = new List<IStringable>();
-            int level = 0;
-
-            for (int i = 0; i < tokens.Count; i++)
-            {
-                if (tokens[i].GetTokenType().Equals(TokenType.BracketOn))
-                    level++;
-                if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
-                    level--;
-
-                if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
-                {
-                    if (currentTokens.Count > 0)
-                    {
-                        IStringable ist = StringableBuilder.Build(currentTokens);
-                        currentTokens.Clear();
-                        if (ist is NullVariable)
-                            return new NullVariable();
-                        else
-                            elements.Add(ist);
-                    }
-                }
-                else
-                    currentTokens.Add(tokens[i]);
-            }
-
-            if (currentTokens.Count > 0)
-            {
-                IStringable ist = StringableBuilder.Build(currentTokens);
-                if (ist is NullVariable)
-                    return new NullVariable();
-                else
-                    elements.Add(ist);
-            }
-
-            if (elements.Count == 0)
-                return new NullVariable();
-
-            if (elements.All(e => e is StringConstant))
-                return new ListConstant(elements.Select(e => e.ToString()).ToList());
-            else
-                return new ListedStringables(elements);
         }
     }
 }

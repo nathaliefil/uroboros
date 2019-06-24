@@ -10,6 +10,9 @@ namespace Uroboros.syntax.expressions.bools
         Not,
         And,
         Or,
-        Xor
+        Xor,
+
+        BracketOn,
+        BracketOff
     }
 }

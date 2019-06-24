@@ -167,6 +167,5 @@ namespace Uroboros.syntax.interpretation.expressions
             }
             return NumericSubcommandType.First;
         }
-
     }
 }

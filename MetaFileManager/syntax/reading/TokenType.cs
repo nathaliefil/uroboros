@@ -25,6 +25,7 @@ namespace Uroboros.syntax.reading
         Force,
         From,
         If,
+        In,
         Last,
         Like,
         Move,
