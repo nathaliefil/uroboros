@@ -116,6 +116,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // turn list of tokens into list of BoolExpressionElements
             // they are in usual infix notation
             // when this is done, their order is changed to Reverse Polish Notation
+            // meanwhile check, if it all they can be represented as simple negated IBoolable
 
             List<IBoolExpressionElement> infixList = new List<IBoolExpressionElement>();
             List<Token> currentTokens = new List<Token>();
@@ -126,16 +127,59 @@ namespace Uroboros.syntax.interpretation.expressions
 
             foreach (Token tok in tokens)
             {
-                currentTokens.Add(tok);
+                bool actionDone = false;
+
+                if (TokenGroups.IsLogicSign(tok.GetTokenType()))
+                {
+                    if (readingFunction)
+                    {
+                        currentTokens.Add(tok);
+                    }
+                    else
+                    {
+                        if (currentTokens.Count > 0)
+                        {
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                            infixList.Add(new BoolExpressionOperator(GetBEOT(tok.GetTokenType())));
+                            currentTokens.Clear();
+                        }
+                    }
+                    actionDone = true;
+                }
 
                 if (tok.GetTokenType().Equals(TokenType.BracketOn))
                 {
-                    if (!readingFunction && previousToken.GetTokenType().Equals(TokenType.Variable))
+                    if (readingFunction)
+                        currentTokens.Add(tok);
+                    else
                     {
-                        functionLevel = level;
-                        readingFunction = true;
+                        if (previousToken.GetTokenType().Equals(TokenType.Variable))
+                        {
+                            functionLevel = level;
+                            readingFunction = true;
+                            level++;
+                            currentTokens.Add(tok);
+                        }
+                        else
+                        {
+                            if (!TokenGroups.IsLogicSign(previousToken.GetTokenType()))
+                                return new NullVariable();
+
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                            infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOn));
+                            currentTokens.Clear();
+                        }
                     }
                     level++;
+                    actionDone = true;
                 }
 
                 if (tok.GetTokenType().Equals(TokenType.BracketOff))
@@ -144,6 +188,8 @@ namespace Uroboros.syntax.interpretation.expressions
 
                     if (readingFunction)
                     {
+                        currentTokens.Add(tok);
+
                         if (level == functionLevel)
                         {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
@@ -151,22 +197,37 @@ namespace Uroboros.syntax.interpretation.expressions
                                 infixList.Add(ibo);
                             else
                                 return new NullVariable();
+
+                            currentTokens.Clear();
                         }
                     }
+                    else
+                    {
+                        IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                        if (!(ibo is NullVariable))
+                            infixList.Add(ibo);
+                        else
+                            return new NullVariable();
+                        infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
+                        currentTokens.Clear();
+                    }
+                    actionDone = true;
                 }
 
-                if (TokenGroups.IsLogicSign(tok.GetTokenType()))
+                if (!actionDone)
                 {
-
+                    currentTokens.Add(tok);
                 }
-
-
-
-                //todo
-
                 previousToken = tok;
             }
+
+            if (infixList.Count == 2 && (infixList[0] is BoolExpressionOperator) && (infixList[1] is IBoolable)
+                && (infixList[0] as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
+            {
+                return new NegatedBoolable(infixList[1] as IBoolable);
+            }
             
+            // more more more
             // here we go
             /// todo
 
@@ -177,6 +238,22 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             int count = tokens.Where(x => TokenGroups.IsComparingSign(x.GetTokenType())).Count();
             return count == 1 ? true : false;
+        }
+
+        private static BoolExpressionOperatorType GetBEOT(TokenType type)
+        {
+            switch (type)
+            {
+                case TokenType.And:
+                    return BoolExpressionOperatorType.And;
+                case TokenType.Or:
+                    return BoolExpressionOperatorType.Or;
+                case TokenType.Xor:
+                    return BoolExpressionOperatorType.Xor;
+                case TokenType.Exclamation:
+                    return BoolExpressionOperatorType.Not;
+            }
+            return BoolExpressionOperatorType.And;
         }
 
         private static ComparisonType GetComparingToken(List<Token> tokens)

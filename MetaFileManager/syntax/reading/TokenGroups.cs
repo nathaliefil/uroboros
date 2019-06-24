@@ -24,6 +24,8 @@ namespace Uroboros.syntax.reading
         private static TokenType[] LOGIC= new TokenType[] { TokenType.Exclamation, TokenType.Or, 
             TokenType.Xor, TokenType.And};
 
+        private static TokenType[] NUMERIC_OPERATION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
+            TokenType.Multiply, TokenType.Divide, TokenType.Percent};
 
 
         public static bool IsSubcommandKeyword(TokenType type)
@@ -49,6 +51,11 @@ namespace Uroboros.syntax.reading
         public static bool IsLogicSign(TokenType type)
         {
             return LOGIC.Contains(type) ? true : false;
+        }
+
+        public static bool IsNumericOperator(TokenType type)
+        {
+            return NUMERIC_OPERATION.Contains(type) ? true : false;
         }
     }
 }
