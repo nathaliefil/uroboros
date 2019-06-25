@@ -29,7 +29,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNum(name, args);
             if (name.Equals("substring"))
                 return BuildSubstring(name, args);
-            if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits"))
+            if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("trim"))
                 return BuildStr(name, args);
             if (name.Equals("filled"))
                 return BuildStrNum(name, args);
@@ -77,6 +77,8 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncLower(istr);
                 if (name.Equals("digits"))
                     return new FuncDigits(istr);
+                if (name.Equals("trim"))
+                    return new FuncTrim(istr);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }

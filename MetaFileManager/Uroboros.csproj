@@ -102,6 +102,7 @@
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
+    <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
