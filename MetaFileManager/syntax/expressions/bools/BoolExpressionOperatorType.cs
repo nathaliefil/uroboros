@@ -13,6 +13,8 @@ namespace Uroboros.syntax.expressions.bools
         Xor,
 
         BracketOn,
-        BracketOff
+        BracketOff,
+
+        Null
     }
 }

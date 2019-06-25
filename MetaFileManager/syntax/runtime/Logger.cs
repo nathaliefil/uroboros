@@ -32,5 +32,10 @@ namespace Uroboros.syntax.runtime
             else
                 outputBox.AppendText(Environment.NewLine + text);
         }
+
+        public void ClearLog()
+        {
+            outputBox.Text = "";
+        }
     }
 }

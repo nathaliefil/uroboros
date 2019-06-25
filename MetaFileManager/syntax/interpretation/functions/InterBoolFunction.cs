@@ -29,7 +29,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildStr(name, args);
             if (name.Equals("empty"))
                 return BuildLis(name, args);
-            if (name.Equals("contain") || name.Equals("contain2"))
+            if (name.Equals("contain") || name.Equals("contains"))
                 return BuildLisStr(name, args);
 
             return new NullVariable();
@@ -48,9 +48,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
             else
             {
-                if (name.Equals("exist"))
-                    return new FuncExist(istr);
-                if (name.Equals("exists"))
+                if (name.Equals("exist") || name.Equals("exists"))
                     return new FuncExist(istr);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
@@ -85,9 +83,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (inu2 is NullVariable)
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
 
-            if (name.Equals("contain"))
-                return new FuncContain(inu1, inu2);
-            if (name.Equals("contains"))
+            if (name.Equals("contain") || name.Equals("contains"))
                 return new FuncContain(inu1, inu2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }

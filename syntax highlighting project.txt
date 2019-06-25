@@ -22,7 +22,7 @@
 
 
 Cardinal Keywords:
-add, ask, copy, create, cut, delete, directory, drop, file, move, open, order, paste, print, remove, rename, reverse, run, select, sleep
+add, ask, clear log, copy, create, cut, delete, directory, drop, file, move, open, order, paste, print, remove, rename, reverse, run, select, sleep
 
 Usual Keywords:
 and, asc, by, desc, each, else, empty list, first, for, force, from, if, in, last, like, not, or, order by, skip, to, where, while, xor

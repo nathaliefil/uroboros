@@ -50,7 +50,6 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
-
             // try to build IN function
             if (tokens.Where(t => t.GetTokenType().Equals(TokenType.In)).Count() == 1)
             {
@@ -117,6 +116,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // they are in usual infix notation
             // when this is done, their order is changed to Reverse Polish Notation
             // meanwhile check, if it all can be represented as simple one negated IBoolable
+            // finally build BoolExpression
 
             List<IBoolExpressionElement> infixList = new List<IBoolExpressionElement>();
             List<Token> currentTokens = new List<Token>();
@@ -166,8 +166,8 @@ namespace Uroboros.syntax.interpretation.expressions
                         }
                         else
                         {
-                            if (!TokenGroups.IsLogicSign(previousToken.GetTokenType()))
-                                return new NullVariable();
+                            //if (!TokenGroups.IsLogicSign(previousToken.GetTokenType()))
+                               // return new NullVariable();
 
                             if (currentTokens.Count > 0)
                             {
@@ -178,6 +178,7 @@ namespace Uroboros.syntax.interpretation.expressions
                                     return new NullVariable();
                                 currentTokens.Clear();
                             }
+
                             infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOn));
                         }
                     }
@@ -219,7 +220,6 @@ namespace Uroboros.syntax.interpretation.expressions
                         }
 
                         infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
-                        
                     }
                     actionDone = true;
                 }
@@ -240,6 +240,8 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new NullVariable();
             }
 
+            //throw new SyntaxErrorException("ERROR! " + infixList.Count);
+
             // try to build negation of one boolable
             if (infixList.Count == 2 && (infixList[0] is BoolExpressionOperator) && (infixList[1] is IBoolable)
                 && (infixList[0] as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
@@ -247,12 +249,58 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new NegatedBoolable(infixList[1] as IBoolable);
             }
             
-            // more more more
-            // here we go
+            // check if value of infixlist can be computed (check order of elements)
+            if (!CheckExpressionComputability(infixList))
+                return new NullVariable();
+
+
+
+            // if everything is right, finally build BoolExpression in RPN
+            return new BoolExpression(ReversePolishNotation(infixList));
+        }
+
+        private static bool CheckExpressionComputability(List<IBoolExpressionElement> infixList)
+        {
+            return false; // temporarily stop this
+
+            IBoolExpressionElement previous = new BoolExpressionOperator(BoolExpressionOperatorType.Null);
+
+            foreach (IBoolExpressionElement beel in infixList)
+            {
+                if (beel is BoolExpressionOperator)
+                {
+                    
+                    
+                    /*if (previous is BoolExpressionOperator)
+                    {
+                        if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
+                            return false;
+                        //todo
+                    }*/
+                    //todo
+
+                }
+                if (beel is IBoolable)
+                {
+                    if (previous is IBoolable)
+                        return false;
+                }
+
+                previous = beel;
+            }
+
+
+            return true;
+        }
+
+        private static List<IBoolExpressionElement> ReversePolishNotation(List<IBoolExpressionElement> infixList)
+        {
             /// todo
 
-            return new NullVariable();
+
+            return infixList;
         }
+
 
         private static bool ContainsOneComparingToken(List<Token> tokens)
         {

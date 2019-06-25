@@ -87,6 +87,7 @@
     <Compile Include="syntax\commands\list\Order.cs" />
     <Compile Include="syntax\commands\list\Remove.cs" />
     <Compile Include="syntax\commands\list\Reverse.cs" />
+    <Compile Include="syntax\commands\other\ClearLog.cs" />
     <Compile Include="syntax\commands\other\Sleep.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
+    <Compile Include="syntax\functions\numeric\FuncGoldenRatio.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />

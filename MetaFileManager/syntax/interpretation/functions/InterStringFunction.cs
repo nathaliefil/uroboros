@@ -31,7 +31,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildSubstring(name, args);
             if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("trim"))
                 return BuildStr(name, args);
-            if (name.Equals("filled"))
+            if (name.Equals("filled") || name.Equals("fill"))
                 return BuildStrNum(name, args);
 
             return new NullVariable();
@@ -96,7 +96,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (inu2 is NullVariable)
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
 
-            if (name.Equals("filled"))
+            if (name.Equals("filled") || name.Equals("fill"))
                 return new FuncFilled(inu1, inu2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }

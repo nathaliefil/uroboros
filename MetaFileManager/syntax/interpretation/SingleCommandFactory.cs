@@ -7,6 +7,7 @@ using Uroboros.syntax.commands;
 using Uroboros.syntax.commands.abstracts;
 using Uroboros.syntax.interpretation.commands;
 using Uroboros.syntax.interpretation.list;
+using Uroboros.syntax.commands.other;
 
 namespace Uroboros.syntax.interpretation
 {
@@ -16,12 +17,20 @@ namespace Uroboros.syntax.interpretation
         {
             bool forced = false;
 
+            // remove 'force to' in the beginning
             if (tokens.First().GetTokenType().Equals(TokenType.ForceTo))
             {
                 forced = true;
                 tokens.RemoveAt(0);
                 if (tokens.Count() == 0)
                     throw new SyntaxErrorException("ERROR! One command contains only two keywords: 'force to'. Instruction part is empty.");
+            }
+
+            // try to build 'clear log'
+            if (tokens.Count == 2 && tokens.First().GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable)
+                && tokens.First().GetContent().ToLower().Equals("clear") && tokens[1].GetContent().ToLower().Equals("log"))
+            {
+                return new ClearLog();
             }
 
             switch (tokens.First().GetTokenType())

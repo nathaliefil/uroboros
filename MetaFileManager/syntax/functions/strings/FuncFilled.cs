@@ -31,15 +31,12 @@ namespace Uroboros.syntax.functions.numeric
                     value = (arg0 as INumerable).ToNumber().ToString();
             }
             else
-            {
                 value = arg0.ToString();
-            }
 
             if (value.Length >= number)
-            {
                 return value;
-            }
-            return string.Concat(Enumerable.Repeat("0", number - value.Length));
+
+            return string.Concat(Enumerable.Repeat("0", number - value.Length)) + value;
         }
     }
 }

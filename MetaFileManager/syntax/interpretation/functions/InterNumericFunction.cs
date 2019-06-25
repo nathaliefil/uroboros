@@ -31,7 +31,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNum(name, args);
             if (name.Equals("power"))
                 return BuildNumNum(name, args);
-            if (name.Equals("pi") || name.Equals("e"))
+            if (name.Equals("pi") || name.Equals("e") || name.Equals("goldenratio"))
                 return BuildEmpty(name, args);
             if (name.Equals("number") || name.Equals("length"))
                 return BuildStr(name, args);
@@ -93,6 +93,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncPi();
             if (name.Equals("e"))
                 return new FuncE();
+            if (name.Equals("goldenratio"))
+                return new FuncGoldenRatio();
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
