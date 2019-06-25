@@ -77,9 +77,9 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build expression: many elements with operators or, and, xor, not
-            /*if (tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any())
+            if (tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any())
                 return BuildExpression(tokens);
-            else*/
+            else
                 return new NullVariable();
         }
 
@@ -116,7 +116,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // turn list of tokens into list of BoolExpressionElements
             // they are in usual infix notation
             // when this is done, their order is changed to Reverse Polish Notation
-            // meanwhile check, if it all they can be represented as simple negated IBoolable
+            // meanwhile check, if it all can be represented as simple one negated IBoolable
 
             List<IBoolExpressionElement> infixList = new List<IBoolExpressionElement>();
             List<Token> currentTokens = new List<Token>();
@@ -144,9 +144,9 @@ namespace Uroboros.syntax.interpretation.expressions
                                 infixList.Add(ibo);
                             else
                                 return new NullVariable();
-                            infixList.Add(new BoolExpressionOperator(GetBEOT(tok.GetTokenType())));
                             currentTokens.Clear();
                         }
+                        infixList.Add(new BoolExpressionOperator(GetBEOT(tok.GetTokenType())));
                     }
                     actionDone = true;
                 }
@@ -169,13 +169,16 @@ namespace Uroboros.syntax.interpretation.expressions
                             if (!TokenGroups.IsLogicSign(previousToken.GetTokenType()))
                                 return new NullVariable();
 
-                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                            if (!(ibo is NullVariable))
-                                infixList.Add(ibo);
-                            else
-                                return new NullVariable();
+                            if (currentTokens.Count > 0)
+                            {
+                                IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                                if (!(ibo is NullVariable))
+                                    infixList.Add(ibo);
+                                else
+                                    return new NullVariable();
+                                currentTokens.Clear();
+                            }
                             infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOn));
-                            currentTokens.Clear();
                         }
                     }
                     level++;
@@ -192,24 +195,31 @@ namespace Uroboros.syntax.interpretation.expressions
 
                         if (level == functionLevel)
                         {
+                            if (currentTokens.Count > 0)
+                            {
+                                IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                                if (!(ibo is NullVariable))
+                                    infixList.Add(ibo);
+                                else
+                                    return new NullVariable();
+                                currentTokens.Clear();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (currentTokens.Count > 0)
+                        {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
                             if (!(ibo is NullVariable))
                                 infixList.Add(ibo);
                             else
                                 return new NullVariable();
-
                             currentTokens.Clear();
                         }
-                    }
-                    else
-                    {
-                        IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                        if (!(ibo is NullVariable))
-                            infixList.Add(ibo);
-                        else
-                            return new NullVariable();
+
                         infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
-                        currentTokens.Clear();
+                        
                     }
                     actionDone = true;
                 }
@@ -221,6 +231,16 @@ namespace Uroboros.syntax.interpretation.expressions
                 previousToken = tok;
             }
 
+            if (currentTokens.Count > 0)
+            {
+                IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                if (!(ibo is NullVariable))
+                    infixList.Add(ibo);
+                else
+                    return new NullVariable();
+            }
+
+            // try to build negation of one boolable
             if (infixList.Count == 2 && (infixList[0] is BoolExpressionOperator) && (infixList[1] is IBoolable)
                 && (infixList[0] as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
             {
