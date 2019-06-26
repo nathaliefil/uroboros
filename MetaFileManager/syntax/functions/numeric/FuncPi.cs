@@ -14,7 +14,7 @@ namespace Uroboros.syntax.functions.numeric
 
         public override decimal ToNumber()
         {
-            return (decimal)Math.PI;
+            return 3.14159265358979M;
         }
     }
 }

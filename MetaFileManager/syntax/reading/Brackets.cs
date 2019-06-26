@@ -28,6 +28,12 @@ namespace Uroboros.syntax.reading
             return true;
         }
 
+        public static bool AllAreClosed(List<Token> tokens)
+        {
+            return tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOn)) ==
+                tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOff));
+        }
+
         private static bool AreCorrect(List<Token> tokens, BracketsType type)
         {
             TokenType open = TokenType.BracketOn;

@@ -33,6 +33,7 @@ namespace Uroboros.syntax.interpretation
                 return new ClearLog();
             }
 
+            // build commands which start from specified keyword
             switch (tokens.First().GetTokenType())
             {
                 case TokenType.CreateDirectory:
@@ -110,6 +111,7 @@ namespace Uroboros.syntax.interpretation
                     // more more more
             }
 
+            // commands for variables
             if (tokens.Count >= 2 && tokens[0].GetTokenType().Equals(TokenType.Variable))
             {
                 if (tokens[1].GetTokenType().Equals(TokenType.Equals))

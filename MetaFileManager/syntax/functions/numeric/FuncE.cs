@@ -14,7 +14,7 @@ namespace Uroboros.syntax.functions.numeric
 
         public override decimal ToNumber()
         {
-            return (decimal) Math.E;
+            return 2.71828182845904M;
         }
     }
 }
