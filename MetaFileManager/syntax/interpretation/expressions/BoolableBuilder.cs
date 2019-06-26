@@ -140,8 +140,6 @@ namespace Uroboros.syntax.interpretation.expressions
             List<IBoolExpressionElement> infixList = new List<IBoolExpressionElement>();
             List<Token> currentTokens = new List<Token>();
             bool readingFunction = false;
-            int level = 0;
-            int functionLevel = 0;
             Token previousToken = new Token(TokenType.Null);
 
             // first, merge many to tokens into fewer number of IBoolables
@@ -152,7 +150,21 @@ namespace Uroboros.syntax.interpretation.expressions
                 if (TokenGroups.IsLogicSign(tok.GetTokenType()))
                 {
                     if (readingFunction)
-                        currentTokens.Add(tok);
+                    {
+                        if (Brackets.AllBracketsClosed(currentTokens))
+                        {
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                            currentTokens.Clear();
+                            readingFunction = false;
+                            infixList.Add(OperatorFromToken(tok));
+                        }
+                        else
+                            currentTokens.Add(tok);
+                    }
                     else
                     {
                         if (currentTokens.Count > 0)
@@ -175,7 +187,12 @@ namespace Uroboros.syntax.interpretation.expressions
                         currentTokens.Add(tok);
                     else
                     {
-                        if (currentTokens.Count == 0)
+                        if (currentTokens.Count == 1 && previousToken.GetTokenType().Equals(TokenType.Variable))
+                        {
+                            currentTokens.Add(tok);
+                            readingFunction = true;
+                        }
+                        else
                         {
                             if (currentTokens.Count > 0)
                             {
@@ -188,61 +205,40 @@ namespace Uroboros.syntax.interpretation.expressions
                             }
                             infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOn));
                         }
-                        else
-                        {
-
-                            if (previousToken.GetTokenType().Equals(TokenType.Variable)
-                                && currentTokens.Count == 1
-                                && currentTokens[currentTokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff)
-                                && !Brackets.ContainsIndependentBracketsPairs(currentTokens, BracketsType.Normal))
-                            {
-                                currentTokens.Add(tok);
-                                functionLevel = level;
-                                readingFunction = true;
-                                level++;
-                            }
-                        }
+                        
                     }
-                    level++;
                     actionDone = true;
                 }
 
                 if (tok.GetTokenType().Equals(TokenType.BracketOff))
                 {
-                    level--;
-
                     if (readingFunction)
                     {
-                        currentTokens.Add(tok);
-
-                        if (level == functionLevel)
+                        if (Brackets.AllBracketsClosed(currentTokens))
                         {
-                            if (currentTokens.Count > 0)
-                            {
-                                IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                                if (!(ibo is NullVariable))
-                                    infixList.Add(ibo);
-                                else
-                                    return new NullVariable();
-                                currentTokens.Clear();
-                            }
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                            currentTokens.Clear();
+                            
+                            readingFunction = false;
+                            infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
                         }
+                        else
+                            currentTokens.Add(tok);
                     }
                     else
                     {
                         if (currentTokens.Count > 0)
                         {
-                            //currentTokens.Add(tok);
-
-                            if (Brackets.AllAreClosed(currentTokens))
-                            {
-                                IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                                if (!(ibo is NullVariable))
-                                    infixList.Add(ibo);
-                                else
-                                    return new NullVariable();
-                                currentTokens.Clear();
-                            }
+                            IBoolable ibo = BoolableBuilder.Build(currentTokens);
+                            if (!(ibo is NullVariable))
+                                infixList.Add(ibo);
+                            else
+                                return new NullVariable();
+                            currentTokens.Clear();
                         }
                         infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
                     }
@@ -263,13 +259,6 @@ namespace Uroboros.syntax.interpretation.expressions
                 else
                     return new NullVariable();
             }
-
-            //test
-            foreach (IBoolExpressionElement bee in infixList)
-            {
-                Logger.GetInstance().Log(bee.ToString());
-            }
-            // end test
 
             // try to build negation of one boolable
             if (infixList.Count == 2 && (infixList[0] is BoolExpressionOperator) && (infixList[1] is IBoolable)
@@ -338,55 +327,75 @@ namespace Uroboros.syntax.interpretation.expressions
             > NOT          correct
             > AND,OR,XOR   wrong
             > bool         correct
-            > beel = (     correct
-            > beel = )     wrong
+            > (            correct
+            > )            wrong
 
             LAST ELEMENT
             > NOT          wrong
             > AND,OR,XOR   wrong
             > bool         correct
-            > beel = (     wrong
-            > beel = )     correct
+            > (            wrong
+            > )            correct
             
             implementation below
             */
 
             foreach (IBoolExpressionElement beel in infixList.Skip(1))
             {
-                /*if (previous is BoolExpressionOperator)
+                if (previous is BoolExpressionOperator)
                 {
                     if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
                     {
-                        if (beel is BoolExpressionOperator)
+                        if (beel is BoolExpressionOperator &&
+                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
+                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
+                            || IsLogicBinaryOperator(beel as BoolExpressionOperator)))
+                                return false;
+                    }
+                    else if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn))
+                    {
+                        if (beel is BoolExpressionOperator &&
+                            IsLogicBinaryOperator(beel as BoolExpressionOperator))
+                            return false;
+                    }
+                    else if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff))
+                    {
+                        if ((beel is BoolExpressionOperator &&
+                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
+                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)))
+                            || beel is IBoolable)
                             return false;
                     }
                     else
                     {
                         if (beel is BoolExpressionOperator &&
-                            (!((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))))
+                            ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
+                            || IsLogicBinaryOperator(beel as BoolExpressionOperator)))
                             return false;
                     }
                 }
 
                 if (previous is IBoolable)
                 {
-                    if (beel is IBoolable)
-                        return false;
-
-                    if (beel is BoolExpressionOperator &&
-                            ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)))
+                    if ((beel is BoolExpressionOperator &&
+                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
+                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)))
+                            || beel is IBoolable)
                         return false;
                 }
-                previous = beel;*/
+                previous = beel;
             }
-            
 
-            /*if (infixList.First() is BoolExpressionOperator &&
-                        (!((infixList.First() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))))
+            if (infixList.First() is BoolExpressionOperator &&
+                            ((infixList.First() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
+                            || IsLogicBinaryOperator(infixList.First() as BoolExpressionOperator)))
                 return false;
 
-            if (infixList.Last() is BoolExpressionOperator)
-                return false;*/
+            if (infixList.Last() is BoolExpressionOperator &&
+                        ((infixList.Last() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
+                            || (infixList.Last() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)
+                            || IsLogicBinaryOperator(infixList.Last() as BoolExpressionOperator)))
+                return false;
 
             return true;
         }
@@ -464,6 +473,27 @@ namespace Uroboros.syntax.interpretation.expressions
                     return ComparisonType.SmallerOrEquals;
             }
             return ComparisonType.Equals; // is never returned
+        }
+
+        private static BoolExpressionOperator OperatorFromToken(Token tok)
+        {
+            switch (tok.GetTokenType())
+            {
+                case TokenType.And:
+                    return new BoolExpressionOperator(BoolExpressionOperatorType.And);
+                case TokenType.Or:
+                    return new BoolExpressionOperator(BoolExpressionOperatorType.Or);
+                case TokenType.Xor:
+                    return new BoolExpressionOperator(BoolExpressionOperatorType.Xor);
+                case TokenType.Exclamation:
+                    return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
+            }
+            return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
+        }
+
+        public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
+        {
+            return TokenGroups.BINARY_LOGIC_OPERATOR.Contains(beo.GetOperatorType()) ? true : false;
         }
     }
 }

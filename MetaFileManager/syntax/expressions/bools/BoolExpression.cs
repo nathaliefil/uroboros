@@ -17,7 +17,7 @@ namespace Uroboros.syntax.expressions.bools
 
         public bool ToBool()
         {
-            //reverse polish notation reader
+            //Reverse Polish Notation reader
 
             Stack<bool> stack = new Stack<bool>();
             foreach (IBoolExpressionElement el in elements)

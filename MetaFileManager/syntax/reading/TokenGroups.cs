@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Uroboros.syntax.expressions.bools;
 
 namespace Uroboros.syntax.reading
 {
@@ -26,6 +27,9 @@ namespace Uroboros.syntax.reading
 
         private static TokenType[] NUMERIC_OPERATION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
             TokenType.Multiply, TokenType.Divide, TokenType.Percent};
+
+        public static BoolExpressionOperatorType[] BINARY_LOGIC_OPERATOR = new BoolExpressionOperatorType[] {
+            BoolExpressionOperatorType.Or, BoolExpressionOperatorType.Xor, BoolExpressionOperatorType.And};
 
 
         public static bool IsSubcommandKeyword(TokenType type)

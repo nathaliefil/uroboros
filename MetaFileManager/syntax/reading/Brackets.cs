@@ -28,10 +28,10 @@ namespace Uroboros.syntax.reading
             return true;
         }
 
-        public static bool AllAreClosed(List<Token> tokens)
+        public static bool AllBracketsClosed(List<Token> tokens)
         {
-            return tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOn)) ==
-                tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOff));
+            return tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOn)).Count() ==
+                tokens.Where(t => t.GetTokenType().Equals(TokenType.BracketOff)).Count();
         }
 
         private static bool AreCorrect(List<Token> tokens, BracketsType type)
