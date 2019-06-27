@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.bools.comparisons
 {
-    class ListComparison : Comparison
+    class ListComparison : DefaultBoolable
     {
         private IListable leftSide;
         private IListable rightSide;

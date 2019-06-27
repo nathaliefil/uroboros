@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.bools
 {
-    class BoolExpression : DefaultToListMethod, IBoolable
+    class BoolExpression : DefaultBoolable
     {
         List<IBoolExpressionElement> elements;
 
@@ -15,7 +15,7 @@ namespace Uroboros.syntax.expressions.bools
             this.elements = elements;
         }
 
-        public bool ToBool()
+        public override bool ToBool()
         {
             //Reverse Polish Notation reader
 
@@ -54,24 +54,6 @@ namespace Uroboros.syntax.expressions.bools
                 }
             }
             return stack.Pop();
-        }
-
-        public decimal ToNumber()
-        {
-            bool value = ToBool();
-            if (value)
-                return 1;
-            else
-                return 0;
-        }
-
-        public override string ToString()
-        {
-            bool value = ToBool();
-            if (value)
-                return "1";
-            else
-                return "0";
         }
     }
 }

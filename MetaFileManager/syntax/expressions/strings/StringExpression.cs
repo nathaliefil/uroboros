@@ -6,13 +6,18 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.strings
 {
-    class StringExpression : DefaultToListMethod, IStringable
+    class StringExpression : DefaultStringable
     {
         List<IStringable> elements;
 
         public StringExpression(List<IStringable> elements)
         {
             this.elements = elements;
+        }
+
+        public void Add(IStringable element)
+        {
+            elements.Add(element);
         }
 
         public override string ToString()
@@ -23,11 +28,6 @@ namespace Uroboros.syntax.expressions.strings
                 sb.Append(element.ToString());
             }
             return sb.ToString();
-        }
-
-        public void Add(IStringable element)
-        {
-            elements.Add(element);
         }
     }
 }

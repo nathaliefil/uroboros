@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.bools
 {
-    class NegatedBoolable : DefaultToListMethod, IBoolable
+    class NegatedBoolable : DefaultBoolable
     {
         private IBoolable content;
 
@@ -15,25 +15,9 @@ namespace Uroboros.syntax.expressions.bools
             this.content = content;
         }
 
-        public bool ToBool()
+        public override bool ToBool()
         {
             return !content.ToBool();
-        }
-
-        public override string ToString()
-        {
-            if (!content.ToBool())
-                return "1";
-            else
-                return "0";
-        }
-
-        public decimal ToNumber()
-        {
-            if (!content.ToBool())
-                return 1;
-            else
-                return 0;
         }
     }
 }

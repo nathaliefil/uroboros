@@ -9,7 +9,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.expressions.list
 {
-    class ListExpression: IListable
+    class ListExpression: DefaultListable
     {
         private ListVariableRefer elements;
         private List<ISubcommand> subcommands;
@@ -27,7 +27,7 @@ namespace Uroboros.syntax.expressions.list
         }
 
 
-        public List<string> ToList()
+        public override List<string> ToList()
         {
             List<string> result = elements.ToList();
 

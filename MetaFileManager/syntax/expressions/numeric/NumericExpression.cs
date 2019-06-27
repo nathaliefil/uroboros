@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.numeric
 {
-    class NumericExpression : DefaultToListMethod, INumerable
+    class NumericExpression : DefaultNumerable
     {
         List<INumerable> elements;
 
@@ -15,16 +15,11 @@ namespace Uroboros.syntax.expressions.numeric
             this.elements = elements;
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             //here a lot of code
             /// todo
             return 0;
-        }
-
-        public override string ToString()
-        {
-            return ToNumber().ToString();
         }
     }
 }

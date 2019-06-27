@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.expressions.bools.other
 {
-    class In : DefaultToListMethod, IBoolable
+    class In : DefaultBoolable
     {
         private IStringable value;
         private IListable compared;
@@ -18,19 +18,9 @@ namespace Uroboros.syntax.expressions.bools.other
             this.compared = compared;
         }
 
-        public bool ToBool()
+        public override bool ToBool()
         {
             return compared.ToList().Any(e => e.ToString().Equals(value.ToString()));
-        }
-
-        public decimal ToNumber()
-        {
-            return ToBool() ? 1 : 0;
-        }
-
-        public override string ToString()
-        {
-            return ToBool() ? "1" : "0";
         }
     }
 }
