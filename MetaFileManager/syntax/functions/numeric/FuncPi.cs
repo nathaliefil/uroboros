@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.functions.numeric.abstracts;
-
+using Uroboros.syntax.variables.abstracts;
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncPi : INumericFunction
+    class FuncPi : DefaultNumerable
     {
         public FuncPi()
         {

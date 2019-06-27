@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location
 {
-    class Extension : NamedVariable, IStringable
+    class Extension : NamedStringable
     {
         public Extension()
         {

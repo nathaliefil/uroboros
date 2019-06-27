@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location
 {
-    class Fullname : NamedVariable, IStringable
+    class Fullname : NamedStringable
     {
         public Fullname()
         {

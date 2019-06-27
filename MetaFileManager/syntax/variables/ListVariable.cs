@@ -8,7 +8,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables
 {
-    class ListVariable : NamedVariable, IListable
+    class ListVariable : NamedListable
     {
         private List<string> values;
 

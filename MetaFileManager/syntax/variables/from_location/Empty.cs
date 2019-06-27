@@ -8,14 +8,14 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.bools
 {
-    class Empty : NamedVariable, IBoolable
+    class Empty : NamedBoolable
     {
         public Empty()
         {
             name = "empty";
         }
 
-        public bool ToBool() // needs to thing about it
+        public override bool ToBool() // needs to thing about it
         {                       /// todo
             string thiss = RuntimeVariables.GetInstance().GetValueString("this");
             string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + thiss;
@@ -63,17 +63,6 @@ namespace Uroboros.syntax.variables.bools
                     return true;
                 }
             }
-        }
-
-
-        public decimal ToNumber()
-        {
-            return ToBool()? 1 : 0;
-        }
-
-        public override string ToString()
-        {
-            return ToBool() ? "1" : "0";
         }
     }
 }

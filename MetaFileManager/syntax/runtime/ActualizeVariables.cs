@@ -22,7 +22,7 @@ namespace Uroboros.syntax.runtime
             }
             else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is StringVariable)
                     (nv as StringVariable).SetValue(value);
             }
@@ -33,10 +33,11 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
             {
                 variables.Add(new NumericVariable(name, value));
+                return;
             }
             else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).SetValue(value);
             }
@@ -50,7 +51,7 @@ namespace Uroboros.syntax.runtime
             }
             else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is BoolVariable)
                     (nv as BoolVariable).SetValue(value);
             }
@@ -67,7 +68,7 @@ namespace Uroboros.syntax.runtime
             }
             else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).SetValue(copy);
             }
@@ -77,7 +78,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).PlusPlus();
             }
@@ -87,7 +88,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).MinusMinus();
             }
@@ -97,7 +98,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).IncrementBy(value);
             }
@@ -107,7 +108,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).DecrementBy(value);
             }
@@ -117,7 +118,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).MultiplyBy(value);
             }
@@ -127,7 +128,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is NumericVariable)
                     (nv as NumericVariable).DivideBy(value);
             }

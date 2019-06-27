@@ -13,7 +13,7 @@ namespace Uroboros.syntax.runtime
     public partial class RuntimeVariables
     {
         private static RuntimeVariables INSTANCE = new RuntimeVariables();
-        private List<NamedVariable> variables;
+        private List<Named> variables;
 
         private RuntimeVariables()
         {
@@ -27,7 +27,7 @@ namespace Uroboros.syntax.runtime
 
         public void BracketsUp()
         {
-            foreach (NamedVariable var in variables)
+            foreach (Named var in variables)
             {
                 var.BracketsUp();
             }
@@ -36,15 +36,16 @@ namespace Uroboros.syntax.runtime
         public void BracketsDown()
         {
             bool modified = false;
-            List<NamedVariable> copy = new List<NamedVariable>(variables.ToArray());
+            List<Named> copy = new List<Named>(variables.ToArray());
 
-            foreach (NamedVariable var in variables)
+            foreach (Named var in variables)
             {
                 var.BracketsDown();
                 if (var.NegativeDepth())
                 {
-                    modified = true;
                     copy.Remove(var);
+                    if (modified == false)
+                        modified = true;
                 }
             }
             if (modified)
@@ -56,7 +57,7 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
                 return new List<string>();
 
-            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            Named nv = variables.First(v => name.Equals(v.GetName()));
             if (nv is IListable)
             {
                 return (nv as IListable).ToList();
@@ -69,7 +70,7 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
                 return "";
 
-            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            Named nv = variables.First(v => name.Equals(v.GetName()));
             return nv.ToString();
         }
 
@@ -78,7 +79,7 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
                 return 0;
 
-            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            Named nv = variables.First(v => name.Equals(v.GetName()));
             if (nv is INumerable)
             {
                 return (nv as INumerable).ToNumber();
@@ -91,7 +92,7 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
                 return false;
 
-            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            Named nv = variables.First(v => name.Equals(v.GetName()));
             if (nv is IBoolable)
             {
                 return (nv as IBoolable).ToBool();
@@ -104,7 +105,7 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
                 return "";
 
-            NamedVariable nv = variables.First(v => name.Equals(v.GetName()));
+            Named nv = variables.First(v => name.Equals(v.GetName()));
             if (nv is IListable)
             {
                 List<string> lst = (nv as IListable).ToList();
@@ -123,7 +124,7 @@ namespace Uroboros.syntax.runtime
 
         public void InitializeInnerVariables()
         {
-            variables = new List<NamedVariable>();
+            variables = new List<Named>();
 
             variables.Add(new Files());
             variables.Add(new Directories());

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location.date
 {
-    class Modification : NamedVariable, IStringable
+    class Modification : NamedStringable
     {
         public Modification()
         {

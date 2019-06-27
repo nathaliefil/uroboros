@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.functions.numeric.abstracts;
 using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncCount : INumericFunction
+    class FuncCount : DefaultNumerable
     {
         private IListable arg0;
 

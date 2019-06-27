@@ -8,7 +8,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables
 {
-    class Directories : NamedVariable, IListable
+    class Directories : NamedListable
     {
         public Directories()
         {

@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class StringVariable :  NamedVariable, IStringable
+    class StringVariable :  NamedStringable
     {
         private string value;
 
@@ -25,6 +25,5 @@ namespace Uroboros.syntax.variables
         {
             value = String.Copy(str);
         }
-
     }
 }

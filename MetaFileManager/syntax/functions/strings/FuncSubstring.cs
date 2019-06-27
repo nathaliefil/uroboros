@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.functions.strings.abstracts;
 using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncSubstring : IStringFunction
+    class FuncSubstring : DefaultStringable
     {
         private IStringable arg0;
         private INumerable arg1;
@@ -35,7 +34,7 @@ namespace Uroboros.syntax.functions.numeric
             int arg1v = (int)arg1.ToNumber();
 
             if (arg1v >= source.Length)
-                return "";
+                return base.ToString();
 
             if (twoArgs)
                 return source.Substring(arg1v);
@@ -44,7 +43,7 @@ namespace Uroboros.syntax.functions.numeric
                 int arg2v = (int)arg2.ToNumber();
 
                 if (arg2v < 1)
-                    return "";
+                    return base.ToString();
 
                 if (arg1v + arg2v > source.Length)
                     arg2v -= arg1v + arg2v - source.Length;

@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class NumericConstant : DefaultToListMethod, INumerable
+    class NumericConstant : DefaultNumerable
     {
         private decimal value;
 
@@ -15,12 +15,7 @@ namespace Uroboros.syntax.variables
             this.value = value;
         }
 
-        public override string ToString()
-        {
-            return ToNumber().ToString();
-        }
-
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             return value;
         }

@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.from_location.date
 {
-    class DateVariable : NamedVariable, INumerable
+    class DateVariable : NamedNumerable
     {
         private bool modification;
         private DateVariableType type;
@@ -19,7 +19,7 @@ namespace Uroboros.syntax.variables.from_location.date
             this.type = type;
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
 
@@ -33,11 +33,6 @@ namespace Uroboros.syntax.variables.from_location.date
             {
                 return 0;
             }
-        }
-
-        public override string ToString()
-        {
-            return ToNumber().ToString();
         }
     }
 }

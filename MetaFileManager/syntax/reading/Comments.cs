@@ -62,9 +62,9 @@ namespace Uroboros.syntax.reading
             }
             if (!isComment)
             {
-                cleanCode.Append(code2[code2.Length - 1]); // when code contains only comments -> OutOfArrayEception
-            } // todo solve bug
-            
+                if (code2.Length > 0)
+                    cleanCode.Append(code2[code2.Length - 1]);
+            }
 
             return cleanCode.ToString();
         }

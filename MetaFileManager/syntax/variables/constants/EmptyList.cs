@@ -6,13 +6,13 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class EmptyList : IListable
+    class EmptyList : DefaultListable
     {
         public EmptyList()
         {
         }
 
-        public List<string> ToList()
+        public override List<string> ToList()
         {
             return new List<string>();
         }

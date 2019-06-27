@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    abstract class NamedNumerable : NamedStringable, IStringable
+    abstract class NamedNumerable : NamedStringable, INumerable
     {
         public virtual decimal ToNumber()
         {

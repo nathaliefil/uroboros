@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.functions.numeric.abstracts;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables.from_location;
 
 namespace Uroboros.syntax.functions.bools
 {
-    class FuncExist : IBoolFunction
+    class FuncExist : DefaultBoolable
     {
         private IStringable arg0;
 

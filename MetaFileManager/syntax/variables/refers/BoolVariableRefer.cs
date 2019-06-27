@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.refers
 {
-    class BoolVariableRefer : DefaultToListMethod, IBoolable
+    class BoolVariableRefer : DefaultBoolable
     {
         private string name;
 
@@ -16,26 +16,9 @@ namespace Uroboros.syntax.variables.refers
             this.name = name;
         }
 
-        public bool ToBool()
+        public override bool ToBool()
         {
             return RuntimeVariables.GetInstance().GetValueBool(name);
         }
-
-        public decimal ToNumber()
-        {
-            if (ToBool())
-                return 1;
-            else
-                return 0;
-        }
-
-        public override string ToString()
-        {
-            if (ToBool())
-                return "1";
-            else
-                return "0";
-        }
-
     }
 }

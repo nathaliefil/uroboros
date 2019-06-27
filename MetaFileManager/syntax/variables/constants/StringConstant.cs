@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class StringConstant : DefaultToListMethod, IStringable
+    class StringConstant : DefaultStringable
     {
         private string value;
 

@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.refers
 {
-    class NumericVariableRefer : DefaultToListMethod, INumerable
+    class NumericVariableRefer : DefaultNumerable
     {
         private string name;
 
@@ -16,14 +16,9 @@ namespace Uroboros.syntax.variables.refers
             this.name = name;
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             return RuntimeVariables.GetInstance().GetValueNumber(name);
-        }
-
-        public override string ToString()
-        {
-            return ToNumber().ToString();
         }
     }
 }

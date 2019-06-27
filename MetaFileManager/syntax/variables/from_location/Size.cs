@@ -8,22 +8,17 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location
 {
-    class Size : NamedVariable, INumerable
+    class Size : NamedNumerable
     {
         public Size()
         {
             this.name = "size";
         }
 
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
             return FileInnerVariable.GetSize(file);
-        }
-
-        public override string ToString()
-        {
-            return ToNumber().ToString();
         }
     }
 }

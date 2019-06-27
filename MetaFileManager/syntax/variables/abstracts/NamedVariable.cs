@@ -7,7 +7,7 @@ namespace Uroboros.syntax.variables.abstracts
 {
     abstract class NamedVariable : DefaultToListMethod
 	{
-        protected string name;
+        protected string name = "";
         protected int depthInBrackets = 0;
 
         public string GetName()

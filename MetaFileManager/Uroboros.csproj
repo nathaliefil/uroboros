@@ -100,7 +100,6 @@
     <Compile Include="syntax\expressions\bools\NegatedBoolable.cs" />
     <Compile Include="syntax\expressions\bools\other\In.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />
-    <Compile Include="syntax\functions\bools\abstracts\IBoolFunction.cs" />
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
@@ -126,8 +125,6 @@
     <Compile Include="syntax\FileValidator.cs" />
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\var\StringDeclaration.cs" />
-    <Compile Include="syntax\functions\numeric\abstracts\INumericFunction.cs" />
-    <Compile Include="syntax\functions\FunctionTypes.cs" />
     <Compile Include="syntax\functions\numeric\FuncCeil.cs" />
     <Compile Include="syntax\functions\numeric\FuncCount.cs" />
     <Compile Include="syntax\functions\numeric\FuncE.cs" />
@@ -139,7 +136,6 @@
     <Compile Include="syntax\functions\numeric\FuncPi.cs" />
     <Compile Include="syntax\functions\numeric\FuncPower.cs" />
     <Compile Include="syntax\functions\numeric\FuncRound.cs" />
-    <Compile Include="syntax\functions\strings\abstracts\IStringFunction.cs" />
     <Compile Include="syntax\functions\strings\FuncBinary.cs" />
     <Compile Include="syntax\functions\strings\FuncDigits.cs" />
     <Compile Include="syntax\functions\strings\FuncFilled.cs" />

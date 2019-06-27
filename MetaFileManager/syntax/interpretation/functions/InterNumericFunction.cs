@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.functions.numeric.abstracts;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.functions.numeric;

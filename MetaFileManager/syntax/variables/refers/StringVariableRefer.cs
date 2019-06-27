@@ -7,7 +7,7 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.refers
 {
-    class StringVariableRefer : DefaultToListMethod, IStringable
+    class StringVariableRefer : DefaultStringable
     {
         private string name;
 

@@ -9,7 +9,7 @@ namespace Uroboros.syntax.reading
     {
         public static string Compress(string code)
         {
-            // remove all tabs and newlines
+            // change all tabs and newlines into usual spaces
             // only if they are outside quotation marks
 
             StringBuilder stringb = new StringBuilder();
@@ -25,6 +25,8 @@ namespace Uroboros.syntax.reading
                     if (!code[i].Equals('\n') && !code[i].Equals('\t')
                     && !code[i].Equals('\r') && !code[i].Equals("\r\n"))
                         stringb.Append(code[i]);
+                    else
+                        stringb.Append(" ");
                 }
                 else
                     stringb.Append(code[i]);

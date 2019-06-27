@@ -14,7 +14,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Reverse();
             }
@@ -24,7 +24,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Add(value);
                 if (nv is StringVariable)
@@ -43,7 +43,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Add(values);
                 if (nv is StringVariable)
@@ -62,7 +62,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Remove(value);
             }
@@ -72,7 +72,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Remove(values);
             }
@@ -82,7 +82,7 @@ namespace Uroboros.syntax.runtime
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
-                NamedVariable nv = variables.First(v => v.GetName().Equals(name));
+                Named nv = variables.First(v => v.GetName().Equals(name));
                 if (nv is ListVariable)
                     (nv as ListVariable).Order(order);
             }

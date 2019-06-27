@@ -8,27 +8,17 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location
 {
-    class Exist : NamedVariable, IBoolable
+    class Exist : NamedBoolable
     {
         public Exist()
         {
             name = "exist";
         }
 
-        public bool ToBool()
+        public override bool ToBool()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
             return FileInnerVariable.Exist(file);
-        }
-
-        public decimal ToNumber()
-        {
-            return ToBool() ? 1 : 0;
-        }
-
-        public override string ToString()
-        {
-            return ToBool() ? "1" : "0";
         }
     }
 }

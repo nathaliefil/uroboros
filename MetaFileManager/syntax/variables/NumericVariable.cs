@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class NumericVariable : NamedVariable, INumerable
+    class NumericVariable : NamedNumerable
     {
         private decimal value;
 
@@ -16,12 +16,7 @@ namespace Uroboros.syntax.variables
             this.value = value;
         }
 
-        public override string ToString()
-        {
-            return ToNumber().ToString();
-        }
-
-        public decimal ToNumber()
+        public override decimal ToNumber()
         {
             return value;
         }
@@ -62,6 +57,5 @@ namespace Uroboros.syntax.variables
                 throw new RuntimeException("RUNTIME ERROR! Division by zero occured. Variable: " + name + ".");
             value /= dec;
         }
-
     }
 }

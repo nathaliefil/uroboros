@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables
 {
-    class ListConstant : IListable
+    class ListConstant : DefaultListable
     {
         private List<string> values;
 
@@ -15,7 +15,7 @@ namespace Uroboros.syntax.variables
             this.values = values;
         }
 
-        public List<string> ToList()
+        public override List<string> ToList()
         {
             return values;
         }
