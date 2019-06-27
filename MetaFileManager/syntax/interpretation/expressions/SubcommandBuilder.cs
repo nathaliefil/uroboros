@@ -30,7 +30,7 @@ namespace Uroboros.syntax.interpretation.expressions
         public static ISubcommand BuildNumeric(List<Token> tokens, TokenType type)
         {
             INumerable inu = NumerableBuilder.Build(tokens);
-            if (inu is NullVariable)
+            if (inu.IsNull())
                 throw new SyntaxErrorException("ERROR! In list declaration there is something wrong with expression: " + GetName(type) + ".");
             else
                 return new NumericSubcommand(inu, GetNumericType(type));
@@ -39,7 +39,7 @@ namespace Uroboros.syntax.interpretation.expressions
         public static ISubcommand BuildWhere(List<Token> tokens)
         {
             IBoolable iboo = BoolableBuilder.Build(tokens);
-            if (iboo is NullVariable)
+            if (iboo.IsNull())
                 throw new SyntaxErrorException("ERROR! In list declaration there is something wrong with expression: where.");
             else
                 return new Where(iboo);

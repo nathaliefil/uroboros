@@ -19,7 +19,7 @@ namespace Uroboros.syntax.interpretation.commands
             if (tokens.Count == 0)
                 return new Print(new StringVariableRefer("this"));
             IListable ilist = ListableBuilder.Build(tokens);
-            if (ilist is NullVariable)
+            if (ilist.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with print command.");
             else
                 return new Print(ilist);

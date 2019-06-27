@@ -22,7 +22,7 @@ namespace Uroboros.syntax.interpretation.commands
                 return BuildSimple(type);
 
             IListable ilist = ListableBuilder.Build(tokens);
-            if (ilist is NullVariable)
+            if (ilist.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with elements declaration in " + GetName(type) + " command.");
             else
                 return BuildComplex(type, ilist);

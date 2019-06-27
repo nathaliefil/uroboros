@@ -42,7 +42,7 @@ namespace Uroboros.syntax.interpretation.commands
 
             IStringable expression2 = StringableBuilder.Build(part2);
 
-            if(expression2 is NullVariable)
+            if(expression2.IsNull())
                 throw new SyntaxErrorException("ERROR! Second part of command " + GetName(type) + " cannot be read as text.");
 
             if (part1.Count == 0)
@@ -50,7 +50,7 @@ namespace Uroboros.syntax.interpretation.commands
             else
             {
                 IListable expression1 = ListableBuilder.Build(part1);
-                if (expression1 is NullVariable)
+                if (expression1.IsNull())
                     throw new SyntaxErrorException("ERROR! First part of command " + GetName(type) + " cannot be read as list.");
                 return BuildComplex(type, expression1, expression2, forced);
             }

@@ -24,7 +24,7 @@ namespace Uroboros.syntax.interpretation.commands
                 !InterVariables.GetInstance().Contains(name, InterVarType.Bool))
             {
                 INumerable value = NumerableBuilder.Build(tokens);
-                if (value is NullVariable)
+                if (value.IsNull())
                     throw new SyntaxErrorException("ERROR! Changing value of variable " + name + " cannot be performed, because expression value is not a number.");
 
                 switch (type)

@@ -20,7 +20,7 @@ namespace Uroboros.syntax.interpretation.commands
             if (tokens.Count == 0)
                 return new Sleep(new NumericConstant(1));
             INumerable inum = NumerableBuilder.Build(tokens);
-            if (inum is NullVariable)
+            if (inum.IsNull())
                 throw new SyntaxErrorException("ERROR! Sleeping time cannot be read as number.");
             else
                 return new Sleep(inum);

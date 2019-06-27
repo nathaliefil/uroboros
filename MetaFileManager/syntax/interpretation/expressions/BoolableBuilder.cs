@@ -25,11 +25,11 @@ namespace Uroboros.syntax.interpretation.expressions
             // check if contains not allowed tokens
             Token wwtok = TokenGroups.WrongTokenInExpression(tokens);
             if (!wwtok.GetTokenType().Equals(TokenType.Null))
-                return new NullVariable();
+                return null;
 
             // check brackets
             if (!Brackets.CheckCorrectness(tokens))
-                return new NullVariable();
+                return null;
 
             // try to build simple one-element Boolable
             if (tokens.Count == 1)
@@ -40,7 +40,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.Bool))
                         return new BoolVariableRefer(str);
                     else
-                        return new NullVariable();
+                        return null;
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.BoolConstant))
                 {
@@ -55,7 +55,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Where(t => t.GetTokenType().Equals(TokenType.In)).Count() == 1)
             {
                 IBoolable iboo = InBuilder.Build(tokens);
-                if (!(iboo is NullVariable))
+                if (!iboo.IsNull())
                     return iboo;
             }
 
@@ -63,7 +63,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (ContainsOneComparingToken(tokens) && !ContainsLogicTokens(tokens))
             {
                 IBoolable iboo = BuildComparison(tokens);
-                if (!(iboo is NullVariable))
+                if (!iboo.IsNull())
                     return iboo;
             }
 
@@ -72,7 +72,7 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
                 IBoolable iboo = InterBoolFunction.Build(tokens);
-                if (!(iboo is NullVariable))
+                if (!iboo.IsNull())
                     return iboo;
             }
 
@@ -80,7 +80,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (ContainsLogicTokens(tokens))
                 return BuildExpression(tokens);
             else
-                return new NullVariable();
+                return null;
         }
 
 
@@ -106,7 +106,7 @@ namespace Uroboros.syntax.interpretation.expressions
             int index = tokens.TakeWhile(x => !TokenGroups.IsComparingSign(x.GetTokenType())).Count();
 
             if (index == 0 || index == tokens.Count - 1)
-                return new NullVariable();
+                return null;
 
             ComparisonType type = GetComparingToken(tokens);
             List<Token> leftTokens = tokens.GetRange(0, index);
@@ -114,8 +114,8 @@ namespace Uroboros.syntax.interpretation.expressions
             IListable leftL = ListableBuilder.Build(leftTokens);
             IListable rightL = ListableBuilder.Build(rightTokens);
 
-            if (leftL is NullVariable || rightL is NullVariable)
-                return new NullVariable();
+            if (leftL.IsNull()|| rightL.IsNull())
+                return null;
 
             if (leftL is INumerable && rightL is INumerable)
                 return new NumericComparison(leftL as INumerable, rightL as INumerable, type);
@@ -126,7 +126,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (leftL is IListable && rightL is IListable)
                 return new ListComparison(leftL as IListable, rightL as IListable, type);
 
-            return new NullVariable();
+            return null;
         }
 
         private static IBoolable BuildExpression(List<Token> tokens)
@@ -154,10 +154,10 @@ namespace Uroboros.syntax.interpretation.expressions
                         if (Brackets.AllBracketsClosed(currentTokens))
                         {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                            if (!(ibo is NullVariable))
+                            if (!ibo.IsNull())
                                 infixList.Add(ibo);
                             else
-                                return new NullVariable();
+                                return null;
                             currentTokens.Clear();
                             readingFunction = false;
                             infixList.Add(OperatorFromToken(tok));
@@ -170,10 +170,10 @@ namespace Uroboros.syntax.interpretation.expressions
                         if (currentTokens.Count > 0)
                         {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                            if (!(ibo is NullVariable))
+                            if (!ibo.IsNull())
                                 infixList.Add(ibo);
                             else
-                                return new NullVariable();
+                                return null;
                             currentTokens.Clear();
                         }
                         infixList.Add(new BoolExpressionOperator(GetBEOT(tok.GetTokenType())));
@@ -197,10 +197,10 @@ namespace Uroboros.syntax.interpretation.expressions
                             if (currentTokens.Count > 0)
                             {
                                 IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                                if (!(ibo is NullVariable))
+                                if (!ibo.IsNull())
                                     infixList.Add(ibo);
                                 else
-                                    return new NullVariable();
+                                    return null;
                                 currentTokens.Clear();
                             }
                             infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOn));
@@ -217,10 +217,10 @@ namespace Uroboros.syntax.interpretation.expressions
                         if (Brackets.AllBracketsClosed(currentTokens))
                         {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                            if (!(ibo is NullVariable))
+                            if (!ibo.IsNull())
                                 infixList.Add(ibo);
                             else
-                                return new NullVariable();
+                                return null;
                             currentTokens.Clear();
                             
                             readingFunction = false;
@@ -234,10 +234,10 @@ namespace Uroboros.syntax.interpretation.expressions
                         if (currentTokens.Count > 0)
                         {
                             IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                            if (!(ibo is NullVariable))
+                            if (!ibo.IsNull())
                                 infixList.Add(ibo);
                             else
-                                return new NullVariable();
+                                return null;
                             currentTokens.Clear();
                         }
                         infixList.Add(new BoolExpressionOperator(BoolExpressionOperatorType.BracketOff));
@@ -254,10 +254,10 @@ namespace Uroboros.syntax.interpretation.expressions
             if (currentTokens.Count > 0)
             {
                 IBoolable ibo = BoolableBuilder.Build(currentTokens);
-                if (!(ibo is NullVariable))
+                if (!ibo.IsNull())
                     infixList.Add(ibo);
                 else
-                    return new NullVariable();
+                    return null;
             }
 
             // try to build negation of one boolable
@@ -269,7 +269,7 @@ namespace Uroboros.syntax.interpretation.expressions
             
             // check if value of infixlist can be computed (check order of elements)
             if (!CheckExpressionComputability(infixList))
-                return new NullVariable();
+                return null;
 
             // if everything is right, finally build BoolExpression in RPN
             return new BoolExpression(ReversePolishNotation(infixList));

@@ -94,7 +94,7 @@ namespace Uroboros.syntax.interpretation.tokenlists
                 throw new SyntaxErrorException("ERROR! IF statement is empty.");
 
             IBoolable iboo = BoolableBuilder.Build(precedings);
-            if (iboo is NullVariable)
+            if (iboo.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with condition in IF statement.");
             return new IfBlock(insides, iboo);
         }
@@ -106,7 +106,7 @@ namespace Uroboros.syntax.interpretation.tokenlists
                 throw new SyntaxErrorException("ERROR! WHILE statement is empty.");
 
             IBoolable iboo = BoolableBuilder.Build(precedings);
-            if (iboo is NullVariable)
+            if (iboo.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with condition in WHILE statement.");
             return new WhileBlock(insides, iboo);
         }
@@ -114,10 +114,10 @@ namespace Uroboros.syntax.interpretation.tokenlists
         protected ICommand BuildRepeatingBlock(List<Token> precedings, List<ICommand> insides)
         {
             INumerable inum = NumerableBuilder.Build(precedings);
-            if (inum is NullVariable)
+            if (inum.IsNull())
             {
                 IListable ilist = ListableBuilder.Build(precedings);
-                if (ilist is NullVariable)
+                if (ilist.IsNull())
                     throw new SyntaxErrorException("ERROR! There are is something wrong with code preceding block of instructions.");
                 return new ListBlock(insides, ilist);
             }

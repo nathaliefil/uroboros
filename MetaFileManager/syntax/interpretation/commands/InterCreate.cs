@@ -40,7 +40,7 @@ namespace Uroboros.syntax.interpretation.commands
             IStringable istring = StringableBuilder.Build(tokens);
 
 
-            if (istring is NullVariable)
+            if (istring.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file") 
                     + " creation command syntax.");
             if (directory)
@@ -77,10 +77,10 @@ namespace Uroboros.syntax.interpretation.commands
             else
                 istring1 = StringableBuilder.Build(part1);
 
-            if (istring1 is NullVariable)
+            if (istring1.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with new " + (directory ? "directory" : "file") +
                     " name in " + (directory ? "directory" : "file") + " creation command syntax.");
-            if (istring2 is NullVariable)
+            if (istring2.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with source " + (directory ? "directory" : "file") +
                     " name in " + (directory ? "directory" : "file") + " creation command syntax.");
 

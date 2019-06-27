@@ -19,7 +19,7 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             // try to build Strinable
             IStringable ist = StringableBuilder.Build(tokens);
-            if (!(ist is NullVariable))
+            if (!ist.IsNull())
                 return ist;
 
             // try to build 'empty list'
@@ -29,7 +29,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
             // try to build listed strings: many Stringables divided by commas
             IListable listed = ListedStringablesBuilder.Build(tokens);
-            if (!(listed is NullVariable))
+            if (!listed.IsNull())
                 return listed;
 
             // take first token and check if is a name of existing list

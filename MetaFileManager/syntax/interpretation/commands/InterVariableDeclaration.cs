@@ -25,7 +25,7 @@ namespace Uroboros.syntax.interpretation.commands
             if (!InterVariables.GetInstance().Contains(name))
             {
                 IListable value = ListableBuilder.Build(tokens);
-                if (value is NullVariable)
+                if (value.IsNull())
                     throw new SyntaxErrorException("ERROR! There are is something wrong with assigning value to variable " + name + ".");
 
                 if (value is IBoolable)
@@ -62,7 +62,7 @@ namespace Uroboros.syntax.interpretation.commands
                 if (ivar.IsBool())
                 {
                     IBoolable value = BoolableBuilder.Build(tokens);
-                    if (value is NullVariable)
+                    if (value.IsNull())
                         throw new SyntaxErrorException("ERROR! Logical value cannot be assigned to variable " + name + ".");
                     return new BoolDeclaration(name, value);
                 }
@@ -71,7 +71,7 @@ namespace Uroboros.syntax.interpretation.commands
                     if (ivar.IsNumber())
                     {
                         INumerable value = NumerableBuilder.Build(tokens);
-                        if (value is NullVariable)
+                        if (value.IsNull())
                             throw new SyntaxErrorException("ERROR! Numeric value cannot be assigned to variable " + name + ".");
                         return new NumericDeclaration(name, value);
                     }
@@ -80,14 +80,14 @@ namespace Uroboros.syntax.interpretation.commands
                         if (ivar.IsString())
                         {
                             IStringable value = StringableBuilder.Build(tokens);
-                            if (value is NullVariable)
+                            if (value.IsNull())
                                 throw new SyntaxErrorException("ERROR! String value cannot be assigned to variable " + name + ".");
                             return new StringDeclaration(name, value);
                         }
                         else
                         {
                             IListable value = ListableBuilder.Build(tokens);
-                            if (value is NullVariable)
+                            if (value.IsNull())
                                 throw new SyntaxErrorException("ERROR! List value cannot be assigned to variable " + name + ".");
                             return new ListDeclaration(name, value);
                         }

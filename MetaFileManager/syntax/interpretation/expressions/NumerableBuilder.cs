@@ -17,7 +17,7 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             // try to build Boolable
             IBoolable ibo = BoolableBuilder.Build(tokens);
-            if (!(ibo is NullVariable))
+            if (!ibo.IsNull())
                 return ibo;
 
             // try to build simple one-token Numerable
@@ -29,7 +29,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.Number))
                         return new NumericVariableRefer(str);
                     else
-                        return new NullVariable();
+                        return null;
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.NumericConstant))
                     return new NumericConstant(tokens[0].GetNumericContent());
@@ -40,13 +40,13 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
                 INumerable inu = InterNumericFunction.Build(tokens);
-                if (!(inu is NullVariable))
+                if (!inu.IsNull())
                     return inu;
             }
 
             //code
 
-            return new NullVariable();
+            return null;
         }
     }
 }

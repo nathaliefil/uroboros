@@ -14,18 +14,18 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             int index = tokens.TakeWhile(x => !x.GetTokenType().Equals(TokenType.In)).Count();
             if (index == 0 || index == tokens.Count - 1)
-                return new NullVariable();
+                return null;
 
             List<Token> leftTokens = tokens.GetRange(0, index);
             List<Token> rightTokens = tokens.GetRange(index + 1, tokens.Count - index - 1);
 
             IStringable istr = StringableBuilder.Build(leftTokens);
-            if (istr is NullVariable)
-                return new NullVariable();
+            if (istr.IsNull())
+                return null;
 
             IListable ilis = ListedStringablesBuilder.Build(rightTokens);
-            if (ilis is NullVariable)
-                return new NullVariable();
+            if (ilis.IsNull())
+                return null;
 
             return new In(istr, ilis);
         }

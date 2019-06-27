@@ -18,7 +18,7 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             // try to build Numerable
             INumerable inu = NumerableBuilder.Build(tokens);
-            if (!(inu is NullVariable))
+            if (!inu.IsNull())
                 return inu;
 
             // try to build simple one-token Stringable
@@ -30,7 +30,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.String))
                         return new StringVariableRefer(str);
                     else
-                        return new NullVariable();
+                        return null;
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.StringConstant))
                     return new StringConstant(tokens[0].GetContent());
@@ -41,7 +41,7 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
                 IStringable istr = InterStringFunction.Build(tokens);
-                if (!(istr is NullVariable))
+                if (!istr.IsNull())
                     return istr;
             }
 
@@ -50,7 +50,7 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
             {
                 IStringable istr = InterListElement.Build(tokens);
-                if (!(istr is NullVariable))
+                if (!istr.IsNull())
                     return istr;
             }
 
@@ -58,7 +58,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if(tokens.Any(t => t.GetTokenType().Equals(TokenType.Plus)))
                 return BuildConcatenated(tokens);
             else
-                return new NullVariable();
+                return null;
         }
 
         public static IStringable BuildConcatenated(List<Token> tokens)
@@ -79,8 +79,8 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (currentTokens.Count > 0)
                     {
                         IStringable ist = StringableBuilder.Build(currentTokens);
-                        if (ist is NullVariable)
-                            return new NullVariable();
+                        if (ist.IsNull())
+                            return null;
                         else
                             elements.Add(ist);
                         currentTokens.Clear();
@@ -93,15 +93,15 @@ namespace Uroboros.syntax.interpretation.expressions
             if (currentTokens.Count > 0)
             {
                 IStringable ist = StringableBuilder.Build(currentTokens);
-                if (ist is NullVariable)
-                    return new NullVariable();
+                if (ist.IsNull())
+                    return null;
                 else
                     elements.Add(ist);
             }
 
             if (elements.Count > 0)
                 return new StringExpression(elements);
-            return new NullVariable();
+            return null;
         }
     }
 }

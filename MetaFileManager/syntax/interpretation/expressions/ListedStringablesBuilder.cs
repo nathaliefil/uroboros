@@ -38,8 +38,8 @@ namespace Uroboros.syntax.interpretation.expressions
                     {
                         IStringable ist = StringableBuilder.Build(currentTokens);
                         currentTokens.Clear();
-                        if (ist is NullVariable)
-                            return new NullVariable();
+                        if (ist.IsNull())
+                            return null;
                         else
                             elements.Add(ist);
                     }
@@ -51,14 +51,14 @@ namespace Uroboros.syntax.interpretation.expressions
             if (currentTokens.Count > 0)
             {
                 IStringable ist = StringableBuilder.Build(currentTokens);
-                if (ist is NullVariable)
-                    return new NullVariable();
+                if (ist.IsNull())
+                    return null;
                 else
                     elements.Add(ist);
             }
 
             if (elements.Count == 0)
-                return new NullVariable();
+                return null;
 
             if (elements.All(e => e is StringConstant))
                 return new ListConstant(elements.Select(e => e.ToString()).ToList());

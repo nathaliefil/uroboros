@@ -14,7 +14,7 @@ namespace Uroboros.syntax.interpretation.functions
         public static IBoolable Build(List<Token> tokens)
         {
             if (Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
-                return new NullVariable();
+                return null;
 
             List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
 
@@ -32,7 +32,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("contain") || name.Equals("contains"))
                 return BuildLisStr(name, args);
 
-            return new NullVariable();
+            return null;
         }
 
         // functions are grouped by their arguments
@@ -44,7 +44,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 text argument.");
 
             IStringable istr = StringableBuilder.Build(args[0].tokens);
-            if (istr is NullVariable)
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
             else
             {
@@ -60,7 +60,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 list argument.");
 
             IListable ilis = ListableBuilder.Build(args[0].tokens);
-            if (ilis is NullVariable)
+            if (ilis.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
             else
             {
@@ -78,9 +78,9 @@ namespace Uroboros.syntax.interpretation.functions
             IListable inu1 = ListableBuilder.Build(args[0].tokens);
             IStringable inu2 = StringableBuilder.Build(args[1].tokens);
 
-            if (inu1 is NullVariable)
+            if (inu1.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as list.");
-            if (inu2 is NullVariable)
+            if (inu2.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
 
             if (name.Equals("contain") || name.Equals("contains"))

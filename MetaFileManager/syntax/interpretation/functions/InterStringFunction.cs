@@ -14,7 +14,7 @@ namespace Uroboros.syntax.interpretation.functions
         public static IStringable Build(List<Token> tokens)
         {
             if (Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
-                return new NullVariable();
+                return null;
 
             List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
 
@@ -34,7 +34,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("filled") || name.Equals("fill"))
                 return BuildStrNum(name, args);
 
-            return new NullVariable();
+            return null;
         }
 
         // functions are grouped by their arguments
@@ -47,7 +47,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 numeric argument.");
 
             INumerable inu = NumerableBuilder.Build(args[0].tokens);
-            if (inu is NullVariable)
+            if (inu.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as number.");
             else
             {
@@ -67,7 +67,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 text argument.");
 
             IStringable istr = StringableBuilder.Build(args[0].tokens);
-            if (istr is NullVariable)
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
             else
             {
@@ -91,9 +91,9 @@ namespace Uroboros.syntax.interpretation.functions
             IStringable inu1 = StringableBuilder.Build(args[0].tokens);
             INumerable inu2 = NumerableBuilder.Build(args[1].tokens);
 
-            if (inu1 is NullVariable)
+            if (inu1.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
-            if (inu2 is NullVariable)
+            if (inu2.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
 
             if (name.Equals("filled") || name.Equals("fill"))
@@ -118,9 +118,9 @@ namespace Uroboros.syntax.interpretation.functions
             IStringable istr = StringableBuilder.Build(args[0].tokens);
             INumerable inu = NumerableBuilder.Build(args[1].tokens);
 
-            if (istr is NullVariable)
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function substring cannot be read as text.");
-            if (inu is NullVariable)
+            if (inu.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function substring cannot be read as number.");
 
             return new FuncSubstring(istr, inu);
@@ -132,11 +132,11 @@ namespace Uroboros.syntax.interpretation.functions
             INumerable inu1 = NumerableBuilder.Build(args[1].tokens);
             INumerable inu2 = NumerableBuilder.Build(args[2].tokens);
 
-            if (istr is NullVariable)
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function substring cannot be read as text.");
-            if (inu1 is NullVariable)
+            if (inu1.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function substring cannot be read as number.");
-            if (inu2 is NullVariable)
+            if (inu2.IsNull())
                 throw new SyntaxErrorException("ERROR! Third argument of function substring cannot be read as number.");
 
             return new FuncSubstring(istr, inu1, inu2);
