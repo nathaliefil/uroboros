@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    interface INumerable : IStringable
+    interface INumerable
     {
         decimal ToNumber();
     }

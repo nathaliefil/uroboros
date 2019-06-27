@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    interface IStringable : IListable
+    interface IStringable
     {
         string ToString();
     }

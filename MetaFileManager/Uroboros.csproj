@@ -193,7 +193,6 @@
     <Compile Include="syntax\variables\abstracts\DefaultBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultNumerable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultStringable.cs" />
-    <Compile Include="syntax\variables\abstracts\DefaultToListMethod.cs" />
     <Compile Include="syntax\variables\abstracts\IBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\IListable.cs" />
     <Compile Include="syntax\variables\abstracts\INumerable.cs" />
@@ -204,7 +203,6 @@
     <Compile Include="syntax\variables\abstracts\NamedListable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedNumerable.cs" />
     <Compile Include="syntax\variables\abstracts\NamedStringable.cs" />
-    <Compile Include="syntax\variables\abstracts\NamedVariable.cs" />
     <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\OrderByStruct.cs" />

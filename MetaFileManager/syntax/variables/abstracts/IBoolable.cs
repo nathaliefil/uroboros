@@ -6,7 +6,7 @@ using Uroboros.syntax.expressions.bools;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    interface IBoolable : INumerable, IBoolExpressionElement
+    interface IBoolable : IBoolExpressionElement
     {
         bool ToBool();
     }

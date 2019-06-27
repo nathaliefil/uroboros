@@ -20,7 +20,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build Strinable
             IStringable ist = StringableBuilder.Build(tokens);
             if (!ist.IsNull())
-                return ist;
+                return (ist as IListable);
 
             // try to build 'empty list'
             if (tokens.Count == 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable)

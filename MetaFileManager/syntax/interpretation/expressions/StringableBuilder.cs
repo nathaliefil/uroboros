@@ -19,7 +19,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build Numerable
             INumerable inu = NumerableBuilder.Build(tokens);
             if (!inu.IsNull())
-                return inu;
+                return (inu as IStringable);
 
             // try to build simple one-token Stringable
             if (tokens.Count == 1)

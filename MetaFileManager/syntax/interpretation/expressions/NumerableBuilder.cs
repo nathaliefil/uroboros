@@ -18,7 +18,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build Boolable
             IBoolable ibo = BoolableBuilder.Build(tokens);
             if (!ibo.IsNull())
-                return ibo;
+                return (ibo as INumerable);
 
             // try to build simple one-token Numerable
             if (tokens.Count == 1)
