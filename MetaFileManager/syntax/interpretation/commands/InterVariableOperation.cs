@@ -37,6 +37,8 @@ namespace Uroboros.syntax.interpretation.commands
                         return new MultiplyBy(name, value);
                     case TokenType.DivideEquals:
                         return new DivideBy(name, value);
+                    case TokenType.PercentEquals:
+                        return new ModuloBy(name, value);
                 }
             }
             throw new SyntaxErrorException("ERROR! Value of variable " + name + " cannot be changed.");

@@ -81,6 +81,7 @@ namespace Uroboros.syntax.reading
         MinusEquals,
         MultiplyEquals,
         DivideEquals,
+        PercentEquals,
 
         CreateFile,
         CreateDirectory,

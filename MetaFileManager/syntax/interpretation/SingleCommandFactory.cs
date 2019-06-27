@@ -126,7 +126,8 @@ namespace Uroboros.syntax.interpretation
                 if (tokens[1].GetTokenType().Equals(TokenType.PlusEquals)
                     || tokens[1].GetTokenType().Equals(TokenType.MinusEquals)
                     || tokens[1].GetTokenType().Equals(TokenType.MultiplyEquals)
-                    || tokens[1].GetTokenType().Equals(TokenType.DivideEquals))
+                    || tokens[1].GetTokenType().Equals(TokenType.DivideEquals)
+                    || tokens[1].GetTokenType().Equals(TokenType.PercentEquals))
                 {
                     return InterVariableOperation.Build(tokens);
                 }

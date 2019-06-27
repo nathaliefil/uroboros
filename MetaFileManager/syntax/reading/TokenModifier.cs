@@ -166,7 +166,11 @@ namespace Uroboros.syntax.reading
                         newTokens.Add(new Token(TokenType.DivideEquals));
                         tokensMerged = true;
                     }
-
+                    if (tokens[i].GetTokenType() == TokenType.Percent && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    {
+                        newTokens.Add(new Token(TokenType.PercentEquals));
+                        tokensMerged = true;
+                    }
 
 
                     if (tokensMerged)

@@ -74,6 +74,7 @@
     <Compile Include="syntax\commands\arithmetic\DivideBy.cs" />
     <Compile Include="syntax\commands\arithmetic\IncrementBy.cs" />
     <Compile Include="syntax\commands\arithmetic\MinusMinus.cs" />
+    <Compile Include="syntax\commands\arithmetic\ModuloBy.cs" />
     <Compile Include="syntax\commands\arithmetic\MultiplyBy.cs" />
     <Compile Include="syntax\commands\arithmetic\PlusPlus.cs" />
     <Compile Include="syntax\commands\blocks\Block.cs" />

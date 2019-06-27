@@ -57,5 +57,12 @@ namespace Uroboros.syntax.variables
                 throw new RuntimeException("RUNTIME ERROR! Division by zero occured. Variable: " + name + ".");
             value /= dec;
         }
+
+        public void ModuloBy(decimal dec)
+        {
+            if (dec == 0)
+                throw new RuntimeException("RUNTIME ERROR! Modulo by zero occured. Variable: " + name + ".");
+            value %= dec;
+        }
     }
 }

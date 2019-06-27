@@ -134,5 +134,14 @@ namespace Uroboros.syntax.runtime
             }
         }
 
+        public void ModuloBy(string name, decimal value)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                Named nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is NumericVariable)
+                    (nv as NumericVariable).ModuloBy(value);
+            }
+        }
     }
 }
