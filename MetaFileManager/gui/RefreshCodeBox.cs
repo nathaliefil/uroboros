@@ -22,11 +22,11 @@ namespace Uroboros.gui
             //foreach (string innerVariable in HighlightKeywords.INNER_VARIABLES)
             //    this.CheckKeyword(innerVariable, Color.DarkViolet, 0, false);
 
-            PrintQuotations(Color.Maroon);
+            ColorizeQuotations(Color.Maroon);
 
         }
 
-        private void PrintQuotations(Color color)
+        private void ColorizeQuotations(Color color)
         {
             int position = 0;
             bool quoted = false;

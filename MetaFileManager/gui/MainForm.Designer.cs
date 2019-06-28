@@ -38,9 +38,9 @@
             // runButton
             // 
             this.runButton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.runButton.Location = new System.Drawing.Point(12, 12);
+            this.runButton.Location = new System.Drawing.Point(12, 11);
             this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(66, 32);
+            this.runButton.Size = new System.Drawing.Size(66, 33);
             this.runButton.TabIndex = 0;
             this.runButton.Text = "Run";
             this.runButton.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             this.directoryButton.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.directoryButton.Location = new System.Drawing.Point(1068, 11);
             this.directoryButton.Name = "directoryButton";
-            this.directoryButton.Size = new System.Drawing.Size(35, 32);
+            this.directoryButton.Size = new System.Drawing.Size(35, 33);
             this.directoryButton.TabIndex = 2;
             this.directoryButton.Text = "...";
             this.directoryButton.UseVisualStyleBackColor = true;
@@ -69,11 +69,11 @@
             // logBox
             // 
             this.logBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.logBox.Location = new System.Drawing.Point(604, 50);
+            this.logBox.Location = new System.Drawing.Point(745, 50);
             this.logBox.Multiline = true;
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
-            this.logBox.Size = new System.Drawing.Size(499, 529);
+            this.logBox.Size = new System.Drawing.Size(358, 522);
             this.logBox.TabIndex = 4;
             // 
             // codeBox
@@ -83,7 +83,7 @@
             this.codeBox.Margin = new System.Windows.Forms.Padding(0);
             this.codeBox.Name = "codeBox";
             this.codeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.codeBox.Size = new System.Drawing.Size(586, 529);
+            this.codeBox.Size = new System.Drawing.Size(730, 522);
             this.codeBox.TabIndex = 5;
             this.codeBox.Text = "";
             this.codeBox.TextChanged += new System.EventHandler(this.codeBox_TextChanged);
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 589);
+            this.ClientSize = new System.Drawing.Size(1114, 580);
             this.Controls.Add(this.codeBox);
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.directoryButton);
@@ -100,6 +100,7 @@
             this.Controls.Add(this.runButton);
             this.Name = "MainForm";
             this.Text = "Meta File Manager";
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
