@@ -127,9 +127,11 @@ namespace Uroboros.gui
             Logger.GetInstance().Log(text);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void codeBox_TextChanged(object sender, EventArgs e)
         {
 
+
+            RefreshCodeBoxGraphics();
         }
     }
 }
