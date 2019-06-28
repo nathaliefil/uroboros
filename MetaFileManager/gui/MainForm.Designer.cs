@@ -1,4 +1,4 @@
-﻿namespace Uroboros
+﻿namespace Uroboros.gui
 {
     partial class MainForm
     {

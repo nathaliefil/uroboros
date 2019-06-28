@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Uroboros.gui;
 
-namespace Uroboros.syntax
+namespace Uroboros
 {
     static class Program
     {

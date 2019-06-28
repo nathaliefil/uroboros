@@ -16,7 +16,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
 using Uroboros.syntax.interpretation.vars_range;
 
-namespace Uroboros
+namespace Uroboros.gui
 {
     public partial class MainForm : Form
     {
