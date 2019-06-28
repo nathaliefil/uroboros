@@ -44,17 +44,18 @@ namespace Uroboros.syntax.runtime
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
             {
                 Named nv = variables.First(v => v.GetName().Equals(name));
-                if (nv is ListVariable)
-                    (nv as ListVariable).Add(values);
                 if (nv is StringVariable)
                 {
                     string val = (nv as StringVariable).ToString();
-                    Remove(name);
                     List<string> lst = new List<string>();
                     lst.Add(val);
                     lst.AddRange(values);
+
+                    Remove(name);
                     Actualize(name, lst);
                 }
+                else if (nv is ListVariable)
+                    (nv as ListVariable).Add(values);
             }
         }
 

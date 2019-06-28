@@ -107,6 +107,15 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterSleep.Build(tokens);
                 }
+                case TokenType.Add:
+                {
+                    return InterAdd.Build(tokens);
+                }
+                case TokenType.Remove:
+                {
+                    return InterRemove.Build(tokens);
+                }
+
 
                     // more more more
             }

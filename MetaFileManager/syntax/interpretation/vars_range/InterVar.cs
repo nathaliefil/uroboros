@@ -20,6 +20,11 @@ namespace Uroboros.syntax.interpretation.vars_range
             depthInBrackets = 0;
         }
 
+        public void TurnToList()
+        {
+            type = InterVarType.List;
+        }
+
         public string GetName()
         {
             return name;

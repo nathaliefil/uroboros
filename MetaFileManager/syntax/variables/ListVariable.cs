@@ -20,7 +20,7 @@ namespace Uroboros.syntax.variables
 
         public override List<string> ToList()
         {
-            return values;
+            return new List<string>(values.ToArray()); // make deep copy
         }
 
         public void Add(string value)
@@ -28,9 +28,9 @@ namespace Uroboros.syntax.variables
             values.Add(value);
         }
 
-        public void Add(List<string> values)
+        public void Add(List<string> valuess)
         {
-            values.AddRange(values);
+            values.AddRange(valuess);
         }
 
         public void Reverse()

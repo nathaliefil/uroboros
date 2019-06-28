@@ -30,6 +30,12 @@ namespace Uroboros.syntax.interpretation.vars_range
             return INSTANCE;
         }
 
+        public void TurnToList(string name)
+        {
+            InterVar iv = variables.First(v => v.GetName().Equals(name));
+            iv.TurnToList();
+        }
+
         public void Add(string name, InterVarType type)
         {
             variables.Add(new InterVar(name, type, true));

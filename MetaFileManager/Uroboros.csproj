@@ -144,11 +144,13 @@
     <Compile Include="syntax\functions\strings\FuncLower.cs" />
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
+    <Compile Include="syntax\interpretation\commands\InterAdd.cs" />
     <Compile Include="syntax\interpretation\commands\InterCore.cs" />
     <Compile Include="syntax\interpretation\commands\InterCoreTo.cs" />
     <Compile Include="syntax\interpretation\commands\InterCreate.cs" />
     <Compile Include="syntax\interpretation\commands\InterOrder.cs" />
     <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
+    <Compile Include="syntax\interpretation\commands\InterRemove.cs" />
     <Compile Include="syntax\interpretation\commands\InterSleep.cs" />
     <Compile Include="syntax\interpretation\commands\InterVariableDeclaration.cs" />
     <Compile Include="syntax\interpretation\commands\InterVariableOperation.cs" />
