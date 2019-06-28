@@ -20,6 +20,9 @@ namespace Uroboros.gui
 {
     public partial class MainForm : Form
     {
+        private const int MIN_WINDOW_WIDTH = 600;
+        private const int MIN_WINDOW_HEIGHT = 200;
+
         List<ICommand> commands;
 
         public MainForm()
@@ -27,7 +30,6 @@ namespace Uroboros.gui
             InitializeComponent();
             locationBox.Text = "";
             locationBox.TextAlign = HorizontalAlignment.Right;
-            codeBox.AcceptsTab = true;
             logBox.ScrollBars = ScrollBars.Vertical;
             Logger.GetInstance().SetOutputBox(logBox);
 
@@ -132,6 +134,27 @@ namespace Uroboros.gui
 
 
             RefreshCodeBoxGraphics();
+        }
+
+        private void MainForm_Resize(object sender, System.EventArgs e)
+        {
+            Control control = (Control)sender;
+
+            codeBox.Height = 522 - 619 + control.Height;
+            logBox.Height = 522 - 619 + control.Height;
+            codeBox.Width = 730 - 1130 + control.Width;
+            logBox.Left = 745 - 1130 + control.Width;
+            locationBox.Width = 978 - 1130 + control.Width;
+            directoryButton.Left = 1068 - 1130 + control.Width;
+
+            // a lot of magic numbers
+            /// to refactor
+
+            if (this.Width < MIN_WINDOW_WIDTH)
+                this.Width = MIN_WINDOW_WIDTH;
+
+            if (this.Height < MIN_WINDOW_HEIGHT)
+                this.Height = MIN_WINDOW_HEIGHT;
         }
     }
 }
