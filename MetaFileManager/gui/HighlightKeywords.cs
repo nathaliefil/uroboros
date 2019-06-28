@@ -17,7 +17,7 @@ namespace Uroboros.gui
 
         public static string[] INNER_VARIABLES = new string[]{"creation", "directories", 
             "empty", "exist", "extension", "everything", "false", "files", "fullname", "index", 
-            "location", "modification", "size", "this", "true", "creation.year", "creation.month", 
+            "location", "modification", "name", "size", "this", "true", "creation.year", "creation.month", 
             "creation.month", "creation.weekday", "creation.day", "creation.hour", "creation.minute", 
             "creation.second", "modification.year", "modifiction.month", "modification.weekday", 
             "modification.day", "modification.hour", "modification.minute", "modification.second"};

@@ -11,23 +11,49 @@ namespace Uroboros.gui
     {
         private void RefreshCodeBoxGraphics()
         {
-
             ClearGraphics();
 
-
-
             foreach (string usualKeyword in HighlightKeywords.USUAL)
-                this.CheckKeyword(usualKeyword, Color.Goldenrod, 0, false);
+                this.CheckKeyword(usualKeyword, Color.Blue, 0, false);
 
             foreach (string cardinalKeyword in HighlightKeywords.CARDINAL)
-                this.CheckKeyword(cardinalKeyword, Color.Blue, 0, false);
+                this.CheckKeyword(cardinalKeyword, Color.Black, 0, true);
 
-            foreach (string innerVariable in HighlightKeywords.INNER_VARIABLES)
-                this.CheckKeyword(innerVariable, Color.Indigo, 0, false);
+            //foreach (string innerVariable in HighlightKeywords.INNER_VARIABLES)
+            //    this.CheckKeyword(innerVariable, Color.DarkViolet, 0, false);
 
+            PrintQuotations(Color.Maroon);
 
-            /*this.CheckKeyword("while", Color.Purple, 0);
-            this.CheckKeyword("if", Color.Green, 0);*/
+        }
+
+        private void PrintQuotations(Color color)
+        {
+            int position = 0;
+            bool quoted = false;
+            int selectStart = codeBox.SelectionStart;
+
+            for (int i = 0; i < codeBox.Text.Length; i++)
+            {
+                if (codeBox.Text[i].Equals('"'))
+                {
+                    if (quoted)
+                    {
+                        codeBox.Select(position, i - position + 1);
+                        codeBox.SelectionColor = color;
+                    }
+                    else
+                    {
+                        position = i;
+                    }
+                    quoted = !quoted;
+                }
+            }
+            if (quoted)
+            {
+                codeBox.Select(position, codeBox.Text.Length - position);
+                codeBox.SelectionColor = color;
+            }
+            codeBox.Select(selectStart, 0);
 
         }
 
@@ -38,11 +64,9 @@ namespace Uroboros.gui
 
             codeBox.Select(0, codeBox.Text.Length);
             codeBox.SelectionColor = Color.Black;
+            codeBox.SelectionFont = new Font(codeBox.Font, FontStyle.Regular);
             codeBox.Select(selectionIndexStart, selectionLength);
         }
-
-
-
 
         private void CheckKeyword(string word, Color color, int startIndex, bool bold)
         {
@@ -62,34 +86,11 @@ namespace Uroboros.gui
 
                     codeBox.Select((index + startIndex), word.Length);
                     codeBox.SelectionColor = color;
-                    codeBox.Select(selectStart, 0);
-                    codeBox.SelectionColor = Color.Black;
+                    if (bold)
+                        codeBox.SelectionFont = new Font(codeBox.Font, FontStyle.Bold);
                 }
+                codeBox.Select(selectStart, 0);
             }
-
-
-            /*if (codeBox.Text.Contains(word))
-            {
-                int index = -1;
-                int selectStart = codeBox.SelectionStart;
-
-                while ((index = codeBox.Text.IndexOf(word, (index + 1))) != -1)
-                {
-                    codeBox.Select((index + startIndex), word.Length);
-                    codeBox.SelectionColor = color;
-                    //if (bold)
-                    //{
-                     //   codeBox.SelectionFont = new Font(codeBox.Font, FontStyle.Bold);
-                    //}
-                    codeBox.Select(selectStart, 0);
-
-                    codeBox.SelectionColor = Color.Black;
-                    //if (bold)
-                    //{
-                    //    codeBox.SelectionFont = new Font(codeBox.Font, FontStyle.Regular);
-                    //}
-                }
-            }*/
         }
 
         public List<int> AllIndexesOf(string value)
