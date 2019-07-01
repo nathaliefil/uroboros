@@ -15,7 +15,6 @@ namespace Uroboros.syntax.interpretation.commands
     {
         public static ICommand Build(List<Token> tokens)
         {
-            tokens.RemoveAt(0);
             if (tokens.Count == 0)
                 return new Print(new StringVariableRefer("this"));
             IListable ilist = ListableBuilder.Build(tokens);

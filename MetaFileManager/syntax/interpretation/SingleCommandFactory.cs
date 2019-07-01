@@ -37,87 +37,87 @@ namespace Uroboros.syntax.interpretation
             switch (tokens.First().GetTokenType())
             {
                 case TokenType.CreateDirectory:
-                {
-                    return InterCreate.Build(tokens, forced, true);
-                }
+                    {
+                        return InterCreate.Build(tokens, forced, true);
+                    }
                 case TokenType.CreateFile:
-                {
-                    return InterCreate.Build(tokens, forced, false);
-                }
+                    {
+                        return InterCreate.Build(tokens, forced, false);
+                    }
                 case TokenType.Print:
-                {
-                    return InterPrint.Build(tokens);
-                }
+                    {
+                        return InterPrint.Build(tokens.Skip(1).ToList());
+                    }
                 case TokenType.Reverse:
-                {
-                    return InterReverse.Build(tokens);
-                }
+                    {
+                        return InterReverse.Build(tokens);
+                    }
                 case TokenType.Copy:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
-                    else
-                        return InterCore.Build(tokens);
-                }
+                    {
+                        if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                            return InterCoreTo.Build(tokens, forced);
+                        else
+                            return InterCore.Build(tokens);
+                    }
                 case TokenType.Cut:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
-                    else
-                        return InterCore.Build(tokens);
-                }
+                    {
+                        if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                            return InterCoreTo.Build(tokens, forced);
+                        else
+                            return InterCore.Build(tokens);
+                    }
                 case TokenType.Delete:
-                {
-                    return InterCore.Build(tokens);
-                }
+                    {
+                        return InterCore.Build(tokens);
+                    }
                 case TokenType.Drop:
-                {
-                    return InterCore.Build(tokens);
-                }
+                    {
+                        return InterCore.Build(tokens);
+                    }
                 case TokenType.Open:
-                {
-                    return InterCore.Build(tokens);
-                }
+                    {
+                        return InterCore.Build(tokens);
+                    }
                 case TokenType.Order:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
-                        return InterOrder.Build(tokens);
-                    else
-                        throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
-                }
+                    {
+                        if (tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
+                            return InterOrder.Build(tokens);
+                        else
+                            throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
+                    }
                 case TokenType.Select:
-                {
-                    return InterCore.Build(tokens);
-                }
+                    {
+                        return InterCore.Build(tokens);
+                    }
                 case TokenType.Move:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
-                    else
-                        throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
-                }
+                    {
+                        if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                            return InterCoreTo.Build(tokens, forced);
+                        else
+                            throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
+                    }
                 case TokenType.Rename:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
-                    else
-                        throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
-                }
+                    {
+                        if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                            return InterCoreTo.Build(tokens, forced);
+                        else
+                            throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
+                    }
                 case TokenType.Sleep:
-                {
-                    return InterSleep.Build(tokens);
-                }
+                    {
+                        return InterSleep.Build(tokens);
+                    }
                 case TokenType.Add:
-                {
-                    return InterAdd.Build(tokens);
-                }
+                    {
+                        return InterAdd.Build(tokens);
+                    }
                 case TokenType.Remove:
-                {
-                    return InterRemove.Build(tokens);
-                }
+                    {
+                        return InterRemove.Build(tokens);
+                    }
 
 
-                    // more more more
+                // more more more
             }
 
             // commands for variables
@@ -127,7 +127,7 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterVariableDeclaration.Build(tokens);
                 }
-                if (tokens[1].GetTokenType().Equals(TokenType.PlusPlus) 
+                if (tokens[1].GetTokenType().Equals(TokenType.PlusPlus)
                     || tokens[1].GetTokenType().Equals(TokenType.MinusMinus))
                 {
                     return InterVariablePlusMinus.Build(tokens);
@@ -144,7 +144,9 @@ namespace Uroboros.syntax.interpretation
 
 
 
-            return new NullCommand ();
+            // finally - check if it can be 'print' command
+            // this is the last possible command type
+            return InterPrint.Build(tokens);
         }
     }
 }

@@ -16,12 +16,9 @@ namespace Uroboros.syntax.variables
             this.value = value;
         }
 
-        public override decimal ToNumber()
+        public override bool ToBool()
         {
-            if (value)
-                return 1;
-            else
-                return 0;
+            return value;
         }
 
         public void SetValue(bool b)
