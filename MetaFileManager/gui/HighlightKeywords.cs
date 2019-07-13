@@ -13,7 +13,7 @@ namespace Uroboros.gui
 
         public static string[] USUAL = new string[]{"and", "asc", "by", "desc", "each", "else",
             "empty list", "first", "for", "force", "from", "if", "in", "last", "like", "not", 
-            "or", "order by", "skip", "to", "where", "while", "xor"};
+            "or", "order by", "skip", "to", "where", "while", "with", "without", "xor"};
 
         public static string[] INNER_VARIABLES = new string[]{"creation", "directories", 
             "empty", "exist", "extension", "everything", "false", "files", "fullname", "index", 

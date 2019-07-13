@@ -18,13 +18,30 @@ namespace Uroboros.syntax.interpretation.expressions
                 return BuildNumeric(tokens, type);
             }
 
+            if (type.Equals(TokenType.With))
+                return BuildWith(tokens, false);
+
+            if (type.Equals(TokenType.Without))
+                return BuildWith(tokens, true);
+
             if (type.Equals(TokenType.Where))
                 return BuildWhere(tokens);
 
             if (type.Equals(TokenType.OrderBy))
                 return BuildOrderBy(tokens);
 
-            throw new SyntaxErrorException("ERROR! Unknown keyword in list declaration"); // this is never thrown
+            throw new SyntaxErrorException("ERROR! Unknown keyword in list declaration."); // this is never thrown
+        }
+
+        public static ISubcommand BuildWith(List<Token> tokens, bool negated)
+        {
+            string name = negated ? "without" : "with";
+
+            IListable ilis = ListableBuilder.Build(tokens);
+            if (ilis.IsNull())
+                throw new SyntaxErrorException("ERROR! In list declaration there is something wrong with expression: " + name + ".");
+            else
+                return new With(ilis, negated);
         }
 
         public static ISubcommand BuildNumeric(List<Token> tokens, TokenType type)

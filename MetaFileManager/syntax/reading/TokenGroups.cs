@@ -9,7 +9,7 @@ namespace Uroboros.syntax.reading
     class TokenGroups
     {
         private static TokenType[] ALLOWED_SUBCOMMAND = new TokenType[] { TokenType.Where, TokenType.First, 
-            TokenType.Last, TokenType.Skip,  TokenType.Each, TokenType.OrderBy};
+            TokenType.Last, TokenType.Skip,  TokenType.Each, TokenType.OrderBy, TokenType.With, TokenType.Without};
 
         private static TokenType[] ALLOWED_EXPRESSION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
             TokenType.Multiply, TokenType.Divide,  TokenType.Percent, TokenType.And, 

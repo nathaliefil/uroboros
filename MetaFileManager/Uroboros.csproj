@@ -103,6 +103,7 @@
     <Compile Include="syntax\expressions\bools\IBoolExpressionElement.cs" />
     <Compile Include="syntax\expressions\bools\NegatedBoolable.cs" />
     <Compile Include="syntax\expressions\bools\other\In.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\With.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />

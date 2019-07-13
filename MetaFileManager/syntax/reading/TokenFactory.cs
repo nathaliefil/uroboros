@@ -86,6 +86,8 @@ namespace Uroboros.syntax.reading
                 case "true": return new Token(TokenType.BoolConstant, "true");
                 case "where": return new Token(TokenType.Where);
                 case "while": return new Token(TokenType.While);
+                case "with": return new Token(TokenType.With);
+                case "without": return new Token(TokenType.Without);
                 case "xor": return new Token(TokenType.Xor);
             }
             return new Token(TokenType.Variable, code);

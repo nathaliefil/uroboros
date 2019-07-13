@@ -43,6 +43,8 @@ namespace Uroboros.syntax.reading
         To,
         Where,
         While,
+        With,
+        Without,
         Xor,
 
         Variable,

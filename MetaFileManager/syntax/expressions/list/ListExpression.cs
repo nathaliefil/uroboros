@@ -52,6 +52,21 @@ namespace Uroboros.syntax.expressions.list
                 {
                     result = OrderByExecutor.OrderBy(result, subcom as OrderBy);
                 }
+                if (subcom is With)
+                {
+                    List<string> elementsFromSubcommands = (subcom as With).GetValue();
+
+                    if ((subcom as With).IsNegated())
+                    {
+                        //WITHOUT
+                        result.RemoveAll(v => (subcom as With).GetValue().Contains(v));
+                    }
+                    else
+                    {
+                        //WITH
+                        result.AddRange((subcom as With).GetValue());
+                    }
+                }
                 if (subcom is NumericSubcommand)
                 {
                     int number = (subcom as NumericSubcommand).GetValue();
