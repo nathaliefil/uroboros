@@ -31,16 +31,15 @@ namespace Uroboros.syntax.reading
                 case '&': return new Token(TokenType.And);
                 case '|': return new Token(TokenType.Or);
                 case '^': return new Token(TokenType.Xor);
-                case ' ': return new Token(TokenType.Empty);
                 case '<': return new Token(TokenType.Smaller);
                 case '>': return new Token(TokenType.Bigger);
             }
-            return new Token(TokenType.Empty) ;
+            return new Token(TokenType.Null) ;
         }
 
         public static Token BuildQuotationToken(string code)
         {
-            return new Token(TokenType.StringConstant, code.Trim('"'));
+            return new Token(TokenType.StringConstant);
         }
 
         public static Token Build(string code)

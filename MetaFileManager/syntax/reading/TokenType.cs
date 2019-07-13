@@ -71,8 +71,6 @@ namespace Uroboros.syntax.reading
         Divide,
         Percent,
 
-        Empty,
-
         PlusPlus,
         MinusMinus,
         NotEquals,
