@@ -38,6 +38,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNums(name, args);
             if (name.Equals("count"))
                 return BuildLis(name, args);
+            if (name.Equals("indexof"))
+                return BuildStrStr(name, args);
 
             return null;
         }
@@ -80,6 +82,24 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("power"))
                 return new FuncPower(inu1, inu2);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static INumerable BuildStrStr(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 arguments: two texts.");
+
+            IStringable istr1 = StringableBuilder.Build(args[0].tokens);
+            IStringable istr2 = StringableBuilder.Build(args[1].tokens);
+
+            if (istr1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
+            if (istr2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
+
+            if (name.Equals("indexof"))
+                return new FuncIndexof(istr1, istr2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

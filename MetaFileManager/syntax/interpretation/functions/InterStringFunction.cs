@@ -33,6 +33,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildStr(name, args);
             if (name.Equals("filled") || name.Equals("fill"))
                 return BuildStrNum(name, args);
+            if (name.Equals("before") || name.Equals("after"))
+                return BuildStrStr(name, args);
 
             return null;
         }
@@ -88,19 +90,38 @@ namespace Uroboros.syntax.interpretation.functions
             if (args.Count != 2)
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 arguments: one text and one number.");
 
-            IStringable inu1 = StringableBuilder.Build(args[0].tokens);
-            INumerable inu2 = NumerableBuilder.Build(args[1].tokens);
+            IStringable istr = StringableBuilder.Build(args[0].tokens);
+            INumerable inu = NumerableBuilder.Build(args[1].tokens);
 
-            if (inu1.IsNull())
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
-            if (inu2.IsNull())
+            if (inu.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
 
             if (name.Equals("filled") || name.Equals("fill"))
-                return new FuncFilled(inu1, inu2);
+                return new FuncFilled(istr, inu);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
+        public static IStringable BuildStrStr(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 arguments: two texts.");
+
+            IStringable istr1 = StringableBuilder.Build(args[0].tokens);
+            IStringable istr2 = StringableBuilder.Build(args[1].tokens);
+
+            if (istr1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
+            if (istr2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
+
+            if (name.Equals("before"))
+                return new FuncBefore(istr1, istr2);
+            if (name.Equals("after"))
+                return new FuncAfter(istr1, istr2);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
 
         public static IStringable BuildSubstring(string name, List<Argument> args)
         {
