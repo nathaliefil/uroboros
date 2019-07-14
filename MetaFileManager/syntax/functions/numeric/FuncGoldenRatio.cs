@@ -6,9 +6,9 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncGoldenRatio : DefaultNumerable
+    class FuncGoldenratio : DefaultNumerable
     {
-        public FuncGoldenRatio()
+        public FuncGoldenratio()
         {
         }
 

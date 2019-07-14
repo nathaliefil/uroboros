@@ -113,7 +113,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("e"))
                 return new FuncE();
             if (name.Equals("goldenratio"))
-                return new FuncGoldenRatio();
+                return new FuncGoldenratio();
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }

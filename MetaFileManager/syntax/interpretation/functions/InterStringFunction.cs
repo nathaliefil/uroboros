@@ -31,10 +31,13 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildSubstring(name, args);
             if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("trim"))
                 return BuildStr(name, args);
+            if (name.Equals("commonbeginning") || name.Equals("commonending"))
+                return BuildLis(name, args);
             if (name.Equals("filled") || name.Equals("fill"))
                 return BuildStrNum(name, args);
             if (name.Equals("before") || name.Equals("after"))
                 return BuildStrStr(name, args);
+            
 
             return null;
         }
@@ -122,6 +125,27 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncAfter(istr1, istr2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
+
+        public static IStringable BuildLis(string name, List<Argument> args)
+        {
+            if (args.Count != 1)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 list argument.");
+
+            IListable ilis = ListableBuilder.Build(args[0].tokens);
+            if (ilis.IsNull())
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
+            else
+            {
+                if (name.Equals("commonbeginning"))
+                    return new FuncCommonbeginning(ilis);
+                if (name.Equals("commonending"))
+                    return new FuncCommonending(ilis);
+                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+            }
+        }
+
+
+
 
         public static IStringable BuildSubstring(string name, List<Argument> args)
         {

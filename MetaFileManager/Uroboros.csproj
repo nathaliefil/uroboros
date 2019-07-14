@@ -108,11 +108,13 @@
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
-    <Compile Include="syntax\functions\numeric\FuncGoldenRatio.cs" />
+    <Compile Include="syntax\functions\numeric\FuncGoldenratio.cs" />
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\strings\FuncAfter.cs" />
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
+    <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />
+    <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
