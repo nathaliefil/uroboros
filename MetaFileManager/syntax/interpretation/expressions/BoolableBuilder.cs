@@ -59,6 +59,14 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
+            // try to build LIKE function
+            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.Like)).Count() == 1)
+            {
+                IBoolable iboo = LikeBuilder.Build(tokens);
+                if (!iboo.IsNull())
+                    return iboo;
+            }
+
             // try to build comparison = != > < >= <=
             if (ContainsOneComparingToken(tokens) && !ContainsLogicTokens(tokens))
             {
