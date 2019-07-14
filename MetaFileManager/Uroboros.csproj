@@ -115,6 +115,7 @@
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
+    <Compile Include="syntax\functions\strings\FuncRepeat.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />

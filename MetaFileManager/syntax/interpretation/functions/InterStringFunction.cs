@@ -33,7 +33,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildStr(name, args);
             if (name.Equals("commonbeginning") || name.Equals("commonending"))
                 return BuildLis(name, args);
-            if (name.Equals("filled") || name.Equals("fill"))
+            if (name.Equals("filled") || name.Equals("fill") || name.Equals("repeat") || name.Equals("repeated"))
                 return BuildStrNum(name, args);
             if (name.Equals("before") || name.Equals("after"))
                 return BuildStrStr(name, args);
@@ -103,6 +103,8 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("filled") || name.Equals("fill"))
                 return new FuncFilled(istr, inu);
+            if (name.Equals("repeat") || name.Equals("repeated"))
+                return new FuncRepeat(istr, inu);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
