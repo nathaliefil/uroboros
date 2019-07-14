@@ -37,11 +37,6 @@ namespace Uroboros.syntax.reading
             return new Token(TokenType.Null) ;
         }
 
-        public static Token BuildQuotationToken(string code)
-        {
-            return new Token(TokenType.StringConstant);
-        }
-
         public static Token Build(string code)
         {
             switch (code.ToLower())

@@ -181,8 +181,6 @@
     <Compile Include="syntax\interpretation\vars_range\InterVariables.cs" />
     <Compile Include="syntax\interpretation\vars_range\InterVarType.cs" />
     <Compile Include="syntax\reading\Brackets.cs" />
-    <Compile Include="syntax\reading\Comments.cs" />
-    <Compile Include="syntax\reading\EmptySpaces.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\reading\SizeSufix.cs" />
     <Compile Include="syntax\reading\Token.cs" />
