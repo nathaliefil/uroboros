@@ -32,7 +32,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNumNum(name, args);
             if (name.Equals("pi") || name.Equals("e") || name.Equals("goldenratio"))
                 return BuildEmpty(name, args);
-            if (name.Equals("number") || name.Equals("length"))
+            if (name.Equals("number") || name.Equals("length") || name.Equals("year"))
                 return BuildStr(name, args);
             if (name.Equals("min") || name.Equals("max"))
                 return BuildNums(name, args);
@@ -108,8 +108,12 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
             else
             {
+                if (name.Equals("number"))
+                    return new FuncNumber(istr);
                 if (name.Equals("length"))
                     return new FuncLength(istr);
+                if (name.Equals("year"))
+                    return new FuncYear(istr);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
