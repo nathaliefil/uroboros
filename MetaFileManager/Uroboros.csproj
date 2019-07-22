@@ -200,7 +200,8 @@
     <Compile Include="syntax\runtime\ActualizeVariables.cs" />
     <Compile Include="syntax\runtime\ListOperations.cs" />
     <Compile Include="syntax\runtime\Logger.cs" />
-    <Compile Include="syntax\runtime\OrderByExecutor.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByComparator.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByExecutor.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
@@ -219,8 +220,8 @@
     <Compile Include="syntax\variables\abstracts\NamedStringable.cs" />
     <Compile Include="syntax\variables\constants\BoolConstant.cs" />
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
-    <Compile Include="syntax\expressions\list\subcommands\OrderByStruct.cs" />
-    <Compile Include="syntax\expressions\list\subcommands\OrderByVariable.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
     <Compile Include="syntax\variables\from_location\Empty.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\constants\ListedStringables.cs" />
@@ -231,8 +232,8 @@
     <Compile Include="syntax\expressions\list\ListExpression.cs" />
     <Compile Include="syntax\expressions\list\subcommands\NumericSubcommand.cs" />
     <Compile Include="syntax\expressions\list\subcommands\NumericSubcommandType.cs" />
-    <Compile Include="syntax\expressions\list\subcommands\OrderBy.cs" />
-    <Compile Include="syntax\expressions\list\subcommands\OrderByType.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderBy.cs" />
+    <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByType.cs" />
     <Compile Include="syntax\expressions\list\subcommands\Where.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpression.cs" />
     <Compile Include="syntax\expressions\strings\StringExpression.cs" />

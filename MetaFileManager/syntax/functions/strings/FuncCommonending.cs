@@ -19,6 +19,11 @@ namespace Uroboros.syntax.functions.numeric
         {
             List<string> list = arg0.ToList().Select(s => new string(s.Reverse().ToArray())).OrderBy(x => x).ToList();
 
+            if (list.Count == 0)
+                return "";
+            if (list.Count == 1)
+                return list[0];
+
             string first = list.First();
             string last = list.Last();
             int shortest = list.Min(y => y.Length);

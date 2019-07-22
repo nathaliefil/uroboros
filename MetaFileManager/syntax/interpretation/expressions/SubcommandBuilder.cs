@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.expressions.list.subcommands.orderby;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -149,6 +150,36 @@ namespace Uroboros.syntax.interpretation.expressions
                     return OrderByVariable.Name;
                 case "size":
                     return OrderByVariable.Size;
+
+                case "creation.year":
+                    return OrderByVariable.CreationYear;
+                case "creation.month":
+                    return OrderByVariable.CreationMonth;
+                case "creation.weekday":
+                    return OrderByVariable.CreationWeekDay;
+                case "creation.day":
+                    return OrderByVariable.CreationDay;
+                case "creation.hour":
+                    return OrderByVariable.CreationHour;
+                case "creation.minute":
+                    return OrderByVariable.CreationMinute;
+                case "creation.second":
+                    return OrderByVariable.CreationSecond;
+
+                case "modification.year":
+                    return OrderByVariable.ModificationYear;
+                case "modification.month":
+                    return OrderByVariable.ModificationMonth;
+                case "modification.weekday":
+                    return OrderByVariable.ModificationWeekDay;
+                case "modification.day":
+                    return OrderByVariable.ModificationDay;
+                case "modification.hour":
+                    return OrderByVariable.ModificationHour;
+                case "modification.minute":
+                    return OrderByVariable.ModificationMinute;
+                case "modification.second":
+                    return OrderByVariable.ModificationSecond;
             }
             return OrderByVariable.None;
         }

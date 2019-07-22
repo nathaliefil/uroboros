@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax.expressions.list.subcommands
+namespace Uroboros.syntax.expressions.list.subcommands.orderby
 {
     public class OrderBy : ISubcommand
     {
@@ -17,6 +17,11 @@ namespace Uroboros.syntax.expressions.list.subcommands
         public List<OrderByStruct> GetVariables()
         {
             return variables;
+        }
+
+        public void RemoveFirst()
+        {
+            variables.RemoveAt(0);
         }
     }
 }

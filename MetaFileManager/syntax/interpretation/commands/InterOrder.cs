@@ -8,6 +8,7 @@ using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.commands.list;
+using Uroboros.syntax.expressions.list.subcommands.orderby;
 
 namespace Uroboros.syntax.interpretation.commands
 {

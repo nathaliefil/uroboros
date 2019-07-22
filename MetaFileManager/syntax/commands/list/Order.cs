@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.expressions.list.subcommands.orderby;
 
 namespace Uroboros.syntax.commands.list
 {
