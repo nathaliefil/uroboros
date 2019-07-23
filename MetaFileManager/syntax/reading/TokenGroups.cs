@@ -58,7 +58,7 @@ namespace Uroboros.syntax.reading
             return LOGIC.Contains(type) ? true : false;
         }
 
-        public static bool IsNumericOperator(TokenType type)
+        public static bool IsArithmeticSign(TokenType type)
         {
             return NUMERIC_OPERATION.Contains(type) ? true : false;
         }

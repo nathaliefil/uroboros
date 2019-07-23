@@ -8,9 +8,9 @@ namespace Uroboros.syntax.expressions.numeric
 {
     class NumericExpression : DefaultNumerable
     {
-        List<INumerable> elements;
+        List<INumericExpressionElement> elements;
 
-        public NumericExpression(List<INumerable> elements)
+        public NumericExpression(List<INumericExpressionElement> elements)
         {
             this.elements = elements;
         }

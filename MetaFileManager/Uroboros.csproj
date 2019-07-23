@@ -106,6 +106,7 @@
     <Compile Include="syntax\expressions\bools\other\Like.cs" />
     <Compile Include="syntax\expressions\list\subcommands\With.cs" />
     <Compile Include="syntax\expressions\numeric\INumericExpressionElement.cs" />
+    <Compile Include="syntax\expressions\numeric\NegatedNumerable.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperator.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperatorType.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />

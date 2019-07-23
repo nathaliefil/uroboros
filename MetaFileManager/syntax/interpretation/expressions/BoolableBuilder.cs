@@ -150,7 +150,7 @@ namespace Uroboros.syntax.interpretation.expressions
             bool readingFunction = false;
             Token previousToken = new Token(TokenType.Null);
 
-            // first, merge many to tokens into fewer number of IBoolables
+            // first, merge many tokens into fewer number of IBoolables
             foreach (Token tok in tokens)
             {
                 bool actionDone = false;
@@ -168,7 +168,7 @@ namespace Uroboros.syntax.interpretation.expressions
                                 return null;
                             currentTokens.Clear();
                             readingFunction = false;
-                            infixList.Add(OperatorFromToken(tok));
+                            infixList.Add(new BoolExpressionOperator(GetBEOT(tok.GetTokenType())));
                         }
                         else
                             currentTokens.Add(tok);
@@ -482,7 +482,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
             return ComparisonType.Equals; // is never returned
         }
-
+        /*
         private static BoolExpressionOperator OperatorFromToken(Token tok)
         {
             switch (tok.GetTokenType())
@@ -497,7 +497,7 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
             }
             return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
-        }
+        }*/
 
         public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
         {
