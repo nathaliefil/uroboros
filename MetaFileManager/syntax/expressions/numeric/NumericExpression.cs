@@ -17,9 +17,49 @@ namespace Uroboros.syntax.expressions.numeric
 
         public override decimal ToNumber()
         {
-            //here a lot of code
-            /// todo
-            return 0;
+            //Reverse Polish Notation reader
+
+            Stack<decimal> stack = new Stack<decimal>();
+            foreach (INumericExpressionElement el in elements)
+            {
+                if (el is INumerable)
+                    stack.Push((el as INumerable).ToNumber());
+                else if (el is NumericExpressionOperator)
+                {
+                    if ((el as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
+                    { /// to check if working
+                        decimal a = stack.Pop();
+                        stack.Push(-a);
+                    }
+                    else
+                    {
+                        NumericExpressionOperatorType type = (el as NumericExpressionOperator).GetOperatorType();
+
+                        decimal a = stack.Pop();
+                        decimal b = stack.Pop();
+
+                        switch (type)
+                        {
+                            case NumericExpressionOperatorType.Plus:
+                                stack.Push(a + b);
+                                break;
+                            case NumericExpressionOperatorType.Minus:
+                                stack.Push(a - b);
+                                break;
+                            case NumericExpressionOperatorType.Multiply:
+                                stack.Push(a * b);
+                                break;
+                            case NumericExpressionOperatorType.Divide:
+                                stack.Push(a / b);
+                                break;
+                            case NumericExpressionOperatorType.Modulo:
+                                stack.Push(a % b);
+                                break;
+                        }
+                    }
+                }
+            }
+            return stack.Pop();
         }
     }
 }

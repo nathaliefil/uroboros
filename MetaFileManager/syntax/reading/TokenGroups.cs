@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.expressions.bools;
+using Uroboros.syntax.expressions.numeric;
 
 namespace Uroboros.syntax.reading
 {
