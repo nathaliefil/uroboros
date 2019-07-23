@@ -87,59 +87,78 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                     break;
 
                 case OrderByVariable.CreationYear:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationMonth:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationWeekDay:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationDay:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationHour:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationMinute:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
                 case OrderByVariable.CreationSecond:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetCreation(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetCreation(s))).ToList();
                     break;
 
+                case OrderByVariable.CreationDate:
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Date, FileInnerVariable.GetCreation(s))).ToList();
+                    break;
+
+                case OrderByVariable.CreationClock:
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Clock, FileInnerVariable.GetCreation(s))).ToList();
+                    break;
+
+
+
+
                 case OrderByVariable.ModificationYear:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationMonth:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationWeekDay:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationDay:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationHour:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationMinute:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetModification(s))).ToList();
                     break;
 
                 case OrderByVariable.ModificationSecond:
-                    source = source.OrderBy(s => DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetModification(s))).ToList();
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetModification(s))).ToList();
+                    break;
+
+                case OrderByVariable.ModificationDate:
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Date, FileInnerVariable.GetModification(s))).ToList();
+                    break;
+
+                case OrderByVariable.ModificationClock:
+                    source = source.OrderBy(s => DateExtractor.GetVariableNumeric(DateVariableType.Clock, FileInnerVariable.GetModification(s))).ToList();
                     break;
             }
 

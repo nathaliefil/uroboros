@@ -95,6 +95,8 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("modification.hour", InterVarType.Number, false));
             variables.Add(new InterVar("modification.minute", InterVarType.Number, false));
             variables.Add(new InterVar("modification.second", InterVarType.Number, false));
+            variables.Add(new InterVar("modification.date", InterVarType.String, false));
+            variables.Add(new InterVar("modification.clock", InterVarType.String, false));
             variables.Add(new InterVar("creation.year", InterVarType.Number, false));
             variables.Add(new InterVar("creation.month", InterVarType.Number, false));
             variables.Add(new InterVar("creation.weekday", InterVarType.Number, false));
@@ -102,6 +104,8 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("creation.hour", InterVarType.Number, false));
             variables.Add(new InterVar("creation.minute", InterVarType.Number, false));
             variables.Add(new InterVar("creation.second", InterVarType.Number, false));
+            variables.Add(new InterVar("creation.date", InterVarType.String, false));
+            variables.Add(new InterVar("creation.clock", InterVarType.String, false));
         }
 
         public bool Contains(string name)

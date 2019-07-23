@@ -222,6 +222,7 @@
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateVariableString.cs" />
     <Compile Include="syntax\variables\from_location\Empty.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\constants\ListedStringables.cs" />
@@ -239,9 +240,8 @@
     <Compile Include="syntax\expressions\strings\StringExpression.cs" />
     <Compile Include="syntax\variables\from_directory\Files.cs" />
     <Compile Include="syntax\variables\from_location\date\Creation.cs" />
-    <Compile Include="syntax\variables\from_location\date\DateBuilder.cs" />
     <Compile Include="syntax\variables\from_location\date\DateExtractor.cs" />
-    <Compile Include="syntax\variables\from_location\date\DateVariable.cs" />
+    <Compile Include="syntax\variables\from_location\date\DateVariableNumeric.cs" />
     <Compile Include="syntax\variables\from_location\date\DateVariableType.cs" />
     <Compile Include="syntax\variables\from_location\Exist.cs" />
     <Compile Include="syntax\variables\from_location\Extension.cs" />

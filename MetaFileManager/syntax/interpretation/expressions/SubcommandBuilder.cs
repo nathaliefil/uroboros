@@ -165,6 +165,10 @@ namespace Uroboros.syntax.interpretation.expressions
                     return OrderByVariable.CreationMinute;
                 case "creation.second":
                     return OrderByVariable.CreationSecond;
+                case "creation.date":
+                    return OrderByVariable.CreationDate;
+                case "creation.clock":
+                    return OrderByVariable.CreationClock;
 
                 case "modification.year":
                     return OrderByVariable.ModificationYear;
@@ -180,6 +184,10 @@ namespace Uroboros.syntax.interpretation.expressions
                     return OrderByVariable.ModificationMinute;
                 case "modification.second":
                     return OrderByVariable.ModificationSecond;
+                case "modification.date":
+                    return OrderByVariable.ModificationDate;
+                case "modification.clock":
+                    return OrderByVariable.ModificationClock;
             }
             return OrderByVariable.None;
         }

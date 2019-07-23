@@ -7,12 +7,12 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.from_location.date
 {
-    class DateVariable : NamedNumerable
+    class DateVariableNumeric : NamedNumerable
     {
         private bool modification;
         private DateVariableType type;
 
-        public DateVariable(string name, bool modification, DateVariableType type)
+        public DateVariableNumeric(string name, bool modification, DateVariableType type)
         {
             this.name = name;
             this.modification = modification;
@@ -27,7 +27,7 @@ namespace Uroboros.syntax.variables.from_location.date
             {
                 DateTime time = modification ? FileInnerVariable.GetModification(file)
                     : FileInnerVariable.GetCreation(file);
-                return DateExtractor.GetVariable(type, time);
+                return DateExtractor.GetVariableNumeric(type, time);
             }
             catch (Exception)
             {

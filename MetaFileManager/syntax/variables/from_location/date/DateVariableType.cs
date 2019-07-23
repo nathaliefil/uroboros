@@ -13,6 +13,10 @@ namespace Uroboros.syntax.variables.from_location.date
         Day,
         Hour,
         Minute,
-        Second
+        Second,
+
+        Time,
+        Date,
+        Clock
     }
 }

@@ -37,63 +37,63 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
 
 
                 case OrderByVariable.CreationYear:
-                    return DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationMonth:
-                    return DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationWeekDay:
-                    return DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationDay:
-                    return DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationHour:
-                    return DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationMinute:
-                    return DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetCreation(s2));
 
                 case OrderByVariable.CreationSecond:
-                    return DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetCreation(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetCreation(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetCreation(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetCreation(s2));
 
 
 
 
                 case OrderByVariable.ModificationYear:
-                    return DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Year, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Year, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationMonth:
-                    return DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Month, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Month, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationWeekDay:
-                    return DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.WeekDay, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.WeekDay, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationDay:
-                    return DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Day, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Day, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationHour:
-                    return DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Hour, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Hour, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationMinute:
-                    return DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Minute, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Minute, FileInnerVariable.GetModification(s2));
 
                 case OrderByVariable.ModificationSecond:
-                    return DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetModification(s1))
-                        == DateExtractor.GetVariable(DateVariableType.Second, FileInnerVariable.GetModification(s2));
+                    return DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetModification(s1))
+                        == DateExtractor.GetVariableNumeric(DateVariableType.Second, FileInnerVariable.GetModification(s2));
 
             }
 

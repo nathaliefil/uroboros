@@ -21,12 +21,16 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         CreationHour,
         CreationMinute,
         CreationSecond,
+        CreationDate,
+        CreationClock,
         ModificationYear,
         ModificationMonth,
         ModificationWeekDay,
         ModificationDay,
         ModificationHour,
         ModificationMinute,
-        ModificationSecond
+        ModificationSecond,
+        ModificationDate,
+        ModificationClock
     }
 }

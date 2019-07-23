@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
-using System.IO;
 
 namespace Uroboros.syntax.variables.from_location.date
 {
-    class Modification : NamedStringable
+    class DateVariableString : NamedStringable
     {
-        public Modification()
+        private bool modification;
+        private DateVariableType type;
+
+        public DateVariableString(string name, bool modification, DateVariableType type)
         {
-            name = "modification";
+            this.name = name;
+            this.modification = modification;
+            this.type = type;
         }
 
         public override string ToString()
@@ -21,8 +25,9 @@ namespace Uroboros.syntax.variables.from_location.date
 
             try
             {
-                DateTime time = FileInnerVariable.GetModification(file);
-                return DateExtractor.GetVariableString(DateVariableType.Time, time);
+                DateTime time = modification ? FileInnerVariable.GetModification(file)
+                    : FileInnerVariable.GetCreation(file);
+                return DateExtractor.GetVariableString(type, time);
             }
             catch (Exception)
             {

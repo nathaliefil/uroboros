@@ -22,7 +22,7 @@ namespace Uroboros.syntax.variables.from_location.date
             try
             {
                 DateTime time = FileInnerVariable.GetCreation(file);
-                return DateBuilder.Build(time);
+                return DateExtractor.GetVariableString(DateVariableType.Time, time);
             }
             catch (Exception)
             {
