@@ -178,8 +178,6 @@ namespace Uroboros.syntax.interpretation.expressions
                     currentTokens.Add(tok);
 
                 previousToken = tok;
-
-                Logger.GetInstance().Log(tok.Print());
             }
 
             if (currentTokens.Count > 0)
@@ -232,8 +230,41 @@ namespace Uroboros.syntax.interpretation.expressions
 
         private static List<INumericExpressionElement> ReversePolishNotation(List<INumericExpressionElement> infixList)
         {
-            //todo
-            return infixList;
+            // Dijkstra algo of convertion to Reverse Polish Notation
+            // without operation order
+            /// todo
+
+            Stack<NumericExpressionOperator> operatorStack = new Stack<NumericExpressionOperator>();
+            List<INumericExpressionElement> output = new List<INumericExpressionElement>();
+
+            foreach (INumericExpressionElement ibee in infixList)
+            {
+                if (ibee is INumerable)
+                    output.Add(ibee);
+
+                if (ibee is NumericExpressionOperator)
+                {
+                    if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))
+                    {
+                        while (operatorStack.Count > 0)
+                        {
+                            NumericExpressionOperator beo = operatorStack.Pop();
+
+                            if (beo.GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                                break;
+                            else
+                                output.Add(beo as INumericExpressionElement);
+                        }
+                    }
+                    else
+                        operatorStack.Push(ibee as NumericExpressionOperator);
+                }
+            }
+
+            while (operatorStack.Count > 0)
+                output.Add(operatorStack.Pop() as INumericExpressionElement);
+
+            return output;
         }
     }
 }
