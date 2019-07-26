@@ -26,7 +26,7 @@ namespace Uroboros.syntax.expressions.numeric
                     stack.Push((el as INumerable).ToNumber());
                 else if (el is NumericExpressionOperator)
                 {
-                    if ((el as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
+                    if ((el as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.UnaryMinus))
                     { /// to check if working
                         decimal a = stack.Pop();
                         stack.Push(-a);
@@ -50,6 +50,8 @@ namespace Uroboros.syntax.expressions.numeric
                                 stack.Push(a * b);
                                 break;
                             case NumericExpressionOperatorType.Divide:
+                                if (b == 0)
+                                    throw new RuntimeException("RUNTIME ERROR! Division by zero occured.");
                                 stack.Push(a / b);
                                 break;
                             case NumericExpressionOperatorType.Modulo:

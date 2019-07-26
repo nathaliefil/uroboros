@@ -18,5 +18,18 @@ namespace Uroboros.syntax.expressions.numeric
         {
             return type;
         }
+
+        public void ReverseBracket()
+        {
+            if (type.Equals(NumericExpressionOperatorType.BracketOn))
+                type = NumericExpressionOperatorType.BracketOff;
+            else if (type.Equals(NumericExpressionOperatorType.BracketOff))
+                type = NumericExpressionOperatorType.BracketOn;
+        }
+
+        public void UnaryMinus()
+        {
+            type = NumericExpressionOperatorType.UnaryMinus;
+        }
     }
 }

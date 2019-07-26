@@ -61,9 +61,13 @@ namespace Uroboros.syntax.interpretation.expressions
                 return null;
         }
 
+
+        // string concatenation
+        // considers numeric expressions inside with signs '+'
         public static IStringable BuildConcatenated(List<Token> tokens)
         {
             List<Token> currentTokens = new List<Token>();
+            List<Token> reserve = new List<Token>();
             List<IStringable> elements = new List<IStringable>();
             int level = 0;
 
@@ -79,11 +83,28 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (currentTokens.Count > 0)
                     {
                         IStringable ist = StringableBuilder.Build(currentTokens);
+
                         if (ist.IsNull())
                             return null;
+
+                        if (ist is INumerable)
+                        {
+                            reserve.AddRange(currentTokens);
+                            reserve.Add(tokens[i]);
+                            currentTokens.Clear();
+                        }
                         else
+                        {
+                            if (reserve.Count > 0)
+                            {
+                                reserve.RemoveAt(reserve.Count - 1);
+                                elements.Add(NumerableBuilder.Build(reserve) as IStringable);
+                                reserve.Clear();
+                            }
+
                             elements.Add(ist);
-                        currentTokens.Clear();
+                            currentTokens.Clear();
+                        }
                     }
                 }
                 else
@@ -93,10 +114,30 @@ namespace Uroboros.syntax.interpretation.expressions
             if (currentTokens.Count > 0)
             {
                 IStringable ist = StringableBuilder.Build(currentTokens);
-                if (ist.IsNull())
-                    return null;
+
+                if (reserve.Count > 0)
+                {
+                    if (ist is INumerable)
+                    {
+                        reserve.AddRange(currentTokens);
+                        elements.Add(NumerableBuilder.Build(reserve) as IStringable);
+                    }
+                    else
+                    {
+                        reserve.RemoveAt(reserve.Count - 1);
+                        elements.Add(NumerableBuilder.Build(reserve) as IStringable);
+                        elements.Add(ist);
+                    }
+                }
                 else
-                    elements.Add(ist);
+                {
+                    
+                    if (ist.IsNull())
+                        return null;
+                    else
+                        elements.Add(ist);
+                }
+                
             }
 
             if (elements.Count > 0)

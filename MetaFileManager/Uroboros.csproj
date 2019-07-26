@@ -177,6 +177,7 @@
     <Compile Include="syntax\interpretation\expressions\LikeBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\ListedStringablesBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\NegatedNumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\commands\InterReverse.cs" />

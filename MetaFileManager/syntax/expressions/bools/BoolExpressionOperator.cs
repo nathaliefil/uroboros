@@ -18,5 +18,13 @@ namespace Uroboros.syntax.expressions.bools
         {
             return type;
         }
+
+        public void ReverseBracket()
+        {
+            if (type.Equals(BoolExpressionOperatorType.BracketOn))
+                type = BoolExpressionOperatorType.BracketOff;
+            else if (type.Equals(BoolExpressionOperatorType.BracketOff))
+                type = BoolExpressionOperatorType.BracketOn;
+        }
     }
 }

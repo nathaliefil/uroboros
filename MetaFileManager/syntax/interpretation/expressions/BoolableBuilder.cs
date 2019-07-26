@@ -415,6 +415,15 @@ namespace Uroboros.syntax.interpretation.expressions
             Stack<BoolExpressionOperator> operatorStack = new Stack<BoolExpressionOperator>();
             List<IBoolExpressionElement> output = new List<IBoolExpressionElement>();
 
+            // reverse order of elements so can be read left-to-right
+            // includes reversing brackets
+            infixList.Reverse();
+            foreach (IBoolExpressionElement bee in infixList)
+            {
+                if (bee is BoolExpressionOperator)
+                    (bee as BoolExpressionOperator).ReverseBracket();
+            }
+
             foreach (IBoolExpressionElement ibee in infixList)
             {
                 if (ibee is IBoolable)

@@ -189,18 +189,21 @@ namespace Uroboros.syntax.interpretation.expressions
                     return null;
             }
 
-            // try to build inversion of one numerable
+            // try to build inversion of one INumerable
             if (infixList.Count == 2 && (infixList[0] is NumericExpressionOperator) && (infixList[1] is INumerable)
                 && (infixList[0] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
             {
-                return new NegatedNumerable(infixList[1] as INumerable);
+                return NegatedNumerableBuilder.Build(infixList[1] as INumerable);
             }
+
+            // change unary minuses to new type to avoid mistaking them with subtraction sign
+            infixList = IdentifyUnaryMinuses(infixList);
 
             // check if value of infixlist can be computed (check order of elements)
             if (!CheckExpressionComputability(infixList))
                 return null;
 
-            // if everything is right, finally build BoolExpression in RPN
+            // if everything is right, finally build NumericExpression in RPN
             return new NumericExpression(ReversePolishNotation(infixList));
         }
 
@@ -222,6 +225,20 @@ namespace Uroboros.syntax.interpretation.expressions
             return NumericExpressionOperatorType.Plus;
         }
 
+        private static List<INumericExpressionElement> IdentifyUnaryMinuses(List<INumericExpressionElement> infixList)
+        {
+            for (int i = 0; i < infixList.Count; i++)
+            {
+                if ((infixList[i] is NumericExpressionOperator) 
+                    && (infixList[i] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
+                {
+                    if (i == 0 || !(infixList[i - 1] is INumerable))
+                        (infixList[i] as NumericExpressionOperator).UnaryMinus();
+                }
+            }
+            return infixList;
+        }
+
         private static bool CheckExpressionComputability(List<INumericExpressionElement> infixList)
         {
             //todo
@@ -236,6 +253,15 @@ namespace Uroboros.syntax.interpretation.expressions
 
             Stack<NumericExpressionOperator> operatorStack = new Stack<NumericExpressionOperator>();
             List<INumericExpressionElement> output = new List<INumericExpressionElement>();
+
+            // reverse order of elements so can be read left-to-right
+            // includes reversing brackets
+            infixList.Reverse();
+            foreach (INumericExpressionElement bee in infixList)
+            {
+                if (bee is NumericExpressionOperator)
+                    (bee as NumericExpressionOperator).ReverseBracket();
+            }
 
             foreach (INumericExpressionElement ibee in infixList)
             {
@@ -255,6 +281,10 @@ namespace Uroboros.syntax.interpretation.expressions
                             else
                                 output.Add(beo as INumericExpressionElement);
                         }
+                    }
+                    else if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.UnaryMinus))
+                    {
+                        // todo
                     }
                     else
                         operatorStack.Push(ibee as NumericExpressionOperator);

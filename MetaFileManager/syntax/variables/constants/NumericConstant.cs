@@ -19,5 +19,10 @@ namespace Uroboros.syntax.variables
         {
             return value;
         }
+
+        public void SetNegative()
+        {
+            value *= -1;
+        }
     }
 }
