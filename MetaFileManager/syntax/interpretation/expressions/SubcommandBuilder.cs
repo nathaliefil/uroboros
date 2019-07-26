@@ -6,6 +6,7 @@ using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.expressions.list.subcommands.orderby;
+using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -32,6 +33,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 return BuildOrderBy(tokens);
 
             throw new SyntaxErrorException("ERROR! Unknown keyword in list declaration."); // this is never thrown
+        }
+
+        public static ISubcommand BuildEmpty(TokenType type)
+        {
+            if (type == TokenType.First || type == TokenType.Last || type == TokenType.Skip)
+                return new NumericSubcommand(new NumericConstant(1), GetNumericType(type));
+
+            throw new SyntaxErrorException("ERROR! Subcommand " + GetName(type) + "is empty.");
         }
 
         public static ISubcommand BuildWith(List<Token> tokens, bool negated)

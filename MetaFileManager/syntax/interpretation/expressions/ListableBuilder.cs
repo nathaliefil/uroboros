@@ -65,8 +65,12 @@ namespace Uroboros.syntax.interpretation.expressions
                 else
                     currentTokens.Add(tok);
             }
+
             if (currentTokens.Count > 0)
                 list.AddSubcommand(SubcommandBuilder.Build(currentTokens, subcommandType));
+            if (currentTokens.Count == 0)
+                list.AddSubcommand(SubcommandBuilder.BuildEmpty(subcommandType));
+
             return list;
         }
     }
