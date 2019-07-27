@@ -120,7 +120,10 @@
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthoflongest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
+    <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
+    <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
+    <Compile Include="syntax\functions\numeric\FuncLn.cs" />
     <Compile Include="syntax\functions\strings\FuncAfter.cs" />
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />

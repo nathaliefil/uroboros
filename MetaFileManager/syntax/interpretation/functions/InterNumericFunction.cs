@@ -26,7 +26,9 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil"))
+            if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil")
+                || name.Equals("sqrt") || name.Equals("ln") || name.Equals("log")
+                || name.Equals("log10"))
                 return BuildNum(name, args);
             if (name.Equals("power"))
                 return BuildNumNum(name, args);
@@ -63,6 +65,12 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncRound(inu);
                 if (name.Equals("ceil"))
                     return new FuncRound(inu);
+                if (name.Equals("sqrt"))
+                    return new FuncSqrt(inu);
+                if (name.Equals("ln") || name.Equals("log"))
+                    return new FuncLn(inu);
+                if (name.Equals("log10"))
+                    return new FuncLog10(inu);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
