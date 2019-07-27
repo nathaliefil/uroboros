@@ -6,19 +6,19 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_file
 {
-    class Name : NamedStringable
+    class Fullname : NamedStringable
     {
-        public Name()
+        public Fullname()
         {
-            name = "name";
+            name = "fullname";
         }
 
         public override string ToString()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
-            return FileInnerVariable.GetName(file);
+            return FileInnerVariable.GetFullname(file);
         }
     }
 }

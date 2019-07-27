@@ -6,13 +6,13 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.from_location.date
+namespace Uroboros.syntax.variables.from_file
 {
-    class Modification : NamedTimeable
+    class Creation : NamedTimeable
     {
-        public Modification()
+        public Creation()
         {
-            name = "modification";
+            name = "creation";
         }
 
         public override DateTime ToTime()
@@ -21,7 +21,7 @@ namespace Uroboros.syntax.variables.from_location.date
 
             try
             {
-                return FileInnerVariable.GetModification(file);
+                return FileInnerVariable.GetCreation(file);
             }
             catch (Exception)
             {

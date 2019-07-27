@@ -86,6 +86,7 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("empty", InterVarType.Bool, false));
             variables.Add(new InterVar("creation", InterVarType.Time, false));
             variables.Add(new InterVar("modification", InterVarType.Time, false));
+            variables.Add(new InterVar("now", InterVarType.Time, false));
             variables.Add(new InterVar("size", InterVarType.Number, false));
         }
 

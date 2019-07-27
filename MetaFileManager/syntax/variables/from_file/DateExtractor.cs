@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_file
 {
     class DateExtractor
     {

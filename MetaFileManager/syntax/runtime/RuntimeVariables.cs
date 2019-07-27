@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
-using Uroboros.syntax.variables.from_location;
-using Uroboros.syntax.variables.bools;
-using Uroboros.syntax.variables.from_location.date;
+using Uroboros.syntax.variables.from_file;
+using Uroboros.syntax.variables.refers;
 
 namespace Uroboros.syntax.runtime
 {
@@ -193,6 +192,7 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Extension());
             variables.Add(new Modification());
             variables.Add(new Creation());
+            variables.Add(new Now());
             variables.Add(new Size());
         }
     }

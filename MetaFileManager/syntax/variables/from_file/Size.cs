@@ -6,19 +6,19 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_file
 {
-    class Extension : NamedStringable
+    class Size : NamedNumerable
     {
-        public Extension()
+        public Size()
         {
-            name = "extension";
+            this.name = "size";
         }
 
-        public override string ToString()
+        public override decimal ToNumber()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
-            return FileInnerVariable.GetExtension(file);
+            return FileInnerVariable.GetSize(file);
         }
     }
 }

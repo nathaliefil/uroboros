@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_file
 {
     class FileInnerVariable
     {

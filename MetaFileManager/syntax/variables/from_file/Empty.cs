@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.bools
+namespace Uroboros.syntax.variables.from_file
 {
     class Empty : NamedBoolable
     {

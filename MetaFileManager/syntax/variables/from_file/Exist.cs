@@ -6,19 +6,19 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.variables.from_location
+namespace Uroboros.syntax.variables.from_file
 {
-    class Size : NamedNumerable
+    class Exist : NamedBoolable
     {
-        public Size()
+        public Exist()
         {
-            this.name = "size";
+            name = "exist";
         }
 
-        public override decimal ToNumber()
+        public override bool ToBool()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
-            return FileInnerVariable.GetSize(file);
+            return FileInnerVariable.Exist(file);
         }
     }
 }
