@@ -36,7 +36,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildStr(name, args);
             if (name.Equals("min") || name.Equals("max"))
                 return BuildNums(name, args);
-            if (name.Equals("count"))
+            if (name.Equals("count") || name.Equals("lengthofshortest") || name.Equals("lengthoflongest"))
                 return BuildLis(name, args);
             if (name.Equals("indexof"))
                 return BuildStrStr(name, args);
@@ -174,6 +174,10 @@ namespace Uroboros.syntax.interpretation.functions
             {
                 if (name.Equals("count"))
                     return new FuncCount(ilis);
+                if (name.Equals("lengthofshortest"))
+                    return new FuncLengthofshortest(ilis);
+                if (name.Equals("lengthoflongest"))
+                    return new FuncLengthoflongest(ilis);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }

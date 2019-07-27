@@ -118,6 +118,8 @@
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
     <Compile Include="syntax\functions\numeric\FuncGoldenratio.cs" />
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
+    <Compile Include="syntax\functions\numeric\FuncLengthoflongest.cs" />
+    <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\strings\FuncAfter.cs" />
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
