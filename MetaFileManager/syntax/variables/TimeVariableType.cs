@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax.variables.from_location.date
+namespace Uroboros.syntax.variables
 {
-    public enum DateVariableType
+    public enum TimeVariableType
     {
         Year,
         Month,
@@ -13,10 +13,6 @@ namespace Uroboros.syntax.variables.from_location.date
         Day,
         Hour,
         Minute,
-        Second,
-
-        Time,
-        Date,
-        Clock
+        Second
     }
 }

@@ -84,28 +84,9 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("extension", InterVarType.String, false));
             variables.Add(new InterVar("exist", InterVarType.Bool, false));
             variables.Add(new InterVar("empty", InterVarType.Bool, false));
-            variables.Add(new InterVar("creation", InterVarType.String, false));
-            variables.Add(new InterVar("modification", InterVarType.String, false));
+            variables.Add(new InterVar("creation", InterVarType.Time, false));
+            variables.Add(new InterVar("modification", InterVarType.Time, false));
             variables.Add(new InterVar("size", InterVarType.Number, false));
-
-            variables.Add(new InterVar("modification.year", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.month", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.weekday", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.day", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.hour", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.minute", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.second", InterVarType.Number, false));
-            variables.Add(new InterVar("modification.date", InterVarType.String, false));
-            variables.Add(new InterVar("modification.clock", InterVarType.String, false));
-            variables.Add(new InterVar("creation.year", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.month", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.weekday", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.day", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.hour", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.minute", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.second", InterVarType.Number, false));
-            variables.Add(new InterVar("creation.date", InterVarType.String, false));
-            variables.Add(new InterVar("creation.clock", InterVarType.String, false));
         }
 
         public bool Contains(string name)
@@ -131,6 +112,10 @@ namespace Uroboros.syntax.interpretation.vars_range
                 case InterVarType.Number:
                 {
                     return iv.IsNumber() ? true : false;
+                }
+                case InterVarType.Time:
+                {
+                    return iv.IsTime() ? true : false;
                 }
                 case InterVarType.String:
                 {

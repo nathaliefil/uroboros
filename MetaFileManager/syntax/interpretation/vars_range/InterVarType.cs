@@ -9,6 +9,7 @@ namespace Uroboros.syntax.interpretation.vars_range
     {
         Bool,
         Number,
+        Time,
         String,
         List
     }

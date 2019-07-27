@@ -63,6 +63,14 @@ namespace Uroboros.syntax.interpretation.vars_range
                 return false;
         }
 
+        public bool IsTime()
+        {
+            if (type.Equals(InterVarType.Time))
+                return true;
+            else
+                return false;
+        }
+
         public bool IsNumber()
         {
             if (type.Equals(InterVarType.Bool) || type.Equals(InterVarType.Number))
@@ -74,7 +82,7 @@ namespace Uroboros.syntax.interpretation.vars_range
         public bool IsString()
         {
             if (type.Equals(InterVarType.Bool) || type.Equals(InterVarType.Number)
-                || type.Equals(InterVarType.String))
+                || type.Equals(InterVarType.String) || type.Equals(InterVarType.Time))
                 return true;
             else
                 return false;
@@ -83,7 +91,8 @@ namespace Uroboros.syntax.interpretation.vars_range
         public bool IsList()
         {
             if (type.Equals(InterVarType.Bool) || type.Equals(InterVarType.Number)
-                || type.Equals(InterVarType.String) || type.Equals(InterVarType.List))
+                || type.Equals(InterVarType.String) || type.Equals(InterVarType.List)
+                || type.Equals(InterVarType.Time))
                 return true;
             else
                 return false;

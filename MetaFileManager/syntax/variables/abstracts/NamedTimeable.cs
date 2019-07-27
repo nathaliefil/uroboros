@@ -7,7 +7,7 @@ using Uroboros.syntax.variables.from_location;
 
 namespace Uroboros.syntax.variables.abstracts
 {
-    abstract class DefaultTimeable : DefaultStringable, ITimeable
+    class NamedTimeable : NamedStringable, ITimeable
     {
         public virtual DateTime ToTime()
         {

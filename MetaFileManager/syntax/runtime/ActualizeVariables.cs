@@ -70,6 +70,19 @@ namespace Uroboros.syntax.runtime
             }
         }
 
+        public void Actualize(string name, DateTime value)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 0)
+                variables.Add(new TimeVariable(name, value));
+
+            else if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                Named nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is TimeVariable)
+                    (nv as TimeVariable).SetValue(value);
+            }
+        }
+
         public void PlusPlus(string name)
         {
             if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)

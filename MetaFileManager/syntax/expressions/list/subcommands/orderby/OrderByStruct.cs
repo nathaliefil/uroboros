@@ -5,15 +5,25 @@ using System.Text;
 
 namespace Uroboros.syntax.expressions.list.subcommands.orderby
 {
-    public struct OrderByStruct
+    public class OrderByStruct
     {
-        public OrderByVariable variable;
-        public OrderByType type;
+        protected OrderByVariable variable;
+        protected OrderByType type;
 
         public OrderByStruct(OrderByVariable var, OrderByType typ)
         {
             variable = var;
             type = typ;
+        }
+
+        public OrderByVariable GetVariable()
+        {
+            return variable;
+        }
+
+        public OrderByType GetOrderType()
+        {
+            return type;
         }
     }
 }

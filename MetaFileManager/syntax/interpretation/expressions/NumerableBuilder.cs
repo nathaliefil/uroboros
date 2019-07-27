@@ -31,7 +31,12 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.Number))
                         return new NumericVariableRefer(str);
                     else
-                        return null;
+                    {
+                        // try to build reference to element of time variable
+                        INumerable inum = BuildTimeVariableRefer(tokens[0]);
+                        if (!inum.IsNull())
+                            return inum;
+                    }
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.NumericConstant))
                     return new NumericConstant(tokens[0].GetNumericContent());
@@ -56,6 +61,48 @@ namespace Uroboros.syntax.interpretation.expressions
         private static bool ContainsArithmeticTokens(List<Token> tokens)
         {
             return tokens.Where(x => TokenGroups.IsArithmeticSign(x.GetTokenType())).Any();
+        }
+
+        private static INumerable BuildTimeVariableRefer(Token token)
+        {
+            string name = token.GetContent();
+            int count = name.Count(c => c == '.');
+
+            if (count == 0)
+                return null;
+
+            if (count > 1)
+                throw new SyntaxErrorException("ERROR! Variable " + name + " contains multiple dot signs and because of that misguides compiler.");
+
+            string leftSide = name.Substring(0, name.IndexOf('.')).ToLower();
+            string rightSide = name.Substring(name.IndexOf('.') + 1).ToLower();
+
+            if (leftSide.Length == 0 || rightSide.Length == 0)
+                return null;
+
+            if (InterVariables.GetInstance().Contains(leftSide, InterVarType.Time))
+            {
+                switch (rightSide)
+                {
+                    case "year":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Year);
+                    case "month":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Month);
+                    case "day":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Day);
+                    case "weekday":
+                        return new TimeElementRefer(leftSide, TimeVariableType.WeekDay);
+                    case "hour":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Hour);
+                    case "minute":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Minute);
+                    case "second":
+                        return new TimeElementRefer(leftSide, TimeVariableType.Second);
+                }
+                return null;
+            }
+            else
+                throw new SyntaxErrorException("ERROR! Variable " + leftSide + " do not exist.");
         }
 
         private static INumerable BuildExpression(List<Token> tokens)

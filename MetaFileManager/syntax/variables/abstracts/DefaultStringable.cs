@@ -14,7 +14,7 @@ namespace Uroboros.syntax.variables.abstracts
 
         public override List<string> ToList()
         {
-            return new List<string>{ ToString() };
+            return new List<string> { ToString() };
         }
     }
 }

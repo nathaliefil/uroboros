@@ -74,6 +74,19 @@ namespace Uroboros.syntax.runtime
             return nv.ToString();
         }
 
+        public DateTime GetValueTime(string name)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return DateTime.MinValue;
+
+            Named nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is ITimeable)
+            {
+                return (nv as ITimeable).ToTime();
+            }
+            return DateTime.MinValue;
+        }
+
         public decimal GetValueNumber(string name)
         {
             if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
@@ -122,6 +135,45 @@ namespace Uroboros.syntax.runtime
             return "";
         }
 
+        public decimal GetTimeElement(string name, TimeVariableType type)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return 0;
+
+            Named nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is ITimeable)
+            {
+                return (nv as ITimeable).ToTimeVariable(type);
+            }
+            return 0;
+        }
+
+        public string GetTimeDate(string name)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return "";
+
+            Named nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is ITimeable)
+            {
+                return (nv as ITimeable).ToDate();
+            }
+            return "";
+        }
+
+        public string GetTimeClock(string name)
+        {
+            if (variables.Where(v => name.Equals(v.GetName())).Count() == 0)
+                return "";
+
+            Named nv = variables.First(v => name.Equals(v.GetName()));
+            if (nv is ITimeable)
+            {
+                return (nv as ITimeable).ToClock();
+            }
+            return "";
+        }
+
         public void InitializeInnerVariables()
         {
             variables = new List<Named>();
@@ -142,28 +194,6 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Modification());
             variables.Add(new Creation());
             variables.Add(new Size());
-
-            variables.Add(new DateVariableNumeric("modification.year", true, DateVariableType.Year));
-            variables.Add(new DateVariableNumeric("modification.month", true, DateVariableType.Month));
-            variables.Add(new DateVariableNumeric("modification.weekday", true, DateVariableType.WeekDay));
-            variables.Add(new DateVariableNumeric("modification.day", true, DateVariableType.Day));
-            variables.Add(new DateVariableNumeric("modification.hour", true, DateVariableType.Hour));
-            variables.Add(new DateVariableNumeric("modification.minute", true, DateVariableType.Minute));
-            variables.Add(new DateVariableNumeric("modification.second", true, DateVariableType.Second));
-            variables.Add(new DateVariableString("modification.date", true, DateVariableType.Date));
-            variables.Add(new DateVariableString("modification.clock", true, DateVariableType.Clock));
-
-            variables.Add(new DateVariableNumeric("creation.year", false, DateVariableType.Year));
-            variables.Add(new DateVariableNumeric("creation.month", false, DateVariableType.Month));
-            variables.Add(new DateVariableNumeric("creation.weekday", false, DateVariableType.WeekDay));
-            variables.Add(new DateVariableNumeric("creation.day", false, DateVariableType.Day));
-            variables.Add(new DateVariableNumeric("creation.hour", false, DateVariableType.Hour));
-            variables.Add(new DateVariableNumeric("creation.minute", false, DateVariableType.Minute));
-            variables.Add(new DateVariableNumeric("creation.second", false, DateVariableType.Second));
-            variables.Add(new DateVariableString("creation.date", false, DateVariableType.Date));
-            variables.Add(new DateVariableString("creation.clock", false, DateVariableType.Clock));
-
         }
-
     }
 }

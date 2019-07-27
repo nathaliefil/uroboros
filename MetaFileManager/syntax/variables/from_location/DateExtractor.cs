@@ -3,61 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax.variables.from_location.date
+namespace Uroboros.syntax.variables.from_location
 {
     class DateExtractor
     {
-        public static decimal GetVariableNumeric(DateVariableType type, DateTime time)
+        public static decimal GetVariable(DateTime time, TimeVariableType type)
         {
             switch (type)
             {
-                case DateVariableType.Year:
+                case TimeVariableType.Year:
                     return time.Year;
-                case DateVariableType.Month:
+                case TimeVariableType.Month:
                     return time.Month;
-                case DateVariableType.WeekDay:
-                    return (decimal)time.DayOfWeek;
-                case DateVariableType.Day:
+                case TimeVariableType.Day:
                     return time.Day;
-                case DateVariableType.Hour:
+                case TimeVariableType.WeekDay:
+                    return (decimal)time.DayOfWeek;
+                case TimeVariableType.Hour:
                     return time.Hour;
-                case DateVariableType.Minute:
+                case TimeVariableType.Minute:
                     return time.Minute;
-                case DateVariableType.Second:
+                case TimeVariableType.Second:
                     return time.Second;
-                case DateVariableType.Date:
-                    return DateToInt(time);
-                case DateVariableType.Clock:
-                    return ClockToInt(time);
             }
             return 0;
         }
 
-        public static string GetVariableString(DateVariableType type, DateTime time)
+        public static string ToString(DateTime time)
         {
-            switch (type)
-            {
-                case DateVariableType.Time:
-                    return Time(time);
-                case DateVariableType.Date:
-                    return Date(time);
-                case DateVariableType.Clock:
-                    return Clock(time);
-            }
-            return "";
+            return ToDate(time) + ", " + ToClock(time);
         }
 
-        private static string Time(DateTime time)
-        {
-            return Date(time) + ", " + Clock(time);
-        }
-
-        private static string Date(DateTime time)
+        public static string ToDate(DateTime time)
         {
             return time.Day + Month(time.Month) + time.Year;
         }
 
-        private static string Clock(DateTime time)
+        public static string ToClock(DateTime time)
         {
             return Filled(time.Hour) + ":" + Filled(time.Minute) + ":" + Filled(time.Second);
         }

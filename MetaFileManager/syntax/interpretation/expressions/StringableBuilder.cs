@@ -30,7 +30,12 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.String))
                         return new StringVariableRefer(str);
                     else
-                        return null;
+                    {
+                        // try to build reference to date or clock time
+                        IStringable istr = BuildTimeVariableRefer(tokens[0]);
+                        if (!istr.IsNull())
+                            return istr;
+                    }
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.StringConstant))
                     return new StringConstant(tokens[0].GetContent());
@@ -62,6 +67,39 @@ namespace Uroboros.syntax.interpretation.expressions
         }
 
 
+        private static IStringable BuildTimeVariableRefer(Token token)
+        {
+            string name = token.GetContent();
+            int count = name.Count(c => c == '.');
+
+            if (count == 0)
+                return null;
+
+            if (count > 1)
+                throw new SyntaxErrorException("ERROR! Variable " + name + " contains multiple dot signs and because of that misguides compiler.");
+
+            string leftSide = name.Substring(0, name.IndexOf('.')).ToLower();
+            string rightSide = name.Substring(name.IndexOf('.') + 1).ToLower();
+
+            if (leftSide.Length == 0 || rightSide.Length == 0)
+                return null;
+
+            if (InterVariables.GetInstance().Contains(leftSide, InterVarType.Time))
+            {
+                switch (rightSide)
+                {
+                    case "date":
+                        return new TimeDateRefer(leftSide);
+                    case "clock":
+                        return new TimeClockRefer(leftSide);
+                }
+                return null;
+            }
+            else
+                throw new SyntaxErrorException("ERROR! Variable " + leftSide + " do not exist.");
+        }
+
+
         // string concatenation
         // considers numeric expressions inside with signs '+'
         public static IStringable BuildConcatenated(List<Token> tokens)
@@ -87,7 +125,7 @@ namespace Uroboros.syntax.interpretation.expressions
                         if (ist.IsNull())
                             return null;
 
-                        if (ist is INumerable)
+                        if (ist is INumerable || ist is IBoolable)
                         {
                             reserve.AddRange(currentTokens);
                             reserve.Add(tokens[i]);
@@ -117,7 +155,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
                 if (reserve.Count > 0)
                 {
-                    if (ist is INumerable)
+                    if (ist is INumerable || ist is IBoolable)
                     {
                         reserve.AddRange(currentTokens);
                         elements.Add(NumerableBuilder.Build(reserve) as IStringable);

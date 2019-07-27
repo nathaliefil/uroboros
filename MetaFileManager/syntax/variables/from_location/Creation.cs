@@ -8,25 +8,24 @@ using System.IO;
 
 namespace Uroboros.syntax.variables.from_location.date
 {
-    class Modification : NamedStringable
+    class Creation : NamedTimeable
     {
-        public Modification()
+        public Creation()
         {
-            name = "modification";
+            name = "creation";
         }
 
-        public override string ToString()
+        public override DateTime ToTime()
         {
             string file = RuntimeVariables.GetInstance().GetValueString("this");
 
             try
             {
-                DateTime time = FileInnerVariable.GetModification(file);
-                return DateExtractor.GetVariableString(DateVariableType.Time, time);
+                return FileInnerVariable.GetCreation(file);
             }
             catch (Exception)
             {
-                return "";
+                return DateTime.MinValue;
             }
         }
     }
