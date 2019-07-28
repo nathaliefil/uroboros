@@ -18,7 +18,12 @@ namespace Uroboros.syntax.expressions.bools.other
             this.phrase = phrase;
         }
 
-        // function LIKE from SQL
+        // function LIKE from SQL, but extended a bit
+        // special characters:
+        // _    any char (is required)
+        // #    any digit (is required)
+        // %    any string of chars (can be empty - length 0)
+        // other signs represent themselves
         public override bool ToBool()
         {
             string svalue = value.ToString();
@@ -37,32 +42,45 @@ namespace Uroboros.syntax.expressions.bools.other
                 }
                 else
                 {
-                    if (ch == '%')
-                    {
-                        if (i == phrase.Length - 1)
-                            return true;
-                        else
-                        {
-                            i++;
-                            ch = phrase[i];
-                            while (iterator < svalue.Length)
-                            {
-                                if (svalue[iterator].Equals(ch))
-                                    break;
-                                iterator++;
-                            }
-                            i--;
-                            if (iterator == svalue.Length)
-                                return false;
-                        }
-                    }
-                    else
+                    if (ch == '#')
                     {
                         if (svalue.Length == iterator)
                             return false;
-                        if (!svalue[iterator].Equals(ch))
+                        if (!Char.IsDigit(svalue[iterator]))
                             return false;
                         iterator++;
+                    }
+                    else
+                    {
+                        if (ch == '%')
+                        {
+                            if (i == phrase.Length - 1)
+                                return true;
+                            else
+                            {
+                                i++;
+                                ch = phrase[i];
+                                while (iterator < svalue.Length)
+                                {
+                                    if (svalue[iterator].Equals(ch))
+                                        break;
+                                    if (ch == '#' && Char.IsDigit(svalue[iterator]))
+                                        break;
+                                    iterator++;
+                                }
+                                i--;
+                                if (iterator == svalue.Length)
+                                    return false;
+                            }
+                        }
+                        else
+                        {
+                            if (svalue.Length == iterator)
+                                return false;
+                            if (!svalue[iterator].Equals(ch))
+                                return false;
+                            iterator++;
+                        }
                     }
                 }
             }
