@@ -19,15 +19,11 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                 case OrderByVariable.Fullname:
                     return FileInnerVariable.GetFullname(s1).Equals(FileInnerVariable.GetFullname(s2));
 
-
                 case OrderByVariable.Name:
                     return FileInnerVariable.GetName(s1).Equals(FileInnerVariable.GetName(s2));
 
                 case OrderByVariable.Size:
                     return FileInnerVariable.GetSize(s1).Equals(FileInnerVariable.GetSize(s2));
-
-
-
 
                 case OrderByVariable.Creation:
                     {
@@ -35,15 +31,14 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                             return DateExtractor.GetVariable(FileInnerVariable.GetCreation(s1), (order as OrderByStructTime).GetTimeVariable()) ==
                                 DateExtractor.GetVariable(FileInnerVariable.GetCreation(s2), (order as OrderByStructTime).GetTimeVariable());
                         else if (order is OrderByStructDate)
-                            return DateExtractor.DateToInt(FileInnerVariable.GetCreation(s1)) ==
-                                DateExtractor.DateToInt(FileInnerVariable.GetCreation(s2));
+                            return DateExtractor.DateToInt(FileInnerVariable.GetCreation(s1)).Equals(
+                                DateExtractor.DateToInt(FileInnerVariable.GetCreation(s2)));
                         else if (order is OrderByStructClock)
-                            return DateExtractor.ClockToInt(FileInnerVariable.GetCreation(s1)) ==
-                                DateExtractor.ClockToInt(FileInnerVariable.GetCreation(s2));
+                            return DateExtractor.ClockToInt(FileInnerVariable.GetCreation(s1)).Equals(
+                                DateExtractor.ClockToInt(FileInnerVariable.GetCreation(s2)));
                         else
                             return FileInnerVariable.GetCreation(s1).Equals(FileInnerVariable.GetCreation(s2));
                     }
-
 
                 case OrderByVariable.Modification:
                     {
@@ -51,11 +46,11 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                             return DateExtractor.GetVariable(FileInnerVariable.GetModification(s1), (order as OrderByStructTime).GetTimeVariable()) ==
                                 DateExtractor.GetVariable(FileInnerVariable.GetModification(s2), (order as OrderByStructTime).GetTimeVariable());
                         else if (order is OrderByStructDate)
-                            return DateExtractor.DateToInt(FileInnerVariable.GetModification(s1)) ==
-                                DateExtractor.DateToInt(FileInnerVariable.GetModification(s2));
+                            return DateExtractor.DateToInt(FileInnerVariable.GetModification(s1)).Equals(
+                                DateExtractor.DateToInt(FileInnerVariable.GetModification(s2)));
                         else if (order is OrderByStructClock)
-                            return DateExtractor.ClockToInt(FileInnerVariable.GetModification(s1)) ==
-                                DateExtractor.ClockToInt(FileInnerVariable.GetModification(s2));
+                            return DateExtractor.ClockToInt(FileInnerVariable.GetModification(s1)).Equals(
+                                DateExtractor.ClockToInt(FileInnerVariable.GetModification(s2)));
                         else
                             return FileInnerVariable.GetModification(s1).Equals(FileInnerVariable.GetModification(s2));
                     }

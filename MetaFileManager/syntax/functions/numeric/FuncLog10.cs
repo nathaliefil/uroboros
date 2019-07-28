@@ -20,9 +20,9 @@ namespace Uroboros.syntax.functions.numeric
             decimal number = arg0.ToNumber();
 
             if (number == 0)
-                throw new RuntimeException("RUNTIME ERROR! Binary logarithm of zero happened.");
+                throw new RuntimeException("RUNTIME ERROR! Decimal logarithm of zero happened.");
             else if (number < 0)
-                throw new RuntimeException("RUNTIME ERROR! Binary logarithm of negative number happened.");
+                throw new RuntimeException("RUNTIME ERROR! Decimal logarithm of negative number happened.");
             else return (decimal)Math.Log10(Decimal.ToDouble(number));
         }
     }

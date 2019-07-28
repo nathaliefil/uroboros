@@ -23,5 +23,10 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         {
             variables.RemoveAt(0);
         }
+
+        public OrderBy CopyWithoutFirstVariable()
+        {
+            return new OrderBy(variables.Skip(1).ToList());
+        }
     }
 }

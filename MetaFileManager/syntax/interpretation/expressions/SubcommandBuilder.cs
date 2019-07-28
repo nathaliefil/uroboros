@@ -40,7 +40,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (type == TokenType.First || type == TokenType.Last || type == TokenType.Skip)
                 return new NumericSubcommand(new NumericConstant(1), GetNumericType(type));
 
-            throw new SyntaxErrorException("ERROR! Subcommand " + GetName(type) + "is empty.");
+            throw new SyntaxErrorException("ERROR! Subcommand " + GetName(type) + " is empty.");
         }
 
         public static ISubcommand BuildWith(List<Token> tokens, bool negated)
@@ -75,7 +75,7 @@ namespace Uroboros.syntax.interpretation.expressions
         public static ISubcommand BuildOrderBy(List<Token> tokens)
         {
             List<OrderByStruct> variables = new List<OrderByStruct>();
-            OrderByVariable waitingVariable = OrderByVariable.None;
+            OrderByStruct waitingVariable = null;
             bool expectedVariable = true;
 
             foreach (Token tok in tokens)
@@ -85,23 +85,23 @@ namespace Uroboros.syntax.interpretation.expressions
 
                 if (expectedVariable)
                 {
-                    OrderByVariable obv = BuildOrderByVariable(tok);
-                    if (obv.Equals(OrderByVariable.None))
-                        if(variables.Count == 0)
+                    OrderByStruct obv = BuildOrderByStruct(tok);
+                    if (obv.IsNull())
+                        if (variables.Count == 0)
                             throw new SyntaxErrorException("ERROR! Expression 'order by' do not start with allowed variable.");
                         else
                             throw new SyntaxErrorException("ERROR! Expression 'order by' contains adjacent keywords asc/desc or one not allowed variable.");
                     else
                         waitingVariable = obv;
-                        expectedVariable = false;
+                    expectedVariable = false;
                 }
                 else
                 {
                     OrderByType obt = BuildOrderByType(tok);
                     if (obt.Equals(OrderByType.None))
                     {
-                        OrderByVariable obv = BuildOrderByVariable(tok);
-                        if (obv.Equals(OrderByVariable.None))
+                        OrderByStruct obv = BuildOrderByStruct(tok);
+                        if (obv.IsNull())
                             throw new SyntaxErrorException("ERROR! Expression 'order by' contains not allowed variable " + tok.GetContent() + ".");
                         else
                         {
@@ -109,23 +109,25 @@ namespace Uroboros.syntax.interpretation.expressions
                                 waitingVariable = obv;
                             else
                             {
-                                variables.Add(new OrderByStruct(waitingVariable, OrderByType.ASC));
+                                variables.Add(waitingVariable);
                                 waitingVariable = obv;
                             }
                         }
                     }
                     else
                     {
-                        variables.Add(new OrderByStruct(waitingVariable, obt));
+                        if (obt.Equals(OrderByType.DESC))
+                            waitingVariable.SetDesc();
+                        variables.Add(waitingVariable);
                         expectedVariable = true;
-                        waitingVariable = OrderByVariable.None;
+                        waitingVariable = null;
                     }
                 }
             }
-            if (!waitingVariable.Equals(OrderByVariable.None))
-                variables.Add(new OrderByStruct(waitingVariable, OrderByType.ASC));
+            if (!waitingVariable.IsNull())
+                variables.Add(waitingVariable);
 
-            if(variables.Count == 0)
+            if (variables.Count == 0)
                 throw new SyntaxErrorException("ERROR! Expression 'order by' is empty.");
 
             return new OrderBy(variables);
@@ -143,62 +145,68 @@ namespace Uroboros.syntax.interpretation.expressions
             return OrderByType.None;
         }
 
-        private static OrderByVariable BuildOrderByVariable(Token tok)
+        private static OrderByStruct BuildOrderByStruct(Token tok)
         {
             switch (tok.GetContent().ToLower())
             {
                 case "creation":
-                    return OrderByVariable.Creation;
+                    return new OrderByStruct(OrderByVariable.Creation);
                 case "extension":
-                    return OrderByVariable.Extension;
+                    return new OrderByStruct(OrderByVariable.Extension);
                 case "fullname":
-                    return OrderByVariable.Fullname;
+                    return new OrderByStruct(OrderByVariable.Fullname);
                 case "modification":
-                    return OrderByVariable.Modification;
+                    return new OrderByStruct(OrderByVariable.Modification);
                 case "name":
-                    return OrderByVariable.Name;
+                    return new OrderByStruct(OrderByVariable.Name);
                 case "size":
-                    return OrderByVariable.Size;
-
-                case "creation.year":
-                    return OrderByVariable.CreationYear;
-                case "creation.month":
-                    return OrderByVariable.CreationMonth;
-                case "creation.weekday":
-                    return OrderByVariable.CreationWeekDay;
-                case "creation.day":
-                    return OrderByVariable.CreationDay;
-                case "creation.hour":
-                    return OrderByVariable.CreationHour;
-                case "creation.minute":
-                    return OrderByVariable.CreationMinute;
-                case "creation.second":
-                    return OrderByVariable.CreationSecond;
-                case "creation.date":
-                    return OrderByVariable.CreationDate;
-                case "creation.clock":
-                    return OrderByVariable.CreationClock;
-
-                case "modification.year":
-                    return OrderByVariable.ModificationYear;
-                case "modification.month":
-                    return OrderByVariable.ModificationMonth;
-                case "modification.weekday":
-                    return OrderByVariable.ModificationWeekDay;
-                case "modification.day":
-                    return OrderByVariable.ModificationDay;
-                case "modification.hour":
-                    return OrderByVariable.ModificationHour;
-                case "modification.minute":
-                    return OrderByVariable.ModificationMinute;
-                case "modification.second":
-                    return OrderByVariable.ModificationSecond;
-                case "modification.date":
-                    return OrderByVariable.ModificationDate;
-                case "modification.clock":
-                    return OrderByVariable.ModificationClock;
+                    return new OrderByStruct(OrderByVariable.Size);
             }
-            return OrderByVariable.None;
+
+            // struct - element of time variable (creation/modification)
+            string name = tok.GetContent();
+            int count = name.Count(c => c == '.');
+
+            if (count != 1)
+                return null;
+
+            string leftSide = name.Substring(0, name.IndexOf('.')).ToLower();
+            string rightSide = name.Substring(name.IndexOf('.') + 1).ToLower();
+
+            if (leftSide.Length == 0 || rightSide.Length == 0)
+                return null;
+
+            OrderByVariable obv;
+
+            if (leftSide.ToLower().Equals("creation"))
+                obv = OrderByVariable.Creation;
+            else if (leftSide.ToLower().Equals("modification"))
+                obv = OrderByVariable.Modification;
+            else
+                return null;
+
+            switch (rightSide.ToLower())
+            {
+                case "year":
+                    return new OrderByStructTime(obv, TimeVariableType.Year);
+                case "month":
+                    return new OrderByStructTime(obv, TimeVariableType.Month);
+                case "day":
+                    return new OrderByStructTime(obv, TimeVariableType.Day);
+                case "weekday":
+                    return new OrderByStructTime(obv, TimeVariableType.WeekDay);
+                case "hour":
+                    return new OrderByStructTime(obv, TimeVariableType.Hour);
+                case "minute":
+                    return new OrderByStructTime(obv, TimeVariableType.Minute);
+                case "second":
+                    return new OrderByStructTime(obv, TimeVariableType.Second);
+                case "date":
+                    return new OrderByStructDate(obv);
+                case "clock":
+                    return new OrderByStructClock(obv);
+            }
+            return null;
         }
 
         private static string GetName(TokenType type)

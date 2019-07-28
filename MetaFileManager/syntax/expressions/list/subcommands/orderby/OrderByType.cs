@@ -7,9 +7,9 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
 {
     public enum OrderByType
     {
-        None,
         ASC,
-        DESC
-    }
+        DESC,
 
+        None
+    }
 }

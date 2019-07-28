@@ -8,11 +8,11 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
 {
     class OrderByStructDate : OrderByStruct
     {
-        public OrderByStructDate(OrderByVariable var, OrderByType typ)
-            : base(var, typ)
+        public OrderByStructDate(OrderByVariable var)
+            : base(var)
         {
             variable = var;
-            type = typ;
+            type = OrderByType.ASC;
         }
     }
 }

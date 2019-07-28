@@ -10,12 +10,12 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
     {
         private TimeVariableType time;
 
-        public OrderByStructTime(OrderByVariable var, OrderByType typ, TimeVariableType tim) 
-            : base(var, typ)
+        public OrderByStructTime(OrderByVariable var, TimeVariableType tim) 
+            : base(var)
         {
             variable = var;
-            type = typ;
             time = tim;
+            type = OrderByType.ASC;
         }
 
         public TimeVariableType GetTimeVariable()

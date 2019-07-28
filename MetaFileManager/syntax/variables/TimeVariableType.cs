@@ -13,6 +13,8 @@ namespace Uroboros.syntax.variables
         Day,
         Hour,
         Minute,
-        Second
+        Second,
+
+        None
     }
 }

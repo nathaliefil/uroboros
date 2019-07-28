@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.expressions.list.subcommands;
 using Uroboros.syntax.variables.from_file;
+using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.expressions.list.subcommands.orderby
 {
@@ -11,13 +12,12 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
     {
         public static List<string> OrderBy(List<string> source, OrderBy orders)
         {
-
-            if (source.Count == 1)
+            if (source.Count == 1 || orders.GetVariables().Count == 0)
                 return source;
 
+            OrderByStruct first = orders.GetVariables()[0];
 
-            List<string> orderedByFirstVar = OrderBySingleVariable(source, orders.GetVariables()[0]);
-            orders.RemoveFirst();
+            List<string> orderedByFirstVar = OrderBySingleVariable(source, first);
 
             if (orders.GetVariables().Count == 0)
             {
@@ -25,20 +25,19 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
             }
             else
             {
-                OrderByStruct obs = orders.GetVariables()[0];
                 List<string> result = new List<string>();
                 List<string> temporary = new List<string> { orderedByFirstVar[0] };
 
                 for (int i = 1; i < orderedByFirstVar.Count; i++)
                 {
-                    if (OrderByComparator.Equals(orderedByFirstVar[i - 1], orderedByFirstVar[i], obs))
+                    if (OrderByComparator.Equals(orderedByFirstVar[i - 1], orderedByFirstVar[i], first))
                         temporary.Add(orderedByFirstVar[i]);
                     else
                     {
                         if (temporary.Count == 1)
                             result.Add(temporary[0]);
                         else
-                            result.AddRange(OrderBy(temporary, orders));
+                            result.AddRange(OrderBy(temporary, orders.CopyWithoutFirstVariable()));
 
                         temporary.Clear();
                         temporary.Add(orderedByFirstVar[i]);
@@ -47,13 +46,10 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                 if (temporary.Count == 1)
                     result.Add(temporary[0]);
                 else
-                    result.AddRange(OrderBy(temporary, orders));
+                    result.AddRange(OrderBy(temporary, orders.CopyWithoutFirstVariable()));
 
 
                 return result;
-                /*OrderingGroup ogroup = new OrderingGroup(source, orders);
-                return ogroup.GetElements();*/
-
             }
         }
 
@@ -85,7 +81,7 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                                 (order as OrderByStructTime).GetTimeVariable())).ToList();
                         else if (order is OrderByStructDate)
                             source = source.OrderBy(s => DateExtractor.DateToInt(FileInnerVariable.GetCreation(s))).ToList();
-                        else if (order is OrderByStructDate)
+                        else if (order is OrderByStructClock)
                             source = source.OrderBy(s => DateExtractor.ClockToInt(FileInnerVariable.GetCreation(s))).ToList();
                         else
                             source = source.OrderBy(s => FileInnerVariable.GetCreation(s)).ToList();
@@ -99,7 +95,7 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                                 (order as OrderByStructTime).GetTimeVariable())).ToList();
                         else if (order is OrderByStructDate)
                             source = source.OrderBy(s => DateExtractor.DateToInt(FileInnerVariable.GetModification(s))).ToList();
-                        else if (order is OrderByStructDate)
+                        else if (order is OrderByStructClock)
                             source = source.OrderBy(s => DateExtractor.ClockToInt(FileInnerVariable.GetModification(s))).ToList();
                         else
                             source = source.OrderBy(s => FileInnerVariable.GetModification(s)).ToList();
@@ -107,7 +103,7 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                     }
             }
 
-            if (order.GetType().Equals(OrderByType.DESC))
+            if (order.GetOrderType().Equals(OrderByType.DESC))
                 source.Reverse();
 
             return source;

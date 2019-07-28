@@ -13,24 +13,6 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         Fullname,
         Modification,
         Name,
-        Size,
-        CreationYear,
-        CreationMonth,
-        CreationWeekDay,
-        CreationDay,
-        CreationHour,
-        CreationMinute,
-        CreationSecond,
-        CreationDate,
-        CreationClock,
-        ModificationYear,
-        ModificationMonth,
-        ModificationWeekDay,
-        ModificationDay,
-        ModificationHour,
-        ModificationMinute,
-        ModificationSecond,
-        ModificationDate,
-        ModificationClock
+        Size
     }
 }
