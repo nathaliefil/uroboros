@@ -52,10 +52,10 @@ namespace Uroboros.syntax
 
             DateTime time = new DateTime(year, month, day, hour, minute, second);
 
-            TimeValidator.ValidateYear(year + daysForward);
+            TimeValidator.ValidateYear(time.AddDays(daysForward).Year);
 
             if (daysForward != 0)
-                time.AddDays(daysForward);
+                time = time.AddDays(daysForward);
 
             return time;
         }

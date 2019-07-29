@@ -32,7 +32,7 @@ namespace Uroboros.syntax.variables.time
 
             DateTime time = new DateTime(year2, month, day2, hour, minute, second);
             if (daysForward != 0)
-                time.AddDays(daysForward);
+                time = time.AddDays(daysForward);
 
             return time;
         }

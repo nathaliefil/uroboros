@@ -208,13 +208,20 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
-            if (leftPart.Count == 0 || rightPart.Count == 0)
+            if (leftPart.Count == 0)
+                return null;
+            
+            INumerable day = NumerableBuilder.Build(leftPart);
+            if (day.IsNull())
                 return null;
 
-            INumerable day = NumerableBuilder.Build(leftPart);
+            // try to build date without year
+            if (rightPart.Count == 0)
+                return new TimeFromDayMonth(day, month);
+
             INumerable year = NumerableBuilder.Build(rightPart);
 
-            if (day.IsNull() || year.IsNull())
+            if (year.IsNull())
                 return null;
 
             return new TimeFromDate(day, month, year);
