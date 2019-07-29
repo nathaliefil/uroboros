@@ -42,8 +42,10 @@ namespace Uroboros.syntax.reading
             switch (code.ToLower())
             {
                 case "add": return new Token(TokenType.Add);
+                case "after": return new Token(TokenType.After);
                 case "and": return new Token(TokenType.And);
                 case "ask": return new Token(TokenType.Ask);
+                case "before": return new Token(TokenType.Before);
                 case "by": return new Token(TokenType.By);
                 case "copy": return new Token(TokenType.Copy);
                 case "create": return new Token(TokenType.Create);

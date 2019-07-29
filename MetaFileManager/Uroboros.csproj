@@ -94,6 +94,7 @@
     <Compile Include="syntax\commands\list\Reverse.cs" />
     <Compile Include="syntax\commands\other\ClearLog.cs" />
     <Compile Include="syntax\commands\other\Sleep.cs" />
+    <Compile Include="syntax\commands\var\TimeDeclaration.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\ComparisonType.cs" />
@@ -112,6 +113,10 @@
     <Compile Include="syntax\expressions\numeric\NegatedNumerable.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperator.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperatorType.cs" />
+    <Compile Include="syntax\expressions\time\RelativeTimeExpression.cs" />
+    <Compile Include="syntax\expressions\time\RelativeTimeStruct.cs" />
+    <Compile Include="syntax\expressions\time\RelativeTimeType.cs" />
+    <Compile Include="syntax\expressions\time\TimeDirection.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
@@ -190,6 +195,7 @@
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\commands\InterReverse.cs" />
     <Compile Include="syntax\interpretation\expressions\SubcommandBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\TimeableBuilder.cs" />
     <Compile Include="syntax\interpretation\functions\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\Argument.cs" />
     <Compile Include="syntax\interpretation\functions\InterBoolFunction.cs" />

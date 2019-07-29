@@ -8,8 +8,10 @@ namespace Uroboros.syntax.reading
     public enum TokenType
     {
         Add,
+        After,
         And,
         Ask,
+        Before,
         By,
         Copy,
         Create,

@@ -21,6 +21,11 @@ namespace Uroboros.syntax.interpretation.expressions
             if (!inu.IsNull())
                 return (inu as IStringable);
 
+            // try to build Timeable
+            ITimeable itim = TimeableBuilder.Build(tokens);
+            if (!itim.IsNull())
+                return (itim as IStringable);
+
             // try to build simple one-token Stringable
             if (tokens.Count == 1)
             {

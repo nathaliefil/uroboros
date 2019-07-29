@@ -489,24 +489,8 @@ namespace Uroboros.syntax.interpretation.expressions
                 case TokenType.SmallerOrEquals:
                     return ComparisonType.SmallerOrEquals;
             }
-            return ComparisonType.Equals; // is never returned
+            return ComparisonType.Equals;
         }
-        /*
-        private static BoolExpressionOperator OperatorFromToken(Token tok)
-        {
-            switch (tok.GetTokenType())
-            {
-                case TokenType.And:
-                    return new BoolExpressionOperator(BoolExpressionOperatorType.And);
-                case TokenType.Or:
-                    return new BoolExpressionOperator(BoolExpressionOperatorType.Or);
-                case TokenType.Xor:
-                    return new BoolExpressionOperator(BoolExpressionOperatorType.Xor);
-                case TokenType.Exclamation:
-                    return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
-            }
-            return new BoolExpressionOperator(BoolExpressionOperatorType.Not);
-        }*/
 
         public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
         {

@@ -8,6 +8,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.commands.var;
+using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.interpretation.commands
 {
@@ -42,15 +43,23 @@ namespace Uroboros.syntax.interpretation.commands
                     }
                     else
                     {
-                        if (value is IStringable)
+                        if (value is ITimeable)
                         {
-                            InterVariables.GetInstance().Add(name, InterVarType.String);
-                            return new StringDeclaration(name, (IStringable)value);
+                            InterVariables.GetInstance().Add(name, InterVarType.Time);
+                            return new TimeDeclaration(name, (ITimeable)value);
                         }
                         else
                         {
-                            InterVariables.GetInstance().Add(name, InterVarType.List);
-                            return new ListDeclaration(name, value);
+                            if (value is IStringable)
+                            {
+                                InterVariables.GetInstance().Add(name, InterVarType.String);
+                                return new StringDeclaration(name, (IStringable)value);
+                            }
+                            else
+                            {
+                                InterVariables.GetInstance().Add(name, InterVarType.List);
+                                return new ListDeclaration(name, value);
+                            }
                         }
                     }
                 }
@@ -63,7 +72,7 @@ namespace Uroboros.syntax.interpretation.commands
                 {
                     IBoolable value = BoolableBuilder.Build(tokens);
                     if (value.IsNull())
-                        throw new SyntaxErrorException("ERROR! Logical value cannot be assigned to variable " + name + ".");
+                        throw new SyntaxErrorException("ERROR! Value assigned to variable " + name + " must be logical.");
                     return new BoolDeclaration(name, value);
                 }
                 else
@@ -72,24 +81,34 @@ namespace Uroboros.syntax.interpretation.commands
                     {
                         INumerable value = NumerableBuilder.Build(tokens);
                         if (value.IsNull())
-                            throw new SyntaxErrorException("ERROR! Numeric value cannot be assigned to variable " + name + ".");
+                            throw new SyntaxErrorException("ERROR! Value assigned to variable " + name + " must be numeric.");
                         return new NumericDeclaration(name, value);
                     }
                     else
                     {
-                        if (ivar.IsString())
+                        if (ivar.IsTime())
                         {
-                            IStringable value = StringableBuilder.Build(tokens);
+                            ITimeable value = TimeableBuilder.Build(tokens);
                             if (value.IsNull())
-                                throw new SyntaxErrorException("ERROR! String value cannot be assigned to variable " + name + ".");
-                            return new StringDeclaration(name, value);
+                                throw new SyntaxErrorException("ERROR! Value assigned to variable " + name + " must be time.");
+                            return new TimeDeclaration(name, value);
                         }
                         else
                         {
-                            IListable value = ListableBuilder.Build(tokens);
-                            if (value.IsNull())
-                                throw new SyntaxErrorException("ERROR! List value cannot be assigned to variable " + name + ".");
-                            return new ListDeclaration(name, value);
+                            if (ivar.IsString())
+                            {
+                                IStringable value = StringableBuilder.Build(tokens);
+                                if (value.IsNull())
+                                    throw new SyntaxErrorException("ERROR! Value assigned to variable " + name + " must be text.");
+                                return new StringDeclaration(name, value);
+                            }
+                            else
+                            {
+                                IListable value = ListableBuilder.Build(tokens);
+                                if (value.IsNull())
+                                    throw new SyntaxErrorException("ERROR! Value assigned to variable " + name + " must be list.");
+                                return new ListDeclaration(name, value);
+                            }
                         }
                     }
                 }

@@ -11,9 +11,9 @@ namespace Uroboros.gui
             "cut", "delete", "directory", "drop", "file", "move", "open", "order", "paste", 
             "print", "remove", "rename", "reverse", "run", "select", "sleep"};
 
-        public static string[] USUAL = new string[]{"and", "asc", "by", "desc", "each", "else",
-            "empty list", "first", "for", "force", "from", "if", "in", "last", "like", "not", 
-            "or", "order by", "skip", "to", "where", "while", "with", "without", "xor"};
+        public static string[] USUAL = new string[]{"after", "and", "asc", "before", "by", "desc", 
+            "each", "else", "empty list", "first", "for", "force", "from", "if", "in", "last", 
+            "like", "not", "or", "order by", "skip", "to", "where", "while", "with", "without", "xor"};
 
         public static string[] INNER_VARIABLES = new string[]{"creation", "directories", 
             "empty", "exist", "extension", "everything", "false", "files", "fullname", "index", 
