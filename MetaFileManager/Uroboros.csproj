@@ -228,6 +228,7 @@
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
+    <Compile Include="syntax\TimeCompiler.cs" />
     <Compile Include="syntax\TimeValidator.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultNumerable.cs" />
@@ -249,7 +250,13 @@
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
-    <Compile Include="syntax\variables\constants\TimeFromDate.cs" />
+    <Compile Include="syntax\variables\time\DefaultTimeableWithClockConstant.cs" />
+    <Compile Include="syntax\variables\time\TimeConstant.cs" />
+    <Compile Include="syntax\variables\time\TimeFromDate.cs" />
+    <Compile Include="syntax\variables\time\TimeFromDateClock.cs" />
+    <Compile Include="syntax\variables\time\TimeFromDateConstantClock.cs" />
+    <Compile Include="syntax\variables\time\TimeFromDayMonth.cs" />
+    <Compile Include="syntax\variables\time\TimeFromDayMonthConstantClock.cs" />
     <Compile Include="syntax\variables\from_file\Creation.cs" />
     <Compile Include="syntax\DateExtractor.cs" />
     <Compile Include="syntax\variables\from_file\Empty.cs" />

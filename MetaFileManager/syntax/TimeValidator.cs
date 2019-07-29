@@ -9,15 +9,30 @@ namespace Uroboros.syntax
     {
         public static void ValidateDate(int day, int month, int year)
         {
+            ValidateYear(year);
+            ValidateMonth(month);
+            ValidateDay(day, month, year);
+        }
+
+        public static void ValidateYear(int year)
+        {
             if (!IsYearCorrect(year))
                 throw new RuntimeException("RUNTIME ERROR! Year out of range occurred: " + year + ".");
+        }
+
+        public static void ValidateMonth(int month)
+        {
             if (!IsMonthCorrect(month))
                 throw new RuntimeException("RUNTIME ERROR! Non-existent month occurred: " + month + "th month.");
+        }
+
+        public static void ValidateDay(int day, int month, int year)
+        {
             if (!IsDayCorrect(day, month, year))
                 throw new RuntimeException("RUNTIME ERROR! Day out of month occured: " + day + "th day of " + DateExtractor.Month(month) + ".");
         }
 
-        static bool IsYearCorrect(int year)
+        private static bool IsYearCorrect(int year)
         {
             if (year < 1 || year > 9999)
                 return false;
@@ -25,7 +40,7 @@ namespace Uroboros.syntax
                 return true;
         }
 
-        static bool IsMonthCorrect(int month)
+        private static bool IsMonthCorrect(int month)
         {
             if (month < 1 || month > 12)
                 return false;
@@ -33,7 +48,7 @@ namespace Uroboros.syntax
                 return true;
         }
 
-        static bool IsDayCorrect(int day, int month, int year)
+        private static bool IsDayCorrect(int day, int month, int year)
         {
             if (day < 1)
                 return false;

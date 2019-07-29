@@ -13,7 +13,7 @@ namespace Uroboros.syntax.variables.abstracts
             return DateTime.MinValue;
         }
 
-        public decimal ToTimeVariable(TimeVariableType type)
+        public virtual decimal ToTimeVariable(TimeVariableType type)
         {
             return DateExtractor.GetVariable(ToTime(), type);
         }
