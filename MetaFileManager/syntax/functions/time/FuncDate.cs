@@ -21,7 +21,11 @@ namespace Uroboros.syntax.functions.time
 
         public override DateTime ToTime()
         {
-            return new DateTime((int)arg2.ToNumber(), (int)arg1.ToNumber(), (int)arg0.ToNumber(), 0, 0, 0);
+            int day = (int)arg0.ToNumber();
+            int month = (int)arg1.ToNumber();
+            int year = (int)arg2.ToNumber();
+            TimeValidator.ValidateDate(day, month, year);
+            return new DateTime(year, month, day, 0, 0, 0);
         }
     }
 }

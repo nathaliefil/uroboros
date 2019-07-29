@@ -228,6 +228,7 @@
     <Compile Include="syntax\runtime\RuntimeException.cs" />
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
+    <Compile Include="syntax\TimeValidator.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultNumerable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultStringable.cs" />
@@ -250,7 +251,7 @@
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
     <Compile Include="syntax\variables\constants\TimeFromDate.cs" />
     <Compile Include="syntax\variables\from_file\Creation.cs" />
-    <Compile Include="syntax\variables\from_file\DateExtractor.cs" />
+    <Compile Include="syntax\DateExtractor.cs" />
     <Compile Include="syntax\variables\from_file\Empty.cs" />
     <Compile Include="syntax\variables\BoolVariable.cs" />
     <Compile Include="syntax\variables\constants\ListedStringables.cs" />

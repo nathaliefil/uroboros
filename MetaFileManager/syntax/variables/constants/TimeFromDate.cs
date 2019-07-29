@@ -21,7 +21,11 @@ namespace Uroboros.syntax.variables
 
         public override DateTime ToTime()
         {
-            return new DateTime((int)year.ToNumber(), (int)month, (int)day.ToNumber(), 0, 0, 0);
+            int day2 = (int)day.ToNumber();
+            int month2 = (int)month;
+            int year2 = (int)year.ToNumber();
+            TimeValidator.ValidateDate(day2, month2, year2);
+            return new DateTime(year2, month2, day2, 0, 0, 0);
         }
     }
 }
