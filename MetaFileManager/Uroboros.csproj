@@ -244,6 +244,8 @@
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
+    <Compile Include="syntax\variables\constants\TimeFromDate.cs" />
+    <Compile Include="syntax\variables\constants\TimeFromDateFunction.cs" />
     <Compile Include="syntax\variables\from_file\Creation.cs" />
     <Compile Include="syntax\variables\from_file\DateExtractor.cs" />
     <Compile Include="syntax\variables\from_file\Empty.cs" />

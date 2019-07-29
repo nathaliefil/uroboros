@@ -15,6 +15,8 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static string[] KEYWORDS_SINGLE = new string[] { "year", "month", "week", "day", "hour", "minute", "second" };
         public static string[] KEYWORDS_MULTIPLE = new string[] { "years", "months", "weeks", "days", "hours", "minutes", "seconds" };
+        public static string[] MONTHS = new string[] { "january", "february", "march", "april", "may", "june", 
+            "july", "august", "september", "october", "november", "december" };
 
         public static ITimeable Build(List<Token> tokens)
         {
@@ -34,7 +36,15 @@ namespace Uroboros.syntax.interpretation.expressions
             {
                 ITimeable itim = BuildRelativeTime(tokens);
                 if (!itim.IsNull())
-                    return BuildRelativeTime(tokens);
+                    return itim;
+            }
+
+            // try to build Timeable from date
+            if (tokens.Where(t => IsMonth(t)).Count() == 1)
+            {
+                ITimeable itim = BuildFromDate(tokens);
+                if (!itim.IsNull())
+                    return itim;
             }
 
             return null;
@@ -164,6 +174,41 @@ namespace Uroboros.syntax.interpretation.expressions
             return null;
         }
 
+        private static ITimeable BuildFromDate(List<Token> tokens)
+        {
+            decimal month = 1;
+            List<Token> leftPart = new List<Token>();
+            List<Token> rightPart = new List<Token>();
+            bool pastTo = false;
+
+            foreach (Token tok in tokens)
+            {
+                if (IsMonth(tok))
+                {
+                    pastTo = true;
+                    month = StringToMonth(tok.GetContent());
+                }
+                else
+                {
+                    if (pastTo)
+                        rightPart.Add(tok);
+                    else
+                        leftPart.Add(tok);
+                }
+            }
+
+            if (leftPart.Count == 0 || rightPart.Count == 0)
+                return null;
+
+            INumerable day = NumerableBuilder.Build(leftPart);
+            INumerable year = NumerableBuilder.Build(rightPart);
+
+            if (day.IsNull() || year.IsNull())
+                return null;
+
+            return new TimeFromDate(day, month, year);
+        }
+
         private static bool IsAnyKeyword(Token tok)
         {
             if (KEYWORDS_SINGLE.Contains(tok.GetContent().ToLower()))
@@ -187,6 +232,33 @@ namespace Uroboros.syntax.interpretation.expressions
                 return true;
             else
                 return false;
+        }
+
+        private static bool IsMonth(Token tok)
+        {
+            if (MONTHS.Contains(tok.GetContent().ToLower()))
+                return true;
+            return false;
+        }
+
+        private static int StringToMonth(string s)
+        {
+            switch (s.ToLower())
+            {
+                case "january": return 1;
+                case "february": return 2;
+                case "march": return 3;
+                case "april": return 4;
+                case "may": return 5;
+                case "june": return 6;
+                case "july": return 7;
+                case "august": return 8;
+                case "september": return 9;
+                case "october": return 10;
+                case "november": return 11;
+                case "december": return 12;
+            }
+            return 0;
         }
     }
 }
