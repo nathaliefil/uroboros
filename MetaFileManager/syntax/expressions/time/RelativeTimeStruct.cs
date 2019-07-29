@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.expressions.time
 {
-    struct RelativeTimeStruct
+    class RelativeTimeStruct
     {
         public RelativeTimeType type;
         public INumerable value;

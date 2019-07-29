@@ -6,11 +6,16 @@ using Uroboros.syntax.reading;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
+using Uroboros.syntax.expressions.time;
+using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
     class TimeableBuilder
     {
+        public static string[] KEYWORDS_SINGLE = new string[] { "year", "month", "week", "day", "hour", "minute", "second" };
+        public static string[] KEYWORDS_MULTIPLE = new string[] { "years", "months", "weeks", "days", "hours", "minutes", "seconds" };
+
         public static ITimeable Build(List<Token> tokens)
         {
             // try to build simple one-token Timeable
@@ -25,19 +30,163 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build relative time expression
-            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.After) 
-                || t.GetTokenType().Equals(TokenType.Before)).Count() > 0)
-                return BuildRelativeTime(tokens);
+            if (tokens.Where(t => IsTimeDirection(t)).Count() > 0)
+            {
+                ITimeable itim = BuildRelativeTime(tokens);
+                if (!itim.IsNull())
+                    return BuildRelativeTime(tokens);
+            }
 
             return null;
         }
 
         public static ITimeable BuildRelativeTime(List<Token> tokens)
         {
-            // write here
-            /// todo
+            List<RelativeTimeStruct> relativeTimes = new List<RelativeTimeStruct>();
+            List<Token> currentTokens = new List<Token>();
 
-            throw new SyntaxErrorException("ERROR! Test test test test");
+            foreach (Token tok in tokens)
+            {
+                currentTokens.Add(tok);
+
+                if (IsTimeDirection(tok))
+                {
+                    List<RelativeTimeStruct> rtss = BuildRelativeTimeStructs(currentTokens.Take(currentTokens.Count - 1).ToList(), currentTokens.Last());
+                    if (rtss.IsNull())
+                        return null;
+                    else
+                        relativeTimes.AddRange(rtss);
+                    currentTokens.Clear();
+                }
+            }
+
+            if (currentTokens.Count == 0)
+                throw new SyntaxErrorException("ERROR! Relative time expression do not have definition for reference time.");
+
+            ITimeable itim = TimeableBuilder.Build(currentTokens);
+            if (itim.IsNull())
+                return null;
+
+            return new RelativeTimeExpression(relativeTimes, itim);
+        }
+
+        private static List<RelativeTimeStruct> BuildRelativeTimeStructs(List<Token> tokens, Token last)
+        {
+            TimeDirection direction = last.GetTokenType().Equals(TokenType.After) ? TimeDirection.After : TimeDirection.Before;
+
+            if (tokens.Count == 0)
+                throw new SyntaxErrorException("ERROR! Relative time expression do not have definition for time length.");
+
+            List<RelativeTimeStruct> relativeTimes = new List<RelativeTimeStruct>();
+
+            List<Token> currentTokens = new List<Token>();
+            foreach (Token tok in tokens)
+            {
+                currentTokens.Add(tok);
+
+                if (IsAnyKeyword(tok))
+                {
+                    RelativeTimeStruct rts = BuildSingleRTS(currentTokens.Take(currentTokens.Count - 1).ToList(), currentTokens.Last(), direction);
+                    if (rts.IsNull())
+                        return null;
+                    else
+                        relativeTimes.Add(rts);
+                    currentTokens.Clear();
+                }
+            }
+
+            if (currentTokens.Count > 0)
+            {
+                RelativeTimeStruct rts = BuildSingleRTS(currentTokens.Take(currentTokens.Count - 1).ToList(), currentTokens.Last(), direction);
+                if (rts.IsNull())
+                    return null;
+                else
+                    relativeTimes.Add(rts);
+            }
+
+            return relativeTimes;
+        }
+
+        private static RelativeTimeStruct BuildSingleRTS(List<Token> tokens, Token tok, TimeDirection direction)
+        {
+            if (IsSingleKeyword(tok))
+            {
+                if (tokens.Count == 1 && tokens[0].GetTokenType().Equals(TokenType.NumericConstant) && tokens[0].GetNumericContent() == 1)
+                {
+                    switch (tok.GetContent().ToLower())
+                    {
+                        case "year":
+                            return new RelativeTimeStruct(RelativeTimeType.Years, new NumericConstant(1), direction);
+                        case "month":
+                            return new RelativeTimeStruct(RelativeTimeType.Months, new NumericConstant(1), direction);
+                        case "week":
+                            return new RelativeTimeStruct(RelativeTimeType.Weeks, new NumericConstant(1), direction);
+                        case "day":
+                            return new RelativeTimeStruct(RelativeTimeType.Days, new NumericConstant(1), direction);
+                        case "hour":
+                            return new RelativeTimeStruct(RelativeTimeType.Hours, new NumericConstant(1), direction);
+                        case "minute":
+                            return new RelativeTimeStruct(RelativeTimeType.Minutes, new NumericConstant(1), direction);
+                        case "second":
+                            return new RelativeTimeStruct(RelativeTimeType.Seconds, new NumericConstant(1), direction);
+                    }
+                }
+                else
+                    return null;
+            }
+            else
+            {
+                INumerable inum = NumerableBuilder.Build(tokens);
+                if (inum.IsNull())
+                    return null;
+                else
+                {
+                    switch (tok.GetContent().ToLower())
+                    {
+                        case "years":
+                            return new RelativeTimeStruct(RelativeTimeType.Years, inum, direction);
+                        case "months":
+                            return new RelativeTimeStruct(RelativeTimeType.Months, inum, direction);
+                        case "weeks":
+                            return new RelativeTimeStruct(RelativeTimeType.Weeks, inum, direction);
+                        case "days":
+                            return new RelativeTimeStruct(RelativeTimeType.Days, inum, direction);
+                        case "hours":
+                            return new RelativeTimeStruct(RelativeTimeType.Hours, inum, direction);
+                        case "minutes":
+                            return new RelativeTimeStruct(RelativeTimeType.Minutes, inum, direction);
+                        case "seconds":
+                            return new RelativeTimeStruct(RelativeTimeType.Seconds, inum, direction);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static bool IsAnyKeyword(Token tok)
+        {
+            if (KEYWORDS_SINGLE.Contains(tok.GetContent().ToLower()))
+                return true;
+            if (KEYWORDS_MULTIPLE.Contains(tok.GetContent().ToLower()))
+                return true;
+            return false;
+        }
+
+        private static bool IsSingleKeyword(Token tok)
+        {
+            if (KEYWORDS_SINGLE.Contains(tok.GetContent().ToLower()))
+                return true;
+            return false;
+        }
+
+        private static bool IsTimeDirection(Token tok)
+        {
+            if (tok.GetTokenType().Equals(TokenType.After)
+                || tok.GetTokenType().Equals(TokenType.Before))
+                return true;
+            else
+                return false;
         }
     }
 }

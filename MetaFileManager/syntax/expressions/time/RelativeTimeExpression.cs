@@ -31,29 +31,28 @@ namespace Uroboros.syntax.expressions.time
                 switch (var.type)
                 {
                     case RelativeTimeType.Years:
-                        source.AddYears(count);
+                        source = source.AddYears(count);
                         break;
                     case RelativeTimeType.Months:
-                        source.AddMonths(count);
+                        source = source.AddMonths(count);
                         break;
                     case RelativeTimeType.Weeks:
-                        source.AddDays(count * 7);
+                        source = source.AddDays(count * 7);
                         break;
                     case RelativeTimeType.Days:
-                        source.AddDays(count);
+                        source = source.AddDays(count);
                         break;
                     case RelativeTimeType.Hours:
-                        source.AddHours(count);
+                        source = source.AddHours(count);
                         break;
                     case RelativeTimeType.Minutes:
-                        source.AddMinutes(count);
+                        source = source.AddMinutes(count);
                         break;
                     case RelativeTimeType.Seconds:
-                        source.AddYears(count);
+                        source = source.AddYears(count);
                         break;
                 }
             }
-
             return source;
         }
     }
