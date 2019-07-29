@@ -8,6 +8,7 @@ using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.expressions.time;
 using Uroboros.syntax.variables;
+using Uroboros.syntax.interpretation.functions;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -29,6 +30,15 @@ namespace Uroboros.syntax.interpretation.expressions
                     if (InterVariables.GetInstance().Contains(str, InterVarType.Time))
                         return new TimeVariableRefer(str);
                 }
+            }
+
+            //try to build time function
+            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
+                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            {
+                ITimeable itim = InterTimeFunction.Build(tokens);
+                if (!itim.IsNull())
+                    return itim;
             }
 
             // try to build relative time expression

@@ -127,14 +127,17 @@
     <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
+    <Compile Include="syntax\functions\numeric\FuncWeekday.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />
+    <Compile Include="syntax\functions\numeric\FuncYearday.cs" />
     <Compile Include="syntax\functions\strings\FuncAfter.cs" />
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
     <Compile Include="syntax\functions\strings\FuncRepeat.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
+    <Compile Include="syntax\functions\time\FuncDate.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="syntax\interpretation\functions\InterListElement.cs" />
     <Compile Include="syntax\interpretation\functions\InterNumericFunction.cs" />
     <Compile Include="syntax\interpretation\functions\InterStringFunction.cs" />
+    <Compile Include="syntax\interpretation\functions\InterTimeFunction.cs" />
     <Compile Include="syntax\interpretation\SingleCommandFactory.cs" />
     <Compile Include="syntax\interpretation\tokenlists\BlockTokenList.cs" />
     <Compile Include="syntax\interpretation\tokenlists\TokenList.cs" />
@@ -245,7 +249,6 @@
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
     <Compile Include="syntax\variables\constants\TimeFromDate.cs" />
-    <Compile Include="syntax\variables\constants\TimeFromDateFunction.cs" />
     <Compile Include="syntax\variables\from_file\Creation.cs" />
     <Compile Include="syntax\variables\from_file\DateExtractor.cs" />
     <Compile Include="syntax\variables\from_file\Empty.cs" />

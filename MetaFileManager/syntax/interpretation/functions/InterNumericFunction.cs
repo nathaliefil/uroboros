@@ -42,6 +42,9 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildLis(name, args);
             if (name.Equals("indexof"))
                 return BuildStrStr(name, args);
+            if (name.Equals("weekday") || name.Equals("dayofweek") || name.Equals("yearday") 
+                || name.Equals("dayofyear"))
+                return BuildTim(name, args);
 
             return null;
         }
@@ -186,6 +189,24 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncLengthofshortest(ilis);
                 if (name.Equals("lengthoflongest"))
                     return new FuncLengthoflongest(ilis);
+                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+            }
+        }
+
+        public static INumerable BuildTim(string name, List<Argument> args)
+        {
+            if (args.Count != 1)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 time argument.");
+
+            ITimeable itim = TimeableBuilder.Build(args[0].tokens);
+            if (itim.IsNull())
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as time.");
+            else
+            {
+                if (name.Equals("weekday") || name.Equals("dayofweek"))
+                    return new FuncWeekday(itim);
+                if (name.Equals("yearday") || name.Equals("dayofyear"))
+                    return new FuncYearday(itim);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
