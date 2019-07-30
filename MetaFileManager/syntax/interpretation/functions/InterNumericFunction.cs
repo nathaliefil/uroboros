@@ -7,6 +7,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.functions.numeric;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.interpretation.functions
 {
@@ -45,6 +46,9 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("weekday") || name.Equals("dayofweek") || name.Equals("yearday") 
                 || name.Equals("dayofyear"))
                 return BuildTim(name, args);
+            if (name.Equals("yearsbetween") || name.Equals("monthsbetween") || name.Equals("daysbetween") 
+                || name.Equals("hoursbetween") || name.Equals("minutesbetween") || name.Equals("secondsbetween"))
+                return BuildTimTim(name, args);
 
             return null;
         }
@@ -111,6 +115,34 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("indexof"))
                 return new FuncIndexof(istr1, istr2);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static INumerable BuildTimTim(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 time arguments.");
+
+            ITimeable itim1 = TimeableBuilder.Build(args[0].tokens);
+            ITimeable itim2 = TimeableBuilder.Build(args[1].tokens);
+
+            if (itim1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as time.");
+            if (itim2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as time.");
+
+            if (name.Equals("yearsbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Year);
+            if (name.Equals("monthsbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Month);
+            if (name.Equals("daysbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Day);
+            if (name.Equals("hoursbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Hour);
+            if (name.Equals("minutesbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Minute);
+            if (name.Equals("secondsbetween"))
+                return new FuncTimebetween(itim1, itim2, TimeVariableType.Second);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

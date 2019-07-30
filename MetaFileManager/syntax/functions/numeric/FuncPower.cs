@@ -20,9 +20,6 @@ namespace Uroboros.syntax.functions.numeric
         public override decimal ToNumber()
         {
             return (decimal)Math.Pow((double)arg0.ToNumber(), (double)arg1.ToNumber());
-            // maybe there is a better way to do that (without losing decimal precision)
-            // don't know
-            /// todo
         }
     }
 }

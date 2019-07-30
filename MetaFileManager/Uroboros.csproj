@@ -127,6 +127,7 @@
     <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
+    <Compile Include="syntax\functions\numeric\FuncTimebetween.cs" />
     <Compile Include="syntax\functions\numeric\FuncWeekday.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />
