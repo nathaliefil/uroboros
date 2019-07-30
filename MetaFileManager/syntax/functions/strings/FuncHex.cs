@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 
-namespace Uroboros.syntax.functions.numeric
+namespace Uroboros.syntax.functions.strings
 {
     class FuncHex : DefaultStringable
     {

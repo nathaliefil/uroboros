@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.expressions;
-using Uroboros.syntax.functions.numeric;
+using Uroboros.syntax.functions.strings;
 
 namespace Uroboros.syntax.interpretation.functions
 {
@@ -25,7 +25,8 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("letter") || name.Equals("hex") || name.Equals("binary"))
+            if (name.Equals("letter") || name.Equals("hex") || name.Equals("binary") || name.Equals("month")
+                 || name.Equals("weekday"))
                 return BuildNum(name, args);
             if (name.Equals("substring"))
                 return BuildSubstring(name, args);
@@ -62,6 +63,10 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncHex(inu);
                 if (name.Equals("binary"))
                     return new FuncBinary(inu);
+                if (name.Equals("month"))
+                    return new FuncMonth(inu);
+                if (name.Equals("weekday"))
+                    return new FuncWeekday(inu);
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }

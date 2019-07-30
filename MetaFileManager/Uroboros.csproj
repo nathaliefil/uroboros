@@ -128,7 +128,7 @@
     <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
     <Compile Include="syntax\functions\numeric\FuncTimebetween.cs" />
-    <Compile Include="syntax\functions\numeric\FuncWeekday.cs" />
+    <Compile Include="syntax\functions\strings\FuncWeekday.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />
     <Compile Include="syntax\functions\numeric\FuncYearday.cs" />
@@ -136,6 +136,7 @@
     <Compile Include="syntax\functions\strings\FuncBefore.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
+    <Compile Include="syntax\functions\strings\FuncMonth.cs" />
     <Compile Include="syntax\functions\strings\FuncRepeat.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\functions\time\FuncChristmas.cs" />
