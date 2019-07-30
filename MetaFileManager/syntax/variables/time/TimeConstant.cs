@@ -17,12 +17,12 @@ namespace Uroboros.syntax.variables.time
         public TimeConstant(decimal day, decimal month, decimal year,
             decimal hour, decimal minute, decimal second)
         {
-            this.day = day;
+            this.day = decimal.Truncate(day);
             this.month = month;
-            this.year = year;
-            this.hour = (int)hour;
-            this.minute = (int)minute;
-            this.second = (int)second;
+            this.year = decimal.Truncate(year);
+            this.hour = decimal.Truncate(hour);
+            this.minute = decimal.Truncate(minute);
+            this.second = decimal.Truncate(second);
 
             NormalizeClockVariables();
             TimeValidator.ValidateDate((int)this.day, (int)this.month, (int)this.year);
@@ -31,10 +31,10 @@ namespace Uroboros.syntax.variables.time
 
         private void AddForwardDays()
         {
-            value = new DateTime((int)year, (int)month, (int)day, hour, minute, second);
+            value = new DateTime((int)year, (int)month, (int)day, (int)hour, (int)minute, (int)second);
             if (daysForward != 0)
             {
-                value.AddDays(daysForward);
+                value.AddDays((int)daysForward);
                 year = value.Year;
                 month = value.Month;
                 day = value.Day;
@@ -58,7 +58,7 @@ namespace Uroboros.syntax.variables.time
                 case TimeVariableType.Day:
                     return day;
                 case TimeVariableType.WeekDay:
-                    return (decimal)value.DayOfWeek;
+                    return dayOfWeek;
                 case TimeVariableType.Hour:
                     return hour;
                 case TimeVariableType.Minute:

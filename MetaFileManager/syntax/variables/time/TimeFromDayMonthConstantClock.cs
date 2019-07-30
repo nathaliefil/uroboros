@@ -9,32 +9,59 @@ namespace Uroboros.syntax.variables.time
     class TimeFromDayMonthConstantClock : DefaultTimeableWithClockConstant
     {
         private INumerable day;
-        private int month;
+        private decimal month;
 
 
         public TimeFromDayMonthConstantClock(INumerable day, decimal month,
             decimal hour, decimal minute, decimal second)
         {
             this.day = day;
-            this.month = (int)month;
-            this.hour = (int)hour;
-            this.minute = (int)minute;
-            this.second = (int)second;
+            this.month = month;
+            this.hour = hour;
+            this.minute = minute;
+            this.second = second;
 
             NormalizeClockVariables();
         }
 
         public override DateTime ToTime()
         {
-            int day2 = (int)day.ToNumber();
-            int year2 = DateTime.Now.Year;
+            decimal day2 = decimal.Truncate(day.ToNumber());
+            decimal year2 = GetYear();
             TimeValidator.ValidateDay(day2, month, year2);
 
-            DateTime time = new DateTime(year2, month, day2, hour, minute, second);
+            DateTime time = new DateTime((int)year2, (int)month, (int)day2, (int)hour, (int)minute, (int)second);
             if (daysForward != 0)
-                time = time.AddDays(daysForward);
+                time = time.AddDays((int)daysForward);
 
             return time;
+        }
+
+        private decimal GetYear()
+        {
+            return DateTime.Now.Year;
+        }
+
+        public override decimal ToTimeVariable(TimeVariableType type)
+        {
+            switch (type)
+            {
+                case TimeVariableType.Year:
+                    return GetYear();
+                case TimeVariableType.Month:
+                    return month;
+                case TimeVariableType.Day:
+                    return day.ToNumber();
+                case TimeVariableType.WeekDay:
+                    return (decimal)ToTime().DayOfWeek;
+                case TimeVariableType.Hour:
+                    return hour;
+                case TimeVariableType.Minute:
+                    return minute;
+                case TimeVariableType.Second:
+                    return second;
+            }
+            return 0;
         }
     }
 }

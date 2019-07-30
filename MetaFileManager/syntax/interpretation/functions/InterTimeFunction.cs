@@ -27,6 +27,8 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("date"))
                 return BuildNumNumNum(name, args);
+            if (name.Equals("newyear") || name.Equals("christmas"))
+                return BuildNum(name, args);
 
             return null;
         }
@@ -53,6 +55,24 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("date"))
                 return new FuncDate(inu1, inu2, inu3);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+
+        public static ITimeable BuildNum(string name, List<Argument> args)
+        {
+            if (args.Count != 1)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 numeric argument.");
+
+            INumerable inu = NumerableBuilder.Build(args[0].tokens);
+
+            if (inu.IsNull())
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as number.");
+
+            if (name.Equals("newyear"))
+                return new FuncNewyear(inu);
+            if (name.Equals("christmas"))
+                return new FuncChristmas(inu);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
     }

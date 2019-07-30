@@ -9,21 +9,49 @@ namespace Uroboros.syntax.variables.time
     class TimeFromDayMonth : DefaultTimeable
     {
         private INumerable day;
-        private int month;
+        private decimal month;
 
 
         public TimeFromDayMonth(INumerable day, decimal month)
         {
             this.day = day;
-            this.month = (int)month;
+            this.month = month;
         }
 
         public override DateTime ToTime()
         {
-            int day2 = (int)day.ToNumber();
-            int year2 = DateTime.Now.Year;
+            decimal day2 = decimal.Truncate(day.ToNumber());
+            decimal year2 = GetYear();
             TimeValidator.ValidateDay(day2, month, year2);
-            return new DateTime(year2, month, day2, 0, 0, 0);
+            return new DateTime((int)year2, (int)month, (int)day2, 0, 0, 0);
+        }
+        
+        private decimal GetYear()
+        {
+            return DateTime.Now.Year;
+        }
+
+
+        public override decimal ToTimeVariable(TimeVariableType type)
+        {
+            switch (type)
+            {
+                case TimeVariableType.Year:
+                    return GetYear();
+                case TimeVariableType.Month:
+                    return month;
+                case TimeVariableType.Day:
+                    return day.ToNumber();
+                case TimeVariableType.WeekDay:
+                    return (decimal)ToTime().DayOfWeek;
+                case TimeVariableType.Hour:
+                    return 0;
+                case TimeVariableType.Minute:
+                    return 0;
+                case TimeVariableType.Second:
+                    return 0;
+            }
+            return 0;
         }
     }
 }

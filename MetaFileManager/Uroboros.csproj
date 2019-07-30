@@ -137,7 +137,9 @@
     <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
     <Compile Include="syntax\functions\strings\FuncRepeat.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
+    <Compile Include="syntax\functions\time\FuncChristmas.cs" />
     <Compile Include="syntax\functions\time\FuncDate.cs" />
+    <Compile Include="syntax\functions\time\FuncNewyear.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />

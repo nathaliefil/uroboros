@@ -94,5 +94,10 @@ namespace Uroboros.syntax
             }
             return "";
         }
+
+        public static string Month(decimal number)
+        {
+            return Month((int)number);
+        }
     }
 }

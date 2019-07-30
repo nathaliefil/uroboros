@@ -9,7 +9,7 @@ namespace Uroboros.syntax.variables.time
     class TimeFromDateClock : DefaultTimeable
     {
         private INumerable day;
-        private int month;
+        private decimal month;
         private INumerable year;
         private INumerable hour;
         private INumerable minute;
@@ -20,7 +20,7 @@ namespace Uroboros.syntax.variables.time
             INumerable hour, INumerable minute, INumerable second)
         {
             this.day = day;
-            this.month = (int)month;
+            this.month = month;
             this.year = year;
             this.hour = hour;
             this.minute = minute;
@@ -29,15 +29,17 @@ namespace Uroboros.syntax.variables.time
 
         public override DateTime ToTime()
         {
-            int day2 = (int)day.ToNumber();
-            int year2 = (int)year.ToNumber();
+            decimal day2 = decimal.Truncate(day.ToNumber());
+            decimal year2 = decimal.Truncate(year.ToNumber());
             TimeValidator.ValidateDate(day2, month, year2);
 
-            int hour2 = (int)hour.ToNumber();
-            int minute2 = (int)minute.ToNumber();
-            int second2 = (int)second.ToNumber();
+            decimal hour2 = decimal.Truncate(hour.ToNumber());
+            decimal minute2 = decimal.Truncate(minute.ToNumber());
+            decimal second2 = decimal.Truncate(second.ToNumber());
 
-            return TimeCompiler.CreateDate(year2, month, day2, hour2, minute2, second2);
+            return TimeCompiler.CreateDate((int)year2, (int)month, (int)day2, (int)hour2, (int)minute2, (int)second2);
         }
+
+
     }
 }

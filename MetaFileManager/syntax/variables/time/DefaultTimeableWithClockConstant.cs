@@ -8,10 +8,10 @@ namespace Uroboros.syntax.variables.time
 {
     abstract class DefaultTimeableWithClockConstant : DefaultTimeable
     {
-        protected int hour;
-        protected int minute;
-        protected int second;
-        protected int daysForward;
+        protected decimal hour;
+        protected decimal minute;
+        protected decimal second;
+        protected decimal daysForward;
 
 
         // if values are out of range - cut them
@@ -23,39 +23,39 @@ namespace Uroboros.syntax.variables.time
 
             if (second > 60)
             {
-                int rest = second % 60;
+                decimal rest = second % 60;
                 minute += second / 60;
                 second = rest;
             }
             if (second < 0)
             {
-                int rest = second % 60;
+                decimal rest = second % 60;
                 minute -= 1 + (-second) / 60;
                 second = 60 + rest;
             }
 
             if (minute > 60)
             {
-                int rest = minute % 60;
+                decimal rest = minute % 60;
                 hour += minute / 60;
                 minute = rest;
             }
             if (minute < 0)
             {
-                int rest = minute % 60;
+                decimal rest = minute % 60;
                 hour -= 1 + (-minute) / 60;
                 minute = 60 + rest;
             }
 
             if (hour > 24)
             {
-                int rest = hour % 24;
+                decimal rest = hour % 24;
                 daysForward += hour / 24;
                 hour = rest;
             }
             if (hour < 0)
             {
-                int rest = hour % 24;
+                decimal rest = hour % 24;
                 daysForward -= 1 + (-hour) / 24;
                 hour = 24 + rest;
             }

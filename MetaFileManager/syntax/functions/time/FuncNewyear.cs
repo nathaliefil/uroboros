@@ -3,43 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.variables;
 
-namespace Uroboros.syntax.variables.time
+namespace Uroboros.syntax.functions.time
 {
-    class TimeFromDate : DefaultTimeable
+    class FuncNewyear : DefaultTimeable
     {
-        private INumerable day;
-        private decimal month;
-        private INumerable year;
+        private INumerable arg0;
 
-
-        public TimeFromDate(INumerable day, decimal month, INumerable year)
+        public FuncNewyear(INumerable arg0)
         {
-            this.day = day;
-            this.month = month;
-            this.year = year;
+            this.arg0 = arg0;
         }
 
         public override DateTime ToTime()
         {
-            decimal day2 = decimal.Truncate(day.ToNumber());
-            decimal year2 = decimal.Truncate(year.ToNumber());
-            TimeValidator.ValidateYear(year2);
-            TimeValidator.ValidateDay(day2, month, year2);
-            return new DateTime((int)year2, (int)month, (int)day2, 0, 0, 0);
-        }
+            decimal year = Decimal.Truncate(arg0.ToNumber());
+            TimeValidator.ValidateYear(year);
 
+            return new DateTime((int)year, 1, 1, 0, 0, 0);
+        }
 
         public override decimal ToTimeVariable(TimeVariableType type)
         {
             switch (type)
             {
                 case TimeVariableType.Year:
-                    return year.ToNumber();
+                    return arg0.ToNumber();
                 case TimeVariableType.Month:
-                    return month;
+                    return 1;
                 case TimeVariableType.Day:
-                    return day.ToNumber();
+                    return 1;
                 case TimeVariableType.WeekDay:
                     return (decimal)ToTime().DayOfWeek;
                 case TimeVariableType.Hour:
