@@ -18,10 +18,10 @@ namespace Uroboros.syntax.functions.time
 
         public override DateTime ToTime()
         {
-            decimal year = Decimal.Truncate(arg0.ToNumber());
+            int year = (int)arg0.ToNumber();
             TimeValidator.ValidateYear(year);
 
-            return new DateTime((int)year, 1, 1, 0, 0, 0);
+            return new DateTime(year, 1, 1, 0, 0, 0);
         }
 
         public override decimal ToTimeVariable(TimeVariableType type)

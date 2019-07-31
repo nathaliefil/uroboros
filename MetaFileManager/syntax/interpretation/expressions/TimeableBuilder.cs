@@ -217,14 +217,32 @@ namespace Uroboros.syntax.interpretation.expressions
 
             // try to build date without year
             if (rightPart.Count == 0)
-                return new TimeFromDayMonth(day, month);
+            {
+                if (day is NumericConstant)
+                    return new Time(new ClockEmpty(), new DayConstant(day.ToNumber()), month, new YearNow());
+                else
+                    return new Time(new ClockEmpty(), new DayNumerable(day), month, new YearNow());
+            }
 
             INumerable year = NumerableBuilder.Build(rightPart);
 
             if (year.IsNull())
                 return null;
 
-            return new TimeFromDate(day, month, year);
+            if (day is NumericConstant)
+            {
+                if (year is NumericConstant)
+                    return new Time(new ClockEmpty(), new DayConstant(day.ToNumber()), month, new YearConstant(year.ToNumber()));
+                else
+                    return new Time(new ClockEmpty(), new DayConstant(day.ToNumber()), month, new YearNumerable(year));
+            }
+            else
+            {
+                if (year is NumericConstant)
+                    return new Time(new ClockEmpty(), new DayNumerable(day), month, new YearConstant(year.ToNumber()));
+                else
+                    return new Time(new ClockEmpty(), new DayNumerable(day), month, new YearNumerable(year));
+            }
         }
 
         private static bool IsAnyKeyword(Token tok)

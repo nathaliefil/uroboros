@@ -6,15 +6,17 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.variables.time
 {
-    class TimeFromDate : DefaultTimeable
+    class Time : DefaultTimeable
     {
-        private INumerable day;
+        private IClock clock;
+        private IDay day;
         private decimal month;
-        private INumerable year;
+        private IYear year;
 
-
-        public TimeFromDate(INumerable day, decimal month, INumerable year)
+        public Time(IClock clock, IDay day, decimal month, IYear year)
         {
+            this.clock = clock;
+
             this.day = day;
             this.month = month;
             this.year = year;
@@ -22,32 +24,37 @@ namespace Uroboros.syntax.variables.time
 
         public override DateTime ToTime()
         {
-            decimal day2 = decimal.Truncate(day.ToNumber());
-            decimal year2 = decimal.Truncate(year.ToNumber());
-            TimeValidator.ValidateYear(year2);
-            TimeValidator.ValidateDay(day2, month, year2);
-            return new DateTime((int)year2, (int)month, (int)day2, 0, 0, 0);
-        }
+            int years = (int)year.ToYear();
+            int months = (int)month;
+            int days = (int)day.ToDay();
+            int hours = (int)clock.ToHour();
+            int minutes = (int)clock.ToMinute();
+            int seconds = (int)clock.ToSecond();
 
+            TimeValidator.ValidateDate(days, months, years);
+            TimeValidator.ValidateClock(hours, minutes, seconds);
+
+            return new DateTime(years, months, days, hours, minutes, seconds);
+        }
 
         public override decimal ToTimeVariable(TimeVariableType type)
         {
             switch (type)
             {
                 case TimeVariableType.Year:
-                    return year.ToNumber();
+                    return year.ToYear();
                 case TimeVariableType.Month:
                     return month;
                 case TimeVariableType.Day:
-                    return day.ToNumber();
+                    return day.ToDay();
                 case TimeVariableType.WeekDay:
                     return (decimal)ToTime().DayOfWeek;
                 case TimeVariableType.Hour:
-                    return 0;
+                    return clock.ToHour();
                 case TimeVariableType.Minute:
-                    return 0;
+                    return clock.ToMinute();
                 case TimeVariableType.Second:
-                    return 0;
+                    return clock.ToSecond();
             }
             return 0;
         }
