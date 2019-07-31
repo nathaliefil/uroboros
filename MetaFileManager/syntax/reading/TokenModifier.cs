@@ -114,7 +114,13 @@ namespace Uroboros.syntax.reading
                         newTokens.Add(new Token(TokenType.Arrow));
                         tokensMerged = true;
                     }
-                    if (tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)
+                    if (tokens[i].GetTokenType() == TokenType.Minus && tokens[i + 1].GetTokenType() == TokenType.Bigger)
+                    {
+                        newTokens.Add(new Token(TokenType.LambdaArrow));
+                        tokensMerged = true;
+                    }
+                    if ((tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)||
+                        (tokens[i].GetTokenType() == TokenType.Is && tokens[i + 1].GetTokenType() == TokenType.Exclamation))
                     {
                         newTokens.Add(new Token(TokenType.NotEquals));
                         tokensMerged = true;
@@ -173,6 +179,20 @@ namespace Uroboros.syntax.reading
                     }
 
 
+
+                    if (tokens[i].GetTokenType() == TokenType.Is && tokens[i + 1].GetTokenType() == TokenType.Before)
+                    {
+                        newTokens.Add(new Token(TokenType.IsBefore));
+                        tokensMerged = true;
+                    }
+                    if (tokens[i].GetTokenType() == TokenType.Is && tokens[i + 1].GetTokenType() == TokenType.After)
+                    {
+                        newTokens.Add(new Token(TokenType.IsAfter));
+                        tokensMerged = true;
+                    }
+
+
+
                     if (tokensMerged)
                         i++;
                     else
@@ -183,6 +203,12 @@ namespace Uroboros.syntax.reading
             {
                 newTokens.Add(tokens[tokens.Count-1]);
             }
+
+            foreach (Token tok in newTokens)
+            {
+                tok.ChangeTokenType();
+            }
+
 
             return newTokens;
         }

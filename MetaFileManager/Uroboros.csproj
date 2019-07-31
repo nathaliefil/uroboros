@@ -101,6 +101,7 @@
     <Compile Include="syntax\expressions\bools\comparisons\ListComparison.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\NumericComparison.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\StringComparison.cs" />
+    <Compile Include="syntax\expressions\bools\comparisons\TimeComparison.cs" />
     <Compile Include="syntax\expressions\bools\IBoolExpressionElement.cs" />
     <Compile Include="syntax\expressions\bools\NegatedBoolable.cs" />
     <Compile Include="syntax\expressions\bools\other\In.cs" />

@@ -49,7 +49,7 @@ namespace Uroboros.syntax.expressions.time
                         source = source.AddMinutes(count);
                         break;
                     case RelativeTimeType.Seconds:
-                        source = source.AddYears(count);
+                        source = source.AddSeconds(count);
                         break;
                 }
             }

@@ -67,6 +67,14 @@ namespace Uroboros.syntax.interpretation.expressions
                     return iboo;
             }
 
+            // try to build time comparison IS AFTER/IS BEFORE
+            if (ContainsOneTimeComparingToken(tokens))
+            {
+                IBoolable iboo = BuildTimeComparison(tokens);
+                if (!iboo.IsNull())
+                    return iboo;
+            }
+
             // try to build comparison = != > < >= <=
             if (ContainsOneComparingToken(tokens) && !ContainsLogicTokens(tokens))
             {
@@ -107,8 +115,12 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             return tokens.Where(x => TokenGroups.IsComparingSign(x.GetTokenType())).Count() == 1;
         }
-    
-    
+
+        private static bool ContainsOneTimeComparingToken(List<Token> tokens)
+        {
+            return tokens.Where(x => TokenGroups.IsTimeComparingSign(x.GetTokenType())).Count() == 1;
+        }
+
         private static IBoolable BuildComparison(List<Token> tokens)
         {
             int index = tokens.TakeWhile(x => !TokenGroups.IsComparingSign(x.GetTokenType())).Count();
@@ -128,6 +140,9 @@ namespace Uroboros.syntax.interpretation.expressions
             if (leftL is INumerable && rightL is INumerable)
                 return new NumericComparison(leftL as INumerable, rightL as INumerable, type);
 
+            if (leftL is ITimeable && rightL is ITimeable)
+                return new TimeComparison(leftL as ITimeable, rightL as ITimeable, type);
+
             if (leftL is IStringable && rightL is IStringable)
                 return new Uroboros.syntax.expressions.bools.comparisons.StringComparison(leftL as IStringable, rightL as IStringable, type);
 
@@ -135,6 +150,25 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new ListComparison(leftL as IListable, rightL as IListable, type);
 
             return null;
+        }
+
+        private static IBoolable BuildTimeComparison(List<Token> tokens)
+        {
+            int index = tokens.TakeWhile(x => !TokenGroups.IsTimeComparingSign(x.GetTokenType())).Count();
+
+            if (index == 0 || index == tokens.Count - 1)
+                return null;
+
+            ComparisonType type = tokens[index].GetTokenType().Equals(TokenType.IsAfter) ? ComparisonType.Bigger : ComparisonType.Smaller;
+            List<Token> leftTokens = tokens.GetRange(0, index);
+            List<Token> rightTokens = tokens.GetRange(index + 1, tokens.Count - index - 1);
+            ITimeable leftL = TimeableBuilder.Build(leftTokens);
+            ITimeable rightL = TimeableBuilder.Build(rightTokens);
+
+            if (leftL.IsNull() || rightL.IsNull())
+                return null;
+
+            return new TimeComparison(leftL, rightL, type);
         }
 
         private static IBoolable BuildExpression(List<Token> tokens)

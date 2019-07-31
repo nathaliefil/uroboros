@@ -18,10 +18,13 @@ namespace Uroboros.syntax.reading
             TokenType.SquareBracketOn, TokenType.SquareBracketOff,  TokenType.Comma, TokenType.Equals, 
             TokenType.Bigger, TokenType.Smaller,  TokenType.BiggerOrEquals, TokenType.SmallerOrEquals, 
             TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
-            TokenType.NumericConstant, TokenType.BoolConstant, TokenType.In, TokenType.Like};
+            TokenType.NumericConstant, TokenType.BoolConstant, TokenType.In, TokenType.Like, TokenType.Is,
+            TokenType.After, TokenType.Before, TokenType.IsAfter, TokenType.IsBefore};
 
         private static TokenType[] COMPARING = new TokenType[] { TokenType.Equals, TokenType.NotEquals, 
             TokenType.Smaller, TokenType.SmallerOrEquals,  TokenType.Bigger, TokenType.BiggerOrEquals};
+
+        private static TokenType[] TIME_COMPARING = new TokenType[] { TokenType.IsAfter, TokenType.IsBefore };
 
         private static TokenType[] LOGIC= new TokenType[] { TokenType.Exclamation, TokenType.Or, 
             TokenType.Xor, TokenType.And};
@@ -53,6 +56,11 @@ namespace Uroboros.syntax.reading
             return COMPARING.Contains(type) ? true : false;
         }
 
+        public static bool IsTimeComparingSign(TokenType type)
+        {
+            return TIME_COMPARING.Contains(type) ? true : false;
+        }
+
         public static bool IsLogicSign(TokenType type)
         {
             return LOGIC.Contains(type) ? true : false;
@@ -62,5 +70,7 @@ namespace Uroboros.syntax.reading
         {
             return NUMERIC_OPERATION.Contains(type) ? true : false;
         }
+
+
     }
 }
