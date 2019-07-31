@@ -7,7 +7,7 @@ namespace Uroboros.syntax.variables.time
 {
     class DayConstant : IDay
     {
-        decimal day;
+        private decimal day;
 
         public DayConstant(decimal day)
         {

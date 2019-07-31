@@ -8,7 +8,7 @@ namespace Uroboros.syntax.variables.time
 {
     class YearNumerable : IYear
     {
-        INumerable year;
+        private INumerable year;
 
         public YearNumerable(INumerable year)
         {

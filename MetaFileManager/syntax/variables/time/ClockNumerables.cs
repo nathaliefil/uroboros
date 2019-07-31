@@ -8,9 +8,9 @@ namespace Uroboros.syntax.variables.time
 {
     class ClockNumerables : IClock
     {
-        INumerable hour;
-        INumerable minute;
-        INumerable second;
+        private INumerable hour;
+        private INumerable minute;
+        private INumerable second;
 
         public ClockNumerables(INumerable hour, INumerable minute, INumerable second)
         {

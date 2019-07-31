@@ -7,9 +7,9 @@ namespace Uroboros.syntax.variables.time
 {
     class ClockConstant : IClock
     {
-        decimal hour;
-        decimal minute;
-        decimal second;
+        private decimal hour;
+        private decimal minute;
+        private decimal second;
 
         public ClockConstant(decimal hour, decimal minute, decimal second)
         {

@@ -7,7 +7,7 @@ namespace Uroboros.syntax.variables.time
 {
     class YearConstant : IYear
     {
-        decimal year;
+        private decimal year;
 
         public YearConstant(decimal year)
         {

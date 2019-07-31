@@ -29,7 +29,8 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil")
                 || name.Equals("sqrt") || name.Equals("ln") || name.Equals("log")
-                || name.Equals("log10"))
+                || name.Equals("log10") || name.Equals("kb") || name.Equals("mb")
+                || name.Equals("gb") || name.Equals("tb") || name.Equals("pb"))
                 return BuildNum(name, args);
             if (name.Equals("power"))
                 return BuildNumNum(name, args);
@@ -77,6 +78,18 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncLn(inu);
                 if (name.Equals("log10"))
                     return new FuncLog10(inu);
+
+                if (name.Equals("kb"))
+                    return new FuncSizeUnit(inu, SizeSufix.KB);
+                if (name.Equals("mb"))
+                    return new FuncSizeUnit(inu, SizeSufix.MB);
+                if (name.Equals("gb"))
+                    return new FuncSizeUnit(inu, SizeSufix.GB);
+                if (name.Equals("tb"))
+                    return new FuncSizeUnit(inu, SizeSufix.TB);
+                if (name.Equals("pb"))
+                    return new FuncSizeUnit(inu, SizeSufix.PB);
+
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
         }
@@ -131,17 +144,17 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as time.");
 
             if (name.Equals("yearsbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Year);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Year);
             if (name.Equals("monthsbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Month);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Month);
             if (name.Equals("daysbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Day);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Day);
             if (name.Equals("hoursbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Hour);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Hour);
             if (name.Equals("minutesbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Minute);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Minute);
             if (name.Equals("secondsbetween"))
-                return new FuncTimebetween(itim1, itim2, TimeVariableType.Second);
+                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Second);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

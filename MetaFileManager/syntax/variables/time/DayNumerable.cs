@@ -8,7 +8,7 @@ namespace Uroboros.syntax.variables.time
 {
     class DayNumerable : IDay
     {
-        INumerable day;
+        private INumerable day;
 
         public DayNumerable(INumerable day)
         {

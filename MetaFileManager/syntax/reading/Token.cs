@@ -9,7 +9,7 @@ namespace Uroboros.syntax.reading
     {
         private TokenType type;
         private string content;
-        private SizeSufix sizeUnit;
+        private SizeSufix sizeSufix;
 
         public TokenType GetTokenType()
         {
@@ -23,40 +23,21 @@ namespace Uroboros.syntax.reading
 
         public decimal GetNumericContent()
         {
-            switch (sizeUnit)
-            {
-                case SizeSufix.None:
-                    return Convert.ToDecimal(content);
-                case SizeSufix.KB:
-                    return Convert.ToDecimal(content) * 1024;
-                case SizeSufix.MB:
-                    return Convert.ToDecimal(content) * 1048576;
-                case SizeSufix.GB:
-                    return Convert.ToDecimal(content) * 1073741824;
-                case SizeSufix.TB:
-                    return Convert.ToDecimal(content) * 1125899906842624;
-                case SizeSufix.PB:
-                    return Convert.ToDecimal(content) * 1152921504606846976;
-                case SizeSufix.K:
-                    return Convert.ToDecimal(content) * 1000;
-                case SizeSufix.KK:
-                    return Convert.ToDecimal(content) * 1000000;
-            }
-            return Convert.ToDecimal(content);
+            return Convert.ToDecimal(content) * SizeUnit.GetMultiplier(sizeSufix);
         }
 
         public Token Clone()
         {
             if (content == null)
-                if (sizeUnit == SizeSufix.None)
+                if (sizeSufix == SizeSufix.None)
                     return new Token(type);
                 else
-                    return new Token(type, sizeUnit);
+                    return new Token(type, sizeSufix);
             else
-                if (sizeUnit == SizeSufix.None)
+                if (sizeSufix == SizeSufix.None)
                     return new Token(type, content);
                 else
-                    return new Token(type, content, sizeUnit);
+                    return new Token(type, content, sizeSufix);
         }
 
         public void SetContent(string content)
@@ -78,7 +59,7 @@ namespace Uroboros.syntax.reading
 
         public void SetToNumericConstant(SizeSufix sizeU)
         {
-            this.sizeUnit = sizeU;
+            this.sizeSufix = sizeU;
             type = TokenType.NumericConstant;
             content = content.Replace('.', ',');
             if (sizeU.Equals(SizeSufix.K))
@@ -91,28 +72,28 @@ namespace Uroboros.syntax.reading
         {
             this.type = type;
             this.content = "";
-            this.sizeUnit = SizeSufix.None;
+            this.sizeSufix = SizeSufix.None;
         }
 
         public Token(TokenType type, string content)
         {
             this.type = type;
             this.content = content;
-            this.sizeUnit = SizeSufix.None;
+            this.sizeSufix = SizeSufix.None;
         }
 
         public Token(TokenType type, SizeSufix sizeUnit)
         {
             this.type = type;
             this.content = "";
-            this.sizeUnit = sizeUnit;
+            this.sizeSufix = sizeUnit;
         }
 
         public Token(TokenType type, string content, SizeSufix sizeUnit)
         {
             this.type = type;
             this.content = content;
-            this.sizeUnit = sizeUnit;
+            this.sizeSufix = sizeUnit;
         }
 
         // method only for testing

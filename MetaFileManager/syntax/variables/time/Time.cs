@@ -16,7 +16,6 @@ namespace Uroboros.syntax.variables.time
         public Time(IClock clock, IDay day, decimal month, IYear year)
         {
             this.clock = clock;
-
             this.day = day;
             this.month = month;
             this.year = year;
