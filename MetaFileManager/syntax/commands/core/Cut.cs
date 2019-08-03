@@ -17,56 +17,36 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        public override void Action(string elemento) // refactor all
+        protected override void DirectoryAction(string directoryName, string rawLocation)
         {
-            StringCollection paths = new StringCollection();
-            List<string> elements = list.ToList();
-            foreach (string element in elements)
-            {
-                if (FileValidator.IsNameCorrect(element))
-                {
-                    string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + element;
-
-                    if (FileValidator.IsDirectory(element))
-                    {
-                        if (!Directory.Exists(@location))
-                        {
-                            Logger.GetInstance().Log("Action ignored! Directory " + element + " not found.");
-                        }
-                        else
-                        {
-                            paths.Add(location);
-                            Logger.GetInstance().Log("Cut " + element + " to clipboard.");
-                        }
-                    }
-                    else
-                    {
-                        if (!File.Exists(@location))
-                        {
-                            Logger.GetInstance().Log("Action ignored! File " + element + " not found.");
-                        }
-                        else
-                        {
-                            paths.Add(location);
-                            Logger.GetInstance().Log("Cut " + element + " to clipboard.");
-                        }
-                    }
-                }
-                else
-                {
-                    Logger.GetInstance().Log("Action ignored! " + element + " contains not allowed characters.");
-                }
-            }
-
-            Clipboard.Clear();
-            if (paths.Count > 0)
-            {
-                DataObject data = new DataObject();
-                data.SetFileDropList(paths);
-                data.SetData("Preferred DropEffect", DragDropEffects.Move);
-                Clipboard.SetDataObject(data, true);
-            }
+            FileAction(directoryName, rawLocation);
         }
 
+        protected override void FileAction(string fileName, string rawLocation)
+        {
+            string location = rawLocation + "\\" + fileName;
+            StringCollection paths = Clipboard.GetFileDropList();
+
+            if (paths.Contains(location))
+            {
+                string s = FileValidator.IsDirectory(fileName) ? "Directory " : "File ";
+                throw new CommandException("Action ignored! " + s + fileName + " is already cut.");
+            }
+
+            try
+            {
+                paths.Add(location);
+                Logger.GetInstance().LogCommand("Cut " + fileName);
+            }
+            catch (Exception)
+            {
+                throw new CommandException("Action ignored! Something went wrong during cutting " + fileName + ".");
+            }
+
+            DataObject data = new DataObject();
+            data.SetFileDropList(paths);
+            data.SetData("Preferred DropEffect", DragDropEffects.Move);
+            Clipboard.SetDataObject(data, true);
+        }
     }
 }

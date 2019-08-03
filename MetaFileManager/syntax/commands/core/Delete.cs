@@ -40,14 +40,14 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        protected override void DirectoryAction(string directoryName, string location)
+        protected override void DirectoryAction(string directoryName, string rawLocation)
         {
-            FileAction(directoryName, location);
+            FileAction(directoryName, rawLocation);
         }
 
-        protected override void FileAction(string fileName, string location)
+        protected override void FileAction(string fileName, string rawLocation)
         {
-            location += "\\" + fileName + "\0";
+            string location = rawLocation + "\\" + fileName + "\0";
             try
             {
                 SHFILEOPSTRUCT shf = new SHFILEOPSTRUCT();

@@ -18,7 +18,7 @@ namespace Uroboros.syntax.expressions.bools.other
             this.phrase = phrase;
         }
 
-        // function LIKE from SQL, but extended a bit
+        // function LIKE from SQL
         // special characters:
         // _    any char (is required)
         // #    any digit (is required)

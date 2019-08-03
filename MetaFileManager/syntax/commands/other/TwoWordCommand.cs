@@ -24,7 +24,7 @@ namespace Uroboros.syntax.commands.other
                     Logger.GetInstance().ClearLog();
                     break;
                 case TwoWordCommandType.ClearClipboard:
-                    Logger.GetInstance().LogCommand("Clipboard clear.");
+                    Logger.GetInstance().LogCommand("Clipboard cleared.");
                     Clipboard.Clear();
                     break;
                 case TwoWordCommandType.LogOn:
@@ -34,7 +34,7 @@ namespace Uroboros.syntax.commands.other
                     Logger.GetInstance().LogOff();
                     break;
                 case TwoWordCommandType.UroborosStop:
-                    throw new RuntimeException("Uroboros stop.");
+                    throw new RuntimeException("Uroboros stopped.");
             }
         }
     }

@@ -15,8 +15,9 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        protected override void DirectoryAction(string directoryName, string location)
+        protected override void DirectoryAction(string directoryName, string rawLocation)
         {
+            string location = rawLocation + "\\" + directoryName;
             try
             {
                 Directory.Delete(@location, true);
@@ -31,8 +32,9 @@ namespace Uroboros.syntax.commands.core
             }
         }
 
-        protected override void FileAction(string fileName, string location)
+        protected override void FileAction(string fileName, string rawLocation)
         {
+            string location = rawLocation + "\\" + fileName;
             try
             {
                 File.Delete(@location);

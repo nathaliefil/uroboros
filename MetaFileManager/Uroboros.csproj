@@ -237,7 +237,6 @@
     <Compile Include="syntax\runtime\RuntimeVariables.cs" />
     <Compile Include="syntax\SizeUnit.cs" />
     <Compile Include="syntax\SyntaxErrorException.cs" />
-    <Compile Include="syntax\TimeCompiler.cs" />
     <Compile Include="syntax\TimeValidator.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultBoolable.cs" />
     <Compile Include="syntax\variables\abstracts\DefaultNumerable.cs" />

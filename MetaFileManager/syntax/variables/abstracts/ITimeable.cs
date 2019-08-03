@@ -11,6 +11,5 @@ namespace Uroboros.syntax.variables.abstracts
         decimal ToTimeVariable(TimeVariableType type);
         string ToDate();
         string ToClock();
-        string ToString();
     }
 }

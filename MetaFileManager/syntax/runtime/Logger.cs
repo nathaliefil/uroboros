@@ -38,12 +38,7 @@ namespace Uroboros.syntax.runtime
         public void LogCommand(string text)
         {
             if (logCommands)
-            {
-                if (outputBox.Text.Length == 0)
-                    outputBox.AppendText(text);
-                else
-                    outputBox.AppendText(Environment.NewLine + text);
-            }
+                Log(text);
         }
 
         public void ClearLog()
