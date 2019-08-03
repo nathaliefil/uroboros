@@ -7,23 +7,26 @@ using Uroboros.syntax.variables.from_file;
 
 namespace Uroboros.syntax.functions.bools
 {
-    class FuncExist : DefaultBoolable
+    class FuncExistinside : DefaultBoolable
     {
         private IStringable arg0;
+        private IStringable arg1;
 
-        public FuncExist(IStringable arg0)
+        public FuncExistinside(IStringable arg0, IStringable arg1)
         {
             this.arg0 = arg0;
+            this.arg1 = arg1;
         }
 
         public override bool ToBool()
         {
             string file = arg0.ToString();
+            string directory = arg1.ToString();
 
-            if (file.Equals(""))
+            if (file.Equals("") || directory.Equals(""))
                 return false;
 
-            return FileInnerVariable.Exist(file);
+            return FileInnerVariable.ExistInside(file, directory);
         }
     }
 }

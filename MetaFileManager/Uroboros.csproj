@@ -124,6 +124,7 @@
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
+    <Compile Include="syntax\functions\bools\FuncExistinside.cs" />
     <Compile Include="syntax\functions\numeric\FuncGoldenratio.cs" />
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthoflongest.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
     <Compile Include="syntax\functions\time\FuncChristmas.cs" />
     <Compile Include="syntax\functions\time\FuncDate.cs" />
+    <Compile Include="syntax\functions\time\FuncEaster.cs" />
     <Compile Include="syntax\functions\time\FuncNewyear.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />

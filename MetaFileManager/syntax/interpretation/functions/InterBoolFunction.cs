@@ -27,6 +27,8 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("exist") || name.Equals("exists"))
                 return BuildStr(name, args);
+            if (name.Equals("existinside"))
+                return BuildStrStr(name, args);
             if (name.Equals("empty"))
                 return BuildLis(name, args);
             if (name.Equals("contain") || name.Equals("contains"))
@@ -54,6 +56,24 @@ namespace Uroboros.syntax.interpretation.functions
             }
         }
 
+        public static IBoolable BuildStrStr(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 text arguments.");
+
+            IStringable istr1 = StringableBuilder.Build(args[0].tokens);
+            IStringable istr2 = StringableBuilder.Build(args[1].tokens);
+
+            if (istr1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
+            if (istr2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
+
+            if (name.Equals("existinside") || name.Equals("existsinside"))
+                return new FuncExistinside(istr1, istr2);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
         public static IBoolable BuildLis(string name, List<Argument> args)
         {
             if (args.Count != 1)
@@ -75,16 +95,16 @@ namespace Uroboros.syntax.interpretation.functions
             if (args.Count != 2)
                 throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 arguments: one list and one text.");
 
-            IListable inu1 = ListableBuilder.Build(args[0].tokens);
-            IStringable inu2 = StringableBuilder.Build(args[1].tokens);
+            IListable ilis = ListableBuilder.Build(args[0].tokens);
+            IStringable istr = StringableBuilder.Build(args[1].tokens);
 
-            if (inu1.IsNull())
+            if (ilis.IsNull())
                 throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as list.");
-            if (inu2.IsNull())
+            if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
 
             if (name.Equals("contain") || name.Equals("contains"))
-                return new FuncContain(inu1, inu2);
+                return new FuncContain(ilis, istr);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
     }

@@ -27,7 +27,7 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("date"))
                 return BuildNumNumNum(name, args);
-            if (name.Equals("newyear") || name.Equals("christmas"))
+            if (name.Equals("newyear") || name.Equals("christmas") || name.Equals("easter"))
                 return BuildNum(name, args);
 
             return null;
@@ -73,6 +73,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncNewyear(inu);
             if (name.Equals("christmas"))
                 return new FuncChristmas(inu);
+            if (name.Equals("easter"))
+                return new FuncEaster(inu);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
     }

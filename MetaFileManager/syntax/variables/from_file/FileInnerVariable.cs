@@ -144,5 +144,15 @@ namespace Uroboros.syntax.variables.from_file
                     return false;
             }
         }
+
+        public static bool ExistInside(string file, string directory)
+        {
+            string directoryLocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + directory;
+
+            if (!Directory.Exists(@directoryLocation))
+                return false;
+
+            return Exist(directory + "//" + file);
+        }
     }
 }
