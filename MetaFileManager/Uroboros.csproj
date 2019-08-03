@@ -155,7 +155,7 @@
     <Compile Include="syntax\commands\core\Delete.cs" />
     <Compile Include="syntax\commands\core\Drop.cs" />
     <Compile Include="syntax\commands\core\Open.cs" />
-    <Compile Include="syntax\commands\core\Select.cs" />
+    <Compile Include="syntax\commands\other\Select.cs" />
     <Compile Include="syntax\commands\core\CreateDirectory.cs" />
     <Compile Include="syntax\commands\core\CreateFile.cs" />
     <Compile Include="syntax\commands\core\CreateFileFrom.cs" />
@@ -191,6 +191,7 @@
     <Compile Include="syntax\interpretation\commands\InterOrder.cs" />
     <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
     <Compile Include="syntax\interpretation\commands\InterRemove.cs" />
+    <Compile Include="syntax\interpretation\commands\InterSelect.cs" />
     <Compile Include="syntax\interpretation\commands\InterSleep.cs" />
     <Compile Include="syntax\interpretation\commands\InterTwoWordsCommand.cs" />
     <Compile Include="syntax\interpretation\commands\InterVariableDeclaration.cs" />

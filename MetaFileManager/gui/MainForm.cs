@@ -58,41 +58,11 @@ namespace Uroboros.gui
                         InterVariables.GetInstance().Clear();
                         RuntimeVariables.GetInstance().InitializeInnerVariables();
                         RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
+
+
                         List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
-
-                        /*foreach (Token tk in tokens)
-                        {
-                            Log(tk.Print());
-                        }*/
-
-
                         commands = CommandListFactory.Build(tokens);
-                        //
-                        /*
-                        List<IStringable> lstrin= new List<IStringable>();
-                        lstrin.Add(new StringConstant("info"));
-                        StringExpression strin = new StringExpression(lstrin);
-
-                        List<IStringable> lstrin2 = new List<IStringable>();
-                        lstrin2.Add(new StringConstant("info_kopia"));
-                        StringExpression strin2 = new StringExpression(lstrin2);
-
-
-                        List<string> files = new List<string>();
-                        files.Add("3");
-                        files.Add("info5.txt");
-                        files.Add("info.txt");
-                        files.Add("33");
-
-
-                        CreateDirectory comopen = new CreateDirectory(strin);
-                        commands.Add(comopen);
-
-                        */
-
-                        //Cut com = new Cut(new StringConstant("info.txt"));
-                        //commands.Add(com);
-
+                        
                         try
                         {
                             foreach (ICommand command in commands)
@@ -112,6 +82,7 @@ namespace Uroboros.gui
                 }
             }
             Log("------------------------------------");
+            System.GC.Collect();
         }
 
         private void directoryButton_Click(object sender, EventArgs e)

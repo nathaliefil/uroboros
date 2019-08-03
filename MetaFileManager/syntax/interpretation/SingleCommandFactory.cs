@@ -65,6 +65,10 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterReverse.Build(tokens);
                 }
+                case TokenType.Select:
+                {
+                    return InterSelect.Build(tokens);
+                }
                 case TokenType.Sleep:
                 {
                     return InterSleep.Build(tokens);

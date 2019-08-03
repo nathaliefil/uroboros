@@ -42,8 +42,6 @@ namespace Uroboros.syntax.interpretation.commands
                     return new Drop(new StringVariableRefer("this"));
                 case TokenType.Open:
                     return new Open(new StringVariableRefer("this"));
-                case TokenType.Select:
-                    return new Select(new StringVariableRefer("this"));
             }
             throw new SyntaxErrorException("ERROR! Command not indentified."); // this is never thrown
         }
@@ -62,8 +60,6 @@ namespace Uroboros.syntax.interpretation.commands
                     return new Drop(ilist);
                 case TokenType.Open:
                     return new Open(ilist);
-                case TokenType.Select:
-                    return new Select(ilist);
             }
             throw new SyntaxErrorException("ERROR! Command not indentified."); // this is never thrown
         }
@@ -82,10 +78,8 @@ namespace Uroboros.syntax.interpretation.commands
                     return "drop";
                 case TokenType.Open:
                     return "open";
-                case TokenType.Select:
-                    return "select";
             }
-            return "one";
+            throw new SyntaxErrorException("ERROR! Command not indentified.");
         }
 
         public static ICommand BuildCreate(List<Token> tokens, bool forced, bool directory)
@@ -144,24 +138,24 @@ namespace Uroboros.syntax.interpretation.commands
                 throw new SyntaxErrorException("ERROR! Source in " + (directory ? "directory" : "file")
                     + " creation command is empty.");
 
-            IStringable istring1;
-            IStringable istring2 = StringableBuilder.Build(part2);
+            IListable ilist;
+            IStringable istring = StringableBuilder.Build(part2);
             if (part1.Count == 0)
-                istring1 = new StringVariableRefer("this");
+                ilist = new StringVariableRefer("this");
             else
-                istring1 = StringableBuilder.Build(part1);
+                ilist = ListableBuilder.Build(part1);
 
-            if (istring1.IsNull())
+            if (ilist.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with new " + (directory ? "directory" : "file") +
                     " name in " + (directory ? "directory" : "file") + " creation command syntax.");
-            if (istring2.IsNull())
+            if (istring.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with source " + (directory ? "directory" : "file") +
                     " name in " + (directory ? "directory" : "file") + " creation command syntax.");
 
             if (directory)
-                return new CreateDirectoryFrom(istring2, istring1, forced);
+                return new CreateDirectoryFrom(istring, ilist, forced);
             else
-                return new CreateFileFrom(istring2, istring1, forced);
+                return new CreateFileFrom(istring, ilist, forced);
         }
     }
 }

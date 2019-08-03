@@ -48,10 +48,6 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterCore.Build(tokens);
                 }
-                case TokenType.Select:
-                {
-                    return InterCore.Build(tokens);
-                }
                 case TokenType.Move:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))

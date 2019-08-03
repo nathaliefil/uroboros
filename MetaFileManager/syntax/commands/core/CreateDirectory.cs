@@ -32,7 +32,7 @@ namespace Uroboros.syntax.commands.core
             }
         }
 
-        protected override void FileAction(string fileName, string rawLocation)
+        protected override void FileAction(string fileName, string location)
         {
             throw new CommandException("Action ignored! Name for directory " + fileName + " is not suitable.");
         }

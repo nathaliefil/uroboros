@@ -9,23 +9,24 @@ using System.IO;
 using Uroboros.syntax.variables.from_file;
 
 
-namespace Uroboros.syntax.commands.core
+namespace Uroboros.syntax.commands.other
 {
-    class Select: CoreCommand
+    class Select: ICommand
     {
         [DllImport("shell32.dll", SetLastError = true)]
         public static extern int SHOpenFolderAndSelectItems(IntPtr pidlFolder, uint cidl, [In, MarshalAs(UnmanagedType.LPArray)] IntPtr[] apidl, uint dwFlags);
         [DllImport("shell32.dll", SetLastError = true)]
         public static extern void SHParseDisplayName([MarshalAs(UnmanagedType.LPWStr)] string name, IntPtr bindingContext, [Out] out IntPtr pidl, uint sfgaoIn, [Out] out uint psfgaoOut);
 
+        IListable list;
 
         public Select(IListable list)
         {
             this.list = list;
         }
 
-
-        public override void Action(string elemento) // elemento
+        
+        public void Run()
         {
             string location = RuntimeVariables.GetInstance().GetValueString("location");
 
@@ -46,17 +47,14 @@ namespace Uroboros.syntax.commands.core
 
             // escape if there is nothing to select
             if (selected.Count == 0)
-            {
-                Logger.GetInstance().Log("Action ignored! There was nothing to select.");
                 return;
-            }
 
             //fill array of files and directories
             IntPtr[] fileArray = new IntPtr[selected.Count];
             for (int i = 0; i < selected.Count; i++ )
             {
                 SHParseDisplayName(Path.Combine(location, selected[i]), IntPtr.Zero, out fileArray[i], 0, out psfgaoOut);
-                Logger.GetInstance().Log("Select " + selected[i]);
+                Logger.GetInstance().LogCommand("Select " + selected[i]);
             }
 
             SHOpenFolderAndSelectItems(nativeFolder, (uint)fileArray.Length, fileArray, 0);
@@ -66,6 +64,5 @@ namespace Uroboros.syntax.commands.core
             for (int i = 0; i < selected.Count; i++)
                 Marshal.FreeCoTaskMem(fileArray[i]);
         }
-
     }
 }

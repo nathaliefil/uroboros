@@ -35,7 +35,6 @@ namespace Uroboros.syntax.commands.core
                 else
                     throw new CommandException("Action ignored! Something went wrong during openning " + fileName + ".");
             }
-            
         }
     }
 }

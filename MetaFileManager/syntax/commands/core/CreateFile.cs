@@ -16,7 +16,7 @@ namespace Uroboros.syntax.commands.core
             this.forced = forced;
         }
 
-        protected override void DirectoryAction(string directoryName, string rawLocation)
+        protected override void DirectoryAction(string directoryName, string location)
         {
             throw new CommandException("Action ignored! Name for file " + directoryName + " is not suitable.");
         }
