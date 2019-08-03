@@ -159,7 +159,7 @@ This function returns the smallest of its arguments. Can have any number of nume
 | ------------- | ------------- | ------------- |
 | length  | (Text) | (Number)
 
-This function parses text (arg0) into a number. If parsing cannot be executed successfully, returns 0.
+This function parses text (arg1) into a number. If parsing cannot be executed successfully, returns 0.
 
 
 ### Pi
@@ -167,7 +167,7 @@ This function parses text (arg0) into a number. If parsing cannot be executed su
 | ------------- | ------------- | ------------- |
 | pi  | () | (Number)
 
-This function number pi - the ratio of a circle's circumference to its diameter.
+This function returns number pi - the ratio of a circle's circumference to its diameter.
 
 
 ### Power
@@ -175,7 +175,7 @@ This function number pi - the ratio of a circle's circumference to its diameter.
 | ------------- | ------------- | ------------- |
 | pow, power  | (Number, Number) | (Number)
 
-This function returns number (arg0) to the power of (arg1).
+This function returns number (arg1) to the power of (arg2).
 
 
 ### Product
@@ -230,3 +230,39 @@ This function returns, which day of the year is date (arg1).
 # **Time Functions**
 
 ### Christmas
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| christmas  | (Number) | (Time)
+
+This function returns date of Christmas of the indicated year (arg1). Clock is set to 00:00:00.
+
+
+### Date
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| date  | (Number, Number, Number) | (Time)
+
+This function returns date created from three variables: day (arg1), month (arg2), year (arg3). Clock is set to 00:00:00.
+
+
+### Easter
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| easter  | (Number) | (Time)
+
+This function returns date of Easter of the indicated year (arg1). Clock is set to 00:00:00.
+
+
+### NewYear
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| newyear  | (Number) | (Time)
+
+This function returns time of New Year (arg1).
+
+---
+
+# **Text Functions**
+
+### After
+
