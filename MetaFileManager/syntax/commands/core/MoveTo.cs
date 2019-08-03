@@ -32,7 +32,7 @@ namespace Uroboros.syntax.commands.core
 
 
             if (!Directory.Exists(rawLocation + "//" + directoryName))
-                throw new CommandException("Action ignored! Directory " + directoryName + " do not exist.");
+                Directory.CreateDirectory(rawLocation + "//" + directoryName);
 
 
             try
@@ -67,7 +67,7 @@ namespace Uroboros.syntax.commands.core
 
 
             if (!Directory.Exists(rawLocation + "//" + directoryName))
-                throw new CommandException("Action ignored! Directory " + directoryName + " do not exist.");
+                Directory.CreateDirectory(rawLocation + "//" + directoryName);
 
 
             try

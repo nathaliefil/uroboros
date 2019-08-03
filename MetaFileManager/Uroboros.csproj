@@ -86,6 +86,7 @@
     <Compile Include="syntax\commands\blocks\RepeatBlock.cs" />
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\abstracts\CommandException.cs" />
+    <Compile Include="syntax\commands\core\CoreCommandCreate.cs" />
     <Compile Include="syntax\commands\core\RenameTo.cs" />
     <Compile Include="syntax\commands\core\CreateDirectoryFrom.cs" />
     <Compile Include="syntax\commands\list\Add.cs" />

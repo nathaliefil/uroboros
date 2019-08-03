@@ -111,16 +111,16 @@ namespace Uroboros.syntax.interpretation.commands
                 else
                     return new CreateFile(new StringVariableRefer("this"), forced);
             }
-            IStringable istring = StringableBuilder.Build(tokens);
+            IListable ilist = ListableBuilder.Build(tokens);
 
 
-            if (istring.IsNull())
+            if (ilist.IsNull())
                 throw new SyntaxErrorException("ERROR! There are is something wrong with " + (directory ? "directory" : "file")
                     + " creation command syntax.");
             if (directory)
-                return new CreateDirectory(istring, forced);
+                return new CreateDirectory(ilist, forced);
             else
-                return new CreateFile(istring, forced);
+                return new CreateFile(ilist, forced);
         }
 
         public static ICommand BuildCreateFrom(List<Token> tokens, bool forced, bool directory)

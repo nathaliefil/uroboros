@@ -8,67 +8,33 @@ using System.IO;
 
 namespace Uroboros.syntax.commands.core
 {
-    class CreateDirectory : ICommand
+    class CreateDirectory : CoreCommandCreate
     {
-        private IStringable name;
-        private bool forced;
-
-        public CreateDirectory(IStringable name, bool forced)
+        public CreateDirectory(IListable list, bool forced)
         {
-            this.name = name;
+            this.list = list;
             this.forced = forced;
         }
 
-        public void Run()
+        protected override void DirectoryAction(string directoryName, string location)
         {
-            string sname = name.ToString();
-            if (FileValidator.IsNameCorrect(sname))
+            try
             {
-                string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-                if (FileValidator.IsDirectory(sname))
-                {
-                    if (Directory.Exists(@location))
-                    {
-                        if (!forced)
-                        {
-                            Logger.GetInstance().Log("Action ignored! Directory " + sname + " already exists.");
-                        }
-                        else 
-                        {
-                            try
-                            {
-                                Directory.Delete(@location);
-                                Directory.CreateDirectory(@location);
-                                Logger.GetInstance().Log("Create directory " + sname + " replacing existing one");
-                            }
-                            catch (Exception)
-                            {
-                                Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing directory " + sname + ".");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            Directory.CreateDirectory(@location);
-                            Logger.GetInstance().Log("Create directory " + sname);
-                        }
-                        catch (Exception)
-                        {
-                            Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + sname + ".");
-                        }
-                    }
-                }
+                Directory.CreateDirectory(@location);
+                Logger.GetInstance().LogCommand("Create directory " + directoryName);
+            }
+            catch (Exception ex)
+            {
+                if (ex is IOException || ex is UnauthorizedAccessException)
+                    throw new CommandException("Action ignored! Access denied during creating directory " + directoryName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! " + sname + " is not a directory.");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during creating directory " + directoryName + ".");
             }
-            else
-            {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
-            }
+        }
+
+        protected override void FileAction(string fileName, string rawLocation)
+        {
+            throw new CommandException("Action ignored! Name for directory " + fileName + " is not suitable.");
         }
     }
 }

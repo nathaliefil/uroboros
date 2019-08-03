@@ -8,69 +8,33 @@ using System.IO;
 
 namespace Uroboros.syntax.commands.core
 {
-    class CreateFile : ICommand
+    class CreateFile : CoreCommandCreate
     {
-        private IStringable name;
-        private bool forced;
-
-        public CreateFile(IStringable name, bool forced)
+        public CreateFile(IListable list, bool forced)
         {
-            this.name = name;
+            this.list = list;
             this.forced = forced;
         }
 
-        public void Run()
+        protected override void DirectoryAction(string directoryName, string rawLocation)
         {
-            string sname = name.ToString();
-            if (FileValidator.IsNameCorrect(sname))
+            throw new CommandException("Action ignored! Name for file " + directoryName + " is not suitable.");
+        }
+
+        protected override void FileAction(string fileName, string location)
+        {
+            try
             {
-                string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-                if (!FileValidator.IsDirectory(sname))
-                {
-                    if (File.Exists(@location))
-                    {
-                        if (!forced)
-                        {
-                            Logger.GetInstance().Log("Action ignored! File " + sname + " already exists.");
-                        }
-                        else
-                        {
-                            try
-                            {
-                                File.Delete(@location);
-                                File.Create(@location);
-                                Logger.GetInstance().Log("Create file " + sname + " replacing existing one");
-                            }
-                            catch (Exception)
-                            {
-                                Logger.GetInstance().Log("Action ignored! Something went wrong during replacing existing file " + sname + ".");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            File.Create(@location);
-                            Logger.GetInstance().Log("Create file " + sname);
-                        }
-                        catch (Exception)
-                        {
-                            Logger.GetInstance().Log("Action ignored! Something went wrong during creating " + sname + ".");
-                        }
-                    }
-                }
-                else
-                {
-                    Logger.GetInstance().Log("Action ignored! " + sname + " is not a file.");
-                }
+                File.Create(@location);
+                Logger.GetInstance().LogCommand("Create file " + fileName);
             }
-            else
+            catch (Exception ex)
             {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
+                if (ex is IOException || ex is UnauthorizedAccessException)
+                    throw new CommandException("Action ignored! Access denied during creating file " + fileName + ".");
+                else
+                    throw new CommandException("Action ignored! Something went wrong during creating file " + fileName + ".");
             }
         }
-        
-
     }
 }
