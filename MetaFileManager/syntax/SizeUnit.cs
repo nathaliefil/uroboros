@@ -9,6 +9,7 @@ namespace Uroboros.syntax
     {
         public static decimal GetMultiplier(SizeSufix sufix)
         {
+            //here are the constants
             switch (sufix)
             {
                 case SizeSufix.None:

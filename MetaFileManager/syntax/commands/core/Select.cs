@@ -25,7 +25,7 @@ namespace Uroboros.syntax.commands.core
         }
 
 
-        public override void Run ()
+        public override void Action(string elemento) // elemento
         {
             string location = RuntimeVariables.GetInstance().GetValueString("location");
 

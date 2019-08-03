@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax
+namespace Uroboros.syntax.commands
 {
-    class RuntimeException : Exception
+    class CommandException : Exception
     {
-        protected string message;
+        private string message;
 
-        public RuntimeException(string message)
+        public CommandException(string message)
         {
             this.message = message;
         }

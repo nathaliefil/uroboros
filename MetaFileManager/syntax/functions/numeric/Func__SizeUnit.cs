@@ -6,12 +6,12 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncSizeUnit : DefaultNumerable
+    class Func__SizeUnit : DefaultNumerable
     {
         private INumerable arg0;
         private SizeSufix sizeSufix;
 
-        public FuncSizeUnit(INumerable arg0, SizeSufix sizeSufix)
+        public Func__SizeUnit(INumerable arg0, SizeSufix sizeSufix)
         {
             this.arg0 = arg0;
             this.sizeSufix = sizeSufix;

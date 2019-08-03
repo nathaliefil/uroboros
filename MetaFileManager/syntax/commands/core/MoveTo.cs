@@ -20,97 +20,70 @@ namespace Uroboros.syntax.commands.core
             this.forced = forced;
         }
 
-        protected override void PerformFileAction(string element, string t)
+        protected override void FileAction(string fileName, string rawLocation)
         {
-            string sname = element;
-            string nname = destination.ToString();
+            string directoryName = destination.ToString();
+            if (!FileValidator.IsNameCorrect(directoryName))
+                throw new CommandException("Action ignored! " + directoryName + " contains not allowed characters.");
 
-            if (!FileValidator.IsNameCorrect(sname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
-                return;
-            }
-            if (!FileValidator.IsNameCorrect(nname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + nname + " contains not allowed characters.");
-                return;
-            }
 
-            string slocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-            string nlocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + nname + "//" + sname;
+            string oldLocation = rawLocation + "//" + fileName;
+            string newLocation = rawLocation + "//" + directoryName + "//" + fileName;
 
-            /*if (!Directory.Exists(slocation + "//" + nname))
-            {
-                Logger.GetInstance().Log("Action ignored! Directory " + nname + " do not exist.");
-                return;
-            }*/
+
+            if (!Directory.Exists(rawLocation + "//" + directoryName))
+                throw new CommandException("Action ignored! Directory " + directoryName + " do not exist.");
+
 
             try
             {
-                if (forced)
-                    if (File.Exists(nlocation))
-                        File.Delete(@nlocation);
-                File.Move(@slocation, @nlocation);
-                Logger.GetInstance().Log("Move " + sname + " to " + nname);
+                if (forced && File.Exists(newLocation))
+                    File.Delete(@newLocation);
+                File.Move(@oldLocation, @newLocation);
+                Logger.GetInstance().LogCommand("Move " + fileName + " to " + directoryName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied during moving " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during moving " + fileName + " to " + directoryName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during moving " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during moving " + fileName + " to " + directoryName + ".");
             }
         }
 
-        protected override void PerformDirectoryAction(string element, string t)
+        protected override void DirectoryAction(string movingDirectoryName, string rawLocation)
         {
-            string sname = element;
-            string nname = destination.ToString();
+            string directoryName = destination.ToString();
+            if (directoryName.Equals(movingDirectoryName))
+                throw new CommandException("Action ignored! Directory " + directoryName + " cannot be moved to itself.");
 
-            if (!FileValidator.IsNameCorrect(sname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
-                return;
-            }
-            if (!FileValidator.IsNameCorrect(nname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + nname + " contains not allowed characters.");
-                return;
-            }
 
-            string slocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-            string nlocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + nname +"//" + sname;
+            if (!FileValidator.IsNameCorrect(directoryName))
+                throw new CommandException("Action ignored! " + directoryName + " contains not allowed characters.");
 
-            if (!Directory.Exists(slocation + "//" + nname))
-            {
-                Logger.GetInstance().Log("Action ignored! Directory " + nname + " do not exist.");
-                return;
-            }
+
+            string oldLocation = rawLocation + "//" + movingDirectoryName;
+            string newLocation = rawLocation + "//" + directoryName + "//" + movingDirectoryName;
+
+
+            if (!Directory.Exists(rawLocation + "//" + directoryName))
+                throw new CommandException("Action ignored! Directory " + directoryName + " do not exist.");
+
 
             try
             {
-                if (forced)
-                    if (Directory.Exists(nlocation))
-                        Directory.Delete(@nlocation);
-                Directory.Move(@slocation, @nlocation);
-                Logger.GetInstance().Log("Move " + sname + " to " + nname);
+                if (forced && Directory.Exists(newLocation))
+                    Directory.Delete(@newLocation, true);
+                Directory.Move(@oldLocation, @newLocation);
+                Logger.GetInstance().LogCommand("Move " + movingDirectoryName + " to " + directoryName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied during moving " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during moving " + movingDirectoryName + " to " + directoryName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during moving " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during moving " + movingDirectoryName + " to " + directoryName + ".");
             }
         }
-
     }
 }

@@ -45,11 +45,13 @@ namespace Uroboros.syntax
             return Filled(time.Hour) + ":" + Filled(time.Minute) + ":" + Filled(time.Second);
         }
 
+        // method for hour comparison
         public static int ClockToInt(DateTime time)
         {
             return time.Hour * 3600 + time.Minute * 60 + time.Second;
         }
 
+        // method for date comparison
         public static int DateToInt(DateTime time)
         {
             return time.Year * 366 + time.Month * 31 + time.Day;

@@ -8,58 +8,74 @@ using System.IO;
 
 namespace Uroboros.syntax.commands.core
 {
-    abstract class CoreCommand: ICommand
+    abstract class CoreCommand: DefaultBoolable, ICommand
     {
         protected IListable list;
 
-        public virtual void Run()
+        public void Run()
         {
-            List<string> elements = list.ToList();
-            foreach (string element in elements)
+            foreach (string element in list.ToList())
             {
-                if (FileValidator.IsNameCorrect(element))
+                try
                 {
-                    string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + element;
-
-                    if (FileValidator.IsDirectory(element))
-                    {
-                        if (!Directory.Exists(@location))
-                        {
-                            Logger.GetInstance().Log("Action ignored! Directory " + element + " not found.");
-                        }
-                        else
-                        {
-                            PerformDirectoryAction(element, location);
-                        }
-                    }
-                    else
-                    {
-                        if (!File.Exists(@location))
-                        {
-                            Logger.GetInstance().Log("Action ignored! File " + element + " not found.");
-                        }
-                        else
-                        {
-                            PerformFileAction(element, location);
-                        }
-                    }
+                    Action(element);
                 }
-                else
+                catch (CommandException ce)
                 {
-                    Logger.GetInstance().Log("Action ignored! " + element + " contains not allowed characters.");
+                    Logger.GetInstance().LogCommand(ce.GetMessage());
                 }
             }
         }
 
-        protected virtual void PerformDirectoryAction(string element, string location)
+        public virtual void Action(string element)
         {
-            // to be overridden
+            if (FileValidator.IsNameCorrect(element))
+            {
+                string rawLocation = RuntimeVariables.GetInstance().GetValueString("location");
+                string location = rawLocation + "//" + element;
+
+                if (FileValidator.IsDirectory(element))
+                {
+                    if (!Directory.Exists(@location))
+                        throw new CommandException("Action ignored! Directory " + element + " not found.");
+                    else
+                        DirectoryAction(element, rawLocation);
+                }
+                else
+                {
+                    if (!File.Exists(@location))
+                        throw new CommandException("Action ignored! File " + element + " not found.");
+                    else
+                        FileAction(element, rawLocation);
+                }
+            }
+            else
+                throw new CommandException("Action ignored! " + element + " contains not allowed characters.");
         }
 
-        protected virtual void PerformFileAction(string element, string location)
+        protected virtual void DirectoryAction(string element, string location)
         {
             // to be overridden
+            // but not necessarily
+        }
+
+        protected virtual void FileAction(string element, string location)
+        {
+            // to be overridden
+            // but not necessarily
+        }
+
+        public override bool ToBool()
+        {
+            try
+            {
+                Run();
+            }
+            catch (CommandException)
+            {
+                return false;
+            }
+            return true;
         }
     }
-
 }

@@ -17,7 +17,7 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        public override void Run()
+        public override void Action(string elemento) // refactor all
         {
             StringCollection paths = new StringCollection();
             List<string> elements = list.ToList();

@@ -80,15 +80,15 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncLog10(inu);
 
                 if (name.Equals("kb"))
-                    return new FuncSizeUnit(inu, SizeSufix.KB);
+                    return new Func__SizeUnit(inu, SizeSufix.KB);
                 if (name.Equals("mb"))
-                    return new FuncSizeUnit(inu, SizeSufix.MB);
+                    return new Func__SizeUnit(inu, SizeSufix.MB);
                 if (name.Equals("gb"))
-                    return new FuncSizeUnit(inu, SizeSufix.GB);
+                    return new Func__SizeUnit(inu, SizeSufix.GB);
                 if (name.Equals("tb"))
-                    return new FuncSizeUnit(inu, SizeSufix.TB);
+                    return new Func__SizeUnit(inu, SizeSufix.TB);
                 if (name.Equals("pb"))
-                    return new FuncSizeUnit(inu, SizeSufix.PB);
+                    return new Func__SizeUnit(inu, SizeSufix.PB);
 
                 throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
             }
@@ -144,17 +144,17 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as time.");
 
             if (name.Equals("yearsbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Year);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Year);
             if (name.Equals("monthsbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Month);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Month);
             if (name.Equals("daysbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Day);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Day);
             if (name.Equals("hoursbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Hour);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Hour);
             if (name.Equals("minutesbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Minute);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Minute);
             if (name.Equals("secondsbetween"))
-                return new FuncTimeBetween(itim1, itim2, TimeVariableType.Second);
+                return new Func__TimeBetween(itim1, itim2, TimeVariableType.Second);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

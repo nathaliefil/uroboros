@@ -6,7 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
 
-namespace Uroboros.syntax.commands.create
+namespace Uroboros.syntax.commands.core
 {
     class CreateFile : ICommand
     {

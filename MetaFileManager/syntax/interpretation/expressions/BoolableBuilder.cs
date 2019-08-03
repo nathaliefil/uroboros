@@ -16,6 +16,11 @@ namespace Uroboros.syntax.interpretation.expressions
 {
     class BoolableBuilder
     {
+
+        public static BoolExpressionOperatorType[] BINARY_LOGIC_OPERATOR = new BoolExpressionOperatorType[] {
+            BoolExpressionOperatorType.Or, BoolExpressionOperatorType.Xor, BoolExpressionOperatorType.And};
+
+
         public static IBoolable Build(List<Token> tokens)
         {
             // check is is empty
@@ -528,7 +533,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
         public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
         {
-            return TokenGroups.BINARY_LOGIC_OPERATOR.Contains(beo.GetOperatorType()) ? true : false;
+            return BINARY_LOGIC_OPERATOR.Contains(beo.GetOperatorType()) ? true : false;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
+using Uroboros.syntax.variables.from_file;
 
 namespace Uroboros.syntax.commands.core
 {
@@ -20,83 +21,69 @@ namespace Uroboros.syntax.commands.core
             this.forced = forced;
         }
 
-        protected override void PerformFileAction(string element, string t)
+        protected override void FileAction(string oldFileName, string rawLocation)
         {
-            string sname = element;
-            string nname = destination.ToString();
+            string newFileName = destination.ToString();
+            if (!FileValidator.IsNameCorrect(newFileName))
+                throw new CommandException("Action ignored! " + newFileName + " contains not allowed characters.");
 
-            if (!FileValidator.IsNameCorrect(sname))
+            if (FileValidator.IsDirectory(newFileName))
             {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
-                return;
-            }
-            if (!FileValidator.IsNameCorrect(nname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + nname + " contains not allowed characters.");
-                return;
+                string extension = FileInnerVariable.GetExtension(oldFileName);
+                newFileName += "." + extension;
             }
 
-            string slocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-            string nlocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + nname;
+            if (oldFileName.Equals(newFileName))
+                throw new CommandException("Action ignored! Old name and new name for " + newFileName + " are the same and renaming is unnecessary.");
+
+
+            string slocation = rawLocation + "//" + oldFileName;
+            string nlocation = rawLocation + "//" + newFileName;
 
             try
             {
-                if (forced)
-                    if (File.Exists(nlocation))
-                        File.Delete(@nlocation);
+                if (forced && File.Exists(nlocation))
+                    File.Delete(@nlocation);
                 File.Move(@slocation, @nlocation);
-                Logger.GetInstance().Log("Rename " + sname + " to " + nname);
+                Logger.GetInstance().LogCommand("Rename " + oldFileName + " to " + newFileName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied during renaming " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during renaming " + oldFileName + " to " + newFileName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during renaming " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during renaming " + oldFileName + " to " + newFileName + ".");
             }
         }
 
-        protected override void PerformDirectoryAction(string element, string t)
+        protected override void DirectoryAction(string oldDirectoryName, string rawLocation)
         {
-            string sname = element;
-            string nname = destination.ToString();
+            string newDirectoryName = destination.ToString();
+            if (!FileValidator.IsNameCorrect(newDirectoryName))
+                throw new CommandException("Action ignored! " + newDirectoryName + " contains not allowed characters.");
 
-            if (!FileValidator.IsNameCorrect(sname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + sname + " contains not allowed characters.");
-                return;
-            }
-            if (!FileValidator.IsNameCorrect(nname))
-            {
-                Logger.GetInstance().Log("Action ignored! " + nname + " contains not allowed characters.");
-                return;
-            }
+            if (!FileValidator.IsDirectory(newDirectoryName))
+                throw new CommandException("Action ignored! " + newDirectoryName + ", the new name for directory " + oldDirectoryName + " is unsuitable. ");
 
-            string slocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + sname;
-            string nlocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + nname;
+            if (oldDirectoryName.Equals(newDirectoryName))
+                throw new CommandException("Action ignored! Old name and new name for " + newDirectoryName + " are the same and renaming is unnecessary.");
+
+            string slocation = rawLocation + "//" + oldDirectoryName;
+            string nlocation = rawLocation + "//" + newDirectoryName;
 
             try
             {
-                if (forced)
-                    if (Directory.Exists(nlocation))
-                        Directory.Delete(@nlocation);
+                if (forced && Directory.Exists(nlocation))
+                    Directory.Delete(@nlocation, true);
                 Directory.Move(@slocation, @nlocation);
-                Logger.GetInstance().Log("Rename " + sname + " to " + nname);
+                Logger.GetInstance().LogCommand("Rename " + oldDirectoryName + " to " + newDirectoryName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied during renaming " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during renaming " + oldDirectoryName + " to " + newDirectoryName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during renaming " + sname + " to " + nname + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during renaming " + oldDirectoryName + " to " + newDirectoryName + ".");
             }
         }
     }

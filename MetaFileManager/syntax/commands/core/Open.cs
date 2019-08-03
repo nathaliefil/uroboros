@@ -16,21 +16,24 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        protected override void PerformDirectoryAction(string element, string location)
+        protected override void DirectoryAction(string directoryName, string location)
         {
-            PerformFileAction(element, location);
+            FileAction(directoryName, location);
         }
 
-        protected override void PerformFileAction(string element, string location)
+        protected override void FileAction(string fileName, string location)
         {
             try
             {
                 Process.Start(@location);
-                Logger.GetInstance().Log("Open " + element);
+                Logger.GetInstance().LogCommand("Open " + fileName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Logger.GetInstance().Log("Action ignored! Something went wrong during openning " + element + ".");
+                if (ex is IOException || ex is UnauthorizedAccessException)
+                    throw new CommandException("Action ignored! Access denied during openning " + fileName + ".");
+                else
+                    throw new CommandException("Action ignored! Something went wrong during openning " + fileName + ".");
             }
             
         }

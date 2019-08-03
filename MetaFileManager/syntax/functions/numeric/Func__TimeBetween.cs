@@ -7,13 +7,13 @@ using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FuncTimeBetween : DefaultNumerable
+    class Func__TimeBetween : DefaultNumerable
     {
         private ITimeable arg0;
         private ITimeable arg1;
         private TimeVariableType varType;
 
-        public FuncTimeBetween(ITimeable arg0, ITimeable arg1, TimeVariableType varType)
+        public Func__TimeBetween(ITimeable arg0, ITimeable arg1, TimeVariableType varType)
         {
             this.arg0 = arg0;
             this.arg1 = arg1;

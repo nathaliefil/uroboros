@@ -15,43 +15,35 @@ namespace Uroboros.syntax.commands.core
             this.list = list;
         }
 
-        protected override void PerformDirectoryAction(string element, string location)
+        protected override void DirectoryAction(string directoryName, string location)
         {
             try
             {
-                Directory.Delete(@location);
-                Logger.GetInstance().Log("Delete " + element);
+                Directory.Delete(@location, true);
+                Logger.GetInstance().LogCommand("Drop " + directoryName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied to " + element + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during dropping " + directoryName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during dropping " + element + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during dropping " + directoryName + ".");
             }
         }
 
-        protected override void PerformFileAction(string element, string location)
+        protected override void FileAction(string fileName, string location)
         {
             try
             {
                 File.Delete(@location);
-                Logger.GetInstance().Log("Delete " + element);
+                Logger.GetInstance().LogCommand("Drop " + fileName);
             }
             catch (Exception ex)
             {
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                {
-                    Logger.GetInstance().Log("Action ignored! Access denied to " + element + ".");
-                }
+                    throw new CommandException("Action ignored! Access denied during dropping " + fileName + ".");
                 else
-                {
-                    Logger.GetInstance().Log("Action ignored! Something went wrong during dropping " + element + ".");
-                }
+                    throw new CommandException("Action ignored! Something went wrong during dropping " + fileName + ".");
             }
         }
     }

@@ -10,9 +10,11 @@ namespace Uroboros.syntax.runtime
     {
         private static Logger INSTANCE = new Logger();
         private TextBox outputBox;
+        private bool logCommands;
 
         private Logger()
         {
+            logCommands = true;
         }
 
         public static Logger GetInstance()
@@ -33,9 +35,30 @@ namespace Uroboros.syntax.runtime
                 outputBox.AppendText(Environment.NewLine + text);
         }
 
+        public void LogCommand(string text)
+        {
+            if (logCommands)
+            {
+                if (outputBox.Text.Length == 0)
+                    outputBox.AppendText(text);
+                else
+                    outputBox.AppendText(Environment.NewLine + text);
+            }
+        }
+
         public void ClearLog()
         {
             outputBox.Text = "";
+        }
+
+        public void LogOn()
+        {
+            logCommands = true;
+        }
+
+        public void LogOff()
+        {
+            logCommands = false;
         }
     }
 }

@@ -11,7 +11,6 @@ using Uroboros.syntax.commands;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.commands.core;
-using Uroboros.syntax.commands.create;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
 using Uroboros.syntax.interpretation.vars_range;
@@ -34,7 +33,8 @@ namespace Uroboros.gui
             Logger.GetInstance().SetOutputBox(logBox);
 
 
-            Log("Welcome to Meta File Manager.");
+            Log("Welcome to Meta File Manager");
+            Log("Uroboros version: alpha");
             Log("------------------------------------");
         }
 
@@ -54,6 +54,7 @@ namespace Uroboros.gui
                 {
                     try
                     {
+                        Logger.GetInstance().LogOn();
                         InterVariables.GetInstance().Clear();
                         RuntimeVariables.GetInstance().InitializeInnerVariables();
                         RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);

@@ -12,7 +12,7 @@ namespace Uroboros.syntax.reading
         private static TokenType[] ALLOWED_SUBCOMMAND = new TokenType[] { TokenType.Where, TokenType.First, 
             TokenType.Last, TokenType.Skip,  TokenType.Each, TokenType.OrderBy, TokenType.With, TokenType.Without};
 
-        private static TokenType[] ALLOWED_EXPRESSION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
+        private static TokenType[] ALLOWED_IN_EXPRESSION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
             TokenType.Multiply, TokenType.Divide,  TokenType.Percent, TokenType.And, 
             TokenType.Or, TokenType.Xor,  TokenType.BracketOn, TokenType.BracketOff, 
             TokenType.SquareBracketOn, TokenType.SquareBracketOff,  TokenType.Comma, TokenType.Equals, 
@@ -32,23 +32,29 @@ namespace Uroboros.syntax.reading
         private static TokenType[] NUMERIC_OPERATION = new TokenType[] { TokenType.Plus, TokenType.Minus, 
             TokenType.Multiply, TokenType.Divide, TokenType.Percent};
 
-        public static BoolExpressionOperatorType[] BINARY_LOGIC_OPERATOR = new BoolExpressionOperatorType[] {
-            BoolExpressionOperatorType.Or, BoolExpressionOperatorType.Xor, BoolExpressionOperatorType.And};
+        private static TokenType[] CORE_COMMAND = new TokenType[] { TokenType.Copy, TokenType.Cut, 
+            TokenType.Delete, TokenType.Drop,  TokenType.Open, TokenType.Select, TokenType.Move, TokenType.Rename
+            , TokenType.CreateFile, TokenType.CreateDirectory};
 
+        private static TokenType[] VARIABLE_OPERATION = new TokenType[] { TokenType.PlusEquals, TokenType.MinusEquals, 
+            TokenType.MultiplyEquals, TokenType.DivideEquals, TokenType.PercentEquals };
 
-        public static bool IsSubcommandKeyword(TokenType type)
-        {
-            return ALLOWED_SUBCOMMAND.Contains(type) ? true : false;
-        }
+        
+        
 
         public static Token WrongTokenInExpression(List<Token> tokens)
         {
             foreach (Token tok in tokens)
             {
-                if (!ALLOWED_EXPRESSION.Contains(tok.GetTokenType()))
+                if (!ALLOWED_IN_EXPRESSION.Contains(tok.GetTokenType()))
                     return tok;
             }
             return new Token(TokenType.Null);
+        }
+
+        public static bool IsSubcommandKeyword(TokenType type)
+        {
+            return ALLOWED_SUBCOMMAND.Contains(type) ? true : false;
         }
 
         public static bool IsComparingSign(TokenType type)
@@ -71,6 +77,14 @@ namespace Uroboros.syntax.reading
             return NUMERIC_OPERATION.Contains(type) ? true : false;
         }
 
+        public static bool IsCoreCommandKeyword(TokenType type)
+        {
+            return CORE_COMMAND.Contains(type) ? true : false;
+        }
 
+        public static bool IsVariableOperation(TokenType type)
+        {
+            return VARIABLE_OPERATION.Contains(type) ? true : false;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Uroboros.syntax
     class FileValidator
     {
         private static char[] notAllowedSigns = new char[] 
-                {'#', '%', '&', '*', ':', '<', '>', '?'};
+                {'\\', ':', '&', '*', '"', '<', '>'};
 
 
         public static bool IsNameCorrect(string name)
