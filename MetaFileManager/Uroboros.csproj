@@ -125,14 +125,17 @@
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
     <Compile Include="syntax\functions\bools\FuncExistinside.cs" />
+    <Compile Include="syntax\functions\numeric\FuncAverage.cs" />
     <Compile Include="syntax\functions\numeric\FuncGoldenratio.cs" />
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthoflongest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
+    <Compile Include="syntax\functions\numeric\FuncProduct.cs" />
     <Compile Include="syntax\functions\numeric\Func__SizeUnit.cs" />
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
     <Compile Include="syntax\functions\numeric\Func__TimeBetween.cs" />
+    <Compile Include="syntax\functions\numeric\FuncSum.cs" />
     <Compile Include="syntax\functions\strings\FuncWeekday.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />

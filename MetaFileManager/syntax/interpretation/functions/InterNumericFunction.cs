@@ -38,7 +38,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildEmpty(name, args);
             if (name.Equals("number") || name.Equals("length") || name.Equals("year"))
                 return BuildStr(name, args);
-            if (name.Equals("min") || name.Equals("max"))
+            if (name.Equals("min") || name.Equals("max") || name.Equals("average") || name.Equals("avg") 
+                || name.Equals("mean") || name.Equals("sum") || name.Equals("product"))
                 return BuildNums(name, args);
             if (name.Equals("count") || name.Equals("lengthofshortest") || name.Equals("lengthoflongest"))
                 return BuildLis(name, args);
@@ -213,6 +214,12 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncMax(inus);
             if (name.Equals("min"))
                 return new FuncMin(inus);
+            if (name.Equals("average") || name.Equals("avg") || name.Equals("mean"))
+                return new FuncAverage(inus);
+            if (name.Equals("sum"))
+                return new FuncSum(inus);
+            if (name.Equals("product"))
+                return new FuncProduct(inus);
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
