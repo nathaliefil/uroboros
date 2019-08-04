@@ -9,13 +9,13 @@ In Uroboros commands are structures consisting of keywords and definitions of da
 # **Core commands**
 
 Core commands are the commands used for manipulating files and directories. Core commands may start with two additional keywords: **force to**. These keywords force command to be executed in all cases: for example if command is going to create new directory, forced will do that even if this directory already exists - the old one will be erased.
-First argument of every core command is (list). This argument can be ommited leaving free space - in this case the value of variable "this" is used instead of declared list.
+First argument of every core command is [list]. This argument can be ommited leaving free space - in this case the value of variable "this" is used instead of declared list.
 
 
 ### Copy
 | Name  | Structure |
 | ------------- | ------------- |
-| copy | **copy** (list) |
+| copy | **copy** [list] |
 
 This commands adds every file and directory from list (arg1) to clipboard. If clipboard already contains data, it is expanded by new elements.
 
@@ -23,7 +23,7 @@ This commands adds every file and directory from list (arg1) to clipboard. If cl
 ### Copy To
 | Name  | Structure |
 | ------------- | ------------- |
-| copy to | **copy** (list) **to** (text) |
+| copy to | **copy** [list]) **to** [text] |
 
 This commands copies every file and directory from list (arg1) into directory (arg2). This is done without use of the clipboard.
 
@@ -99,6 +99,14 @@ This commands moves every file and directory from list (arg1) into directory (ar
 | open | **open** (list) |
 
 This commands opens every file and directory from list (arg1) in default opening application.
+
+
+### Reaccess To
+| Name  | Structure |
+| ------------- | ------------- |
+| reaccess to | **reaccess** (list) **to** (time) |
+
+This commands rename every file and directory from list (arg1). New name is (arg2).
 
 
 ### Rename To
