@@ -27,12 +27,12 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil")
+            if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil") || name.Equals("ceiling")
                 || name.Equals("sqrt") || name.Equals("ln") || name.Equals("log")
                 || name.Equals("log10") || name.Equals("kb") || name.Equals("mb")
                 || name.Equals("gb") || name.Equals("tb") || name.Equals("pb"))
                 return BuildNum(name, args);
-            if (name.Equals("power"))
+            if (name.Equals("power") || name.Equals("pow"))
                 return BuildNumNum(name, args);
             if (name.Equals("pi") || name.Equals("e") || name.Equals("goldenratio"))
                 return BuildEmpty(name, args);
@@ -71,7 +71,7 @@ namespace Uroboros.syntax.interpretation.functions
                     return new FuncRound(inu);
                 if (name.Equals("floor"))
                     return new FuncRound(inu);
-                if (name.Equals("ceil"))
+                if (name.Equals("ceil") || name.Equals("ceiling"))
                     return new FuncRound(inu);
                 if (name.Equals("sqrt"))
                     return new FuncSqrt(inu);
@@ -108,7 +108,7 @@ namespace Uroboros.syntax.interpretation.functions
             if (inu2.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
 
-            if (name.Equals("power"))
+            if (name.Equals("power") || name.Equals("pow"))
                 return new FuncPower(inu1, inu2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }

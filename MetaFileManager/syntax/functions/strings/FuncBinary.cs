@@ -17,7 +17,13 @@ namespace Uroboros.syntax.functions.strings
 
         public override string ToString()
         {
-            return Convert.ToString((int)arg0.ToNumber(), 2);
+            int number = (int)arg0.ToNumber();
+
+            if (number > 0)
+                return Convert.ToString(number, 2);
+            else
+                number *= -1;
+                return "-" + Convert.ToString(number, 2);
         }
     }
 }
