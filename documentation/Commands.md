@@ -65,7 +65,7 @@ This command creates new file for each element of list (arg1) and it is copy of 
 | ------------- | ------------- |
 | cut | **cut** [list] |
 
-This command adds every file and directory from list (arg1) to cutting clipboard. If clipboard already contains data, it is expanded by new elements. If elements in clipboard are copied, their state is chnged to cut.
+This command adds every file and directory from list (arg1) to cutting clipboard. If clipboard already contains data, it is expanded by new elements. If elements in clipboard are copied, their state is changed to cut.
 
 
 ### Delete
@@ -210,7 +210,7 @@ These command consist of two word insensitive to case size.
 | ------------- | ------------- |
 | clear bin | **clear** **bin** |
 
-This command deletes "permemently" all files and directories from recycle bin.
+This command deletes "permenently" all files and directories from recycle bin.
 
 
 ### Clear clipboard
@@ -253,5 +253,29 @@ This command turns on logs of command - if they were turned off previously.
 This is escape command - code stops being executed.
 
 # **Other commands**
+
+### Print
+| Name  | Structure |
+| ------------- | ------------- |
+| print | **print** [list] |
+|       |  [list] |
+
+This command prints all elements from list (arg1) in log. Every element is one line. This command can be called without keyword "print", however it is recommended to use it every time. In some situations keyword completely changes command meaning (e.g. "var=2"  and  "print var=2").
+
+
+### Select
+| Name  | Structure |
+| ------------- | ------------- |
+| select | **select** [list] |
+
+This command opens file explorer with selected files and directories from list (arg1).
+
+
+### Sleep
+| Name  | Structure |
+| ------------- | ------------- |
+| sleep | **sleep** [number] |
+
+This command freezes execution of code for (arg1) of seconds.
 
 
