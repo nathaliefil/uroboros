@@ -46,6 +46,26 @@ namespace Uroboros.syntax.variables.from_file
                 return file.Substring(file.LastIndexOf('.') + 1);
         }
 
+        public static DateTime GetAccess(string file)
+        {
+            if (file.Equals(""))
+                return DateTime.MinValue;
+
+            string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+
+            try
+            {
+                if (FileValidator.IsDirectory(file))
+                    return System.IO.Directory.GetLastAccessTime(@address);
+                else
+                    return System.IO.File.GetLastAccessTime(@address);
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
+        }
+
         public static DateTime GetCreation(string file)
         {
             if (file.Equals(""))

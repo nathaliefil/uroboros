@@ -73,6 +73,19 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                     source = source.OrderBy(s => FileInnerVariable.GetSize(s)).ToList();
                     break;
 
+                case OrderByVariable.Access:
+                    {
+                        if (order is OrderByStructTime)
+                            source = source.OrderBy(s => DateExtractor.GetVariable(FileInnerVariable.GetAccess(s),
+                                (order as OrderByStructTime).GetTimeVariable())).ToList();
+                        else if (order is OrderByStructDate)
+                            source = source.OrderBy(s => DateExtractor.DateToInt(FileInnerVariable.GetAccess(s))).ToList();
+                        else if (order is OrderByStructClock)
+                            source = source.OrderBy(s => DateExtractor.ClockToInt(FileInnerVariable.GetAccess(s))).ToList();
+                        else
+                            source = source.OrderBy(s => FileInnerVariable.GetAccess(s)).ToList();
+                        break;
+                    }
 
                 case OrderByVariable.Creation:
                     {

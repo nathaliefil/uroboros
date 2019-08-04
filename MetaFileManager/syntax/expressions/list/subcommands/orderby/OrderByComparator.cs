@@ -25,6 +25,21 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                 case OrderByVariable.Size:
                     return FileInnerVariable.GetSize(s1).Equals(FileInnerVariable.GetSize(s2));
 
+                case OrderByVariable.Access:
+                    {
+                        if (order is OrderByStructTime)
+                            return DateExtractor.GetVariable(FileInnerVariable.GetAccess(s1), (order as OrderByStructTime).GetTimeVariable()) ==
+                                DateExtractor.GetVariable(FileInnerVariable.GetAccess(s2), (order as OrderByStructTime).GetTimeVariable());
+                        else if (order is OrderByStructDate)
+                            return DateExtractor.DateToInt(FileInnerVariable.GetAccess(s1)).Equals(
+                                DateExtractor.DateToInt(FileInnerVariable.GetAccess(s2)));
+                        else if (order is OrderByStructClock)
+                            return DateExtractor.ClockToInt(FileInnerVariable.GetAccess(s1)).Equals(
+                                DateExtractor.ClockToInt(FileInnerVariable.GetAccess(s2)));
+                        else
+                            return FileInnerVariable.GetAccess(s1).Equals(FileInnerVariable.GetAccess(s2));
+                    }
+
                 case OrderByVariable.Creation:
                     {
                         if (order is OrderByStructTime)

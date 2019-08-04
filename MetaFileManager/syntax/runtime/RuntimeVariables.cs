@@ -190,6 +190,7 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Exist());
             variables.Add(new Empty());
             variables.Add(new Extension());
+            variables.Add(new Access());
             variables.Add(new Modification());
             variables.Add(new Creation());
             variables.Add(new Now());

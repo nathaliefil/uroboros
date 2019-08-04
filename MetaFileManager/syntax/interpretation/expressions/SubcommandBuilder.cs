@@ -149,6 +149,8 @@ namespace Uroboros.syntax.interpretation.expressions
         {
             switch (tok.GetContent().ToLower())
             {
+                case "access":
+                    return new OrderByStruct(OrderByVariable.Access);
                 case "creation":
                     return new OrderByStruct(OrderByVariable.Creation);
                 case "extension":
@@ -182,6 +184,8 @@ namespace Uroboros.syntax.interpretation.expressions
                 obv = OrderByVariable.Creation;
             else if (leftSide.ToLower().Equals("modification"))
                 obv = OrderByVariable.Modification;
+            else if (leftSide.ToLower().Equals("access"))
+                obv = OrderByVariable.Access;
             else
                 return null;
 

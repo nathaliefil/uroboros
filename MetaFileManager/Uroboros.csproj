@@ -269,6 +269,7 @@
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
+    <Compile Include="syntax\variables\from_file\Access.cs" />
     <Compile Include="syntax\variables\time\ClockNumerables.cs" />
     <Compile Include="syntax\variables\time\ClockConstant.cs" />
     <Compile Include="syntax\variables\time\ClockEmpty.cs" />
