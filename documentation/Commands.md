@@ -176,7 +176,7 @@ This command reverses order of elements in list variable (arg1).
 
 Arithmetic commands are used to modify values of numeric variables.
 
-| Structure | Behavior |
+| Structure | Effect |
 | ------------- | ------------- | 
 | [numeric variable] **+=** [number] | Increment variable (arg1) by (arg2). |
 | [numeric variable] **-=** [number] | Decrement variable (arg1) by (arg2). |
@@ -188,4 +188,22 @@ Arithmetic commands are used to modify values of numeric variables.
 
 
 # **Variable declaration commands**
+
+These commands assign value to variable. First assignment of variable sets its type: [logic], [number], [time], [text] or [list]. After that it is not possible to change type of variable - there is only one exception (command Add To). For more information visit "DataStructures.md".
+
+| Structure | Effect |
+| ------------- | ------------- | 
+| [variable name] **=** [logic] | Declaration of logic variable. |
+| [variable name] **=** [number] | Declaration of numeric variable. |
+| [variable name] **=** [time] | Declaration of time variable. |
+| [variable name] **=** [text] | Declaration of text variable. |
+| [variable name] **=** [list] | Declaration of list variable. |
+
+
+# **Two-word commands**
+
+
+
+# **Other commands**
+
 
