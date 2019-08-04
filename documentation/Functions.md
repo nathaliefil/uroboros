@@ -77,7 +77,7 @@ This function returns number of days (as integer) between two dates: (arg1) and 
 ### E
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| e  | () | (Number)
+| e  | ( ) | (Number)
 
 This function returns Euler's number - the base of the natural logarithm.
 
