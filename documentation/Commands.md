@@ -73,7 +73,7 @@ This command adds every file and directory from list (arg1) to cutting clipboard
 | ------------- | ------------- |
 | delete | **delete** [list] |
 
-This command moves every file and directory from list (arg1) to rubbish bin.
+This command moves every file and directory from list (arg1) to recycle bin.
 
 
 ### Drop
@@ -189,7 +189,7 @@ Arithmetic commands are used to modify values of numeric variables.
 
 # **Variable declaration commands**
 
-These commands assign value to variable. First assignment of variable sets its type: [logic], [number], [time], [text] or [list]. After that it is not possible to change type of variable - there is only one exception (command Add To). For more information visit "DataStructures.md".
+These commands assign values to variables. First assignment of variable sets its type: [logic], [number], [time], [text] or [list]. After that it is not possible to change type of variable - there is only one exception (command Add To). For more information visit "DataStructures.md".
 
 | Structure | Effect |
 | ------------- | ------------- | 
@@ -202,7 +202,55 @@ These commands assign value to variable. First assignment of variable sets its t
 
 # **Two-word commands**
 
+These command consist of two word insensitive to case size.
 
+
+### Clear bin
+| Name  | Structure |
+| ------------- | ------------- |
+| clear bin | **clear** **bin** |
+
+This command deletes "permemently" all files and directories from recycle bin.
+
+
+### Clear clipboard
+| Name  | Structure |
+| ------------- | ------------- |
+| clear clipboard | **clear** **clipboard** |
+
+This command removes copied/cut files and directories from clipboard.
+
+
+### Clear log
+| Name  | Structure |
+| ------------- | ------------- |
+| clear log | **clear** **log** |
+
+This command clears log box.
+
+
+### Log off
+| Name  | Structure |
+| ------------- | ------------- |
+| log off | **log** **off** |
+
+This command turns off logs of command - the only way to log after that is to use command "print".
+
+
+### Log on
+| Name  | Structure |
+| ------------- | ------------- |
+| log on | **log** **on** |
+
+This command turns on logs of command - if they were turned off previously.
+
+
+### Uroboros stop
+| Name  | Structure |
+| ------------- | ------------- |
+| uroboros stop | **uroboros** **stop** |
+
+This is escape command - code stops being executed.
 
 # **Other commands**
 
