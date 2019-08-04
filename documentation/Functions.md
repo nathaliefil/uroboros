@@ -45,7 +45,7 @@ This function returns true if a file or a catalog of name (arg1) exists in direc
 ### Average
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| average, avg, mean  | (Number, Number, ...) | (Number)
+| average, avg, mean  | (Number, Number, ... ) | (Number)
 
 This function returns arithmetic mean of all of its arguments. Can have any number of numeric arguments, but at least one.
 
@@ -101,7 +101,7 @@ This function returns number of bytes in (arg1) of gigabytes.
 ### GoldenRatio
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| goldenratio  | () | (Number)
+| goldenratio  | ( ) | (Number)
 
 This function returns golden ratio/golden mean - sum of 1 and square root of 5 divided by 2.
 
@@ -172,7 +172,7 @@ This function returns decimal logarithm of a number (arg1).
 ### Max
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| max  | (Number, Number, ...) | (Number)
+| max  | (Number, Number, ... ) | (Number)
 
 This function returns the biggest of its arguments. Can have any number of numeric arguments, but at least one.
 
@@ -188,7 +188,7 @@ This function returns number of bytes in (arg1) of megabytes.
 ### Min
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| min  | (Number, Number, ...) | (Number)
+| min  | (Number, Number, ... ) | (Number)
 
 This function returns the smallest of its arguments. Can have any number of numeric arguments, but at least one.
 
@@ -228,7 +228,7 @@ This function returns number of bytes in (arg1) of petabytes.
 ### Pi
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| pi  | () | (Number)
+| pi  | ( ) | (Number)
 
 This function returns number pi - the ratio of a circle's circumference to its diameter.
 
@@ -244,7 +244,7 @@ This function returns number (arg1) to the power of (arg2).
 ### Product
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| product  | (Number, Number, ...) | (Number)
+| product  | (Number, Number, ... ) | (Number)
 
 This function returns product of all of its arguments. Can have any number of numeric arguments, but at least one.
 
@@ -276,7 +276,7 @@ This function returns square root of a number (arg1).
 ### Sum
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| sum  | (Number, Number, ...) | (Number)
+| sum  | (Number, Number, ... ) | (Number)
 
 This function returns sum of all of its arguments. Can have any number of numeric arguments, but at least one.
 
@@ -308,7 +308,7 @@ This function returns number of years (as integer) between two dates: (arg1) and
 ### YearDay
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| yearday  | (Time) | (Number)
+| dayofyear, yearday  | (Time) | (Number)
 
 This function returns, which day of the year is date (arg1).
 
@@ -352,4 +352,128 @@ This function returns time of New Year (arg1).
 # **Text Functions**
 
 ### After
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| after  | (Text, Text) | (Text)
 
+This function returns part of base text (arg1), which appears after first occurance of phrase (arg2) inside base text (arg1). If text (arg2) cannot be found inside base text (arg1), empty text "" is returned.
+
+
+### Before
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| before  | (Text, Text) | (Text)
+
+This function returns part of base text (arg1), which appears before first occurance of phrase (arg2) inside base text (arg1). If text (arg2) cannot be found inside base text (arg1), empty text "" is returned.
+
+
+### Binary
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| binary  | (Number) | (Text)
+
+This function converts base 10 number (arg1) into binary and returns it as text.
+
+
+### Commonbeginning
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| commonbeginning  | (List) | (Text)
+
+This function returns common beginning of all elements in list (arg1). If all texts in list (arg1) start with a different phrase, empty text "" is returned.
+
+
+### Commonbeginning
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| commonending  | (List) | (Text)
+
+This function returns common ending of all elements in list (arg1). If all texts in list (arg1) end with a different phrase, empty text "" is returned.
+
+
+### Digits
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| digits  | (Text) | (Text)
+
+This function takes all digits from text (arg1) and returns it as a new text.
+
+
+### Filled
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| fill, filled  | (Text, Number) | (Text)
+
+This function takes text (arg1) and adds "0" signs in the beginning in order to make its length at least number (arg2). If length of text (arg1) is already bigger or equal to number (arg2), text (arg1) is returned.
+
+
+### Hex
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| hex  | (Number) | (Text)
+
+This function converts base 10 number (arg1) into base 16 and returns it as text.
+
+
+### Lower
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| lower  | (Text) | (Text)
+
+This function returns text (arg1) with all letters transformed into lowercase.
+
+
+### Month
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| month  | (Number) | (Text)
+
+This function returns english name of nth (arg1) month.
+
+
+### Repeat
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| repeat, repeated  | (Text, Number) | (Text)
+
+This function takes text (arg1) and repeats it (arg2) times.
+
+
+### Substring
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| substring | (Text, Number) | (Text)
+
+This function takes text (arg1) and returns it excluding first (arg2) characters.
+
+
+### Substring
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| substring | (Text, Number, Number) | (Text)
+
+This function takes text (arg1), removes its first (arg2) characters and returns next (arg3) characters.
+
+
+### Trim
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| trim  | (Text) | (Text)
+
+This function returns text (arg1) with removed all white characters (spaces, tabs, ...) from the beginning and end of text.
+
+
+### Upper
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| upper  | (Text) | (Text)
+
+This function returns text (arg1) with all letters transformed into uppercase.
+
+
+### WeekDay
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| weekday  | (Number) | (Text)
+
+This function returns english name of nth (arg1) day of week.
