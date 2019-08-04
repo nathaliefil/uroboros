@@ -33,8 +33,8 @@ namespace Uroboros.syntax.reading
             TokenType.Multiply, TokenType.Divide, TokenType.Percent};
 
         private static TokenType[] CORE_COMMAND = new TokenType[] { TokenType.Copy, TokenType.Cut, 
-            TokenType.Delete, TokenType.Drop,  TokenType.Open, TokenType.Move, TokenType.Rename
-            , TokenType.CreateFile, TokenType.CreateDirectory};
+            TokenType.Delete, TokenType.Drop,  TokenType.Open, TokenType.Move, TokenType.Reaccess, TokenType.Recreate,
+            TokenType.Remodify, TokenType.Rename , TokenType.CreateFile, TokenType.CreateDirectory};
 
         private static TokenType[] VARIABLE_OPERATION = new TokenType[] { TokenType.PlusEquals, TokenType.MinusEquals, 
             TokenType.MultiplyEquals, TokenType.DivideEquals, TokenType.PercentEquals };

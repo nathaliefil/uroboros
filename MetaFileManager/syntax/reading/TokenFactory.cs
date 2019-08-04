@@ -72,6 +72,9 @@ namespace Uroboros.syntax.reading
                 case "or": return new Token(TokenType.Or);
                 case "order": return new Token(TokenType.Order);
                 case "print": return new Token(TokenType.Print);
+                case "reaccess": return new Token(TokenType.Reaccess);
+                case "recreate": return new Token(TokenType.Recreate);
+                case "remodify": return new Token(TokenType.Remodify);
                 case "remove": return new Token(TokenType.Remove);
                 case "rename": return new Token(TokenType.Rename);
                 case "reverse": return new Token(TokenType.Reverse);

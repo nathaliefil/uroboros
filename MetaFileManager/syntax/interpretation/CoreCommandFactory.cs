@@ -55,6 +55,27 @@ namespace Uroboros.syntax.interpretation
                     else
                         throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
                 }
+                case TokenType.Reaccess:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreToTime.Build(tokens);
+                    else
+                        throw new SyntaxErrorException("ERROR! Reaccess command do not contain definition of new time.");
+                }
+                case TokenType.Recreate:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreToTime.Build(tokens);
+                    else
+                        throw new SyntaxErrorException("ERROR! Recreate command do not contain definition of new time.");
+                }
+                case TokenType.Remodify:
+                {
+                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
+                        return InterCoreToTime.Build(tokens);
+                    else
+                        throw new SyntaxErrorException("ERROR! Remodify command do not contain definition of new time.");
+                }
                 case TokenType.Rename:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))

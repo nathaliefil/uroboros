@@ -87,6 +87,9 @@
     <Compile Include="syntax\commands\blocks\WhileBlock.cs" />
     <Compile Include="syntax\commands\abstracts\CommandException.cs" />
     <Compile Include="syntax\commands\core\CoreCommandCreate.cs" />
+    <Compile Include="syntax\commands\core\Reaccess.cs" />
+    <Compile Include="syntax\commands\core\RecreateTo.cs" />
+    <Compile Include="syntax\commands\core\RemodifyTo.cs" />
     <Compile Include="syntax\commands\core\RenameTo.cs" />
     <Compile Include="syntax\commands\core\CreateDirectoryFrom.cs" />
     <Compile Include="syntax\commands\list\Add.cs" />
@@ -193,6 +196,7 @@
     <Compile Include="syntax\interpretation\commands\InterAdd.cs" />
     <Compile Include="syntax\interpretation\commands\InterCore.cs" />
     <Compile Include="syntax\interpretation\commands\InterCoreTo.cs" />
+    <Compile Include="syntax\interpretation\commands\InterCoreToTime.cs" />
     <Compile Include="syntax\interpretation\commands\InterOrder.cs" />
     <Compile Include="syntax\interpretation\commands\InterPrint.cs" />
     <Compile Include="syntax\interpretation\commands\InterRemove.cs" />
