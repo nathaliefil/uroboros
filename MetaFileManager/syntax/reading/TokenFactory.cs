@@ -84,6 +84,7 @@ namespace Uroboros.syntax.reading
                 case "sleep": return new Token(TokenType.Sleep);
                 case "to": return new Token(TokenType.To);
                 case "true": return new Token(TokenType.BoolConstant, "true");
+                case "unique": return new Token(TokenType.Unique);
                 case "where": return new Token(TokenType.Where);
                 case "while": return new Token(TokenType.While);
                 case "with": return new Token(TokenType.With);

@@ -47,11 +47,11 @@ namespace Uroboros.syntax.interpretation.tokenlists
 
         protected ICommand BuildSingleCommandIncludingArrowFunction(List<Token> tokens)
         {
-            if (!tokens.Any(t => t.GetTokenType().Equals(TokenType.Arrow)))
+            if (!tokens.Any(t => t.GetTokenType().Equals(TokenType.BigArrow)))
                 return SingleCommandFactory.Build(tokens);
             else
             {
-                if (tokens.Where(t => t.GetTokenType().Equals(TokenType.Arrow)).Count() > 1)
+                if (tokens.Where(t => t.GetTokenType().Equals(TokenType.BigArrow)).Count() > 1)
                     throw new SyntaxErrorException("ERROR! In one command multiple arrow functions detected.");
                 else
                 {
@@ -60,7 +60,7 @@ namespace Uroboros.syntax.interpretation.tokenlists
                     bool pastArrow = false;
                     foreach (Token tok in tokens)
                     {
-                        if (tok.GetTokenType().Equals(TokenType.Arrow))
+                        if (tok.GetTokenType().Equals(TokenType.BigArrow))
                             pastArrow = true;
                         else
                         {

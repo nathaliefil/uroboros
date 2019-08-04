@@ -27,6 +27,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[0].GetContent().ToLower().Equals("empty") && tokens[1].GetContent().ToLower().Equals("list"))
                 return new EmptyList();
 
+            // try to build small arrow function
+            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.SmallArrow)).Count() == 1)
+            {
+                IListable smallArrow = BuildSmallArrowFunction(tokens);
+                if (!smallArrow.IsNull())
+                    return smallArrow;
+            }
+
             // try to build listed strings: many Stringables divided by commas
             IListable listed = ListedStringablesBuilder.Build(tokens);
             if (!listed.IsNull())
@@ -72,6 +80,49 @@ namespace Uroboros.syntax.interpretation.expressions
                 list.AddSubcommand(SubcommandBuilder.BuildEmpty(subcommandType));
 
             return list;
+        }
+
+        public static IListable BuildSmallArrowFunction(List<Token> tokens)
+        {
+            bool unique = false;
+            List<Token> leftSide = new List<Token>();
+            List<Token> rightSide = new List<Token>();
+            bool pastTo = false;
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.SmallArrow))
+                    pastTo = true;
+                else
+                {
+                    if (pastTo)
+                        rightSide.Add(tok);
+                    else
+                        leftSide.Add(tok);
+                }
+            }
+
+            if (leftSide.Count == 0)
+                throw new SyntaxErrorException("ERROR! Left side of Small Arrow Function is empty.");
+            if (rightSide.Count == 0)
+                throw new SyntaxErrorException("ERROR! Right side of Small Arrow Function is empty.");
+
+            if (rightSide.First().GetTokenType().Equals(TokenType.Unique))
+            {
+                unique = true;
+                rightSide.RemoveAt(0);
+                if (rightSide.Count == 0)
+                    throw new SyntaxErrorException("ERROR! Right side of Small Arrow Function contains only one word: unique.");
+            }
+
+            IListable ilist = ListableBuilder.Build(leftSide);
+            if (ilist.IsNull())
+                return null;
+
+            IStringable istr = StringableBuilder.Build(rightSide);
+            if (istr.IsNull())
+                return null;
+
+            return new SmallArrow(ilist, istr, unique);
         }
     }
 }

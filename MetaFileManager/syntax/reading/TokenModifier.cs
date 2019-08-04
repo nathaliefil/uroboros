@@ -111,12 +111,12 @@ namespace Uroboros.syntax.reading
                     }
                     if (tokens[i].GetTokenType() == TokenType.Equals && tokens[i+1].GetTokenType() == TokenType.Bigger)
                     {
-                        newTokens.Add(new Token(TokenType.Arrow));
+                        newTokens.Add(new Token(TokenType.BigArrow));
                         tokensMerged = true;
                     }
                     if (tokens[i].GetTokenType() == TokenType.Minus && tokens[i + 1].GetTokenType() == TokenType.Bigger)
                     {
-                        newTokens.Add(new Token(TokenType.LambdaArrow));
+                        newTokens.Add(new Token(TokenType.SmallArrow));
                         tokensMerged = true;
                     }
                     if ((tokens[i].GetTokenType() == TokenType.Exclamation && tokens[i + 1].GetTokenType() == TokenType.Equals)||

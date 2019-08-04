@@ -19,7 +19,8 @@ namespace Uroboros.syntax.reading
             TokenType.Bigger, TokenType.Smaller,  TokenType.BiggerOrEquals, TokenType.SmallerOrEquals, 
             TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
             TokenType.NumericConstant, TokenType.BoolConstant, TokenType.In, TokenType.Like, TokenType.Is,
-            TokenType.After, TokenType.Before, TokenType.IsAfter, TokenType.IsBefore};
+            TokenType.After, TokenType.Before, TokenType.IsAfter, TokenType.IsBefore, TokenType.SmallArrow,
+            TokenType.Unique};
 
         private static TokenType[] COMPARING = new TokenType[] { TokenType.Equals, TokenType.NotEquals, 
             TokenType.Smaller, TokenType.SmallerOrEquals,  TokenType.Bigger, TokenType.BiggerOrEquals};
