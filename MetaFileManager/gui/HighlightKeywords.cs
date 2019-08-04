@@ -7,7 +7,7 @@ namespace Uroboros.gui
 {
     class HighlightKeywords
     {
-        public static string[] CARDINAL = new string[]{"add", "ask", "clear clipboard", "clear log", "copy", "create", 
+        public static string[] CARDINAL = new string[]{"add", "ask", "clear bin", "clear clipboard", "clear log", "copy", "create", 
             "cut", "delete", "directory", "drop", "file", "log off", "log on", "move", "open", "order", "paste", 
             "print", "reaccess", "recreate", "remodify", "remove", "rename", "reverse", "run", "select", "sleep", 
             "uroboros stop"};

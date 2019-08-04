@@ -7,10 +7,11 @@ namespace Uroboros.syntax.commands.other
 {
     enum TwoWordCommandType
     {
+        ClearBin,
+        ClearClipboard,
         ClearLog,
-        LogOn,
         LogOff,
-        UroborosStop,
-        ClearClipboard
+        LogOn,
+        UroborosStop
     }
 }

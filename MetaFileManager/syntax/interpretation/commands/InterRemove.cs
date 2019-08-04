@@ -8,6 +8,7 @@ using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.commands.list;
+using Uroboros.syntax.variables.refers;
 
 namespace Uroboros.syntax.interpretation.commands
 {
@@ -39,8 +40,6 @@ namespace Uroboros.syntax.interpretation.commands
                 }
             }
 
-            if (part1.Count == 0)
-                throw new SyntaxErrorException("ERROR! Command 'remove' do not contain definition for elements to remove.");
             if (part2.Count == 0)
                 throw new SyntaxErrorException("ERROR! Command 'remove' do not contain definition for target variable.");
             if (part2.Count > 2 || !part2[0].GetTokenType().Equals(TokenType.Variable))
@@ -51,6 +50,9 @@ namespace Uroboros.syntax.interpretation.commands
             if (!InterVariables.GetInstance().ContainsChangable(name, InterVarType.List))
                 throw new SyntaxErrorException("ERROR! In command 'remove' variable " + name + " do not exist or cannot be read as list.");
 
+            // add this
+            if (part1.Count == 0)
+                return new Remove(name, new StringVariableRefer("this") as IStringable);
 
             IListable ilist = ListableBuilder.Build(part1);
             if (ilist.IsNull())

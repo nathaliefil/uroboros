@@ -13,10 +13,12 @@ namespace Uroboros.syntax.interpretation.commands
         {
             if (word1.Equals("clear"))
             {
-                if (word2.Equals("log"))
-                    return new TwoWordCommand(TwoWordCommandType.ClearLog);
+                if (word2.Equals("bin"))
+                    return new TwoWordCommand(TwoWordCommandType.ClearBin);
                 if (word2.Equals("clipboard"))
                     return new TwoWordCommand(TwoWordCommandType.ClearClipboard);
+                if (word2.Equals("log"))
+                    return new TwoWordCommand(TwoWordCommandType.ClearLog);
             }
 
             if (word1.Equals("log"))
