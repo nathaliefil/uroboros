@@ -209,10 +209,10 @@ This function returns number of minutes (as integer) between two dates: (arg1) a
 This function returns number of months (as integer) between two dates: (arg1) and (arg2).
 
 
-### Length
+### Number
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| length  | (Text) | (Number)
+| number  | (Text) | (Number)
 
 This function parses text (arg1) into a number. If parsing cannot be executed successfully, returns 0.
 
