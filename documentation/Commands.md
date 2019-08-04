@@ -174,10 +174,18 @@ This command reverses order of elements in list variable (arg1).
 
 # **Arithmetic commands**
 
-Arithmetic commands are used to modify values of numeric variables variables.
+Arithmetic commands are used to modify values of numeric variables.
 
 | Structure | Behavior |
 | ------------- | ------------- | 
-| [numeric variable] **+=** [number] | Increment variable by (arg2). |
-| [numeric variable] **-=** [number] | Decrement variable by (arg2). |
-| [numeric variable] * **=** [number] | Increment variable by (arg2). |
+| [numeric variable] **+=** [number] | Increment variable (arg1) by (arg2). |
+| [numeric variable] **-=** [number] | Decrement variable (arg1) by (arg2). |
+| [numeric variable] * **=** [number] | Multiply variable (arg1) by (arg2). |
+| [numeric variable] **/=** [number] | Divide variable (arg1) by (arg2). |
+| [numeric variable] **%=** [number] | Set value to variable: (arg1) modulo (arg2). |
+| [numeric variable] **++** | Increment variable (arg1) by 1. |
+| [numeric variable] **--** | Decrement variable (arg1) by 1. |
+
+
+# **Variable declaration commands**
+
