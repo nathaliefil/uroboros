@@ -1,14 +1,14 @@
 Commands
 =====================
 
-In Uroboros commands are structures consisting of keywords and definitions of data structures between them. Keywords are insensitive to case size. Semicolon is used to separate many commands. If command is the last command in code or in block of commands, it is not necessary to put semicolon after it. 
+In Uroboros commands are structures consisting of keywords and data structures between them. Keywords are insensitive to case size. Semicolon is used to separate many commands. If command is the last command in code or in block of commands, it is not necessary to put semicolon after it. 
 
 
 ---
 
 # **Core commands**
 
-Core commands are the commands used for manipulating files and directories. Core commands may start with two additional keywords: **force to**. These keywords force command to be executed in all cases: for example if command is going to create new directory, forced will do that even if this directory already exists - the old one will be erased.
+Core commands are used for manipulating files and directories. Core commands may start with two additional keywords: **force to**. These keywords force command to be executed in all cases: for example if command is going to create new directory, forced will do that even if this directory already exists - the old one will be erased in this case.
 First argument of every core command is [list]. This argument can be ommited leaving free space - in this case the value of variable "this" is used instead of declared list.
 
 
@@ -137,4 +137,47 @@ This command renames every file and directory from list (arg1). New name is (arg
 
 # **List commands**
 
-List commands are used to modify existing list variable.
+List commands are used to modify existing list variables.
+
+### Add to
+| Name  | Structure |
+| ------------- | ------------- |
+| add to | **add** [list] **to** [list variable] |
+|        | **add** [list] **to** [text variable] |
+
+This command adds new elements (arg1) at the end of existing list variable (arg2). First argument of command can be ommited leaving free space - in this case the value of variable "this" is used instead of declared list. Second argument can be [list variable] or [text variable]. If it is [text variable], this command changes type of variable from [text] to [list] and after that cannot be treated as [text].
+
+
+### Order by
+| Name  | Structure |
+| ------------- | ------------- |
+| order by | **order** [list variable] **by** [order by variables] 
+
+This command orders list (arg1) by variables (arg2). For more information visit "OrderBy.md".
+
+
+### Remove from
+| Name  | Structure |
+| ------------- | ------------- |
+| remove from | **remove** [list] **from** [list variable] |
+
+This command removes elements (arg1) from list variable (arg2). First argument of command can be ommited leaving free space - in this case the value of variable "this" is used instead of declared list.
+
+
+### Reverse
+| Name  | Structure |
+| ------------- | ------------- |
+| reverse | **reverse** [list variable]
+
+This command reverses order of elements in list variable (arg1).
+
+
+# **Arithmetic commands**
+
+Arithmetic commands are used to modify values of numeric variables variables.
+
+| Structure | Behavior |
+| ------------- | ------------- | 
+| [numeric variable] **+=** [number] | Increment variable by (arg2). |
+| [numeric variable] **-=** [number] | Decrement variable by (arg2). |
+| [numeric variable] * **=** [number] | Increment variable by (arg2). |
