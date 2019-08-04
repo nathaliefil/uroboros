@@ -66,6 +66,14 @@ This function returns the least integer greater than or equal to (arg1).
 This function returns number of elements in a list (arg1).
 
 
+### DaysBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| daysbetween  | (Time, Time) | (Number)
+
+This function returns number of days (as integer) between two dates: (arg1) and (arg2).
+
+
 ### E
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -82,12 +90,28 @@ This function returns Euler's number - the base of the natural logarithm.
 This function returns the greatest integer less than or equal to (arg1).
 
 
+### Gb
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| gb  | (Number) | (Number)
+
+This function returns number of bytes in (arg1) of gigabytes.
+
+
 ### GoldenRatio
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | goldenratio  | () | (Number)
 
 This function returns golden ratio/golden mean - sum of 1 and square root of 5 divided by 2.
+
+
+### HoursBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| hoursbetween  | (Time, Time) | (Number)
+
+This function returns number of hours (as integer) between two dates: (arg1) and (arg2).
 
 
 ### IndexOf
@@ -97,6 +121,13 @@ This function returns golden ratio/golden mean - sum of 1 and square root of 5 d
 
 This function returns the zero-based index of the first occurrence of a text (arg2) within the base text (arg1). If text (arg2) cannot be found inside base text (arg1), -1 is returned.
 
+
+### Kb
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| kb  | (Number) | (Number)
+
+This function returns number of bytes in (arg1) of kilobytes.
 
 ### Length
 | Names  | Arguments | Returns |
@@ -146,6 +177,14 @@ This function returns decimal logarithm of a number (arg1).
 This function returns the biggest of its arguments. Can have any number of numeric arguments, but at least one.
 
 
+### Mb
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| mb  | (Number) | (Number)
+
+This function returns number of bytes in (arg1) of megabytes.
+
+
 ### Min
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -154,12 +193,36 @@ This function returns the biggest of its arguments. Can have any number of numer
 This function returns the smallest of its arguments. Can have any number of numeric arguments, but at least one.
 
 
+### MinutesBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| minutesbetween  | (Time, Time) | (Number)
+
+This function returns number of minutes (as integer) between two dates: (arg1) and (arg2).
+
+
+### MonthsBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| monthsbetween  | (Time, Time) | (Number)
+
+This function returns number of months (as integer) between two dates: (arg1) and (arg2).
+
+
 ### Length
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | length  | (Text) | (Number)
 
 This function parses text (arg1) into a number. If parsing cannot be executed successfully, returns 0.
+
+
+### Pb
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| pb  | (Number) | (Number)
+
+This function returns number of bytes in (arg1) of petabytes.
 
 
 ### Pi
@@ -194,6 +257,14 @@ This function returns product of all of its arguments. Can have any number of nu
 This function returns number (arg1) rounded to the nearest integer.
 
 
+### SecondsBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| secondsbetween  | (Time, Time) | (Number)
+
+This function returns number of seconds (as integer) between two dates: (arg1) and (arg2).
+
+
 ### Sqrt
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -210,12 +281,28 @@ This function returns square root of a number (arg1).
 This function returns sum of all of its arguments. Can have any number of numeric arguments, but at least one.
 
 
+### Tb
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| tb  | (Number) | (Number)
+
+This function returns number of bytes in (arg1) of terabytes.
+
+
 ### Year
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | year  | (Text) | (Number)
 
 This function finds string of 4 consecutive numbers inside text (arg1). If found, returns it as a number. Otherwise returns 0.
+
+
+### YearsBetween
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| yearsbetween  | (Time, Time) | (Number)
+
+This function returns number of years (as integer) between two dates: (arg1) and (arg2).
 
 
 ### YearDay
