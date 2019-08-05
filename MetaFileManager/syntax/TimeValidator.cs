@@ -80,7 +80,7 @@ namespace Uroboros.syntax
 
             int daysInMonth = 31;
 
-            if (month == 4 || month == 6 || month == 9 || month == 1)
+            if (month == 4 || month == 6 || month == 9 || month == 11)
                 daysInMonth = 30;
 
             if (month == 2)
