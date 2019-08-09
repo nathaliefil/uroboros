@@ -14,8 +14,31 @@ List type can be treated only as itself.
 
 # **Logic**
 
+Logic type can have only two values: "true" and "false". When treated as number, "true" is returned as 1 and "false" is returned as 0. The same goes when treating it as text and list (returned is one-element list with text "0" or "1"). 
+
+
 ### Logic Constants
 
 The easiest way to initiate value of logic type is to use two keywords: "true" and "false". They are insensitive to case size.
 
-### Comparisons
+### Comparisons By Keywords
+
+Two structures of the same data type can be compared by the use of "is". If two values are the same, "true" is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] **is** [logic] | (Logic) |
+| [number] **is** [number] | (Logic) |
+| [time] **is** [time] | (Logic) |
+| [text] **is** [text] | (Logic) |
+| [list] **is** [list] | (Logic) |
+
+
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] **is** **not** [logic] | (Logic) |
+| [number] **is** **not** [number] | (Logic) |
+| [time] **is** **not** [time] | (Logic) |
+| [text] **is** **not** [text] | (Logic) |
+| [list] **is** **not** [list] | (Logic) |
