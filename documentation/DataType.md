@@ -130,7 +130,7 @@ Logic expressions are many logic structures connected by logic operators: **and*
 | Structure | Alternative Structure | Returns | Meaning |
 | --------- | --------------------- | ------- | ------- |
 | [logic] **and** [logic] | [logic] **&** [logic] | (Logic) | [conjuction](https://en.wikipedia.org/wiki/Logical_conjunction) |
-| [logic] **or** [logic] | [logic] **|** [logic] | (Logic) | [disjunction](https://en.wikipedia.org/wiki/Logical_disjunction) |
+| [logic] **or** [logic] | [logic] &#124; [logic] | (Logic) | [disjunction](https://en.wikipedia.org/wiki/Logical_disjunction) |
 | [logic] **xor** [logic] | [logic] **^** [logic] | (Logic) | [exclusive disjunction](https://en.wikipedia.org/wiki/Exclusive_or) |
 | **not** [logic] | **!** [logic] | (Logic) | [negation](https://en.wikipedia.org/wiki/Negation) |
 
