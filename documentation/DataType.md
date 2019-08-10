@@ -8,7 +8,10 @@ Number type can be treated as: Text, List.
 Time type can be treated as: Text, List.  
 Text type can be treated as List.  
 List type can be treated only as itself.  
+   
+These properties are shown in pyramid image: every data type can be treated as another under it.
 
+![Pyramid image not found](resources/pyramid.png)
 
 ---
 
