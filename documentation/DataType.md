@@ -73,7 +73,7 @@ Inequality can be checked by the use of "!=".
 | [list] **!=** [list] | (Logic) |
 
 
-Checking a smaller / larger value is done by using ">", "<", ">=", "<=". For logic and numeric type, result is intuitive comparison of numbers. For time type, it is checking which of two values is first chronologically. For text type, alphabetical order is used to dermine which text is "smaller". For list, compared is list length.
+Checking a smaller / larger value is done by using ">", "<", ">=", "<=". For logic and numeric types, result is intuitive comparison of numbers. For time type, it is checking which of two time values is first chronologically. For text type, alphabetical order is used to dermine which text is "smaller". For list, compared is list length.
 
 
 | Structure | Returns |
@@ -83,7 +83,7 @@ Checking a smaller / larger value is done by using ">", "<", ">=", "<=". For log
 | [time] **>** [time] | (Logic) |
 | [text] **>** [text] | (Logic) |
 | [list] **>** [list] | (Logic) |
-| Analogically for: ">", "<", ">=", "<=" |
+| Analogically for: "<", ">=", "<=" |
 
 
 ### Comparisons Of Time
@@ -125,7 +125,7 @@ See: [functions](Functions.md).
 
 ### Logic Expressions
 
-Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !.
+Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !. Elements can be grouped by curly brackets () to determine the order of operations.
 
 | Structure | Alternative Structure | Returns | Meaning |
 | --------- | --------------------- | ------- | ------- |
@@ -133,4 +133,38 @@ Logic expressions are many logic structures connected by logic operators: **and*
 | [logic] **or** [logic] | [logic] &#124; [logic] | (Logic) | [disjunction](https://en.wikipedia.org/wiki/Logical_disjunction) |
 | [logic] **xor** [logic] | [logic] **^** [logic] | (Logic) | [exclusive disjunction](https://en.wikipedia.org/wiki/Exclusive_or) |
 | **not** [logic] | **!** [logic] | (Logic) | [negation](https://en.wikipedia.org/wiki/Negation) |
+
+
+
+---
+
+# **Number**
+
+Number data type can be used for storing numbers with finite decimal expansion.
+
+### Numeric Constants
+
+Numeric constants can be created by simply typing few consecutive digits with one dot inside as decimal separator (but it is not necessary). Sign "-" before number makes it negative.
+
+### Numeric Variable From Time
+
+Some data like year or day of week can be outstretched from existing time variables.
+
+| Structure | Returns |
+| --------- | ------- |
+| [time variable] **.year** | (Number) |
+| [time variable] **.month** | (Number) |
+| [time variable] **.weekday** | (Number) |
+| [time variable] **.day** | (Number) |
+| [time variable] **.hour** | (Number) |
+| [time variable] **.minute** | (Number) |
+| [time variable] **.second** | (Number) |
+
+        
+### Numeric Functions
+
+See: [functions](Functions.md).
+
+### Numeric Expressions
+
 
