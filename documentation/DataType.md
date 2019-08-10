@@ -174,3 +174,51 @@ Numeric expressions are many numeric structures connected by arithmetic operator
 | [number] / [number] | (Number) | [division](https://en.wikipedia.org/wiki/Division_(mathematics)) |
 | [number] % [number] | (Number) | [modulo](https://en.wikipedia.org/wiki/Modulo_operation) |
 
+
+# **Time**
+
+Time type stores one moment in time: year, month, day, hour, minute, second. 24-hour clock is used.
+
+### Time From Clock
+
+When creating time from clock, its date is set to current system date. If number of seconds is ommited, it becomes 0. Arguments are in sequence: hour, minute, second.
+
+| Structure | Returns |
+| --------- | ------- |
+| [number] : [number] : [number] | (Time) |
+| [number] : [number] | (Time) |
+
+### Time From Date
+
+There are two ways for creating time from date : with year or without year. When year is lacking, its value is set to year from current system time. First argument is day, third argument is year. Second argument is month name - it is insensitive to case size. Values for hour, minute and second are set to 0.
+
+| Structure | Returns |
+| --------- | ------- |
+| [number] [english month name] [numer] | (Time) |
+| [number] [english month name] | (Time) |
+
+
+### Time From Date And Clock
+
+This structure combines creation time from date and from clock. Date and clock part are divided by a comma.
+
+| Structure | Returns |
+| --------- | ------- |
+| [number] [english month name] [numer] , [number] : [number] : [number] | (Time) |
+| [number] [english month name] , [number] : [number] : [number] | (Time) |
+| [number] [english month name] [numer] , [number] : [number] | (Time) |
+| [number] [english month name] , [number] : [number] | (Time) |
+
+### Time From Time And Clock
+
+This structure takes existing time (for example: time variable) and changes its clock: values for hour, minute, second.
+
+| Structure | Returns |
+| --------- | ------- |
+| [time] , [number] : [number] : [number] | (Time) |
+| [time] , [number] : [number] | (Time) |
+
+### Relative Time
+
+
+
