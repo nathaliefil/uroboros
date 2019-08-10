@@ -96,3 +96,33 @@ Alternative way for comparing time is by the use of "is after" and "is before".
 | [time] **is** **before** [time] | (Logic) |
 
 
+### In
+
+Structure "in" returns true, is text (arg1) can be found inside list (arg2).
+
+| Structure | Returns |
+| --------- | ------- |
+| [text] **in** [list] | (Logic) |
+
+
+### Like
+
+Structure "like" is similiar to that of language SQL. It checks, if text (arg1) fits phrase (arg2), which is text constant. Phrase text has 3 special characters.   
+Character _ represents any character and its appearance is required.  
+Character # represents any digit and its appearance is required.  
+Character % represents any number of character and their appearance is not required - text here can be empty as well.  
+Other characters represent appearance of themselves.
+
+
+| Structure | Returns |
+| --------- | ------- |
+| [text] **like** [text constant] | (Logic) |
+
+
+### Logic Functions
+
+See: [functions](Functions.md).
+
+### Logic Expressions
+
+Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !.
