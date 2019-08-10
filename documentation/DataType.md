@@ -50,15 +50,17 @@ Alternative way for checking equality is by the use of signs "=" or "==" (there 
 | Structure | Returns |
 | --------- | ------- |
 | [logic] **=** [logic] | (Logic) |
-| [logic] **==** [logic] | (Logic) |
 | [number] **=** [number] | (Logic) |
-| [number] **==** [number] | (Logic) |
 | [time] **=** [time] | (Logic) |
-| [time] **==** [time] | (Logic) |
 | [text] **=** [text] | (Logic) |
-| [text] **==** [text] | (Logic) |
 | [list] **=** [list] | (Logic) |
+| --------- | ------- |
+| [logic] **==** [logic] | (Logic) |
+| [number] **==** [number] | (Logic) |
+| [time] **==** [time] | (Logic) |
+| [text] **==** [text] | (Logic) |
 | [list] **==** [list] | (Logic) |
+
 
 Inequality can be checked by the use of "!=".
 
@@ -71,4 +73,15 @@ Inequality can be checked by the use of "!=".
 | [list] **!=** [list] | (Logic) |
 
 
+Checking a smaller / larger value is done by using ">", "<", ">=", "<=". For logic and numeric type, result is intuitive comparison of numbers. For time type, it is checking which of two values is first chronologically. For text type, alphabetical order is used to dermine which text is "smaller". For list, compared is list length.
+
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] **>** [logic] | (Logic) |
+| [number] **>** [number] | (Logic) |
+| [time] **>** [time] | (Logic) |
+| [text] **>** [text] | (Logic) |
+| [list] **>** [list] | (Logic) |
+| Analogically for: ">", "<", ">=", "<=" |
 
