@@ -14,7 +14,7 @@ namespace Uroboros.syntax.variables.abstracts
 
         public override string ToString()
         {
-            return ToNumber().ToString();
+            return ToNumber().ToString().Replace(',', '.');
         }
     }
 }

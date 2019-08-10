@@ -92,7 +92,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
-                IBoolable iboo = InterBoolFunction.Build(tokens);
+                IBoolable iboo = BoolFunction.Build(tokens);
                 if (!iboo.IsNull())
                     return iboo;
             }

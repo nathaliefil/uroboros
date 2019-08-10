@@ -46,7 +46,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
-                INumerable inu = InterNumericFunction.Build(tokens);
+                INumerable inu = NumericFunction.Build(tokens);
                 if (!inu.IsNull())
                     return inu;
             }

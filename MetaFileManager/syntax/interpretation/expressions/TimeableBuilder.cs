@@ -37,7 +37,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
-                ITimeable itim = InterTimeFunction.Build(tokens);
+                ITimeable itim = TimeFunction.Build(tokens);
                 if (!itim.IsNull())
                     return itim;
             }
@@ -50,12 +50,30 @@ namespace Uroboros.syntax.interpretation.expressions
                     return itim;
             }
 
-            // try to build Timeable from date
-            if (tokens.Where(t => IsMonth(t)).Count() == 1)
+            if (HasOneComma(tokens))
             {
-                ITimeable itim = BuildFromDate(tokens);
+                // try to build Timeable from date and clock
+                ITimeable itim = BuildFromDateAndClock(tokens);
                 if (!itim.IsNull())
                     return itim;
+            }
+            else
+            {
+                // try to build Timeable from date only
+                if (ContainMonth(tokens))
+                {
+                    ITimeable itim = BuildFromDate(tokens);
+                    if (!itim.IsNull())
+                        return itim;
+                }
+
+                // try to build Timeable from clock only
+                if (ContainSemicolons(tokens))
+                {
+                    ITimeable itim = BuildFromClock(tokens);
+                    if (!itim.IsNull())
+                        return itim;
+                }
             }
 
             return null;
@@ -190,18 +208,18 @@ namespace Uroboros.syntax.interpretation.expressions
             decimal month = 1;
             List<Token> leftPart = new List<Token>();
             List<Token> rightPart = new List<Token>();
-            bool pastTo = false;
+            bool pastMonth = false;
 
             foreach (Token tok in tokens)
             {
                 if (IsMonth(tok))
                 {
-                    pastTo = true;
+                    pastMonth = true;
                     month = StringToMonth(tok.GetContent());
                 }
                 else
                 {
-                    if (pastTo)
+                    if (pastMonth)
                         rightPart.Add(tok);
                     else
                         leftPart.Add(tok);
@@ -243,6 +261,140 @@ namespace Uroboros.syntax.interpretation.expressions
                 else
                     return new Time(new ClockEmpty(), new DayNumerable(day), month, new YearNumerable(year));
             }
+        }
+
+        private static ITimeable BuildFromClock(List<Token> tokens)
+        {
+            IClock clock = BuildClock(tokens);
+            if (clock.IsNull())
+                return null;
+
+            return new Time(clock, new DayNow(), DateTime.Now.Month, new YearNow());
+        }
+
+        private static IClock BuildClock(List<Token> tokens)
+        {
+            int semicolons = NumberOfColonsOutsideOfBrackets(tokens);
+
+            if (semicolons == 1)
+            {
+                List<Token> leftPart = new List<Token>();
+                List<Token> rightPart = new List<Token>();
+                int level = 0;
+                bool pastSemicolon = false;
+                foreach (Token tok in tokens)
+                {
+                    if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                        level++;
+                    if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                        level--;
+
+                    if (tok.GetTokenType().Equals(TokenType.Colon) && level == 0)
+                        pastSemicolon = true;
+                    else
+                    {
+                        if (pastSemicolon)
+                            rightPart.Add(tok);
+                        else
+                            leftPart.Add(tok);
+                    }
+                }
+
+                INumerable inumLeft = NumerableBuilder.Build(leftPart);
+                if (inumLeft.IsNull())
+                    return null;
+                INumerable inumRight = NumerableBuilder.Build(rightPart);
+                if (inumRight.IsNull())
+                    return null;
+
+                if (inumLeft is NumericConstant && inumRight is NumericConstant)
+                    return new ClockConstant(inumLeft.ToNumber(), inumRight.ToNumber(), 0);
+
+                return new ClockWithoutSeconds(inumLeft, inumRight);
+            }
+            else
+            {
+                List<Token> leftPart = new List<Token>();
+                List<Token> middlePart = new List<Token>();
+                List<Token> rightPart = new List<Token>();
+                int level = 0;
+                int currentPart = 1;
+                foreach (Token tok in tokens)
+                {
+                    if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                        level++;
+                    if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                        level--;
+
+                    if (tok.GetTokenType().Equals(TokenType.Colon) && level == 0)
+                        currentPart++;
+                    else
+                    {
+                        if (currentPart == 1)
+                            leftPart.Add(tok);
+                        else if (currentPart == 2)
+                            middlePart.Add(tok);
+                        else
+                            rightPart.Add(tok);
+                    }
+                }
+
+                INumerable inumLeft = NumerableBuilder.Build(leftPart);
+                if (inumLeft.IsNull())
+                    return null;
+                INumerable inumMiddle = NumerableBuilder.Build(middlePart);
+                if (inumMiddle.IsNull())
+                    return null;
+                INumerable inumRight = NumerableBuilder.Build(rightPart);
+                if (inumRight.IsNull())
+                    return null;
+
+                if (inumLeft is NumericConstant && inumMiddle is NumericConstant && inumRight is NumericConstant)
+                    return new ClockConstant(inumLeft.ToNumber(), inumMiddle.ToNumber(), inumRight.ToNumber());
+
+                return new ClockNumerables(inumLeft,inumMiddle, inumRight);
+            }
+        }
+
+        private static ITimeable BuildFromDateAndClock(List<Token> tokens)
+        {
+            List<Token> beforeComma = new List<Token>();
+            List<Token> afterComma = new List<Token>();
+            int level = 0;
+            bool pastComma = false;
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+
+                if (tok.GetTokenType().Equals(TokenType.Comma) && level == 0)
+                    pastComma = true;
+                else
+                {
+                    if (pastComma)
+                        afterComma.Add(tok);
+                    else
+                        beforeComma.Add(tok);
+                }
+            }
+
+            ITimeable itim = TimeableBuilder.Build(beforeComma);
+            if (itim.IsNull())
+                return null;
+
+            IClock clock = BuildClock(afterComma);
+            if (clock.IsNull())
+                return null;
+
+            if (itim is Time)
+            {
+                (itim as Time).SetNewClock(clock);
+                return itim;
+            }
+            else
+                return new TimeableWithClock(itim, clock);
         }
 
         private static bool IsAnyKeyword(Token tok)
@@ -295,6 +447,57 @@ namespace Uroboros.syntax.interpretation.expressions
                 case "december": return 12;
             }
             return 0;
+        }
+
+        private static bool ContainMonth(List<Token>tokens)
+        {
+            return tokens.Where(t => IsMonth(t)).Count() == 1;
+        }
+
+        private static bool ContainSemicolons(List<Token> tokens)
+        {
+            int semicolons = NumberOfColonsOutsideOfBrackets(tokens);
+            return semicolons == 1 || semicolons == 2;
+        }
+
+        private static int NumberOfColonsOutsideOfBrackets(List<Token> tokens)
+        {
+            int result = 0;
+            int level = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+
+                if (tok.GetTokenType().Equals(TokenType.Colon) && level == 0)
+                    result++;
+            }
+            return result;
+        }
+
+        private static bool HasOneComma(List<Token> tokens)
+        {
+            bool found = false;
+            int level = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+
+                if (tok.GetTokenType().Equals(TokenType.Comma) && level == 0)
+                {
+                    if (found)
+                        return false;
+                    found = true;
+                }
+            }
+            return found;
         }
     }
 }

@@ -44,7 +44,6 @@ namespace Uroboros.syntax.interpretation.functions
                 currentTokens.Clear();
             }
 
-
             return arguments;
         }
     }

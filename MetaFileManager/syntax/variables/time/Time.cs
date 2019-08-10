@@ -57,5 +57,10 @@ namespace Uroboros.syntax.variables.time
             }
             return 0;
         }
+
+        public void SetNewClock(IClock clock)
+        {
+            this.clock = clock;
+        }
     }
 }

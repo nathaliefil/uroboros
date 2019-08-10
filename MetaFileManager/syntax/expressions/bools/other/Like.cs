@@ -85,10 +85,7 @@ namespace Uroboros.syntax.expressions.bools.other
                 }
             }
 
-            if (iterator == svalue.Length)
-                return true;
-            else
-                return false;
+            return iterator == svalue.Length;
         }
     }
 }

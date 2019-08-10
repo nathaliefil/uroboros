@@ -50,7 +50,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
-                IStringable istr = InterStringFunction.Build(tokens);
+                IStringable istr = StringFunction.Build(tokens);
                 if (!istr.IsNull())
                     return istr;
             }
@@ -59,7 +59,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 3 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
                 && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
             {
-                IStringable istr = InterListElement.Build(tokens);
+                IStringable istr = ListElement.Build(tokens);
                 if (!istr.IsNull())
                     return istr;
             }

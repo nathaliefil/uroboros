@@ -30,7 +30,7 @@ namespace Uroboros.syntax.interpretation
             // build two word commands
             if (tokens.Count == 2 && tokens.First().GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable))
             {
-                return InterTwoWordsCommand.Build(tokens.First().GetContent().ToLower(), tokens[1].GetContent().ToLower());
+                return InterpreterTwoWordsCommand.Build(tokens.First().GetContent().ToLower(), tokens[1].GetContent().ToLower());
             }
 
             // build core command
@@ -44,34 +44,34 @@ namespace Uroboros.syntax.interpretation
             {
                 case TokenType.Add:
                 {
-                    return InterAdd.Build(tokens);
+                    return InterpreterAdd.Build(tokens);
                 }
                 case TokenType.Order:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
-                        return InterOrder.Build(tokens);
+                        return InterpreterOrder.Build(tokens);
                     else
                         throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
                 }
                 case TokenType.Print:
                 {
-                    return InterPrint.Build(tokens.Skip(1).ToList());
+                    return InterpreterPrint.Build(tokens.Skip(1).ToList());
                 }
                 case TokenType.Remove:
                 {
-                    return InterRemove.Build(tokens);
+                    return InterpreterRemove.Build(tokens);
                 }
                 case TokenType.Reverse:
                 {
-                    return InterReverse.Build(tokens);
+                    return InterpreterReverse.Build(tokens);
                 }
                 case TokenType.Select:
                 {
-                    return InterSelect.Build(tokens);
+                    return InterpreterSelect.Build(tokens);
                 }
                 case TokenType.Sleep:
                 {
-                    return InterSleep.Build(tokens);
+                    return InterpreterSleep.Build(tokens);
                 }
             }
 
@@ -80,16 +80,16 @@ namespace Uroboros.syntax.interpretation
             {
                 if (tokens[1].GetTokenType().Equals(TokenType.Equals))
                 {
-                    return InterVariableDeclaration.Build(tokens);
+                    return InterpreterVariableDeclaration.Build(tokens);
                 }
                 if (tokens[1].GetTokenType().Equals(TokenType.PlusPlus)
                     || tokens[1].GetTokenType().Equals(TokenType.MinusMinus))
                 {
-                    return InterVariablePlusMinus.Build(tokens);
+                    return InterpreterVariablePlusMinus.Build(tokens);
                 }
                 if (TokenGroups.IsVariableOperation(tokens[1].GetTokenType()))
                 {
-                    return InterVariableOperation.Build(tokens);
+                    return InterpreterVariableOperation.Build(tokens);
                 }
             }
 
@@ -97,7 +97,7 @@ namespace Uroboros.syntax.interpretation
 
             // finally - check if it can be 'print' command
             // this is the last possible command type
-            return InterPrint.Build(tokens);
+            return InterpreterPrint.Build(tokens);
         }
     }
 }

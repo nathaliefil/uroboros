@@ -17,69 +17,69 @@ namespace Uroboros.syntax.interpretation
                 case TokenType.Copy:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
+                        return InterpreterCoreTo.Build(tokens, forced);
                     else
-                        return InterCore.Build(tokens);
+                        return InterpreterCore.Build(tokens);
                 }
                 case TokenType.Cut:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
+                        return InterpreterCoreTo.Build(tokens, forced);
                     else
-                        return InterCore.Build(tokens);
+                        return InterpreterCore.Build(tokens);
                 }
                 case TokenType.CreateDirectory:
                 {
-                    return InterCore.BuildCreate(tokens, forced, true);
+                    return InterpreterCore.BuildCreate(tokens, forced, true);
                 }
                 case TokenType.CreateFile:
                 {
-                    return InterCore.BuildCreate(tokens, forced, false);
+                    return InterpreterCore.BuildCreate(tokens, forced, false);
                 }
                 case TokenType.Delete:
                 {
-                    return InterCore.Build(tokens);
+                    return InterpreterCore.Build(tokens);
                 }
                 case TokenType.Drop:
                 {
-                    return InterCore.Build(tokens);
+                    return InterpreterCore.Build(tokens);
                 }
                 case TokenType.Open:
                 {
-                    return InterCore.Build(tokens);
+                    return InterpreterCore.Build(tokens);
                 }
                 case TokenType.Move:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
+                        return InterpreterCoreTo.Build(tokens, forced);
                     else
                         throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
                 }
                 case TokenType.Reaccess:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreToTime.Build(tokens);
+                        return InterpreterCoreToTime.Build(tokens);
                     else
                         throw new SyntaxErrorException("ERROR! Reaccess command do not contain definition of new time.");
                 }
                 case TokenType.Recreate:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreToTime.Build(tokens);
+                        return InterpreterCoreToTime.Build(tokens);
                     else
                         throw new SyntaxErrorException("ERROR! Recreate command do not contain definition of new time.");
                 }
                 case TokenType.Remodify:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreToTime.Build(tokens);
+                        return InterpreterCoreToTime.Build(tokens);
                     else
                         throw new SyntaxErrorException("ERROR! Remodify command do not contain definition of new time.");
                 }
                 case TokenType.Rename:
                 {
                     if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterCoreTo.Build(tokens, forced);
+                        return InterpreterCoreTo.Build(tokens, forced);
                     else
                         throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
                 }
