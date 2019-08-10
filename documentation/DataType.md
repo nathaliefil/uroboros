@@ -57,12 +57,6 @@ Alternative way for checking equality is by the use of signs "=" or "==" (there 
 | [time] **=** [time] | (Logic) |
 | [text] **=** [text] | (Logic) |
 | [list] **=** [list] | (Logic) |
-|                     |         |
-| [logic] **==** [logic] | (Logic) |
-| [number] **==** [number] | (Logic) |
-| [time] **==** [time] | (Logic) |
-| [text] **==** [text] | (Logic) |
-| [list] **==** [list] | (Logic) |
 
 
 Inequality can be checked by the use of "!=".
@@ -128,7 +122,7 @@ See: [functions](Functions.md).
 
 ### Logic Expressions
 
-Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !. Elements can be grouped by curly brackets () to determine the order of operations.
+Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !. Elements can be grouped by brackets () to determine the order of operations.
 
 | Structure | Alternative Structure | Returns | Meaning |
 | --------- | --------------------- | ------- | ------- |
@@ -170,4 +164,13 @@ See: [functions](Functions.md).
 
 ### Numeric Expressions
 
+Numeric expressions are many numeric structures connected by arithmetic operators: +, -, /, *, %. Elements can be grouped by brackets () to determine the order of operations.
+
+| Structure | Returns | Meaning |
+| --------- | ------- | ------- |
+| [number] **+** [number] | (Number) | [addition](https://en.wikipedia.org/wiki/Addition) |
+| [number] **-** [number] | (Number) | [substraction](https://en.wikipedia.org/wiki/Subtraction) |
+| [number] * [number] | (Number) | [multiplication](https://en.wikipedia.org/wiki/Multiplication) |
+| [number] / [number] | (Number) | [division](https://en.wikipedia.org/wiki/Division_(mathematics)) |
+| [number] % [number] | (Number) | [modulo](https://en.wikipedia.org/wiki/Modulo_operation) |
 
