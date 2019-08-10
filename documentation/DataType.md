@@ -54,7 +54,7 @@ Alternative way for checking equality is by the use of signs "=" or "==" (there 
 | [time] **=** [time] | (Logic) |
 | [text] **=** [text] | (Logic) |
 | [list] **=** [list] | (Logic) |
-| --------- | ------- |
+|                     |         |
 | [logic] **==** [logic] | (Logic) |
 | [number] **==** [number] | (Logic) |
 | [time] **==** [time] | (Logic) |
@@ -84,4 +84,15 @@ Checking a smaller / larger value is done by using ">", "<", ">=", "<=". For log
 | [text] **>** [text] | (Logic) |
 | [list] **>** [list] | (Logic) |
 | Analogically for: ">", "<", ">=", "<=" |
+
+
+### Comparisons Of Time
+
+Alternative way for comparing time is by the use of "is after" and "is before".
+
+| Structure | Returns |
+| --------- | ------- |
+| [time] **is** **after** [time] | (Logic) |
+| [time] **is** **before** [time] | (Logic) |
+
 
