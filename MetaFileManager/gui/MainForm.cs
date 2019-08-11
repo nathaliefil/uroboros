@@ -23,6 +23,7 @@ namespace Uroboros.gui
         private const int MIN_WINDOW_HEIGHT = 200;
 
         List<ICommand> commands;
+        List<Token> tokens;
 
         public MainForm()
         {
@@ -52,37 +53,66 @@ namespace Uroboros.gui
                 }
                 else
                 {
-                    try
-                    {
-                        Logger.GetInstance().LogOn();
-                        InterVariables.GetInstance().Clear();
-                        RuntimeVariables.GetInstance().InitializeInnerVariables();
-                        RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
-
-
-                        List<Token> tokens = Reader.CreateTokenlist(codeBox.Text);
-                        commands = CommandListFactory.Build(tokens);
-                        
-                        try
-                        {
-                            foreach (ICommand command in commands)
-                            {
-                                command.Run();
-                            }
-                        }
-                        catch (Uroboros.syntax.RuntimeException re)
-                        {
-                            Log(re.GetMessage());
-                        }
-                    }
-                    catch (Uroboros.syntax.SyntaxErrorException te)
-                    {
-                        Log(te.GetMessage());
-                    }
+                    Run();
                 }
             }
             Log("------------------------------------");
-            System.GC.Collect();
+            //System.GC.Collect();
+        }
+
+        private void Run()
+        {
+            Logger.GetInstance().LogOn();
+            InterVariables.GetInstance().Clear();
+            RuntimeVariables.GetInstance().InitializeInnerVariables();
+            RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
+
+            try
+            {
+                List<Token> new_tokens = Reader.CreateTokenlist(codeBox.Text);
+                if (ListsAreDifferent(new_tokens, tokens))
+                {
+                    tokens = new_tokens;
+                    commands = CommandListFactory.Build(new_tokens);
+                }
+                RunCode();
+            }
+            catch (Uroboros.syntax.SyntaxErrorException te)
+            {
+                Log(te.GetMessage());
+            }
+
+
+        }
+
+        private void RunCode()
+        {
+            try
+            {
+                int pointer = 0;
+
+                while (pointer < commands.Count())
+                {
+                    commands[pointer].Run();
+
+
+
+
+
+
+                    pointer++;
+                }
+            }
+            catch (Uroboros.syntax.RuntimeException re)
+            {
+                Log(re.GetMessage());
+            }
+        }
+
+        private bool ListsAreDifferent(List<Token> tokens_1, List<Token> tokens_2)
+        {
+            //todo
+            return true;
         }
 
         private void directoryButton_Click(object sender, EventArgs e)
@@ -103,8 +133,6 @@ namespace Uroboros.gui
 
         private void codeBox_TextChanged(object sender, EventArgs e)
         {
-
-
             RefreshCodeBoxGraphics();
         }
 
