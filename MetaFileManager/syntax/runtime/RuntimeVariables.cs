@@ -13,6 +13,7 @@ namespace Uroboros.syntax.runtime
     {
         private static RuntimeVariables INSTANCE = new RuntimeVariables();
         private List<Named> variables;
+        private List<string> additionalLocationPath;
 
         private RuntimeVariables()
         {
@@ -176,6 +177,7 @@ namespace Uroboros.syntax.runtime
         public void InitializeInnerVariables()
         {
             variables = new List<Named>();
+            additionalLocationPath = new List<string>();
 
             variables.Add(new Files());
             variables.Add(new Directories());

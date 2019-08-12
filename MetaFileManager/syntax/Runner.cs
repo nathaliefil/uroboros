@@ -99,7 +99,18 @@ namespace Uroboros.syntax
                         }
                         else if (takenCommand is InsideOpenning)
                         {
-                            // todo
+                            List<string> list = (takenCommand as InsideOpenning).ToList();
+                            if (list.Count == 0)
+                                pointer = JumpOverBlockOfCode(commands, pointer);
+                            else
+                            {
+                                string value = list[0];
+                                list.RemoveAt(0);
+                                structures.Add(new Inside(list, (takenCommand as BracketOn).GetCommandNumber()));
+
+                                RuntimeVariables.GetInstance().ExpandLocation(value);
+                                RuntimeVariables.GetInstance().Actualize("index", 0);
+                            }
 
                             if (jumpIntoElse)
                                 jumpIntoElse = false;
@@ -160,9 +171,7 @@ namespace Uroboros.syntax
                         }
                     }
                     else
-                    {
                         commands[pointer].Run();
-                    }
 
                     pointer++;
                 }

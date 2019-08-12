@@ -17,7 +17,7 @@ namespace Uroboros.syntax.variables
 
         public override List<string> ToList()
         {
-            string location = RuntimeVariables.GetInstance().GetValueString("location");
+            string location = RuntimeVariables.GetInstance().GetLocation();
             int length = location.Length;
             List<string> list = ((Directory.GetDirectories(location)).Select(s => s.Substring(length))).ToList();
             List<string> newlist = new List<string>();

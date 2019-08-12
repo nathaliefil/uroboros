@@ -237,6 +237,7 @@
     <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
     <Compile Include="syntax\Runner.cs" />
+    <Compile Include="syntax\runtime\RuntimeLocation.cs" />
     <Compile Include="syntax\SizeSufix.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="syntax\structures\Else.cs" />
     <Compile Include="syntax\structures\EmptyBlock.cs" />
     <Compile Include="syntax\structures\If.cs" />
+    <Compile Include="syntax\structures\Inside.cs" />
     <Compile Include="syntax\structures\ListLoop.cs" />
     <Compile Include="syntax\structures\NumericLoop.cs" />
     <Compile Include="syntax\structures\While.cs" />
