@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.reading;
 
-namespace Uroboros.syntax.interpretation.functions
+namespace Uroboros.syntax.interpretation.functions.arg
 {
     class ArgumentsExtractor
     {

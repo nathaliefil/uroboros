@@ -8,6 +8,7 @@ using Uroboros.syntax.functions.numeric;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.variables;
+using Uroboros.syntax.interpretation.functions.arg;
 
 namespace Uroboros.syntax.interpretation.functions
 {

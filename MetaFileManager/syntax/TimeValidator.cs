@@ -45,16 +45,16 @@ namespace Uroboros.syntax
                 throw new RuntimeException("RUNTIME ERROR! Year out of range occurred: " + hour + ".");
         }
 
-        public static void ValidateMinute(int hour)
+        public static void ValidateMinute(int minute)
         {
-            if (hour < 0 || hour > 60)
-                throw new RuntimeException("RUNTIME ERROR! Minute out of range occurred: " + hour + ".");
+            if (minute < 0 || minute > 60)
+                throw new RuntimeException("RUNTIME ERROR! Minute out of range occurred: " + minute + ".");
         }
 
-        public static void ValidateSecond(int hour)
+        public static void ValidateSecond(int second)
         {
-            if (hour < 0 || hour > 60)
-                throw new RuntimeException("RUNTIME ERROR! Second out of range occurred: " + hour + ".");
+            if (second < 0 || second > 60)
+                throw new RuntimeException("RUNTIME ERROR! Second out of range occurred: " + second + ".");
         }
 
         private static bool IsYearCorrect(int year)

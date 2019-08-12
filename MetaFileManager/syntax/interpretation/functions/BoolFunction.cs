@@ -6,6 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.reading;
 using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.functions.bools;
+using Uroboros.syntax.interpretation.functions.arg;
 
 namespace Uroboros.syntax.interpretation.functions
 {

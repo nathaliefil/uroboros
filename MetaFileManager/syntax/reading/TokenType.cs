@@ -28,6 +28,7 @@ namespace Uroboros.syntax.reading
         From,
         If,
         In,
+        Inside,
         Is,
         Last,
         Like,

@@ -23,10 +23,10 @@ namespace Uroboros.syntax.expressions.strings
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             foreach (IStringable element in elements)
-            {
                 sb.Append(element.ToString());
-            }
+
             return sb.ToString();
         }
     }

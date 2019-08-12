@@ -55,6 +55,8 @@ namespace Uroboros.syntax.expressions.numeric
                                 stack.Push(a / b);
                                 break;
                             case NumericExpressionOperatorType.Modulo:
+                                if (b == 0)
+                                    throw new RuntimeException("RUNTIME ERROR! Modulo by zero occured.");
                                 stack.Push(a % b);
                                 break;
                         }
