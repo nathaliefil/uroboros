@@ -26,9 +26,6 @@ namespace Uroboros.gui
         private const int MIN_WINDOW_WIDTH = 600;
         private const int MIN_WINDOW_HEIGHT = 200;
 
-        List<ICommand> commands;
-        List<Token> tokens;
-
         public MainForm()
         {
             InitializeComponent();
@@ -57,153 +54,13 @@ namespace Uroboros.gui
                 }
                 else
                 {
-                    Run();
+                    string code = codeBox.Text;
+                    string location = locationBox.Text;
+                    Runner.Run(code, location);
                 }
             }
             Log("------------------------------------");
             //System.GC.Collect();
-        }
-
-        private void Run()
-        {
-            Logger.GetInstance().LogOn();
-            InterVariables.GetInstance().Clear();
-            RuntimeVariables.GetInstance().InitializeInnerVariables();
-            RuntimeVariables.GetInstance().Actualize("location", locationBox.Text);
-
-            try
-            {
-                List<Token> new_tokens = Reader.CreateTokenlist(codeBox.Text);
-                if (ListsAreDifferent(new_tokens, tokens))
-                {
-                    tokens = new_tokens;
-                    commands = CommandListFactory.Build(new_tokens);
-                }
-                RunCode();
-            }
-            catch (Uroboros.syntax.SyntaxErrorException te)
-            {
-                Log(te.GetMessage());
-            }
-
-
-        }
-
-        private void RunCode()
-        {
-            List<Structure> structures = new List<Structure>();
-            bool executing = true;
-
-            try
-            {
-                int pointer = 0;
-
-                while (pointer < commands.Count())
-                {
-                    if (executing)
-                    {
-                        ICommand takenCommand = commands[pointer];
-
-                        if (takenCommand is BracketOn)
-                        {
-                            if (takenCommand is EmptyOpenning)
-                                structures.Add(new EmptyBlock());
-                            else if (takenCommand is IfOpenning)
-                            {
-                                if (!(takenCommand as IfOpenning).ToBool())
-                                    executing = false;
-                                structures.Add(new If());
-                            }
-                            else if (takenCommand is WhileOpenning)
-                            {
-                                if (!(takenCommand as WhileOpenning).ToBool())
-                                    executing = false;
-                                structures.Add(new While((takenCommand as WhileOpenning).GetCondition(), (takenCommand as Structure).GetCommandNumber()));
-                            }
-                            else if (takenCommand is InsideOpenning)
-                            {
-                                // todo
-                            }
-                            else if (takenCommand is ListLoopOpenning)
-                            {
-                                List<string> list = (takenCommand as ListLoopOpenning).ToList();
-                                if (list.Count == 0)
-                                {
-                                    structures.Add(new EmptyBlock());
-                                    executing = false;
-                                }
-                                else
-                                {
-                                    string value = list[0];
-                                    list.RemoveAt(0);
-                                    structures.Add(new ListLoop(list, (takenCommand as BracketOn).GetCommandNumber()));
-
-                                    RuntimeVariables.GetInstance().Actualize("this", value);
-                                    RuntimeVariables.GetInstance().Actualize("index", 0);
-                                }
-                            }
-                            else if (takenCommand is NumericLoopOpenning)
-                            {
-                                int repeats = (int)(takenCommand as NumericLoopOpenning).ToNumber();
-                                if (repeats <= 0)
-                                {
-                                    structures.Add(new EmptyBlock());
-                                    executing = false;
-                                }
-                                else
-                                {
-                                    repeats--;
-                                    structures.Add(new NumericLoop(repeats, (takenCommand as BracketOn).GetCommandNumber()));
-
-                                    RuntimeVariables.GetInstance().Actualize("index", 0);
-                                }
-                            }
-                        }
-                        else if (takenCommand is BracketOff)
-                        {
-                            if (structures.Count == 0)
-                                throw new RuntimeException("ERROR! Brackets are wrong.");
-
-                            Structure lastStructure = structures.Last();
-
-                            if (lastStructure is ILoopingStructure)
-                            {
-                                bool iterateOneMoreTime = lastStructure.HasNext();
-
-                                if (iterateOneMoreTime)
-                                    pointer = lastStructure.GetCommandNumber();
-                                else
-                                    structures.RemoveAt(structures.Count - 1);
-                            }
-                            
-
-                        }
-                        else
-                        {
-
-                            commands[pointer].Run();
-                        }
-                    }
-                    else
-                    {
-                    }
-
-
-
-
-                    pointer++;
-                }
-            }
-            catch (Uroboros.syntax.RuntimeException re)
-            {
-                Log(re.GetMessage());
-            }
-        }
-
-        private bool ListsAreDifferent(List<Token> tokens_1, List<Token> tokens_2)
-        {
-            //todo
-            return true;
         }
 
         private void directoryButton_Click(object sender, EventArgs e)

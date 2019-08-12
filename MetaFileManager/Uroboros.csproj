@@ -96,6 +96,7 @@
     <Compile Include="syntax\commands\other\Sleep.cs" />
     <Compile Include="syntax\commands\other\TwoWordCommand.cs" />
     <Compile Include="syntax\commands\other\TwoWordCommandType.cs" />
+    <Compile Include="syntax\commands\structures\ElseOpenning.cs" />
     <Compile Include="syntax\commands\structures\EmptyOpenning.cs" />
     <Compile Include="syntax\commands\structures\IfOpenning.cs" />
     <Compile Include="syntax\commands\structures\InsideOpenning.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="syntax\interpretation\vars_range\InterVarType.cs" />
     <Compile Include="syntax\reading\Brackets.cs" />
     <Compile Include="syntax\reading\Reader.cs" />
+    <Compile Include="syntax\Runner.cs" />
     <Compile Include="syntax\SizeSufix.cs" />
     <Compile Include="syntax\reading\Token.cs" />
     <Compile Include="syntax\reading\TokenFactory.cs" />
@@ -251,6 +253,7 @@
     <Compile Include="syntax\SizeUnit.cs" />
     <Compile Include="syntax\structures\abstracts\ILoopingStructure.cs" />
     <Compile Include="syntax\structures\abstracts\Structure.cs" />
+    <Compile Include="syntax\structures\Else.cs" />
     <Compile Include="syntax\structures\EmptyBlock.cs" />
     <Compile Include="syntax\structures\If.cs" />
     <Compile Include="syntax\structures\ListLoop.cs" />

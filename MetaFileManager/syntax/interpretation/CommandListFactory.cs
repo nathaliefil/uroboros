@@ -7,6 +7,7 @@ using Uroboros.syntax.commands;
 using Uroboros.syntax.commands.structures;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.interpretation.expressions;
+using Uroboros.syntax.interpretation.vars_range;
 
 namespace Uroboros.syntax.interpretation
 {
@@ -35,6 +36,7 @@ namespace Uroboros.syntax.interpretation
                         currentTokens.Clear();
                     }
                     commands.Add(new BracketOff());
+                    InterVariables.GetInstance().BracketsDown();
                 }
                 else if (tok.GetTokenType().Equals(TokenType.CurlyBracketOn))
                 {
@@ -58,15 +60,23 @@ namespace Uroboros.syntax.interpretation
                             commands.Add(new IfOpenning(iboo, commands.Count));
                             currentTokens.Clear();
                         }
-                        else if (first.Equals(TokenType.Where))
+                        else if (first.Equals(TokenType.Else))
                         {
                             currentTokens.RemoveAt(0);
                             if (currentTokens.Count == 0)
-                                throw new SyntaxErrorException("ERROR! Expression 'where' is empty.");
+                                commands.Add(new ElseOpenning());
+                            else
+                                throw new SyntaxErrorException("ERROR! Expression 'else' contains not necessary code.");
+                        }
+                        else if (first.Equals(TokenType.While))
+                        {
+                            currentTokens.RemoveAt(0);
+                            if (currentTokens.Count == 0)
+                                throw new SyntaxErrorException("ERROR! Expression 'while' is empty.");
 
                             IBoolable iboo = BoolableBuilder.Build(currentTokens);
                             if (iboo.IsNull())
-                                throw new SyntaxErrorException("ERROR! There is something wrong with expression 'where'.");
+                                throw new SyntaxErrorException("ERROR! There is something wrong with expression 'while'.");
 
                             commands.Add(new WhileOpenning(iboo, commands.Count));
                             currentTokens.Clear();
@@ -98,6 +108,7 @@ namespace Uroboros.syntax.interpretation
                             currentTokens.Clear();
                         }
                     }
+                    InterVariables.GetInstance().BracketsUp();
                 }
                 else if (tok.GetTokenType().Equals(TokenType.BigArrow))
                 {
@@ -119,4 +130,6 @@ namespace Uroboros.syntax.interpretation
             return commands;
         }
     }
+
+
 }
