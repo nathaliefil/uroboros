@@ -9,6 +9,7 @@ using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.expressions.strings;
 using Uroboros.syntax.interpretation.functions;
+using Uroboros.syntax.variables.constants;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -185,6 +186,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
             if (elements.Count > 0)
                 return new StringExpression(elements);
+
             return null;
         }
     }

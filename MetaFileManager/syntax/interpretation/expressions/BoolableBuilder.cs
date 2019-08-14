@@ -11,6 +11,7 @@ using Uroboros.syntax.expressions.bools.comparisons;
 using Uroboros.syntax.interpretation.functions;
 using Uroboros.syntax.expressions.bools;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.expressions.bools.other;
 
 namespace Uroboros.syntax.interpretation.expressions
 {
@@ -59,7 +60,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build IN function
             if (tokens.Where(t => t.GetTokenType().Equals(TokenType.In)).Count() == 1)
             {
-                IBoolable iboo = InBuilder.Build(tokens);
+                IBoolable iboo = BuildIn(tokens);
                 if (!iboo.IsNull())
                     return iboo;
             }
@@ -67,7 +68,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build LIKE function
             if (tokens.Where(t => t.GetTokenType().Equals(TokenType.Like)).Count() == 1)
             {
-                IBoolable iboo = LikeBuilder.Build(tokens);
+                IBoolable iboo = BuildLike(tokens);
                 if (!iboo.IsNull())
                     return iboo;
             }
@@ -534,6 +535,66 @@ namespace Uroboros.syntax.interpretation.expressions
         public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
         {
             return BINARY_LOGIC_OPERATOR.Contains(beo.GetOperatorType()) ? true : false;
+        }
+
+
+        public static IBoolable BuildIn(List<Token> tokens)
+        {
+            int index = tokens.TakeWhile(x => !x.GetTokenType().Equals(TokenType.In)).Count();
+            if (index == 0 || index == tokens.Count - 1)
+                return null;
+
+            List<Token> leftTokens = tokens.GetRange(0, index);
+            List<Token> rightTokens = tokens.GetRange(index + 1, tokens.Count - index - 1);
+
+            IStringable istr = StringableBuilder.Build(leftTokens);
+            if (istr.IsNull())
+                return null;
+
+            IListable ilis = ListableBuilder.Build(rightTokens);
+            if (ilis.IsNull())
+                return null;
+
+            return new In(istr, ilis);
+        }
+
+        public static IBoolable BuildLike(List<Token> tokens)
+        {
+            int index = tokens.TakeWhile(x => !x.GetTokenType().Equals(TokenType.Like)).Count();
+            if (index == 0 || index == tokens.Count - 1)
+                return null;
+
+            List<Token> leftTokens = tokens.GetRange(0, index);
+            List<Token> rightTokens = tokens.GetRange(index + 1, tokens.Count - index - 1);
+
+            IStringable istr = StringableBuilder.Build(leftTokens);
+            if (istr.IsNull())
+                return null;
+
+            if (rightTokens.Count == 1 && rightTokens[0].GetTokenType().Equals(TokenType.StringConstant))
+            {
+                string phrase = rightTokens[0].GetContent();
+                CheckLikePhraseCorrectness(phrase);
+                return new Like(istr, phrase);
+            }
+            else
+                return null;
+        }
+
+        private static void CheckLikePhraseCorrectness(string phrase)
+        {
+            if (phrase.Length == 0)
+                throw new SyntaxErrorException("ERROR! Expression 'like' has empty comparing phrase.");
+
+            if (phrase.Length == 1)
+                return;
+
+            for (int i = 1; i < phrase.Length; i++)
+            {
+                if (phrase[i - 1] == '%' && (phrase[i] == '%' || phrase[i] == '_'))
+                    throw new SyntaxErrorException("ERROR! Expression \"like " + phrase + "\" is not correct.");
+            }
+            return;
         }
     }
 }

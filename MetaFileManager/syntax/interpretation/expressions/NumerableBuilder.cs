@@ -240,7 +240,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (infixList.Count == 2 && (infixList[0] is NumericExpressionOperator) && (infixList[1] is INumerable)
                 && (infixList[0] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
             {
-                return NegatedNumerableBuilder.Build(infixList[1] as INumerable);
+                return BuildNegated(infixList[1] as INumerable);
             }
 
             // change unary minuses to new type to avoid mistaking them with subtraction sign
@@ -342,6 +342,17 @@ namespace Uroboros.syntax.interpretation.expressions
                 output.Add(operatorStack.Pop() as INumericExpressionElement);
 
             return output;
+        }
+
+        public static INumerable BuildNegated(INumerable inum)
+        {
+            if (inum is NumericConstant)
+            {
+                (inum as NumericConstant).SetNegative();
+                return inum;
+            }
+            else
+                return new NegatedNumerable(inum);
         }
     }
 }

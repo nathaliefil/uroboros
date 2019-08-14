@@ -106,6 +106,7 @@
     <Compile Include="syntax\commands\var\TimeDeclaration.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
+    <Compile Include="syntax\expressions\bools\BoolTernary.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\ComparisonType.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\ListComparison.cs" />
     <Compile Include="syntax\expressions\bools\comparisons\NumericComparison.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="syntax\expressions\bools\NegatedBoolable.cs" />
     <Compile Include="syntax\expressions\bools\other\In.cs" />
     <Compile Include="syntax\expressions\bools\other\Like.cs" />
+    <Compile Include="syntax\expressions\list\ListTernary.cs" />
     <Compile Include="syntax\expressions\list\SmallArrow.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStructClock.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStructDate.cs" />
@@ -124,10 +126,13 @@
     <Compile Include="syntax\expressions\numeric\NegatedNumerable.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperator.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperatorType.cs" />
+    <Compile Include="syntax\expressions\numeric\NumericTernary.cs" />
+    <Compile Include="syntax\expressions\strings\StringTernary.cs" />
     <Compile Include="syntax\expressions\time\RelativeTimeExpression.cs" />
     <Compile Include="syntax\expressions\time\RelativeTimeStruct.cs" />
     <Compile Include="syntax\expressions\time\RelativeTimeType.cs" />
     <Compile Include="syntax\expressions\time\TimeDirection.cs" />
+    <Compile Include="syntax\expressions\time\TimeTernary.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />
     <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
@@ -213,11 +218,7 @@
     <Compile Include="syntax\interpretation\commands\InterpreterVariablePlusMinus.cs" />
     <Compile Include="syntax\interpretation\CoreCommandFactory.cs" />
     <Compile Include="syntax\interpretation\expressions\BoolableBuilder.cs" />
-    <Compile Include="syntax\interpretation\expressions\InBuilder.cs" />
-    <Compile Include="syntax\interpretation\expressions\LikeBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\ListableBuilder.cs" />
-    <Compile Include="syntax\interpretation\expressions\ListedStringablesBuilder.cs" />
-    <Compile Include="syntax\interpretation\expressions\NegatedNumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\NumerableBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterReverse.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="syntax\variables\constants\EmptyList.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
+    <Compile Include="syntax\variables\constants\ListedListables.cs" />
     <Compile Include="syntax\variables\from_directory\Path.cs" />
     <Compile Include="syntax\variables\from_file\Access.cs" />
     <Compile Include="syntax\variables\time\ClockNumerables.cs" />
