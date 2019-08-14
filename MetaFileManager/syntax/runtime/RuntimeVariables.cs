@@ -197,6 +197,7 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Creation());
             variables.Add(new Now());
             variables.Add(new Size());
+            variables.Add(new Path());
         }
     }
 }

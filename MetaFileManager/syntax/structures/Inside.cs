@@ -12,6 +12,7 @@ namespace Uroboros.syntax.structures
     {
         private List<string> list;
 
+        private string previousThis;
         private decimal previousIndex;
 
         public Inside(List<string> list, int commandNumber)
@@ -19,6 +20,7 @@ namespace Uroboros.syntax.structures
             this.list = list;
             this.commandNumber = commandNumber;
 
+            previousThis = RuntimeVariables.GetInstance().GetValueString("this");
             previousIndex = RuntimeVariables.GetInstance().GetValueNumber("index");
         }
 
@@ -26,6 +28,7 @@ namespace Uroboros.syntax.structures
         {
             if (list.Count == 0)
             {
+                RuntimeVariables.GetInstance().Actualize("this", previousThis);
                 RuntimeVariables.GetInstance().Actualize("index", previousIndex);
                 RuntimeVariables.GetInstance().RetreatLocation();
 
@@ -36,6 +39,7 @@ namespace Uroboros.syntax.structures
                 string value = list[0];
                 list.RemoveAt(0);
 
+                RuntimeVariables.GetInstance().Actualize("this", value);
                 RuntimeVariables.GetInstance().ReplaceLocationEnding(value);
                 RuntimeVariables.GetInstance().IncrementBy("index", 1);
 

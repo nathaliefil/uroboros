@@ -108,6 +108,7 @@ namespace Uroboros.syntax
                                 list.RemoveAt(0);
                                 structures.Add(new Inside(list, (takenCommand as BracketOn).GetCommandNumber()));
 
+                                RuntimeVariables.GetInstance().Actualize("this", value);
                                 RuntimeVariables.GetInstance().ExpandLocation(value);
                                 RuntimeVariables.GetInstance().Actualize("index", 0);
                             }
@@ -169,6 +170,8 @@ namespace Uroboros.syntax
                             else
                                 structures.RemoveAt(structures.Count - 1);
                         }
+                        else
+                            structures.RemoveAt(structures.Count - 1);
                     }
                     else
                         commands[pointer].Run();

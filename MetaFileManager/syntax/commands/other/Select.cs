@@ -53,7 +53,7 @@ namespace Uroboros.syntax.commands.other
             IntPtr[] fileArray = new IntPtr[selected.Count];
             for (int i = 0; i < selected.Count; i++ )
             {
-                SHParseDisplayName(Path.Combine(location, selected[i]), IntPtr.Zero, out fileArray[i], 0, out psfgaoOut);
+                SHParseDisplayName(System.IO.Path.Combine(location, selected[i]), IntPtr.Zero, out fileArray[i], 0, out psfgaoOut);
                 Logger.GetInstance().LogCommand("Select " + selected[i]);
             }
 

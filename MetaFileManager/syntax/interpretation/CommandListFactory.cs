@@ -17,6 +17,8 @@ namespace Uroboros.syntax.interpretation
         {
             List<Token> currentTokens = new List<Token>();
             List<ICommand> commands = new List<ICommand>();
+            int waitingArrowsEndings = 0;
+            int arrowDepth = 0;
 
             foreach (Token tok in tokens)
             {
@@ -26,6 +28,11 @@ namespace Uroboros.syntax.interpretation
                     {
                         commands.Add(SingleCommandFactory.Build(currentTokens));
                         currentTokens.Clear();
+                    }
+                    if (arrowDepth == 0 && waitingArrowsEndings > 0)
+                    {
+                        waitingArrowsEndings.Times(()=> commands.Add(new BracketOff()));
+                        waitingArrowsEndings = 0;
                     }
                 }
                 else if (tok.GetTokenType().Equals(TokenType.CurlyBracketOff))
@@ -37,13 +44,20 @@ namespace Uroboros.syntax.interpretation
                     }
                     commands.Add(new BracketOff());
                     InterVariables.GetInstance().BracketsDown();
+
+                    if (waitingArrowsEndings > 0)
+                        arrowDepth--;
+
+                    if (arrowDepth == 0 && waitingArrowsEndings > 0)
+                    {
+                        waitingArrowsEndings.Times(() => commands.Add(new BracketOff()));
+                        waitingArrowsEndings = 0;
+                    }
                 }
                 else if (tok.GetTokenType().Equals(TokenType.CurlyBracketOn))
                 {
                     if (currentTokens.Count == 0)
-                    {
                         commands.Add(new EmptyOpenning());
-                    }
                     else
                     {
                         TokenType first = currentTokens.First().GetTokenType();
@@ -109,22 +123,38 @@ namespace Uroboros.syntax.interpretation
                         }
                     }
                     InterVariables.GetInstance().BracketsUp();
+
+                    if (waitingArrowsEndings > 0)
+                        arrowDepth++;
                 }
                 else if (tok.GetTokenType().Equals(TokenType.BigArrow))
                 {
+                    if (currentTokens.Count == 0)
+                        throw new SyntaxErrorException("ERROR! Left side of Big Arrow Function is empty.");
+                    else
+                    {
+                        IListable ilist = ListableBuilder.Build(currentTokens);
+                        if (ilist.IsNull())
+                            throw new SyntaxErrorException("ERROR! There is something wrong with List Loop / Numeric Loop.");
 
+                        if (ilist is INumerable)
+                            commands.Add(new NumericLoopOpenning(ilist as INumerable, commands.Count));
+                        else
+                            commands.Add(new ListLoopOpenning(ilist, commands.Count));
+
+                        currentTokens.Clear();
+                        waitingArrowsEndings++;
+                    }
                 }
                 else
-                {
                     currentTokens.Add(tok);
-                }
             }
 
             if (currentTokens.Count > 0)
-            {
                 commands.Add(SingleCommandFactory.Build(currentTokens));
-                currentTokens.Clear();
-            }
+
+            if (waitingArrowsEndings > 0)
+                waitingArrowsEndings.Times(() => commands.Add(new BracketOff()));
 
 
             return commands;

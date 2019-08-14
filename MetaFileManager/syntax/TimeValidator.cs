@@ -42,7 +42,7 @@ namespace Uroboros.syntax
         public static void ValidateHour(int hour)
         {
             if (hour < 0 || hour > 24)
-                throw new RuntimeException("RUNTIME ERROR! Year out of range occurred: " + hour + ".");
+                throw new RuntimeException("RUNTIME ERROR! Hour out of range occurred: " + hour + ".");
         }
 
         public static void ValidateMinute(int minute)
