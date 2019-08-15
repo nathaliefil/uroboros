@@ -56,5 +56,13 @@ namespace Uroboros.syntax.variables
         {
             values = OrderByExecutor.OrderBy(values, order);
         }
+
+        public void SetElementAtIndex(string value, int index)
+        {
+            if (index < 0 || index >= values.Count)
+                throw new RuntimeException("RUNTIME ERROR! Index out of list " + name + " occured: index " + index + ".");
+
+            values[index] = value;
+        }
     }
 }

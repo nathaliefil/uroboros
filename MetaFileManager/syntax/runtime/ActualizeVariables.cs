@@ -152,5 +152,16 @@ namespace Uroboros.syntax.runtime
                     (nv as NumericVariable).ModuloBy(value);
             }
         }
+
+        public void SetElementAtIndex(string name, string value, int index)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                Named nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is ListVariable)
+                    (nv as ListVariable).SetElementAtIndex(value, index);
+            }
+        }
+
     }
 }

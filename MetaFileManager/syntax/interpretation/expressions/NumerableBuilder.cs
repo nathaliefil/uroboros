@@ -303,12 +303,12 @@ namespace Uroboros.syntax.interpretation.expressions
 
             // reverse order of elements so can be read left-to-right
             // includes reversing brackets
-            infixList.Reverse();
+            /*infixList.Reverse();
             foreach (INumericExpressionElement bee in infixList)
             {
                 if (bee is NumericExpressionOperator)
                     (bee as NumericExpressionOperator).ReverseBracket();
-            }
+            }*/
 
             foreach (INumericExpressionElement ibee in infixList)
             {
@@ -317,31 +317,80 @@ namespace Uroboros.syntax.interpretation.expressions
 
                 if (ibee is NumericExpressionOperator)
                 {
+                    if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                    {
+                        operatorStack.Push(ibee as NumericExpressionOperator);
+                    }
                     if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))
                     {
-                        while (operatorStack.Count > 0)
-                        {
-                            NumericExpressionOperator beo = operatorStack.Pop();
+                        while (operatorStack.Count > 0 && !operatorStack.Peek().GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                            output.Add(operatorStack.Pop());
 
-                            if (beo.GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
-                                break;
-                            else
-                                output.Add(beo as INumericExpressionElement);
-                        }
+
+                        operatorStack.Pop();
                     }
                     else if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.UnaryMinus))
                     {
-                        // todo
+                        operatorStack.Push(ibee as NumericExpressionOperator);
                     }
                     else
-                        operatorStack.Push(ibee as NumericExpressionOperator);
+                    {
+                        while (operatorStack.Count > 0 && TopOfStackHasPriority(operatorStack.Peek(), ibee as NumericExpressionOperator))
+                            output.Add(operatorStack.Pop());
+
+
+                        operatorStack.Push(ibee as  NumericExpressionOperator);
+                    }
                 }
             }
 
             while (operatorStack.Count > 0)
                 output.Add(operatorStack.Pop() as INumericExpressionElement);
 
+
+            //test
+            foreach (INumericExpressionElement inee in output)
+            {
+                Logger.GetInstance().Log(inee.ToString().Length > 10 ? inee.ToString().Substring(36) : inee.ToString());
+            }
+
+            //test
+
             return output;
+        }
+
+        private static bool TopOfStackHasPriority(NumericExpressionOperator topOfStack, NumericExpressionOperator newOperator)
+        {
+            int stackPriority = GetPriority(topOfStack);
+            int newOperatorPriority = GetPriority(newOperator);
+            
+            return newOperatorPriority < stackPriority;
+        }
+
+        private static bool NewOperatorIsEquivalent(NumericExpressionOperator topOfStack, NumericExpressionOperator newOperator)
+        {
+            int stackPriority = GetPriority(topOfStack);
+            int newOperatorPriority = GetPriority(newOperator);
+
+            return newOperatorPriority == stackPriority;
+        }
+
+        private static int GetPriority(NumericExpressionOperator neo)
+        {
+            switch (neo.GetOperatorType())
+            {
+                case NumericExpressionOperatorType.Modulo:
+                    return 2;
+                case NumericExpressionOperatorType.Multiply:
+                    return 2;
+                case NumericExpressionOperatorType.Divide:
+                    return 2;
+                case NumericExpressionOperatorType.Plus:
+                    return 1;
+                case NumericExpressionOperatorType.Minus:
+                    return 1;
+            }
+            return 0;
         }
 
         public static INumerable BuildNegated(INumerable inum)

@@ -103,6 +103,7 @@
     <Compile Include="syntax\commands\structures\ListLoopOpenning.cs" />
     <Compile Include="syntax\commands\structures\NumericLoopOpenning.cs" />
     <Compile Include="syntax\commands\structures\WhileOpenning.cs" />
+    <Compile Include="syntax\commands\var\ListElementDeclaration.cs" />
     <Compile Include="syntax\commands\var\TimeDeclaration.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />

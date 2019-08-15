@@ -42,9 +42,12 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new ListVariableRefer(str);
 
             // try to build list expression
-            IListable listEx = BuildListExpression(tokens, str);
-            if (!listEx.IsNull())
-                return listEx;
+            if (InterVariables.GetInstance().Contains(str, InterVarType.List))
+            {
+                IListable listEx = BuildListExpression(tokens, str);
+                if (!listEx.IsNull())
+                    return listEx;
+            }
 
             // try to build listed lists/strings: many Listables/Stringables divided by commas
             IListable listed = BuildListed(tokens);
@@ -56,9 +59,6 @@ namespace Uroboros.syntax.interpretation.expressions
 
         private static IListable BuildListExpression(List<Token> tokens, string str)
         {
-            if (!InterVariables.GetInstance().Contains(str, InterVarType.List))
-                return null;
-
             // take second word and check if it is subcommand keyword (first, last, where...)
             if (!TokenGroups.IsSubcommandKeyword(tokens[1].GetTokenType()))
                 return null;

@@ -41,23 +41,23 @@ namespace Uroboros.syntax.expressions.numeric
                         switch (type)
                         {
                             case NumericExpressionOperatorType.Plus:
-                                stack.Push(a + b);
+                                stack.Push(b + a);
                                 break;
                             case NumericExpressionOperatorType.Minus:
-                                stack.Push(a - b);
+                                stack.Push(b - a);
                                 break;
                             case NumericExpressionOperatorType.Multiply:
-                                stack.Push(a * b);
+                                stack.Push(b * a);
                                 break;
                             case NumericExpressionOperatorType.Divide:
-                                if (b == 0)
+                                if (a == 0)
                                     throw new RuntimeException("RUNTIME ERROR! Division by zero occured.");
-                                stack.Push(a / b);
+                                stack.Push(b / a);
                                 break;
                             case NumericExpressionOperatorType.Modulo:
-                                if (b == 0)
+                                if (a == 0)
                                     throw new RuntimeException("RUNTIME ERROR! Modulo by zero occured.");
-                                stack.Push(a % b);
+                                stack.Push(b % a);
                                 break;
                         }
                     }
