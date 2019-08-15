@@ -29,7 +29,7 @@ namespace Uroboros.syntax.expressions.numeric
 
         public void UnaryMinus()
         {
-            type = NumericExpressionOperatorType.UnaryMinus;
+            type = NumericExpressionOperatorType.SignChange;
         }
     }
 }

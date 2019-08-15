@@ -26,7 +26,7 @@ namespace Uroboros.syntax.expressions.numeric
                     stack.Push((el as INumerable).ToNumber());
                 else if (el is NumericExpressionOperator)
                 {
-                    if ((el as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.UnaryMinus))
+                    if ((el as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.SignChange))
                     { /// to check if working
                         decimal a = stack.Pop();
                         stack.Push(-a);
@@ -41,23 +41,23 @@ namespace Uroboros.syntax.expressions.numeric
                         switch (type)
                         {
                             case NumericExpressionOperatorType.Plus:
-                                stack.Push(b + a);
+                                stack.Push(a + b);
                                 break;
                             case NumericExpressionOperatorType.Minus:
-                                stack.Push(b - a);
+                                stack.Push(a - b);
                                 break;
                             case NumericExpressionOperatorType.Multiply:
-                                stack.Push(b * a);
+                                stack.Push(a * b);
                                 break;
                             case NumericExpressionOperatorType.Divide:
                                 if (a == 0)
                                     throw new RuntimeException("RUNTIME ERROR! Division by zero occured.");
-                                stack.Push(b / a);
+                                stack.Push(a / b);
                                 break;
                             case NumericExpressionOperatorType.Modulo:
                                 if (a == 0)
                                     throw new RuntimeException("RUNTIME ERROR! Modulo by zero occured.");
-                                stack.Push(b % a);
+                                stack.Push(a % b);
                                 break;
                         }
                     }

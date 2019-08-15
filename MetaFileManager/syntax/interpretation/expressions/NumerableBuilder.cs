@@ -279,7 +279,8 @@ namespace Uroboros.syntax.interpretation.expressions
                 if ((infixList[i] is NumericExpressionOperator) 
                     && (infixList[i] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
                 {
-                    if (i == 0 || !(infixList[i - 1] is INumerable))
+                    if (i == 0 || (!(infixList[i - 1] is INumerable) && !((infixList[i - 1] is NumericExpressionOperator) &&
+                        (infixList[i - 1] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))))
                         (infixList[i] as NumericExpressionOperator).UnaryMinus();
                 }
             }
@@ -295,25 +296,32 @@ namespace Uroboros.syntax.interpretation.expressions
         private static List<INumericExpressionElement> ReversePolishNotation(List<INumericExpressionElement> infixList)
         {
             // Dijkstra algo of convertion to Reverse Polish Notation
-            // without operation order
-            /// todo
 
             Stack<NumericExpressionOperator> operatorStack = new Stack<NumericExpressionOperator>();
             List<INumericExpressionElement> output = new List<INumericExpressionElement>();
 
             // reverse order of elements so can be read left-to-right
             // includes reversing brackets
-            /*infixList.Reverse();
+            infixList.Reverse();
             foreach (INumericExpressionElement bee in infixList)
             {
                 if (bee is NumericExpressionOperator)
                     (bee as NumericExpressionOperator).ReverseBracket();
-            }*/
+            }
+
+            bool signChange = false;
 
             foreach (INumericExpressionElement ibee in infixList)
             {
                 if (ibee is INumerable)
+                {
+                    if (signChange)
+                    {
+                        output.Add(new NumericExpressionOperator(NumericExpressionOperatorType.SignChange));
+                        signChange = false;
+                    }
                     output.Add(ibee);
+                }
 
                 if (ibee is NumericExpressionOperator)
                 {
@@ -323,19 +331,24 @@ namespace Uroboros.syntax.interpretation.expressions
                     }
                     if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))
                     {
-                        while (operatorStack.Count > 0 && !operatorStack.Peek().GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                        while (operatorStack.Count > 0)
+                        {
+                            if (operatorStack.Peek().GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                            {
+                                operatorStack.Pop();
+                                break;
+                            }
                             output.Add(operatorStack.Pop());
-
-
+                        }
                         operatorStack.Pop();
                     }
-                    else if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.UnaryMinus))
+                    else if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.SignChange))
                     {
-                        operatorStack.Push(ibee as NumericExpressionOperator);
+                        signChange = true;
                     }
                     else
                     {
-                        while (operatorStack.Count > 0 && TopOfStackHasPriority(operatorStack.Peek(), ibee as NumericExpressionOperator))
+                        while (operatorStack.Count > 0 && CheckPriority(operatorStack.Peek(), ibee as NumericExpressionOperator))
                             output.Add(operatorStack.Pop());
 
 
@@ -344,35 +357,21 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
             }
 
+            if (signChange)
+                output.Add(new NumericExpressionOperator(NumericExpressionOperatorType.SignChange));
+
             while (operatorStack.Count > 0)
                 output.Add(operatorStack.Pop() as INumericExpressionElement);
-
-
-            //test
-            foreach (INumericExpressionElement inee in output)
-            {
-                Logger.GetInstance().Log(inee.ToString().Length > 10 ? inee.ToString().Substring(36) : inee.ToString());
-            }
-
-            //test
 
             return output;
         }
 
-        private static bool TopOfStackHasPriority(NumericExpressionOperator topOfStack, NumericExpressionOperator newOperator)
+        private static bool CheckPriority(NumericExpressionOperator topOfStack, NumericExpressionOperator newOperator)
         {
             int stackPriority = GetPriority(topOfStack);
             int newOperatorPriority = GetPriority(newOperator);
             
             return newOperatorPriority < stackPriority;
-        }
-
-        private static bool NewOperatorIsEquivalent(NumericExpressionOperator topOfStack, NumericExpressionOperator newOperator)
-        {
-            int stackPriority = GetPriority(topOfStack);
-            int newOperatorPriority = GetPriority(newOperator);
-
-            return newOperatorPriority == stackPriority;
         }
 
         private static int GetPriority(NumericExpressionOperator neo)

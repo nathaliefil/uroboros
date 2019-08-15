@@ -13,7 +13,7 @@ namespace Uroboros.syntax.expressions.numeric
         Divide,
         Modulo,
 
-        UnaryMinus,
+        SignChange,
 
         BracketOn,
         BracketOff,
