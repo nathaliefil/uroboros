@@ -238,7 +238,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
             // try to build inversion of one INumerable
             if (infixList.Count == 2 && (infixList[0] is NumericExpressionOperator) && (infixList[1] is INumerable)
-                && (infixList[0] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
+                && (infixList[0] as NumericExpressionOperator).IsMinus())
             {
                 return BuildNegated(infixList[1] as INumerable);
             }
@@ -248,7 +248,7 @@ namespace Uroboros.syntax.interpretation.expressions
 
             // check if value of infixlist can be computed (check order of elements)
             if (!CheckExpressionComputability(infixList))
-                return null;
+                throw new SyntaxErrorException("ERROR! Wrong syntax of numeric expression.");
 
             // if everything is right, finally build NumericExpression in RPN
             return new NumericExpression(ReversePolishNotation(infixList));
@@ -277,11 +277,13 @@ namespace Uroboros.syntax.interpretation.expressions
             for (int i = 0; i < infixList.Count; i++)
             {
                 if ((infixList[i] is NumericExpressionOperator) 
-                    && (infixList[i] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.Minus))
+                    && (infixList[i] as NumericExpressionOperator).IsMinus())
                 {
                     if (i == 0 || (!(infixList[i - 1] is INumerable) && !((infixList[i - 1] is NumericExpressionOperator) &&
-                        (infixList[i - 1] as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))))
+                        (infixList[i - 1] as NumericExpressionOperator).IsBracketOff())))
+                    {
                         (infixList[i] as NumericExpressionOperator).UnaryMinus();
+                    }
                 }
             }
             return infixList;
@@ -289,7 +291,137 @@ namespace Uroboros.syntax.interpretation.expressions
 
         private static bool CheckExpressionComputability(List<INumericExpressionElement> infixList)
         {
-            //todo
+            // check if expression is correct
+            // done be checking neighboring elements
+            // usual 'infix notation'
+            // if infix notation is correct, postfix also should be
+
+            if (infixList.Count == 0)
+                return false;
+
+            INumericExpressionElement previous = infixList.First();
+
+            /*
+            
+            Meanings:
+              UN => unary minus operator (-), sign change
+              BIN => binary oparator (+,-,*,/,%) excluding unary minus
+              number => INumerable
+             
+            
+            CASE: previous == UN
+            > nee = UN           wrong
+            > nee = BIN          wrong
+            > nee = number       correct
+            > nee = (            correct
+            > nee = )            wrong
+
+            CASE: previous == BIN
+            > nee = UN           correct
+            > nee = BIN          wrong
+            > nee = number       correct
+            > nee = (            correct
+            > nee = )            wrong
+            
+            CASE: previous == number
+            > nee = UN           wrong
+            > nee = BIN          correct
+            > nee = number       wrong
+            > nee = (            wrong
+            > nee = )            correct
+            
+            CASE: previous == (
+            > nee = UN           correct
+            > nee = BIN          wrong
+            > nee = number       correct
+            > nee = (            correct
+            > nee = )            wrong
+            
+            CASE: previous == )
+            > nee = UN           wrong
+            > nee = BIN          correct
+            > nee = number       wrong
+            > nee = (            wrong
+            > nee = )            correct
+            
+            FIRST ELEMENT
+            > UN           correct
+            > BIN          wrong
+            > number       correct
+            > (            correct
+            > )            wrong
+
+            LAST ELEMENT
+            > UN           wrong
+            > BIN          wrong
+            > number       correct
+            > (            wrong
+            > )            correct
+            
+            implementation below
+            */
+
+            foreach (INumericExpressionElement nee in infixList.Skip(1))
+            {
+                if (previous is NumericExpressionOperator)
+                {
+                    if ((previous as NumericExpressionOperator).IsSignChange())
+                    {
+                        if (nee is NumericExpressionOperator &&
+                            ((nee as NumericExpressionOperator).IsSignChange() ||
+                             (nee as NumericExpressionOperator).IsBinaryOperator() ||
+                             (nee as NumericExpressionOperator).IsBracketOff()))
+                            return false;
+                    }
+                    if ((previous as NumericExpressionOperator).IsBinaryOperator())
+                    {
+                        if (nee is NumericExpressionOperator &&
+                            ((nee as NumericExpressionOperator).IsBinaryOperator() ||
+                             (nee as NumericExpressionOperator).IsBracketOff()))
+                            return false;
+                    }
+                    if ((previous as NumericExpressionOperator).IsBracketOn())
+                    {
+                        if (nee is NumericExpressionOperator &&
+                            ((nee as NumericExpressionOperator).IsBinaryOperator() ||
+                             (nee as NumericExpressionOperator).IsBracketOff()))
+                            return false;
+                    }
+                    if ((previous as NumericExpressionOperator).IsBracketOff())
+                    {
+                        if (nee is INumerable || (
+                            nee is NumericExpressionOperator &&
+                            ((nee as NumericExpressionOperator).IsSignChange() ||
+                             (nee as NumericExpressionOperator).IsBracketOn())))
+                            return false;
+                    }
+                }
+
+                if (previous is INumerable)
+                {
+                    if (nee is INumerable || 
+                        (nee is NumericExpressionOperator &&
+                        ((nee as NumericExpressionOperator).IsSignChange()) ||
+                         (nee as NumericExpressionOperator).IsBracketOn()))
+                        return false;
+                }
+
+                previous = nee;
+            }
+
+            if ((infixList.First() is NumericExpressionOperator) 
+                && ((infixList.First() as NumericExpressionOperator).IsBinaryOperator() ||
+                    (infixList.First() as NumericExpressionOperator).IsBracketOff()))
+                return false;
+
+
+            if ((infixList.Last() is NumericExpressionOperator)
+                && ((infixList.Last() as NumericExpressionOperator).IsBinaryOperator() ||
+                    (infixList.Last() as NumericExpressionOperator).IsSignChange() ||
+                    (infixList.Last() as NumericExpressionOperator).IsBracketOn()))
+                return false;
+
+
             return true;
         }
 
@@ -325,15 +457,15 @@ namespace Uroboros.syntax.interpretation.expressions
 
                 if (ibee is NumericExpressionOperator)
                 {
-                    if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                    if ((ibee as NumericExpressionOperator).IsBracketOn())
                     {
                         operatorStack.Push(ibee as NumericExpressionOperator);
                     }
-                    if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.BracketOff))
+                    if ((ibee as NumericExpressionOperator).IsBracketOff())
                     {
                         while (operatorStack.Count > 0)
                         {
-                            if (operatorStack.Peek().GetOperatorType().Equals(NumericExpressionOperatorType.BracketOn))
+                            if (operatorStack.Peek().IsBracketOn())
                             {
                                 operatorStack.Pop();
                                 break;
@@ -342,7 +474,7 @@ namespace Uroboros.syntax.interpretation.expressions
                         }
                         operatorStack.Pop();
                     }
-                    else if ((ibee as NumericExpressionOperator).GetOperatorType().Equals(NumericExpressionOperatorType.SignChange))
+                    else if ((ibee as NumericExpressionOperator).IsSignChange())
                     {
                         signChange = true;
                     }
@@ -350,7 +482,6 @@ namespace Uroboros.syntax.interpretation.expressions
                     {
                         while (operatorStack.Count > 0 && CheckPriority(operatorStack.Peek(), ibee as NumericExpressionOperator))
                             output.Add(operatorStack.Pop());
-
 
                         operatorStack.Push(ibee as  NumericExpressionOperator);
                     }

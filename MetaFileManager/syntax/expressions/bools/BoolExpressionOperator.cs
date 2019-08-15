@@ -26,5 +26,27 @@ namespace Uroboros.syntax.expressions.bools
             else if (type.Equals(BoolExpressionOperatorType.BracketOff))
                 type = BoolExpressionOperatorType.BracketOn;
         }
+
+        public bool IsBinaryOperator()
+        {
+            return type.Equals(BoolExpressionOperatorType.And) ||
+                   type.Equals(BoolExpressionOperatorType.Or) ||
+                   type.Equals(BoolExpressionOperatorType.Xor);
+        }
+
+        public bool IsNegation()
+        {
+            return type.Equals(BoolExpressionOperatorType.Not);
+        }
+
+        public bool IsBracketOn()
+        {
+            return type.Equals(BoolExpressionOperatorType.BracketOn);
+        }
+
+        public bool IsBracketOff()
+        {
+            return type.Equals(BoolExpressionOperatorType.BracketOff);
+        }
     }
 }

@@ -17,11 +17,6 @@ namespace Uroboros.syntax.interpretation.expressions
 {
     class BoolableBuilder
     {
-
-        public static BoolExpressionOperatorType[] BINARY_LOGIC_OPERATOR = new BoolExpressionOperatorType[] {
-            BoolExpressionOperatorType.Or, BoolExpressionOperatorType.Xor, BoolExpressionOperatorType.And};
-
-
         public static IBoolable Build(List<Token> tokens)
         {
             // check is is empty
@@ -317,7 +312,7 @@ namespace Uroboros.syntax.interpretation.expressions
             
             // check if value of infixlist can be computed (check order of elements)
             if (!CheckExpressionComputability(infixList))
-                return null;
+                throw new SyntaxErrorException("ERROR! Wrong syntax of logic expression.");
 
             // if everything is right, finally build BoolExpression in RPN
             return new BoolExpression(ReversePolishNotation(infixList));
@@ -392,33 +387,33 @@ namespace Uroboros.syntax.interpretation.expressions
             {
                 if (previous is BoolExpressionOperator)
                 {
-                    if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not))
+                    if ((previous as BoolExpressionOperator).IsNegation())
                     {
                         if (beel is BoolExpressionOperator &&
-                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
-                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
-                            || IsLogicBinaryOperator(beel as BoolExpressionOperator)))
+                        ((beel as BoolExpressionOperator).IsNegation() || 
+                         (beel as BoolExpressionOperator).IsBracketOff() || 
+                         (beel as BoolExpressionOperator).IsBinaryOperator()))
                                 return false;
                     }
-                    else if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn))
+                    else if ((previous as BoolExpressionOperator).IsBracketOn())
                     {
                         if (beel is BoolExpressionOperator &&
-                            IsLogicBinaryOperator(beel as BoolExpressionOperator))
+                            (beel as BoolExpressionOperator).IsBinaryOperator())
                             return false;
                     }
-                    else if ((previous as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff))
+                    else if ((previous as BoolExpressionOperator).IsBracketOff())
                     {
                         if ((beel is BoolExpressionOperator &&
-                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
-                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)))
-                            || beel is IBoolable)
+                        ((beel as BoolExpressionOperator).IsNegation() ||
+                         (beel as BoolExpressionOperator).IsBracketOn())) ||
+                          beel is IBoolable)
                             return false;
                     }
-                    else
+                    else if ((previous as BoolExpressionOperator).IsBinaryOperator())
                     {
                         if (beel is BoolExpressionOperator &&
-                            ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
-                            || IsLogicBinaryOperator(beel as BoolExpressionOperator)))
+                            ((beel as BoolExpressionOperator).IsBracketOff() || 
+                             (beel as BoolExpressionOperator).IsBinaryOperator()))
                             return false;
                     }
                 }
@@ -426,23 +421,23 @@ namespace Uroboros.syntax.interpretation.expressions
                 if (previous is IBoolable)
                 {
                     if ((beel is BoolExpressionOperator &&
-                        ((beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
-                            || (beel as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)))
-                            || beel is IBoolable)
+                        ((beel as BoolExpressionOperator).IsNegation() ||
+                         (beel as BoolExpressionOperator).IsBracketOn()))||
+                          beel is IBoolable)
                         return false;
                 }
                 previous = beel;
             }
 
             if (infixList.First() is BoolExpressionOperator &&
-                            ((infixList.First() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff)
-                            || IsLogicBinaryOperator(infixList.First() as BoolExpressionOperator)))
+                        ((infixList.First() as BoolExpressionOperator).IsBracketOff() ||
+                         (infixList.First() as BoolExpressionOperator).IsBinaryOperator()))
                 return false;
 
             if (infixList.Last() is BoolExpressionOperator &&
-                        ((infixList.Last() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.Not)
-                            || (infixList.Last() as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn)
-                            || IsLogicBinaryOperator(infixList.Last() as BoolExpressionOperator)))
+                        ((infixList.Last() as BoolExpressionOperator).IsNegation() ||
+                         (infixList.Last() as BoolExpressionOperator).IsBracketOn() ||
+                         (infixList.Last() as BoolExpressionOperator).IsBinaryOperator()))
                 return false;
 
             return true;
@@ -471,13 +466,13 @@ namespace Uroboros.syntax.interpretation.expressions
 
                 if (ibee is BoolExpressionOperator)
                 {
-                    if ((ibee as BoolExpressionOperator).GetOperatorType().Equals(BoolExpressionOperatorType.BracketOff))
+                    if ((ibee as BoolExpressionOperator).IsBracketOff())
                     {
                         while (operatorStack.Count > 0)
                         {
                             BoolExpressionOperator beo = operatorStack.Pop();
 
-                            if (beo.GetOperatorType().Equals(BoolExpressionOperatorType.BracketOn))
+                            if (beo.IsBracketOn())
                                 break;
                             else
                                 output.Add(beo as IBoolExpressionElement);
@@ -531,12 +526,6 @@ namespace Uroboros.syntax.interpretation.expressions
             }
             return ComparisonType.Equals;
         }
-
-        public static bool IsLogicBinaryOperator(BoolExpressionOperator beo)
-        {
-            return BINARY_LOGIC_OPERATOR.Contains(beo.GetOperatorType()) ? true : false;
-        }
-
 
         public static IBoolable BuildIn(List<Token> tokens)
         {

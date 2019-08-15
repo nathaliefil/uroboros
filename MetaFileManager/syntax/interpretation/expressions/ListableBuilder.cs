@@ -50,11 +50,14 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build listed lists/strings: many Listables/Stringables divided by commas
-            IListable listed = BuildListed(tokens);
-            if (!listed.IsNull())
-                return listed;
+            if (ContainsCommas(tokens))
+            {
+                IListable listed = BuildListed(tokens);
+                if (!listed.IsNull())
+                    return listed;
+            }
 
-            throw new SyntaxErrorException("ERROR! Unknown error in code syntax..");
+            throw new SyntaxErrorException("ERROR! Unknown error in code syntax.");
         }
 
         private static IListable BuildListExpression(List<Token> tokens, string str)
@@ -200,6 +203,11 @@ namespace Uroboros.syntax.interpretation.expressions
                 else
                     return new ListedListables(elements);
             }
+        }
+
+        private static bool ContainsCommas(List<Token> tokens)
+        {
+            return (tokens.Where(t => t.GetTokenType().Equals(TokenType.Comma)).Count() > 0);
         }
     }
 }
