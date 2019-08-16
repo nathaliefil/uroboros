@@ -1,4 +1,4 @@
-Data Type
+Data Types
 =====================
 
 In Uroboros every data structure is one of five types: Logic, Number, Time, Text, List.
@@ -211,7 +211,7 @@ This structure combines creation time from date and from clock. Date and clock p
 
 ### Time From Time And Clock
 
-This structure takes existing time (for example: time variable) and changes its clock: values for hour, minute, second.
+This structure takes existing time and changes its clock: values for hour, minute, second.
 
 | Structure | Returns |
 | --------- | ------- |
@@ -220,5 +220,10 @@ This structure takes existing time (for example: time variable) and changes its 
 
 ### Relative Time
 
+Relative Time structure takes existing time and moves it by particular period of time. It consists of many relative time structs (one or more) and one definition of referent time (last arg).
+
+| Structure | Returns |
+| --------- | ------- |
+| [relative time struct]...[relative time struct] [time] | (Time) |
 
 
