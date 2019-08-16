@@ -15,8 +15,8 @@ namespace Uroboros.syntax.interpretation.expressions
 {
     class TimeableBuilder
     {
-        public static string[] KEYWORDS_SINGLE = new string[] { "year", "month", "week", "day", "hour", "minute", "second" };
-        public static string[] KEYWORDS_MULTIPLE = new string[] { "years", "months", "weeks", "days", "hours", "minutes", "seconds" };
+        public static string[] KEYWORDS_SINGLE = new string[] { "century", "decade", "year", "month", "week", "day", "hour", "minute", "second" };
+        public static string[] KEYWORDS_MULTIPLE = new string[] { "centuries", "decades", "years", "months", "weeks", "days", "hours", "minutes", "seconds" };
         public static string[] MONTHS = new string[] { "january", "february", "march", "april", "may", "june", 
             "july", "august", "september", "october", "november", "december" };
 
@@ -154,6 +154,10 @@ namespace Uroboros.syntax.interpretation.expressions
                 {
                     switch (tok.GetContent().ToLower())
                     {
+                        case "century":
+                            return new RelativeTimeStruct(RelativeTimeType.Centuries, new NumericConstant(1), direction);
+                        case "decade":
+                            return new RelativeTimeStruct(RelativeTimeType.Decades, new NumericConstant(1), direction);
                         case "year":
                             return new RelativeTimeStruct(RelativeTimeType.Years, new NumericConstant(1), direction);
                         case "month":
@@ -182,6 +186,10 @@ namespace Uroboros.syntax.interpretation.expressions
                 {
                     switch (tok.GetContent().ToLower())
                     {
+                        case "centuries":
+                            return new RelativeTimeStruct(RelativeTimeType.Centuries, inum, direction);
+                        case "decades":
+                            return new RelativeTimeStruct(RelativeTimeType.Decades, inum, direction);
                         case "years":
                             return new RelativeTimeStruct(RelativeTimeType.Years, inum, direction);
                         case "months":

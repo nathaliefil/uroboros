@@ -7,6 +7,8 @@ namespace Uroboros.syntax.expressions.time
 {
     public enum RelativeTimeType
     {
+        Centuries,
+        Decades,
         Years,
         Months,
         Weeks,

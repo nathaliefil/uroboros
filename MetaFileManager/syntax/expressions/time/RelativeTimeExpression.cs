@@ -30,6 +30,12 @@ namespace Uroboros.syntax.expressions.time
 
                 switch (var.type)
                 {
+                    case RelativeTimeType.Centuries:
+                        source = source.AddYears(count * 100);
+                        break;
+                    case RelativeTimeType.Decades:
+                        source = source.AddYears(count * 10);
+                        break;
                     case RelativeTimeType.Years:
                         source = source.AddYears(count);
                         break;
