@@ -62,6 +62,7 @@ namespace Uroboros.syntax.reading
 
         Comma,
         Exclamation,
+        QuestionMark,
         Equals,
         Smaller,
         Bigger,

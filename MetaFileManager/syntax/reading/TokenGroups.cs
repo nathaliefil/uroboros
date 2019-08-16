@@ -20,7 +20,7 @@ namespace Uroboros.syntax.reading
             TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
             TokenType.NumericConstant, TokenType.BoolConstant, TokenType.In, TokenType.Like, TokenType.Is,
             TokenType.After, TokenType.Before, TokenType.IsAfter, TokenType.IsBefore, TokenType.SmallArrow,
-            TokenType.Unique};
+            TokenType.Unique, TokenType.QuestionMark};
 
         private static TokenType[] COMPARING = new TokenType[] { TokenType.Equals, TokenType.NotEquals, 
             TokenType.Smaller, TokenType.SmallerOrEquals,  TokenType.Bigger, TokenType.BiggerOrEquals};
@@ -55,37 +55,37 @@ namespace Uroboros.syntax.reading
 
         public static bool IsSubcommandKeyword(TokenType type)
         {
-            return ALLOWED_SUBCOMMAND.Contains(type) ? true : false;
+            return ALLOWED_SUBCOMMAND.Contains(type);
         }
 
         public static bool IsComparingSign(TokenType type)
         {
-            return COMPARING.Contains(type) ? true : false;
+            return COMPARING.Contains(type);
         }
 
         public static bool IsTimeComparingSign(TokenType type)
         {
-            return TIME_COMPARING.Contains(type) ? true : false;
+            return TIME_COMPARING.Contains(type);
         }
 
         public static bool IsLogicSign(TokenType type)
         {
-            return LOGIC.Contains(type) ? true : false;
+            return LOGIC.Contains(type);
         }
 
         public static bool IsArithmeticSign(TokenType type)
         {
-            return NUMERIC_OPERATION.Contains(type) ? true : false;
+            return NUMERIC_OPERATION.Contains(type);
         }
 
         public static bool IsCoreCommandKeyword(TokenType type)
         {
-            return CORE_COMMAND.Contains(type) ? true : false;
+            return CORE_COMMAND.Contains(type);
         }
 
         public static bool IsVariableOperation(TokenType type)
         {
-            return VARIABLE_OPERATION.Contains(type) ? true : false;
+            return VARIABLE_OPERATION.Contains(type);
         }
     }
 }

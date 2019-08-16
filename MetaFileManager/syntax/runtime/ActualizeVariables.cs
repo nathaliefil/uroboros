@@ -163,5 +163,50 @@ namespace Uroboros.syntax.runtime
             }
         }
 
+        public void Swap(string leftName, string rightName)
+        {
+            if (variables.Where(v => v.GetName().Equals(leftName)).Count() == 1 &&
+                variables.Where(v => v.GetName().Equals(rightName)).Count() == 1)
+            {
+                Named left = variables.First(v => v.GetName().Equals(leftName));
+                Named right = variables.First(v => v.GetName().Equals(rightName));
+
+                if (left is BoolVariable)
+                {
+                    bool leftValue = (left as IBoolable).ToBool();
+                    bool rightValue = (right as IBoolable).ToBool();
+                    Actualize(leftName, rightValue);
+                    Actualize(rightName, leftValue);
+                }
+                else if (left is NumericVariable)
+                {
+                    decimal leftValue = (left as INumerable).ToNumber();
+                    decimal rightValue = (right as INumerable).ToNumber();
+                    Actualize(leftName, rightValue);
+                    Actualize(rightName, leftValue);
+                }
+                else if (left is TimeVariable)
+                {
+                    DateTime leftValue = (left as ITimeable).ToTime();
+                    DateTime rightValue = (right as ITimeable).ToTime();
+                    Actualize(leftName, rightValue);
+                    Actualize(rightName, leftValue);
+                }
+                else if (left is StringVariable)
+                {
+                    string leftValue = (left as IStringable).ToString();
+                    string rightValue = (right as IStringable).ToString();
+                    Actualize(leftName, rightValue);
+                    Actualize(rightName, leftValue);
+                }
+                else if (left is ListVariable)
+                {
+                    List<string> leftValue = (left as IListable).ToList();
+                    List<string> rightValue = (right as IListable).ToList();
+                    Actualize(leftName, rightValue);
+                    Actualize(rightName, leftValue);
+                }
+            }
+        }
     }
 }

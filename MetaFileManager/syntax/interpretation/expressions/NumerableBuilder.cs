@@ -22,6 +22,16 @@ namespace Uroboros.syntax.interpretation.expressions
             if (!ibo.IsNull())
                 return (ibo as INumerable);
 
+            // remove first and last bracket if it is there
+            while (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) &&
+                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+            {
+                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
+                tokensCopy.RemoveAt(tokens.Count - 1);
+                tokensCopy.RemoveAt(0);
+                tokens = tokensCopy;
+            }
+
             // try to build simple one-token Numerable
             if (tokens.Count == 1)
             {
@@ -40,6 +50,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 }
                 if (tokens[0].GetTokenType().Equals(TokenType.NumericConstant))
                     return new NumericConstant(tokens[0].GetNumericContent());
+            }
+
+            // try to build numeric ternary
+            if (TernaryBuilder.IsPossibleTernary(tokens))
+            {
+                INumerable inum = TernaryBuilder.BuildNumericTernary(tokens);
+                if (!inum.IsNull())
+                    return inum;
             }
 
             // try to build numeric function

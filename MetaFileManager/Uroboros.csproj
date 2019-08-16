@@ -104,6 +104,7 @@
     <Compile Include="syntax\commands\structures\NumericLoopOpenning.cs" />
     <Compile Include="syntax\commands\structures\WhileOpenning.cs" />
     <Compile Include="syntax\commands\var\ListElementDeclaration.cs" />
+    <Compile Include="syntax\commands\var\Swap.cs" />
     <Compile Include="syntax\commands\var\TimeDeclaration.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="syntax\interpretation\expressions\StringableBuilder.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterReverse.cs" />
     <Compile Include="syntax\interpretation\expressions\SubcommandBuilder.cs" />
+    <Compile Include="syntax\interpretation\expressions\TernaryBuilder.cs" />
     <Compile Include="syntax\interpretation\expressions\TimeableBuilder.cs" />
     <Compile Include="syntax\interpretation\functions\arg\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\arg\Argument.cs" />

@@ -33,6 +33,7 @@ namespace Uroboros.syntax.reading
                 case '^': return new Token(TokenType.Xor);
                 case '<': return new Token(TokenType.Smaller);
                 case '>': return new Token(TokenType.Bigger);
+                case '?': return new Token(TokenType.QuestionMark);
             }
             return new Token(TokenType.Null) ;
         }

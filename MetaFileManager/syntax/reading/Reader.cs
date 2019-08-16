@@ -11,7 +11,7 @@ namespace Uroboros.syntax.reading
     {
         private static char[] KEY_SIGNS = new char[] 
                 {',', '!', '=', '(', ')', '{', '}', '[', ']',';', ':',
-                 '-', '+', '*', '%', '/', '&', '|', '^', '<', '>'};
+                 '-', '+', '*', '%', '/', '&', '|', '^', '<', '>', '?'};
 
 
         public static List<Token> CreateTokenlist(string code)

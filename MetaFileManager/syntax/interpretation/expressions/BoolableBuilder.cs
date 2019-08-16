@@ -19,6 +19,8 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IBoolable Build(List<Token> tokens)
         {
+            /// INITIAL CHECKING
+
             // check is is empty
             if (tokens.Count == 0)
                 throw new SyntaxErrorException("ERROR! Variable declaration is empty.");
@@ -31,6 +33,18 @@ namespace Uroboros.syntax.interpretation.expressions
             // check brackets
             if (!Brackets.CheckCorrectness(tokens))
                 return null;
+
+            // remove first and last bracket if it is there
+            while (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) &&
+                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+            {
+                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
+                tokensCopy.RemoveAt(tokens.Count - 1);
+                tokensCopy.RemoveAt(0);
+                tokens = tokensCopy;
+            }
+
+            /// BOOL CHECKING
 
             // try to build simple one-element Boolable
             if (tokens.Count == 1)
@@ -80,6 +94,14 @@ namespace Uroboros.syntax.interpretation.expressions
             if (ContainsOneComparingToken(tokens) && !ContainsLogicTokens(tokens))
             {
                 IBoolable iboo = BuildComparison(tokens);
+                if (!iboo.IsNull())
+                    return iboo;
+            }
+
+            // try to build bool ternary
+            if (TernaryBuilder.IsPossibleTernary(tokens))
+            {
+                IBoolable iboo = TernaryBuilder.BuildBoolTernary(tokens);
                 if (!iboo.IsNull())
                     return iboo;
             }

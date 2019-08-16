@@ -28,35 +28,42 @@ namespace Uroboros.syntax.expressions.time
                 if (var.timedirection == TimeDirection.Before)
                     count *= -1;
 
-                switch (var.type)
+                try
                 {
-                    case RelativeTimeType.Centuries:
-                        source = source.AddYears(count * 100);
-                        break;
-                    case RelativeTimeType.Decades:
-                        source = source.AddYears(count * 10);
-                        break;
-                    case RelativeTimeType.Years:
-                        source = source.AddYears(count);
-                        break;
-                    case RelativeTimeType.Months:
-                        source = source.AddMonths(count);
-                        break;
-                    case RelativeTimeType.Weeks:
-                        source = source.AddDays(count * 7);
-                        break;
-                    case RelativeTimeType.Days:
-                        source = source.AddDays(count);
-                        break;
-                    case RelativeTimeType.Hours:
-                        source = source.AddHours(count);
-                        break;
-                    case RelativeTimeType.Minutes:
-                        source = source.AddMinutes(count);
-                        break;
-                    case RelativeTimeType.Seconds:
-                        source = source.AddSeconds(count);
-                        break;
+                    switch (var.type)
+                    {
+                        case RelativeTimeType.Centuries:
+                            source = source.AddYears(count * 100);
+                            break;
+                        case RelativeTimeType.Decades:
+                            source = source.AddYears(count * 10);
+                            break;
+                        case RelativeTimeType.Years:
+                            source = source.AddYears(count);
+                            break;
+                        case RelativeTimeType.Months:
+                            source = source.AddMonths(count);
+                            break;
+                        case RelativeTimeType.Weeks:
+                            source = source.AddDays(count * 7);
+                            break;
+                        case RelativeTimeType.Days:
+                            source = source.AddDays(count);
+                            break;
+                        case RelativeTimeType.Hours:
+                            source = source.AddHours(count);
+                            break;
+                        case RelativeTimeType.Minutes:
+                            source = source.AddMinutes(count);
+                            break;
+                        case RelativeTimeType.Seconds:
+                            source = source.AddSeconds(count);
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new RuntimeException("RUNTIME ERROR! Time out of range occured.");
                 }
             }
             return source;

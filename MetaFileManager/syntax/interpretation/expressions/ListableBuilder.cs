@@ -17,10 +17,20 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static IListable Build(List<Token> tokens)
         {
-            // try to build Strinable
+            // try to build Stringable
             IStringable ist = StringableBuilder.Build(tokens);
             if (!ist.IsNull())
                 return (ist as IListable);
+
+            // remove first and last bracket if it is there
+            while (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) &&
+                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+            {
+                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
+                tokensCopy.RemoveAt(tokens.Count - 1);
+                tokensCopy.RemoveAt(0);
+                tokens = tokensCopy;
+            }
 
             // try to build 'empty list'
             if (tokens.Count == 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.Variable)
@@ -47,6 +57,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 IListable listEx = BuildListExpression(tokens, str);
                 if (!listEx.IsNull())
                     return listEx;
+            }
+
+            // try to build list ternary
+            if (TernaryBuilder.IsPossibleTernary(tokens))
+            {
+                IListable ilist = TernaryBuilder.BuildListTernary(tokens);
+                if (!ilist.IsNull())
+                    return ilist;
             }
 
             // try to build listed lists/strings: many Listables/Stringables divided by commas
@@ -143,16 +161,6 @@ namespace Uroboros.syntax.interpretation.expressions
             List<Token> currentTokens = new List<Token>();
             List<IListable> elements = new List<IListable>();
             int level = 0;
-
-            // remove first and last bracket if it is there
-            if (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) && 
-                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
-            {
-                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
-                tokensCopy.RemoveAt(tokens.Count - 1);
-                tokensCopy.RemoveAt(0);
-                tokens = tokensCopy;
-            }
 
             for (int i = 0; i < tokens.Count; i++)
             {

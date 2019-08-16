@@ -22,6 +22,16 @@ namespace Uroboros.syntax.interpretation.expressions
 
         public static ITimeable Build(List<Token> tokens)
         {
+            // remove first and last bracket if it is there
+            while (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) &&
+                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+            {
+                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
+                tokensCopy.RemoveAt(tokens.Count - 1);
+                tokensCopy.RemoveAt(0);
+                tokens = tokensCopy;
+            }
+
             // try to build simple one-token Timeable
             if (tokens.Count == 1)
             {
@@ -38,6 +48,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
                 ITimeable itim = TimeFunction.Build(tokens);
+                if (!itim.IsNull())
+                    return itim;
+            }
+
+            // try to build time ternary
+            if (TernaryBuilder.IsPossibleTernary(tokens))
+            {
+                ITimeable itim = TernaryBuilder.BuildTimeTernary(tokens);
                 if (!itim.IsNull())
                     return itim;
             }

@@ -27,6 +27,16 @@ namespace Uroboros.syntax.interpretation.expressions
             if (!itim.IsNull())
                 return (itim as IStringable);
 
+            // remove first and last bracket if it is there
+            while (tokens[0].GetTokenType().Equals(TokenType.BracketOn) && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff) &&
+                !Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Normal))
+            {
+                List<Token> tokensCopy = tokens.Select(t => t.Clone()).ToList();
+                tokensCopy.RemoveAt(tokens.Count - 1);
+                tokensCopy.RemoveAt(0);
+                tokens = tokensCopy;
+            }
+
             // try to build simple one-token Stringable
             if (tokens.Count == 1)
             {
@@ -52,6 +62,14 @@ namespace Uroboros.syntax.interpretation.expressions
                 && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
             {
                 IStringable istr = StringFunction.Build(tokens);
+                if (!istr.IsNull())
+                    return istr;
+            }
+
+            // try to build string ternary
+            if (TernaryBuilder.IsPossibleTernary(tokens))
+            {
+                IStringable istr = TernaryBuilder.BuildStringTernary(tokens);
                 if (!istr.IsNull())
                     return istr;
             }

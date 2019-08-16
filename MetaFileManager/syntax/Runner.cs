@@ -25,17 +25,6 @@ namespace Uroboros.syntax
             try
             {
                 List<Token> tokens = Reader.CreateTokenlist(code);
-
-                // test
-
-                /*foreach (Token tok in tokens)
-                {
-                    Logger.GetInstance().Log(tok.Print());
-                }*/
-
-                //test
-
-
                 List<ICommand> commands = CommandListFactory.Build(tokens);
                 RunCommands(commands);
             }
@@ -203,9 +192,7 @@ namespace Uroboros.syntax
                 {
                     level--;
                     if (level == -1)
-                    {
                         return newPosition;
-                    }
                 }
                 newPosition++;
             }
