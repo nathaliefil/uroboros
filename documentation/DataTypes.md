@@ -178,7 +178,13 @@ Numeric expressions are many numeric structures connected by arithmetic operator
 
 # **Time**
 
-Time type stores one moment in time: year, month, day, hour, minute, second. 24-hour clock is used.
+Time type stores one moment in time: year, month, day, hour, minute, second. 24-hour clock is used. When treated as text, it is written as below:
+
+| Structure |
+| --------- |
+| [day] [english month name] [year], [hour] : [minute] : [second] |
+
+For example: "26 December 2000, 06:15:21".
 
 ### Time From Clock
 
@@ -230,7 +236,7 @@ Relative Time structure takes existing time and moves it by particular period of
 | [relative time structures] [relative time structures] [relative time structures] [time] | (Time) |
 | analogically for more relative time structures |  |
 
-Every relative time structure
+Every relative time structure contains few definitions of time period and one keyword at the end: 'after' or 'before'. This word indicates, if relative time structure points forward or backward in time.
 
 | Structure | Returns |
 | --------- | ------- |
@@ -238,7 +244,7 @@ Every relative time structure
 | [time period] [time period] **after** | (Relative time structure) |
 | [time period] [time period] [time period] **after** | (Relative time structure) |
 | analogically for more time periods |  |
-| --------- | ------- |
+|  |  |
 | [time period] **before** | (Relative time structure) |
 | [time period] [time period] **before** | (Relative time structure) |
 | [time period] [time period] [time period] **before** | (Relative time structure) |
@@ -251,7 +257,7 @@ Time period can be created in two ways:
 | **1** [single time keyword] | (Time period) |
 | [number] [multiple time keyword] | (Time period) |
 
-Used keywords:
+Used keywords (insensitive to case size):
 
 | **Single time keyword** | **Multiple time keyword** |
 | --------- | ------- |
@@ -271,4 +277,87 @@ See: [functions](Functions.md).
 ---
 
 # Text
+
+Text data type contains array of characters. When treated as list, returned is list with one element (even is text is empty).
+
+### Text Constants
+
+Text constants can be created by putting some characters between two quotation marks.
+
+### Element Of List Variable
+
+Nth element of list can be taken by writing index of element in square brackets after variable name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [list variable] **[** [number] **]** | (Text) |
+
+### Text Variable From Time
+
+Date or clock can be outstretched from existing time variables. 
+
+| Structure | Returns |
+| --------- | ------- |
+| [time variable] **.date** | (Text) |
+| [time variable] **.clock** | (Text) |
+
+### Text Expressions
+
+Texts can be concatenated by use of pluses. If two adjacent elements are numbers, they are summed.
+
+| Structure | Returns |
+| --------- | ------- |
+| [text] + [text] | (Text) |
+| [text] + [text] + [text] | (Text) |
+| [text] + [text] + [text] + [text] | (Text) |
+| analogically for more elements |  |
+
+### Text Functions
+
+See: [functions](Functions.md).
+
+---
+
+# List
+
+Lists contain many texts.
+
+### Empty List
+
+New empty list can be created by using two keywords: 'empty' and 'list'. They are insinsitive to case size.
+
+| Structure | Returns |
+| --------- | ------- |
+| **empty** **list** | (List) |
+
+### Small Arrow Function
+
+Small Arrow Function is used to transform one list into another. Every element of base list (arg1) is changed using the formula of text (arg2). If keyword 'unique' appears right after the arrow, repeated elements will be not put again into result list.
+
+| Structure | Returns |
+| --------- | ------- |
+| [list] -> [text] | (List) |
+| [list] -> **unique** [text] | (List) |
+
+### Listed Lists
+
+| Structure | Returns |
+| --------- | ------- |
+| [list] , [list] | (List) |
+| [list] , [list] , [list] | (List) |
+| [list] , [list] , [list] , [list] | (List) |
+| analogically for more elements |  |
+
+Many lists can be joined together by the use of commas.
+
+### List Expression
+
+
+
+| Structure | Returns |
+| --------- | ------- |
+| [list variable] [subcommand] | (List) |
+| [list variable] [subcommand] [subcommand] | (List) |
+| [list variable] [subcommand] [subcommand] [subcommand] | (List) |
+| analogically for more subcommands | |
 
