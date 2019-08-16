@@ -174,6 +174,7 @@ Numeric expressions are many numeric structures connected by arithmetic operator
 | [number] / [number] | (Number) | [division](https://en.wikipedia.org/wiki/Division_(mathematics)) |
 | [number] % [number] | (Number) | [modulo](https://en.wikipedia.org/wiki/Modulo_operation) |
 
+---
 
 # **Time**
 
@@ -220,10 +221,54 @@ This structure takes existing time and changes its clock: values for hour, minut
 
 ### Relative Time
 
-Relative Time structure takes existing time and moves it by particular period of time. It consists of many relative time structs (one or more) and one definition of referent time (last arg).
+Relative Time structure takes existing time and moves it by particular period of time. It consists of many relative time structures (one or more) and one definition of referent time (last arg).
 
 | Structure | Returns |
 | --------- | ------- |
-| [relative time struct]...[relative time struct] [time] | (Time) |
+| [relative time structures] [time] | (Time) |
+| [relative time structures] [relative time structures] [time] | (Time) |
+| [relative time structures] [relative time structures] [relative time structures] [time] | (Time) |
+| analogically for more relative time structures |  |
 
+Every relative time structure
+
+| Structure | Returns |
+| --------- | ------- |
+| [time period] **after** | (Relative time structure) |
+| [time period] [time period] **after** | (Relative time structure) |
+| [time period] [time period] [time period] **after** | (Relative time structure) |
+| analogically for more time periods |  |
+| --------- | ------- |
+| [time period] **before** | (Relative time structure) |
+| [time period] [time period] **before** | (Relative time structure) |
+| [time period] [time period] [time period] **before** | (Relative time structure) |
+| analogically for more time periods |  |
+
+Time period can be created in two ways: 
+
+| Structure | Returns |
+| --------- | ------- |
+| **1** [single time keyword] | (Time period) |
+| [number] [multiple time keyword] | (Time period) |
+
+Used keywords:
+
+| **Single time keyword** | **Multiple time keyword** |
+| --------- | ------- |
+| century | centuries |
+| decade | decades |
+| year | years |
+| month | months |
+| day | days |
+| hour | hours |
+| minute | minutes |
+| second | seconds |
+
+### Time Functions
+
+See: [functions](Functions.md).
+
+---
+
+# Text
 
