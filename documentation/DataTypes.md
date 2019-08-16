@@ -24,6 +24,14 @@ Logic type can have only two values: "true" and "false". When treated as number,
 
 The easiest way to initiate value of logic type is to use two keywords: "true" and "false". They are insensitive to case size.
 
+### Logic Variable
+
+Logic variable can be called by simply typing its name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic variable] | (Logic) |
+
 ### Comparisons By Keywords
 
 Two data structures of the same data type can be compared by the use of "is". If two values are the same, "true" is returned.
@@ -143,19 +151,27 @@ Number data type can be used for storing numbers with finite decimal expansion.
 
 Numeric constants can be created by simply typing few consecutive digits with one dot inside as decimal separator (but it is not necessary). Sign "-" before number makes it negative.
 
+### Numeric Variable
+
+Numeric variable can be called by typing its name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [numeric variable] | (Number) |
+
 ### Numeric Variable From Time
 
 Some data like year or day of week can be outstretched from existing time variables.
 
 | Structure | Returns |
 | --------- | ------- |
-| [time variable] **.year** | (Number) |
-| [time variable] **.month** | (Number) |
-| [time variable] **.weekday** | (Number) |
-| [time variable] **.day** | (Number) |
-| [time variable] **.hour** | (Number) |
-| [time variable] **.minute** | (Number) |
-| [time variable] **.second** | (Number) |
+| [time variable]**.year** | (Number) |
+| [time variable]**.month** | (Number) |
+| [time variable]**.weekday** | (Number) |
+| [time variable]**.day** | (Number) |
+| [time variable]**.hour** | (Number) |
+| [time variable]**.minute** | (Number) |
+| [time variable]**.second** | (Number) |
 
         
 ### Numeric Functions
@@ -185,6 +201,14 @@ Time type stores one moment in time: year, month, day, hour, minute, second. 24-
 | [day] [english month name] [year], [hour] : [minute] : [second] |
 
 For example: "26 December 2000, 06:15:21".
+
+### Time Variable
+
+Time variable can be called by simply typing its name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [time variable] | (Time) |
 
 ### Time From Clock
 
@@ -284,6 +308,14 @@ Text data type contains array of characters. When treated as list, returned is l
 
 Text constants can be created by putting some characters between two quotation marks.
 
+### Text Variable
+
+Text variable can be called by simply typing its name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [text variable] | (Text) |
+
 ### Element Of List Variable
 
 Nth element of list can be taken by writing index of element in square brackets after variable name.
@@ -298,8 +330,8 @@ Date or clock can be outstretched from existing time variables.
 
 | Structure | Returns |
 | --------- | ------- |
-| [time variable] **.date** | (Text) |
-| [time variable] **.clock** | (Text) |
+| [time variable]**.date** | (Text) |
+| [time variable]**.clock** | (Text) |
 
 ### Text Expressions
 
@@ -324,15 +356,23 @@ Lists contain many texts.
 
 ### Empty List
 
-New empty list can be created by using two keywords: 'empty' and 'list'. They are insinsitive to case size.
+New empty list can be created by using two keywords: 'empty' and 'list'. They are insensitive to case size.
 
 | Structure | Returns |
 | --------- | ------- |
 | **empty** **list** | (List) |
 
+### List Variable
+
+List variable can be called by simply typing its name.
+
+| Structure | Returns |
+| --------- | ------- |
+| [list variable] | (List) |
+
 ### Small Arrow Function
 
-Small Arrow Function is used to transform one list into another. Every element of base list (arg1) is changed using the formula of text (arg2). If keyword 'unique' appears right after the arrow, repeated elements will be not put again into result list.
+Small Arrow Function is used to transform one list into another. Every element of base list (arg1) is changed using the formula of text (arg2). Elements from base list are treated as files/directories, so text formula can refer to file/directory propery like size, extension, creation date. If keyword 'unique' appears right after the arrow, repeated elements will be not put again into result list.
 
 | Structure | Returns |
 | --------- | ------- |
@@ -352,7 +392,7 @@ Many lists can be joined together by the use of commas.
 
 ### List Expression
 
-
+List expressions contain one reference to list variable and many subcommands manipulating output list. List variables can by embed ones like 'files', 'directories' (visit [inner variables](InnerVariables.md) for more information).
 
 | Structure | Returns |
 | --------- | ------- |
@@ -360,4 +400,29 @@ Many lists can be joined together by the use of commas.
 | [list variable] [subcommand] [subcommand] | (List) |
 | [list variable] [subcommand] [subcommand] [subcommand] | (List) |
 | analogically for more subcommands | |
+
+Subcommands change elements of list taken from list variable. They are performed chronologically as they appeared.
+
+| Name | Structure | Returns |
+| --------- | --------- | ------- |
+| Each | **each** [number] | (Subcommand) |
+| First | **first** [number] | (Subcommand) |
+| Last | **last** [number] | (Subcommand) |
+| OrderBy | **order by** [order by variables] | (Subcommand) |
+| Skip | **skip** [number] | (Subcommand) |
+| Where | **where** [logic] | (Subcommand) |
+| With | **with** [list] | (Subcommand) |
+| Without | **without** [list] | (Subcommand) |
+
+
+Subcommand Each takes every (arg1) element of list. So for example if arg1=3, then taken is 1, 4, 7, 10... th element of list.
+Subcommand First takes first (arg1) elements of list.  
+Subcommand Last takes last (arg1) elements of list.  
+Subcommand OrderBy changes order of list elements by (arg1) (visit [order by](OrderBy.md) for more information).  
+Subcommand Skip removes first (arg1) elements of list.  
+Subcommand Where takes only those elements of list, which satisfy condition (arg1).
+Subcommand With add new elements (arg1) at the end of list.
+Subcommand Without removes all particular elements (arg1) from list.
+
+
 
