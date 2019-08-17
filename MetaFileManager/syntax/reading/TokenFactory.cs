@@ -84,6 +84,7 @@ namespace Uroboros.syntax.reading
                 case "select": return new Token(TokenType.Select);
                 case "skip": return new Token(TokenType.Skip);
                 case "sleep": return new Token(TokenType.Sleep);
+                case "swap": return new Token(TokenType.Swap);
                 case "to": return new Token(TokenType.To);
                 case "true": return new Token(TokenType.BoolConstant, "true");
                 case "unique": return new Token(TokenType.Unique);

@@ -166,10 +166,10 @@ namespace Uroboros.syntax.interpretation.expressions
             {
                 if (tokens[i].GetTokenType().Equals(TokenType.BracketOn))
                     level++;
-                if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
+                else if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
                     level--;
 
-                if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
+                else if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
                 {
                     if (currentTokens.Count > 0)
                     {
@@ -215,7 +215,23 @@ namespace Uroboros.syntax.interpretation.expressions
 
         private static bool ContainsCommas(List<Token> tokens)
         {
-            return (tokens.Where(t => t.GetTokenType().Equals(TokenType.Comma)).Count() > 0);
+            int level = 0;
+            int index = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+                else if (tok.GetTokenType().Equals(TokenType.Comma))
+                {
+                    if (level == 0)
+                        return true;
+                }
+                index++;
+            }
+            return false;
         }
     }
 }

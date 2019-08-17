@@ -43,36 +43,21 @@ namespace Uroboros.syntax.interpretation
             switch (tokens.First().GetTokenType())
             {
                 case TokenType.Add:
-                {
                     return InterpreterAdd.Build(tokens);
-                }
                 case TokenType.Order:
-                {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
-                        return InterpreterOrder.Build(tokens);
-                    else
-                        throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
-                }
+                    return InterpreterOrder.Build(tokens);
                 case TokenType.Print:
-                {
                     return InterpreterPrint.Build(tokens.Skip(1).ToList());
-                }
                 case TokenType.Remove:
-                {
                     return InterpreterRemove.Build(tokens);
-                }
                 case TokenType.Reverse:
-                {
                     return InterpreterReverse.Build(tokens);
-                }
                 case TokenType.Select:
-                {
                     return InterpreterSelect.Build(tokens);
-                }
                 case TokenType.Sleep:
-                {
                     return InterpreterSleep.Build(tokens);
-                }
+                case TokenType.Swap:
+                    return InterpreterSwap.Build(tokens);
             }
 
             // commands for variables

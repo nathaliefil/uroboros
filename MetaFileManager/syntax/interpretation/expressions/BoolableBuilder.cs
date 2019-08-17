@@ -44,6 +44,10 @@ namespace Uroboros.syntax.interpretation.expressions
                 tokens = tokensCopy;
             }
 
+            // check is is empty again after removing brackets
+            if (tokens.Count == 0)
+                throw new SyntaxErrorException("ERROR! Variable declaration is empty.");
+
             /// BOOL CHECKING
 
             // try to build simple one-element Boolable

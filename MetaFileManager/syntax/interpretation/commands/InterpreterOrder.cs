@@ -16,6 +16,9 @@ namespace Uroboros.syntax.interpretation.commands
     {
         public static ICommand Build(List<Token> tokens)
         {
+            if (!tokens.Any(t => t.GetTokenType().Equals(TokenType.By)))
+                throw new SyntaxErrorException("ERROR! Order command do not contain definition of sorting variables.");
+
             TokenType type = tokens[0].GetTokenType();
             tokens.RemoveAt(0);
 

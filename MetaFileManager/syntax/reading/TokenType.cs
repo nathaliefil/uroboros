@@ -47,6 +47,7 @@ namespace Uroboros.syntax.reading
         Select,
         Skip,
         Sleep,
+        Swap,
         To,
         Unique,
         Where,

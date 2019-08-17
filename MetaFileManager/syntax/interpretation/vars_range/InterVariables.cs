@@ -149,5 +149,11 @@ namespace Uroboros.syntax.interpretation.vars_range
             InterVar result = variables.Where(v => v.GetName().Equals(name)).First();
             return result;
         }
+
+        public InterVarType GetVarType(string name)
+        {
+            InterVar result = variables.Where(v => v.GetName().Equals(name)).First();
+            return result.GetVarType();
+        }
     }
 }

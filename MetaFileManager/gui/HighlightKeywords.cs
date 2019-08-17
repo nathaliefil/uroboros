@@ -9,7 +9,7 @@ namespace Uroboros.gui
     {
         public static string[] CARDINAL = new string[]{"add", "ask", "clear bin", "clear clipboard", "clear log", "copy", "create", 
             "cut", "delete", "directory", "drop", "file", "log off", "log on", "move", "open", "order", "paste", 
-            "print", "reaccess", "recreate", "remodify", "remove", "rename", "reverse", "run", "select", "sleep", 
+            "print", "reaccess", "recreate", "remodify", "remove", "rename", "reverse", "run", "select", "sleep", "swap", 
             "uroboros stop"};
 
         public static string[] USUAL = new string[]{"after", "and", "asc", "before", "by", "desc", 

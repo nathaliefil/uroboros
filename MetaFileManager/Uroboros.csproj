@@ -214,6 +214,7 @@
     <Compile Include="syntax\interpretation\commands\InterpreterRemove.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterSelect.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterSleep.cs" />
+    <Compile Include="syntax\interpretation\commands\InterpreterSwap.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterTwoWordsCommand.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterVariableDeclaration.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterVariableOperation.cs" />
