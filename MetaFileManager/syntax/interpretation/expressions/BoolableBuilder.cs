@@ -126,11 +126,25 @@ namespace Uroboros.syntax.interpretation.expressions
                 return null;
         }
 
-
-
         private static bool ContainsLogicTokens(List<Token> tokens)
         {
-            return tokens.Where(x => TokenGroups.IsLogicSign(x.GetTokenType())).Any();
+            int level = 0;
+            int index = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+                else if (TokenGroups.IsLogicSign(tok.GetTokenType()))
+                {
+                    if (level == 0)
+                        return true;
+                }
+                index++;
+            }
+            return false;
         }
 
         private static bool ContainsComparingTokens(List<Token> tokens)

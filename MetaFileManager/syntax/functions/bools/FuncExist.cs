@@ -19,10 +19,6 @@ namespace Uroboros.syntax.functions.bools
         public override bool ToBool()
         {
             string file = arg0.ToString();
-
-            if (file.Equals(""))
-                return false;
-
             return FileInnerVariable.Exist(file);
         }
     }

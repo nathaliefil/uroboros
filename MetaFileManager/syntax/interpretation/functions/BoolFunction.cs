@@ -26,13 +26,14 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("exist") || name.Equals("exists"))
+            if (name.Equals("exist") || name.Equals("exists") || name.Equals("empty") 
+                || name.Equals("emptydirectory"))
                 return BuildStr(name, args);
-            if (name.Equals("existinside"))
+            else if (name.Equals("existinside"))
                 return BuildStrStr(name, args);
-            if (name.Equals("empty"))
+            else if (name.Equals("emptylist") || name.Equals("listisempty"))
                 return BuildLis(name, args);
-            if (name.Equals("contain") || name.Equals("contains"))
+            else if (name.Equals("contain") || name.Equals("contains"))
                 return BuildLisStr(name, args);
 
             return null;
@@ -49,12 +50,11 @@ namespace Uroboros.syntax.interpretation.functions
             IStringable istr = StringableBuilder.Build(args[0].tokens);
             if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
-            else
-            {
-                if (name.Equals("exist") || name.Equals("exists"))
-                    return new FuncExist(istr);
-                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
-            }
+            if (name.Equals("exist") || name.Equals("exists"))
+                return new FuncExist(istr);
+            else if (name.Equals("empty") || name.Equals("emptydirectory"))
+                return new FuncEmpty(istr);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
         public static IBoolable BuildStrStr(string name, List<Argument> args)
@@ -83,12 +83,10 @@ namespace Uroboros.syntax.interpretation.functions
             IListable ilis = ListableBuilder.Build(args[0].tokens);
             if (ilis.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
-            else
-            {
-                if (name.Equals("empty"))
-                    return new FuncEmpty(ilis);
-                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
-            }
+
+            if (name.Equals("emptylist") || name.Equals("listisempty"))
+                return new FuncEmptyList(ilis);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
         public static IBoolable BuildLisStr(string name, List<Argument> args)

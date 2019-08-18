@@ -165,6 +165,61 @@ namespace Uroboros.syntax.variables.from_file
             }
         }
 
+        public static bool Empty(string file)
+        {
+            // need to thing about thie method
+            /// todo
+
+            if (file.Equals(""))
+                return true;
+
+            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+
+            if (FileValidator.IsDirectory(file))
+            {
+                if (Directory.Exists(@location))
+                {
+                    try
+                    {
+                        return Directory.EnumerateFileSystemEntries(location).Any() ? false : true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (File.Exists(@location))
+                {
+                    try
+                    {
+                        if (new FileInfo(location).Length == 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
         public static bool ExistInside(string file, string directory)
         {
             string directoryLocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + directory;

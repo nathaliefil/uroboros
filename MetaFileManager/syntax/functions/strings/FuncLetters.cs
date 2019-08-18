@@ -6,11 +6,11 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.strings
 {
-    class FuncDigits : DefaultStringable
+    class FuncLetters : DefaultStringable
     {
         private IStringable arg0;
 
-        public FuncDigits(IStringable arg0)
+        public FuncLetters(IStringable arg0)
         {
             this.arg0 = arg0;
         }
@@ -22,7 +22,7 @@ namespace Uroboros.syntax.functions.strings
             if (string.IsNullOrEmpty(value)) 
                 return value;
             else
-                return new string(value.Where(char.IsDigit).ToArray());
+                return new string(value.Where(char.IsLetter).ToArray());
         }
     }
 }

@@ -28,8 +28,10 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("date"))
                 return BuildNumNumNum(name, args);
-            if (name.Equals("newyear") || name.Equals("christmas") || name.Equals("easter"))
+            else if (name.Equals("newyear") || name.Equals("christmas") || name.Equals("easter"))
                 return BuildNum(name, args);
+            else if (name.Equals("access") || name.Equals("creation") || name.Equals("modification"))
+                return BuildStr(name, args);
 
             return null;
         }
@@ -72,10 +74,31 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("newyear"))
                 return new FuncNewyear(inu);
-            if (name.Equals("christmas"))
+            else if (name.Equals("christmas"))
                 return new FuncChristmas(inu);
-            if (name.Equals("easter"))
+            else if (name.Equals("easter"))
                 return new FuncEaster(inu);
+
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static ITimeable BuildStr(string name, List<Argument> args)
+        {
+            if (args.Count != 1)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 1 text argument.");
+
+            IStringable istr = StringableBuilder.Build(args[0].tokens);
+
+            if (istr.IsNull())
+                throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
+
+            if (name.Equals("access"))
+                return new FuncAccess(istr);
+            else if (name.Equals("creation"))
+                return new FuncCreation(istr);
+            else if (name.Equals("modification"))
+                return new FuncModification(istr);
+
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
     }

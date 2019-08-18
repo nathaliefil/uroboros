@@ -72,6 +72,7 @@ namespace Uroboros.syntax.interpretation.expressions
             // try to build expression: many elements with operators +, -, *, /, %
             if (ContainsArithmeticTokens(tokens))
                 return BuildExpression(tokens);
+                //return null;
             else
                 return null;
         }

@@ -5,21 +5,21 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables.from_file;
 
-namespace Uroboros.syntax.functions.bools
+namespace Uroboros.syntax.functions.numeric
 {
-    class FuncEmpty : DefaultBoolable
+    class FuncSize : DefaultNumerable
     {
         private IStringable arg0;
 
-        public FuncEmpty(IStringable arg0)
+        public FuncSize(IStringable arg0)
         {
             this.arg0 = arg0;
         }
 
-        public override bool ToBool()
+        public override decimal ToNumber()
         {
             string file = arg0.ToString();
-            return FileInnerVariable.Empty(file);
+            return FileInnerVariable.GetSize(file);
         }
     }
 }

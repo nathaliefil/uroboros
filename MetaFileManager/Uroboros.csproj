@@ -136,8 +136,9 @@
     <Compile Include="syntax\expressions\time\TimeDirection.cs" />
     <Compile Include="syntax\expressions\time\TimeTernary.cs" />
     <Compile Include="syntax\ExtensionMethods.cs" />
-    <Compile Include="syntax\functions\bools\FuncContain.cs" />
     <Compile Include="syntax\functions\bools\FuncEmpty.cs" />
+    <Compile Include="syntax\functions\bools\FuncContain.cs" />
+    <Compile Include="syntax\functions\bools\FuncEmptyList.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
     <Compile Include="syntax\functions\bools\FuncExistinside.cs" />
     <Compile Include="syntax\functions\numeric\FuncAverage.cs" />
@@ -147,10 +148,14 @@
     <Compile Include="syntax\functions\numeric\FuncLengthofshortest.cs" />
     <Compile Include="syntax\functions\numeric\FuncLog10.cs" />
     <Compile Include="syntax\functions\numeric\FuncProduct.cs" />
+    <Compile Include="syntax\functions\numeric\FuncSize.cs" />
     <Compile Include="syntax\functions\numeric\Func__SizeUnit.cs" />
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
     <Compile Include="syntax\functions\numeric\Func__TimeBetween.cs" />
     <Compile Include="syntax\functions\numeric\FuncSum.cs" />
+    <Compile Include="syntax\functions\strings\FuncExtension.cs" />
+    <Compile Include="syntax\functions\strings\FuncFullname.cs" />
+    <Compile Include="syntax\functions\strings\FuncName.cs" />
     <Compile Include="syntax\functions\strings\FuncWeekday.cs" />
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />
@@ -162,9 +167,12 @@
     <Compile Include="syntax\functions\strings\FuncMonth.cs" />
     <Compile Include="syntax\functions\strings\FuncRepeat.cs" />
     <Compile Include="syntax\functions\strings\FuncTrim.cs" />
+    <Compile Include="syntax\functions\time\FuncAccess.cs" />
     <Compile Include="syntax\functions\time\FuncChristmas.cs" />
+    <Compile Include="syntax\functions\time\FuncCreation.cs" />
     <Compile Include="syntax\functions\time\FuncDate.cs" />
     <Compile Include="syntax\functions\time\FuncEaster.cs" />
+    <Compile Include="syntax\functions\time\FuncModification.cs" />
     <Compile Include="syntax\functions\time\FuncNewyear.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
@@ -201,7 +209,7 @@
     <Compile Include="syntax\functions\strings\FuncDigits.cs" />
     <Compile Include="syntax\functions\strings\FuncFilled.cs" />
     <Compile Include="syntax\functions\strings\FuncHex.cs" />
-    <Compile Include="syntax\functions\strings\FuncLetter.cs" />
+    <Compile Include="syntax\functions\strings\FuncLetters.cs" />
     <Compile Include="syntax\functions\strings\FuncLower.cs" />
     <Compile Include="syntax\functions\strings\FuncSubstring.cs" />
     <Compile Include="syntax\functions\strings\FuncUpper.cs" />
@@ -231,7 +239,6 @@
     <Compile Include="syntax\interpretation\functions\arg\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\arg\Argument.cs" />
     <Compile Include="syntax\interpretation\functions\BoolFunction.cs" />
-    <Compile Include="syntax\interpretation\functions\ListElement.cs" />
     <Compile Include="syntax\interpretation\functions\NumericFunction.cs" />
     <Compile Include="syntax\interpretation\functions\StringFunction.cs" />
     <Compile Include="syntax\interpretation\functions\TimeFunction.cs" />

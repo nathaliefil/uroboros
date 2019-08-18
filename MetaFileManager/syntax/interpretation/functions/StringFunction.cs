@@ -26,21 +26,21 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("letter") || name.Equals("hex") || name.Equals("binary") || name.Equals("month")
+            if (name.Equals("hex") || name.Equals("binary") || name.Equals("month")
                  || name.Equals("weekday"))
                 return BuildNum(name, args);
-            if (name.Equals("substring"))
+            else if (name.Equals("substring"))
                 return BuildSubstring(name, args);
-            if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("trim"))
+            else if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("letters") 
+                || name.Equals("trim") || name.Equals("name") || name.Equals("fullname") || name.Equals("extension"))
                 return BuildStr(name, args);
-            if (name.Equals("commonbeginning") || name.Equals("commonending"))
+            else if (name.Equals("commonbeginning") || name.Equals("commonending"))
                 return BuildLis(name, args);
-            if (name.Equals("filled") || name.Equals("fill") || name.Equals("repeat") || name.Equals("repeated"))
+            else if (name.Equals("filled") || name.Equals("fill") || name.Equals("repeat") || name.Equals("repeated"))
                 return BuildStrNum(name, args);
-            if (name.Equals("before") || name.Equals("after"))
+            else if (name.Equals("before") || name.Equals("after"))
                 return BuildStrStr(name, args);
             
-
             return null;
         }
 
@@ -56,20 +56,16 @@ namespace Uroboros.syntax.interpretation.functions
             INumerable inu = NumerableBuilder.Build(args[0].tokens);
             if (inu.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as number.");
-            else
-            {
-                if (name.Equals("letter"))
-                    return new FuncLetter(inu);
-                if (name.Equals("hex"))
-                    return new FuncHex(inu);
-                if (name.Equals("binary"))
-                    return new FuncBinary(inu);
-                if (name.Equals("month"))
-                    return new FuncMonth(inu);
-                if (name.Equals("weekday"))
-                    return new FuncWeekday(inu);
-                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
-            }
+
+            if (name.Equals("hex"))
+                return new FuncHex(inu);
+            else if (name.Equals("binary"))
+                return new FuncBinary(inu);
+            else if (name.Equals("month"))
+                return new FuncMonth(inu);
+            else if (name.Equals("weekday"))
+                return new FuncWeekday(inu);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
         public static IStringable BuildStr(string name, List<Argument> args)
@@ -80,18 +76,25 @@ namespace Uroboros.syntax.interpretation.functions
             IStringable istr = StringableBuilder.Build(args[0].tokens);
             if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
-            else
-            {
-                if (name.Equals("upper"))
-                    return new FuncUpper(istr);
-                if (name.Equals("lower"))
-                    return new FuncLower(istr);
-                if (name.Equals("digits"))
-                    return new FuncDigits(istr);
-                if (name.Equals("trim"))
-                    return new FuncTrim(istr);
-                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
-            }
+
+            if (name.Equals("upper"))
+                return new FuncUpper(istr);
+            else if (name.Equals("lower"))
+                return new FuncLower(istr);
+            else if (name.Equals("digits"))
+                return new FuncDigits(istr);
+            else if (name.Equals("letters"))
+                return new FuncLetters(istr);
+            else if (name.Equals("trim"))
+                return new FuncTrim(istr);
+            else if (name.Equals("name"))
+                return new FuncName(istr);
+            else if (name.Equals("fullname"))
+                return new FuncFullname(istr);
+            else if (name.Equals("extension"))
+                return new FuncExtension(istr);
+
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
         public static IStringable BuildStrNum(string name, List<Argument> args)
@@ -109,7 +112,7 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("filled") || name.Equals("fill"))
                 return new FuncFilled(istr, inu);
-            if (name.Equals("repeat") || name.Equals("repeated"))
+            else if (name.Equals("repeat") || name.Equals("repeated"))
                 return new FuncRepeat(istr, inu);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
@@ -129,7 +132,7 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("before"))
                 return new FuncBefore(istr1, istr2);
-            if (name.Equals("after"))
+            else if (name.Equals("after"))
                 return new FuncAfter(istr1, istr2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
@@ -142,18 +145,13 @@ namespace Uroboros.syntax.interpretation.functions
             IListable ilis = ListableBuilder.Build(args[0].tokens);
             if (ilis.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
-            else
-            {
-                if (name.Equals("commonbeginning"))
-                    return new FuncCommonbeginning(ilis);
-                if (name.Equals("commonending"))
-                    return new FuncCommonending(ilis);
-                throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
-            }
+
+            if (name.Equals("commonbeginning"))
+                return new FuncCommonbeginning(ilis);
+            else if (name.Equals("commonending"))
+                return new FuncCommonending(ilis);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
-
-
-
 
         public static IStringable BuildSubstring(string name, List<Argument> args)
         {

@@ -78,13 +78,13 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count > 3 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
                 && tokens[tokens.Count-1].GetTokenType().Equals(TokenType.SquareBracketOff))
             {
-                IStringable istr = ListElement.Build(tokens);
+                IStringable istr = BuildListElement(tokens);
                 if (!istr.IsNull())
                     return istr;
             }
 
             // try to build concatenated string -> text merged by +
-            if(tokens.Any(t => t.GetTokenType().Equals(TokenType.Plus)))
+            if(ContainsPluses(tokens))
                 return BuildConcatenated(tokens);
             else
                 return null;
@@ -206,6 +206,48 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new StringExpression(elements);
 
             return null;
+        }
+
+
+        private static bool ContainsPluses(List<Token> tokens)
+        {
+            int level = 0;
+            int index = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+                else if (tok.GetTokenType().Equals(TokenType.Plus))
+                {
+                    if (level == 0)
+                        return true;
+                }
+                index++;
+            }
+            return false;
+        }
+
+        public static IStringable BuildListElement(List<Token> tokens)
+        {
+            if (Brackets.ContainsIndependentBracketsPairs(tokens, BracketsType.Square))
+                return null;
+
+            string name = tokens[0].GetContent();
+            tokens.RemoveAt(tokens.Count - 1);
+            tokens.RemoveAt(0);
+            tokens.RemoveAt(0);
+
+            if (!InterVariables.GetInstance().Contains(name, InterVarType.List))
+                throw new SyntaxErrorException("ERROR! List " + name + " not found. Impossible to take element from it.");
+
+            INumerable inu = NumerableBuilder.Build(tokens);
+            if (inu.IsNull())
+                throw new SyntaxErrorException("ERROR! Impossible to take element from list " + name + ". Index identificator cannot be read as number.");
+            else
+                return new ListElementRefer(name, inu);
         }
     }
 }
