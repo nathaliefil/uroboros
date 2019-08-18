@@ -18,7 +18,15 @@ This function returns true if text (arg2) appears at least one time in a list (a
 ### Empty
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| empty  | (List) | (Logic)
+| empty  | (Text) | (Logic)
+
+This function returns true if file or directory with specific name (arg1) is empty. Otherwise it returns false.
+
+
+### EmptyList
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| emptylist, listisempty  | (List) | (Logic)
 
 This function returns true if list (arg1) do not have any element inside. Otherwise it returns false.
 
@@ -265,6 +273,14 @@ This function returns number (arg1) rounded to the nearest integer.
 This function returns number of seconds (as integer) between two dates: (arg1) and (arg2).
 
 
+### Size
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| size | (Text) | (Number)
+
+This function returns size of file or directory (in bytes) with specific name (arg1) in current location.
+
+
 ### Sqrt
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -316,12 +332,28 @@ This function returns, which day of the year is date (arg1).
 
 # **Time Functions**
 
+### Access
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| access | (Text) | (Time)
+
+This function returns time of last access to file or directory with specific name (arg1) in current location.
+
+
 ### Christmas
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | christmas  | (Number) | (Time)
 
 This function returns date of Christmas of the indicated year (arg1). Clock is set to 00:00:00.
+
+
+### Creation
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| creation | (Text) | (Time)
+
+This function returns creation time of file or directory with specific name (arg1) in current location.
 
 
 ### Date
@@ -338,6 +370,14 @@ This function returns date created from three variables: day (arg1), month (arg2
 | easter  | (Number) | (Time)
 
 This function returns date of Easter of the indicated year (arg1). Clock is set to 00:00:00.
+
+
+### Modification
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| modification | (Text) | (Time)
+
+This function returns time of last modification of to file or directory with specific name (arg1) in current location.
 
 
 ### NewYear
@@ -399,6 +439,14 @@ This function returns common ending of all elements in list (arg1). If all texts
 This function takes all digits from text (arg1) and returns it as a new text.
 
 
+### Extension
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| extension | (Text) | (Text)
+
+This function returns extension of file with specific name (arg1) in current location. If argument is name of directory, returned is empty text ("");
+
+
 ### Filled
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -407,12 +455,28 @@ This function takes all digits from text (arg1) and returns it as a new text.
 This function takes text (arg1) and adds "0" signs in the beginning in order to make its length at least number (arg2). If length of text (arg1) is already bigger or equal to number (arg2), text (arg1) is returned.
 
 
+### Fullname
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| fullname | (Text) | (Text)
+
+This function returns whole name (with extension) of file or directory with specific name (arg1) in current location.
+
+
 ### Hex
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | hex  | (Number) | (Text)
 
 This function converts base 10 number (arg1) into base 16 and returns it as text.
+
+
+### Letters
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| letters  | (Text) | (Text)
+
+This function takes all letters from text (arg1) and returns it as a new text.
 
 
 ### Lower
@@ -429,6 +493,14 @@ This function returns text (arg1) with all letters transformed into lowercase.
 | month  | (Number) | (Text)
 
 This function returns english name of nth (arg1) month.
+
+
+### Name
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| name | (Text) | (Text)
+
+This function returns name (without extension) of file or directory with specific name (arg1) in current location.
 
 
 ### Repeat
