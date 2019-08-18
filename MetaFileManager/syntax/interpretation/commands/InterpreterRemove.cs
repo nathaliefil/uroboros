@@ -52,16 +52,16 @@ namespace Uroboros.syntax.interpretation.commands
 
             // add this
             if (part1.Count == 0)
-                return new Remove(name, new StringVariableRefer("this") as IStringable);
+                return new RemoveString(name, new StringVariableRefer("this") as IStringable);
 
             IListable ilist = ListableBuilder.Build(part1);
             if (ilist.IsNull())
                 throw new SyntaxErrorException("ERROR! In command 'remove' definition for elements to add cannot be read as list.");
 
             if (ilist is IStringable)
-                return new Remove(name, ilist as IStringable);
+                return new RemoveString(name, ilist as IStringable);
             else
-                return new Remove(name, ilist);
+                return new RemoveList(name, ilist);
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Uroboros.syntax.interpretation.commands
 
             // add this
             if (part1.Count == 0)
-                return new Add(name, new StringVariableRefer("this") as IStringable);
+                return new AddString(name, new StringVariableRefer("this") as IStringable);
 
             IListable ilist = ListableBuilder.Build(part1);
             if (ilist.IsNull())
@@ -63,9 +63,9 @@ namespace Uroboros.syntax.interpretation.commands
                 InterVariables.GetInstance().TurnToList(name);
 
             if (ilist is IStringable)
-                return new Add(name, ilist as IStringable);
+                return new AddString(name, ilist as IStringable);
             else
-                return new Add(name, ilist);
+                return new AddList(name, ilist);
         }
     }
 }
