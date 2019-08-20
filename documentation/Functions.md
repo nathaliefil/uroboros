@@ -52,7 +52,7 @@ This function returns true if a file or a catalog of name (arg1) exists in direc
 | ------------- | ------------- | ------------- |
 | iscorrect  | (Text) | (Logic)
 
-This function returns true if name (arg0) is proper for file or directory. It checks if name (arg0) contains not allowed characters: '\', ':', '&', '*', '"', '<', '>'.
+This function returns true if name (arg0) is proper for file or directory - do not contain not allowed characters: '\\', ':', '&', '*', '"', '<', '>'.
 
 
 ### IsDirectory
@@ -60,14 +60,14 @@ This function returns true if name (arg0) is proper for file or directory. It ch
 | ------------- | ------------- | ------------- |
 | iscorrect  | (Text) | (Logic)
 
-This function returns true if name (arg0) is proper for directory. It checks if name (arg0) do not contain any dots.
+This function returns true if name (arg0) could be name for directory - do not contain any dots.
 
 ### IsFile
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | iscorrect  | (Text) | (Logic)
 
-This function returns true if name (arg0) is proper for file. It checks if name (arg0) contains at least one dot.
+This function returns true if name (arg0) could be name for file - contains at least one dot.
 
 
 ---
