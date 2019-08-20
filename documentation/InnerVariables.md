@@ -112,6 +112,30 @@ This variable returns extension of file. If current element is directory, empty 
 This variable returns name of file/directory including its extension.
 
 
+### IsCorrect
+| Name  | Type | Modificable |
+| ----- | -----| ----------- |
+| iscorrect | [logic] | **false**  |
+
+This function returns true if name of current element is proper for file or directory - do not contain not allowed characters: '\\', ':', '&', '*', '"', '<', '>'.
+
+
+### IsDirectory
+| Name  | Type | Modificable |
+| ----- | -----| ----------- |
+| isdirectory | [logic] | **false**  |
+
+This function returns true if current element is directory.
+
+
+### IsFile
+| Name  | Type | Modificable |
+| ----- | -----| ----------- |
+| isfile | [logic] | **false**  |
+
+This function returns true if current element is file.
+
+
 ### Modification
 | Name  | Type | Modificable |
 | ----- | -----| ----------- |
