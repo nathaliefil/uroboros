@@ -50,6 +50,8 @@ namespace Uroboros.syntax
 
                     if (takenCommand is BracketOn)
                     {
+                        RuntimeVariables.GetInstance().BracketsUp();
+
                         if (takenCommand is EmptyOpenning)
                             structures.Add(new EmptyBlock());
                         else if (takenCommand is IfOpenning)
@@ -145,6 +147,8 @@ namespace Uroboros.syntax
                     }
                     else if (takenCommand is BracketOff)
                     {
+                        RuntimeVariables.GetInstance().BracketsDown();
+
                         if (structures.Count == 0)
                             throw new RuntimeException("ERROR! Brackets are wrong.");
 
@@ -155,7 +159,10 @@ namespace Uroboros.syntax
                             bool iterateOneMoreTime = lastStructure.HasNext();
 
                             if (iterateOneMoreTime)
+                            {
                                 pointer = lastStructure.GetCommandNumber();
+                                RuntimeVariables.GetInstance().BracketsUp();
+                            }
                             else
                                 structures.RemoveAt(structures.Count - 1);
                         }
