@@ -26,8 +26,9 @@ namespace Uroboros.syntax.interpretation.functions
 
             List<Argument> args = ArgumentsExtractor.GetArguments(tokensCopy);
 
-            if (name.Equals("exist") || name.Equals("exists") || name.Equals("empty") 
-                || name.Equals("emptydirectory"))
+            if (name.Equals("exist") || name.Equals("exists") || name.Equals("empty")
+                || name.Equals("emptydirectory") || name.Equals("iscorrect")
+                || name.Equals("isdirectory") || name.Equals("isfile"))
                 return BuildStr(name, args);
             else if (name.Equals("existinside"))
                 return BuildStrStr(name, args);
@@ -54,6 +55,12 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncExist(istr);
             else if (name.Equals("empty") || name.Equals("emptydirectory"))
                 return new FuncEmpty(istr);
+            else if (name.Equals("iscorrect"))
+                return new FuncIsCorrect(istr);
+            else if (name.Equals("isdirectory"))
+                return new FuncIsDirectory(istr);
+            else if (name.Equals("isfile"))
+                return new FuncIsFile(istr);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

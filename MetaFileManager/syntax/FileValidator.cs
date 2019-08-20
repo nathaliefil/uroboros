@@ -15,6 +15,7 @@ namespace Uroboros.syntax
         {
             return name.IndexOfAny(notAllowedSigns) >= 0 ? false : true;
         }
+
         public static bool IsDirectory(string name)
         {
             return !name.Contains('.');

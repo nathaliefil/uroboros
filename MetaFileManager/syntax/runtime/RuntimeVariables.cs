@@ -198,6 +198,9 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Now());
             variables.Add(new Size());
             variables.Add(new Path());
+            variables.Add(new IsFile());
+            variables.Add(new IsDirectory());
+            variables.Add(new IsCorrect());
         }
     }
 }
