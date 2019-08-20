@@ -1,7 +1,7 @@
 Functions
 =====================
 
-In Uroboros name of function is insensitive to case size. Some function may also have many alternative names: for example function Average can be called as "average", "avg" or "mean". 
+In Uroboros name of function is insensitive to case size. Some function may also have alternative names: for example function Average can be called as "average", "avg" or "mean". 
 
 ---
 
@@ -45,6 +45,30 @@ This function returns true if a file or a catalog of name (arg1) exists in curre
 | existinside, existsinside  | (Text, Text) | (Logic)
 
 This function returns true if a file or a catalog of name (arg1) exists in directory of name (arg2) in current location. Otherwise it returns false. If directory (arg2) do not exist, also false is returned.
+
+
+### IsCorrect
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| iscorrect  | (Text) | (Logic)
+
+This function returns true if name (arg0) is proper for file or directory. It checks if name (arg0) contains not allowed characters: '\', ':', '&', '*', '"', '<', '>'.
+
+
+### IsDirectory
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| iscorrect  | (Text) | (Logic)
+
+This function returns true if name (arg0) is proper for directory. It checks if name (arg0) do not contain any dots.
+
+### IsFile
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| iscorrect  | (Text) | (Logic)
+
+This function returns true if name (arg0) is proper for file. It checks if name (arg0) contains at least one dot.
+
 
 ---
 
