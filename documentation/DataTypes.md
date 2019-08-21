@@ -381,6 +381,8 @@ Small Arrow Function is used to transform one list into another. Every element o
 
 ### Listed Lists
 
+Many lists can be joined together by the use of commas.
+
 | Structure | Returns |
 | --------- | ------- |
 | [list] , [list] | (List) |
@@ -388,7 +390,6 @@ Small Arrow Function is used to transform one list into another. Every element o
 | [list] , [list] , [list] , [list] | (List) |
 | analogically for more elements |  |
 
-Many lists can be joined together by the use of commas.
 
 ### List Expression
 
