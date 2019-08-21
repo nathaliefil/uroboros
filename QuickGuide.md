@@ -8,7 +8,7 @@ Welcome to Quick Guide, the easiest way to start with Uroboros.
 # **Let's Go**
 
 Run gui application. When it is opened, you have to select one directory from your drive. It is necessary, because Uroboros actions are 
-based on manipulating files and directory from selected location. You can select location by the top right button.
+based on manipulating files and directories from selected location. You can select location by the top right button.
 
 ![Start image not found](documentation/resources/start.png)
 
@@ -92,6 +92,52 @@ print everything;
 ```
 
 The other two important variables are "directories" and "everything". Variable "directories" returns all directories and variable
-"everything" returns all direcories and all files (in this order).
+"everything" returns all directories and all files (in this order).
+
+```
+files => print "file";
+```
+
+List Loop is a structure similar to Numeric Loop. It can be created by use of Big Arrow or curly brackets. It performs command for
+every element in list. So for example, if list contains 20 elements, command will be executed 20 times.
+
+```
+files => print this;
+```
+
+List Loops have one variable related with them - "this". It is name of current taken element from list. List Loops, like Numeric Loops,
+use variable "index".
+
+```
+files => print "File No. " + index + ": " + this;
+```
+
+As you can see, both "index" and "this" change for every element from list.
+
+```
+files { 
+print "File = " + this;
+print "  Extension = " + extension;
+print "  Size = " + size;
+print "  Creation Year = " + creation.year;
+print "  Creation Month = " + month(creation.month);
+}
+```
+
+List Loop can be used to extract properties of files, as seen above. If you want to know more about properties of files, go to 
+[inner variabes](documentation/InnerVariables.md).
+
+```
+v = 2 * 3;
+v *= 4;
+s = "V equals " + v;
+print v;
+print s;
+```
+
+Uroboros allows to use variables and they are (like all data structures) of five types: Logic, Number, Time, Text, List. For more
+information about data types go to [data structures](documentation/DataStructures.md). Variables are dynamically typed.
+
+
 
 
