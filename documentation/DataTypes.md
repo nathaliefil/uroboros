@@ -311,6 +311,7 @@ Used keywords (insensitive to case size):
 | decade | decades |
 | year | years |
 | month | months |
+| week | weeks |
 | day | days |
 | hour | hours |
 | minute | minutes |
