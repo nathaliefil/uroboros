@@ -43,3 +43,55 @@ print "2+2*2 = " + 2+2*2;
 
 Text and numbers can be merged by the use of pluses.
 
+```
+6 => print "hello world";
+```
+If you want to repeat one command several times, you can use Big Arrow or curly brackets. This structure is called Numeric Loop.
+
+```
+6 { print "hello world"; } 
+```
+Curly brackets allow to repeat more than one command, for example:
+
+```
+6 { 
+print "hello"; 
+print " world"; 
+} 
+```
+
+As you can see, two commands are executed after each other six times.
+
+```
+2 => 2 => print "hello";
+```
+
+Big arrows and curly brackets can be nested in various configurations. 
+
+```
+10 => print "Index = " + index;
+```
+
+Numeric Loops have one variable related with them - "index". Index is number of current turnover of loop, starting from 0. If loops
+are nested, index refers to the last one.
+
+```
+print files;
+```
+
+Variable "files" returns list of all files from current location (location selected at the beginning of the program). If there are no
+files, nothing is printed from command above. Location can be changed by user any time.
+
+```
+print "-------------------- directories:";
+print directories;
+print "-------------------- files:";
+print files;
+print "-------------------- everything:";
+print everything;
+```
+
+The other two important variables are "directories" and "everything". Variable "directories" returns all directories and variable
+"everything" returns all direcories and all files (in this order).
+
+
