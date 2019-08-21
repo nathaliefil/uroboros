@@ -10,13 +10,13 @@ namespace Uroboros.syntax.expressions.time
     {
         public RelativeTimeType type;
         public INumerable value;
-        public TimeDirection timedirection;
+        public TimeDirection timeDirection;
 
-        public RelativeTimeStruct(RelativeTimeType type, INumerable value, TimeDirection timedirection)
+        public RelativeTimeStruct(RelativeTimeType type, INumerable value, TimeDirection timeDirection)
         {
             this.type = type;
             this.value = value;
-            this.timedirection = timedirection;
+            this.timeDirection = timeDirection;
         }
     }
 }

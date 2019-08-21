@@ -306,16 +306,16 @@
     <Compile Include="syntax\variables\from_file\IsCorrect.cs" />
     <Compile Include="syntax\variables\from_file\IsDirectory.cs" />
     <Compile Include="syntax\variables\from_file\IsFile.cs" />
-    <Compile Include="syntax\variables\time\ClockNumerables.cs" />
-    <Compile Include="syntax\variables\time\ClockConstant.cs" />
-    <Compile Include="syntax\variables\time\ClockEmpty.cs" />
-    <Compile Include="syntax\variables\time\ClockWithoutSeconds.cs" />
-    <Compile Include="syntax\variables\time\DayConstant.cs" />
-    <Compile Include="syntax\variables\time\DayNow.cs" />
-    <Compile Include="syntax\variables\time\DayNumerable.cs" />
-    <Compile Include="syntax\variables\time\IClock.cs" />
-    <Compile Include="syntax\variables\time\IDay.cs" />
-    <Compile Include="syntax\variables\time\IYear.cs" />
+    <Compile Include="syntax\variables\time\modules\ClockNumerables.cs" />
+    <Compile Include="syntax\variables\time\modules\ClockConstant.cs" />
+    <Compile Include="syntax\variables\time\modules\ClockEmpty.cs" />
+    <Compile Include="syntax\variables\time\modules\ClockWithoutSeconds.cs" />
+    <Compile Include="syntax\variables\time\modules\DayConstant.cs" />
+    <Compile Include="syntax\variables\time\modules\DayNow.cs" />
+    <Compile Include="syntax\variables\time\modules\DayNumerable.cs" />
+    <Compile Include="syntax\variables\time\abstracts\IClock.cs" />
+    <Compile Include="syntax\variables\time\abstracts\IDay.cs" />
+    <Compile Include="syntax\variables\time\abstracts\IYear.cs" />
     <Compile Include="syntax\variables\time\Time.cs" />
     <Compile Include="syntax\variables\from_file\Creation.cs" />
     <Compile Include="syntax\DateExtractor.cs" />
@@ -361,9 +361,9 @@
     <Compile Include="syntax\variables\TimeVariable.cs" />
     <Compile Include="syntax\variables\TimeVariableType.cs" />
     <Compile Include="syntax\variables\time\TimeableWithClock.cs" />
-    <Compile Include="syntax\variables\time\YearConstant.cs" />
-    <Compile Include="syntax\variables\time\YearNow.cs" />
-    <Compile Include="syntax\variables\time\YearNumerable.cs" />
+    <Compile Include="syntax\variables\time\modules\YearConstant.cs" />
+    <Compile Include="syntax\variables\time\modules\YearNow.cs" />
+    <Compile Include="syntax\variables\time\modules\YearNumerable.cs" />
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

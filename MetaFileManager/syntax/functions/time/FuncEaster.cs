@@ -35,7 +35,7 @@ namespace Uroboros.syntax.functions.time
                 case TimeVariableType.Day:
                     return Easter((int)arg0.ToNumber()).Day;
                 case TimeVariableType.WeekDay:
-                    return (decimal)Easter((int)arg0.ToNumber()).DayOfWeek;
+                    return DateExtractor.GetWeekDay(ToTime());
                 case TimeVariableType.Hour:
                     return 0;
                 case TimeVariableType.Minute:

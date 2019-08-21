@@ -43,7 +43,7 @@ namespace Uroboros.syntax.variables.time
                 case TimeVariableType.Day:
                     return time.ToTimeVariable(TimeVariableType.Day);
                 case TimeVariableType.WeekDay:
-                    return (decimal)ToTime().DayOfWeek;
+                    return DateExtractor.GetWeekDay(ToTime());
                 case TimeVariableType.Hour:
                     return clock.ToHour();
                 case TimeVariableType.Minute:

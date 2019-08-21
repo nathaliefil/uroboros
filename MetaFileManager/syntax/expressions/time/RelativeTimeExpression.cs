@@ -25,7 +25,7 @@ namespace Uroboros.syntax.expressions.time
             {
                 int count = (int)var.value.ToNumber();
 
-                if (var.timedirection == TimeDirection.Before)
+                if (var.timeDirection == TimeDirection.Before)
                     count *= -1;
 
                 try

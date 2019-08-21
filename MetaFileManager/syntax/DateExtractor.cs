@@ -19,7 +19,7 @@ namespace Uroboros.syntax
                 case TimeVariableType.Day:
                     return time.Day;
                 case TimeVariableType.WeekDay:
-                    return (decimal)time.DayOfWeek;
+                    return GetWeekDay(time);
                 case TimeVariableType.Hour:
                     return time.Hour;
                 case TimeVariableType.Minute:
@@ -28,6 +28,12 @@ namespace Uroboros.syntax
                     return time.Second;
             }
             return 0;
+        }
+
+        public static decimal GetWeekDay(DateTime time)
+        {
+            decimal d = (decimal)time.DayOfWeek;
+            return (d == 0) ? 7 : d;
         }
 
         public static string ToString(DateTime time)
