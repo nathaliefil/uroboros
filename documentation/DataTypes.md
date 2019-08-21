@@ -2,7 +2,7 @@ Data Types
 =====================
 
 In Uroboros every data structure is one of five types: Logic, Number, Time, Text, List.
-Data types in some situations can be treated as different ones. 
+Some data types can be treated as different ones.  
 Logic type can be treated as: Number, Text, List.  
 Number type can be treated as: Text, List.  
 Time type can be treated as: Text, List.  
@@ -128,6 +128,15 @@ Other characters represent appearance of themselves.
 
 See: [functions](Functions.md).
 
+### Logic Ternary
+
+If condition (arg1) is true, (arg2) is returned. Otherwise (arg3) is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] ? [logic] : [logic] | (Logic) |
+
+
 ### Logic Expressions
 
 Logic expressions are many logic structures connected by logic operators: **and**, **or**, **xor**, **not** and their sign equivalents: &, |, ^, !. Elements can be grouped by brackets () to determine the order of operations.
@@ -199,6 +208,14 @@ Some data like year or day of week can be outstretched from existing time variab
 ### Numeric Functions
 
 See: [functions](Functions.md).
+
+### Numeric Ternary
+
+If condition (arg1) is true, (arg2) is returned. Otherwise (arg3) is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] ? [number] : [number] | (Number) |
 
 ### Numeric Expressions
 
@@ -321,6 +338,15 @@ Used keywords (insensitive to case size):
 
 See: [functions](Functions.md).
 
+### Time Ternary
+
+If condition (arg1) is true, (arg2) is returned. Otherwise (arg3) is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] ? [time] : [time] | (Time) |
+
+
 ---
 
 # Text
@@ -371,6 +397,14 @@ Texts can be concatenated by use of pluses. If two adjacent elements are numbers
 
 See: [functions](Functions.md).
 
+### Text Ternary
+
+If condition (arg1) is true, (arg2) is returned. Otherwise (arg3) is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] ? [text] : [text] | (Text) |
+
 ---
 
 # List
@@ -412,6 +446,15 @@ Many lists can be joined together by the use of commas.
 | [list] , [list] , [list] | (List) |
 | [list] , [list] , [list] , [list] | (List) |
 | analogically for more elements |  |
+
+
+### List Ternary
+
+If condition (arg1) is true, (arg2) is returned. Otherwise (arg3) is returned.
+
+| Structure | Returns |
+| --------- | ------- |
+| [logic] ? [list] : [list] | (List) |
 
 
 ### List Expression
