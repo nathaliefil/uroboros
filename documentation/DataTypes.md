@@ -151,6 +151,28 @@ Number data type can be used for storing numbers with finite decimal expansion.
 
 Numeric constants can be created by simply typing few consecutive digits with one dot inside as decimal separator (but it is not necessary). Sign "-" before number makes it negative.
 
+### Numeric Constants With Sufix
+
+Numeric constants with sufix are efficient way to multiply written number by constant - for example to calculate number of bytes in n of megabytes. 
+
+| Structure | Returns | Multiplier | Meaning |
+| --------- | ------- | ------- | ------- |
+| [numeric constant]**K** | (Number) | 1000 | thousands |
+| [numeric constant]**k** | (Number) | 1000 | thousands |
+| [numeric constant]**KK** | (Number) | 1000<sup>2</sup> | millions |
+| [numeric constant]**kk** | (Number) | 1000<sup>2</sup> | millions |
+| [numeric constant]**kb** | (Number) | 1024 | kilobytes |
+| [numeric constant]**kB** | (Number) | 1024 | kilobytes |
+| [numeric constant]**KB** | (Number) | 1024 | kilobytes |
+| [numeric constant]**mb** | (Number) | 1024<sup>2</sup> | megabytes |
+| [numeric constant]**MB** | (Number) | 1024<sup>2</sup> | megabytes |
+| [numeric constant]**gb** | (Number) | 1024<sup>3</sup> | gigabytes |
+| [numeric constant]**GB** | (Number) | 1024<sup>3</sup> | gigabytes |
+| [numeric constant]**tb** | (Number) | 1024<sup>4</sup> | terabytes |
+| [numeric constant]**TB** | (Number) | 1024<sup>4</sup> | terabytes |
+| [numeric constant]**pb** | (Number) | 1024<sup>5</sup> | petabytes |
+| [numeric constant]**PB** | (Number) | 1024<sup>5</sup> | petabytes |
+
 ### Numeric Variable
 
 Numeric variable can be called by typing its name.
