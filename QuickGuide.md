@@ -35,7 +35,7 @@ make the same result.
 print 2+2*2;
 ```
 
-Print can be used to print numbers and operations on them (+,-,*,/,%).
+Print can be used to print numbers and operations on them (+ ,- ,* , /, %).
 
 ```
 print "2+2*2 = " + 2+2*2;
@@ -149,7 +149,8 @@ files{
 }
 ```
 
-Structure If executes commands in curly brackets only if condition is satisfied.
+Structure If executes commands in curly brackets only if condition is satisfied. Comparing conditions use characters: >, >=, <, <=,
+!=, =.
 
 ```
 files{
@@ -168,15 +169,134 @@ Aditional structure Else executes commands only if condition in If is not satisf
 ```
 variable = 1;
 
-while variable < 10{
+while variable <= 10{
    print variable;
    variable++;
    sleep 0.1;
 }
 ```
 
-Structure While executes commands in loop as long as condition is satisfied.
+Structure While executes commands in loop as long as condition is true.
+
+```
+print files first 10;
+```
+
+If you want to take part of existing list, you can use subcommands. Subcommands are executed chronologically as they appear.
+
+```
+print files 
+   first 10 
+   last 5;
+```
+
+As you can see, selected are last 5 files of first 10 files.
+
+```
+print files 
+   order by size desc 
+   first 6;
+```
+
+Command above selected 6 biggest files from directory (by size).
 
 
+```
+print files 
+   where extension = "txt"
+   first 5;
+```
+
+This subcommand selected first 5 files with extension "txt".
+
+```
+t = 1 month before now;
+
+print files 
+   where extension is "pdf"
+   and creation is before t;
+```
+
+Conditions in Where can be joined by "and", "or", "xor" and their equivalents &, |, ^. Conditions can be grouped by brackets (). 
+There are many other subcommands so if you want to know more, go to [data types](documentation/DataTypes.md). Subcommands are described
+at the bottom of document.
+
+```
+l = 2, 3+6, "ghg";
+print l;
+```
+
+Lists can be created by mentioning all elements with commas between them.
+
+```
+l = 2, 3+6, "ghg";
+s = l, 4, 0;
+remove 2 from s;
+add "some text" to s;
+order s by fullname;
+print s;
+```
+
+Commands AddTo and RemveFrom can be used to modify existing list variables. Command Order changes order of elements.
+
+```
+number = 10;
+SET = 2,35, 12, number/2;
+SET => print number(this) * 100;
+```
+
+All elements in list are treated as text and mathematical operations cannot be performed on them. To avoid this problem, you can use
+function Number.
+
+```
+n = "John Doe";
+print lower(n);
+print upper(n);
+print substring(n, 1);
+print substring(n, 5, 2);
+print digits(n);
+print letters(n);
+```
+
+There are many other interesting functions. If you want to know them, visit [functions](documentation/Functions.md).
+
+```
+e = files -> extension + "__" + creation.year;
+print e;
+```
+
+If you want to make new list based on another list, you can use Small Arrow Function. Function above takes extension and
+creation year of every file.
+
+```
+e = files -> unique extension;
+print e;
+```
+
+Keyword "unique" is used to mark, that new list cannot have duplicates.
 
 
+```
+sizes = 1KB, 5MB, 100GB, 1K, 50K;
+print sizes;
+```
+
+Numbers can have sufixes. They are their multipliers. For example sufix KB multiplies number by 1024. It is the number of bytes in
+one kilobyte. Sufixes are useful for comparing sizes of files, because variable "size" return integer (number of bytes).
+
+```
+print 12:31;
+print 3 june;
+print 21 april 2006;
+print 2 april 2005, 21:37;
+print 15 november, 12:45:41;
+print date(3,12,2010);
+print christmas(2008);
+print easter(2072);
+```
+
+Uroboros contains facilities for writing dates and times. Dates can be written in many different ways. If definition of time do not
+contain clock (hour, minute, second), it is set to 0. If it do not have year, year from system time is set. The same goes for date.
+
+
+   
