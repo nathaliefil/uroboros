@@ -49,14 +49,16 @@ Text and numbers can be merged by the use of pluses.
 If you want to repeat one command several times, you can use Big Arrow or curly brackets. This structure is called Numeric Loop.
 
 ```
-6 { print "hello world"; } 
+6 { 
+   print "hello world"; 
+} 
 ```
 Curly brackets allow to repeat more than one command, for example:
 
 ```
 6 { 
-print "hello"; 
-print " world"; 
+   print "hello"; 
+   print " world"; 
 } 
 ```
 
@@ -116,16 +118,16 @@ As you can see, both "index" and "this" change for every element from list.
 
 ```
 files { 
-print "File = " + this;
-print "  Extension = " + extension;
-print "  Size = " + size;
-print "  Creation Year = " + creation.year;
-print "  Creation Month = " + month(creation.month);
+   print "File = " + this;
+   print "  Extension = " + extension;
+   print "  Size = " + size;
+   print "  Creation Year = " + creation.year;
+   print "  Creation Month = " + month(creation.month);
 }
 ```
 
 List Loop can be used to extract properties of files, as seen above. If you want to know more about properties of files, go to 
-[inner variabes](documentation/InnerVariables.md).
+[inner variables](documentation/InnerVariables.md).
 
 ```
 v = 2 * 3;
@@ -136,7 +138,44 @@ print s;
 ```
 
 Uroboros allows to use variables and they are (like all data structures) of five types: Logic, Number, Time, Text, List. For more
-information about data types go to [data structures](documentation/DataStructures.md). Variables are dynamically typed.
+information about data types go to [data types](documentation/DataTypes.md). Variables are dynamically typed.
+
+```
+files{
+   print size + "  " + this;
+   if size > 1MB{
+      print "  It is so big!";
+   }
+}
+```
+
+Structure If executes commands in curly brackets only if condition is satisfied.
+
+```
+files{
+   print size + "  " + this;
+   if size > 1MB{
+      print "  It is so big!";
+   }
+   else{
+      print "  It is small.";
+   }
+}
+```
+
+Aditional structure Else executes commands only if condition in If is not satisfied.
+
+```
+variable = 1;
+
+while variable < 10{
+   print variable;
+   variable++;
+   sleep 0.1;
+}
+```
+
+Structure While executes commands in loop as long as condition is satisfied.
 
 
 
