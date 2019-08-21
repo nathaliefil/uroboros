@@ -138,7 +138,8 @@ print s;
 ```
 
 Uroboros allows to use variables and they are (like all data structures) of five types: Logic, Number, Time, Text, List. For more
-information about data types go to [data types](documentation/DataTypes.md). Variables are dynamically typed.
+information about data types go to [data types](documentation/DataTypes.md). Variables are dynamically typed. Name of new variable
+has to be different than [inner variables](documentation/InnerVariables.md).
 
 ```
 files{
@@ -218,8 +219,9 @@ print files
 ```
 
 Conditions in Where can be joined by "and", "or", "xor" and their equivalents &, |, ^. Conditions can be grouped by brackets (). 
-There are many other subcommands so if you want to know more, go to [data types](documentation/DataTypes.md). Subcommands are described
-at the bottom of document.
+Exclamation mark (!) and "not" is used to negate condition. There are many other subcommands so if you want to know more, 
+go to [data types](documentation/DataTypes.md). Subcommands are described at the bottom of this document.
+
 
 ```
 l = 2, 3+6, "ghg";
@@ -237,7 +239,7 @@ order s by fullname;
 print s;
 ```
 
-Commands AddTo and RemveFrom can be used to modify existing list variables. Command Order changes order of elements.
+Commands Add To and Remove From can be used to modify existing list variables. Command Order changes order of elements.
 
 ```
 number = 10;
@@ -261,6 +263,17 @@ print letters(n);
 There are many other interesting functions. If you want to know them, visit [functions](documentation/Functions.md).
 
 ```
+l = empty list;
+print "  Elements:";
+print l;
+add "OO", 2 to l;
+print "  Elements:";
+print l;
+```
+
+To create new empty list, use two keywords: "empty list";
+
+```
 e = files -> extension + "__" + creation.year;
 print e;
 ```
@@ -282,7 +295,8 @@ print sizes;
 ```
 
 Numbers can have sufixes. They are their multipliers. For example sufix KB multiplies number by 1024. It is the number of bytes in
-one kilobyte. Sufixes are useful for comparing sizes of files, because variable "size" return integer (number of bytes).
+one kilobyte. Sufixes are useful for comparing sizes of files, because variable "size" returns integer (number of bytes). All 
+sufixes are explained [here](documentation/DataTypes.md), in chapter "Number".
 
 ```
 print 12:31;
@@ -298,5 +312,71 @@ print easter(2072);
 Uroboros contains facilities for writing dates and times. Dates can be written in many different ways. If definition of time do not
 contain clock (hour, minute, second), it is set to 0. If it do not have year, year from system time is set. The same goes for date.
 
+```
+print 100 days after now;
+print 10 months before now;
+print 7 hours after 1 minute before newyear(2000);
+```
 
-   
+Uroboros allows to use definitions of relative time - used are keywords "after" and "before". Variable "now" is current system time.
+
+```
+yesterday = 1 day before now;
+print yesterday, 12:34:50;
+```
+
+Another way of time definition is to do it by taking existing time and changing its clock (hour, minute, second).
+
+```
+print now.year;
+print now.month;
+print month(now.month);
+print now.weekday;
+print weekday(now.weekday);
+print now.second;
+print now.clock;
+print now.date;
+```
+
+Data from time variables can be outstretched by the use of dot. All variables are of type Number, except Clock and Date (they are Texts).
+
+```
+l = "a", "c", "g";
+print l[1];
+```
+
+If you want to take specific element from list, you can use square brackets (as above). Elements are counted starting from zero - so
+second element has number 1.
+
+```
+l = "proximity", "pasta", "Aldous", "can", "pope",
+"karakan", "not", "plane", "between", "popol vuh";
+print l where this like "p%";
+```
+
+Structure Like can be used to check, which texts from list fit to a pattern. It is very similar to same-named structure from language
+SQL.
+
+```
+print files 
+   where extension in ("txt", "pdf", "doc");
+```
+
+Structure "in" checks, if text can be found in list (above - if it is one of three values).
+
+```
+a = 4 june 2002;
+b = 2 december 2001;
+print a is after b ? "is after" : "is before";
+```
+
+Two times can be compared by the use of "is after" and "is before". Code above contains one more structure - If Ternary. It can
+be found in other languages and returns first element (here: "is after") if condition before quotation mark is satifsied. Otherwise
+it returns second element (here: "is before").
+
+---
+
+# **Commands**
+
+If you know the basics of syntax, we can now start the real job!
+
