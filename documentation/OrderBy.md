@@ -25,7 +25,7 @@ default, but user can reverse order by typing keyword 'desc' after variable.
 
 ### Allowed Variables For Order
 
-Currently there are 31 variables which can be used to order elements. They are all [inner variables](InnerVariables.md). In future
+Currently there are 37 variables which can be used to order elements. They are all [inner variables](InnerVariables.md). In future
 development Uroboros will allow any data structre to be used for ordering - even if it is not related to property of file or directory
 
 | Variable For Order |
@@ -47,6 +47,8 @@ development Uroboros will allow any data structre to be used for ordering - even
 | access.hour |
 | access.minute |
 | access.second |
+| access.date |
+| access.clock |
 | creation.year |
 | creation.month |
 | creation.wekday |
@@ -54,6 +56,8 @@ development Uroboros will allow any data structre to be used for ordering - even
 | creation.hour |
 | creation.minute |
 | creation.second |
+| creation.date |
+| creation.clock |
 | modification.year |
 | modification.month |
 | modification.wekday |
@@ -61,4 +65,5 @@ development Uroboros will allow any data structre to be used for ordering - even
 | modification.hour |
 | modification.minute |
 | modification.second |
-
+| modification.date |
+| modification.clock |
