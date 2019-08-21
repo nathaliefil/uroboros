@@ -25,6 +25,15 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                 case OrderByVariable.Size:
                     return FileInnerVariable.GetSize(s1).Equals(FileInnerVariable.GetSize(s2));
 
+                case OrderByVariable.IsCorrect:
+                    return FileValidator.IsNameCorrect(s1).Equals(FileValidator.IsNameCorrect(s2));
+
+                case OrderByVariable.IsDirectory:
+                    return FileValidator.IsDirectory(s1).Equals(FileValidator.IsDirectory(s2));
+
+                case OrderByVariable.IsFile:
+                    return FileValidator.IsDirectory(s1).Equals(FileValidator.IsDirectory(s2));
+
                 case OrderByVariable.Access:
                     {
                         if (order is OrderByStructTime)

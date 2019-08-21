@@ -73,6 +73,18 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
                     source = source.OrderBy(s => FileInnerVariable.GetSize(s)).ToList();
                     break;
 
+                case OrderByVariable.IsCorrect:
+                    source = source.OrderBy(s => FileValidator.IsNameCorrect(s)).ToList();
+                    break;
+
+                case OrderByVariable.IsDirectory:
+                    source = source.OrderBy(s => FileValidator.IsDirectory(s)).ToList();
+                    break;
+
+                case OrderByVariable.IsFile:
+                    source = source.OrderBy(s => !FileValidator.IsDirectory(s)).ToList();
+                    break;
+
                 case OrderByVariable.Access:
                     {
                         if (order is OrderByStructTime)

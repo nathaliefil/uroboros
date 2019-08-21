@@ -14,6 +14,9 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         Fullname,
         Modification,
         Name,
-        Size
+        Size,
+        IsCorrect,
+        IsDirectory,
+        IsFile
     }
 }
