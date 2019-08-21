@@ -153,7 +153,7 @@ This command adds new elements (arg1) at the end of existing list variable (arg2
 | ------------- | ------------- |
 | order by | **order** [list variable] **by** [order by variables] 
 
-This command orders list (arg1) by variables (arg2). For more information visit "OrderBy.md".
+This command orders list (arg1) by variables (arg2). For more information visit [order by](OrderBy.md).
 
 
 ### Remove from
