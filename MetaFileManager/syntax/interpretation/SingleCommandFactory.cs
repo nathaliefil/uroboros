@@ -78,7 +78,15 @@ namespace Uroboros.syntax.interpretation
                 }
             }
 
-
+            // command for changing one element of list variable
+            if (tokens.Count >= 6 && tokens[0].GetTokenType().Equals(TokenType.Variable)
+                && tokens[1].GetTokenType().Equals(TokenType.SquareBracketOn)
+                && tokens.Where(t => t.GetTokenType() == TokenType.SquareBracketOff).Any())
+            {
+                ICommand icom = InterpreterVariableElement.Build(tokens);
+                if (!icom.IsNull())
+                    return icom;
+            }
 
             // finally - check if it can be 'print' command
             // this is the last possible command type

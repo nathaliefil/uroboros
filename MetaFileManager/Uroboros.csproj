@@ -233,6 +233,7 @@
     <Compile Include="syntax\interpretation\commands\InterpreterSwap.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterTwoWordsCommand.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterVariableDeclaration.cs" />
+    <Compile Include="syntax\interpretation\commands\InterpreterVariableElement.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterVariableOperation.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterVariablePlusMinus.cs" />
     <Compile Include="syntax\interpretation\CoreCommandFactory.cs" />
