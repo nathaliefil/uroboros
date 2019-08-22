@@ -38,7 +38,7 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildLis(name, args);
             else if (name.Equals("filled") || name.Equals("fill") || name.Equals("repeat") || name.Equals("repeated"))
                 return BuildStrNum(name, args);
-            else if (name.Equals("before") || name.Equals("after"))
+            else if (name.Equals("beforetext") || name.Equals("aftertext") || name.Equals("textbefore") || name.Equals("textafter"))
                 return BuildStrStr(name, args);
             
             return null;
@@ -130,10 +130,10 @@ namespace Uroboros.syntax.interpretation.functions
             if (istr2.IsNull())
                 throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as text.");
 
-            if (name.Equals("before"))
-                return new FuncBefore(istr1, istr2);
-            else if (name.Equals("after"))
-                return new FuncAfter(istr1, istr2);
+            if (name.Equals("beforetext") || name.Equals("textbefore"))
+                return new FuncBeforeText(istr1, istr2);
+            else if (name.Equals("aftertext") || name.Equals("textafter"))
+                return new FuncAfterText(istr1, istr2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

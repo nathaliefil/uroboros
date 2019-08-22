@@ -6,12 +6,12 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.strings
 {
-    class FuncAfter : DefaultStringable
+    class FuncBeforeText : DefaultStringable
     {
         private IStringable arg0;
         private IStringable arg1;
 
-        public FuncAfter(IStringable arg0, IStringable arg1)
+        public FuncBeforeText(IStringable arg0, IStringable arg1)
         {
             this.arg0 = arg0;
             this.arg1 = arg1;
@@ -21,13 +21,12 @@ namespace Uroboros.syntax.functions.strings
         {
             string text = arg0.ToString();
             string phrase = arg1.ToString();
-            int length = phrase.Length;
 
             int index = text.IndexOf(phrase);
             if (index <= 0)
                 return "";
 
-            return text.Substring(index + length);
+            return text.Substring(0, index);
         }
     }
 }

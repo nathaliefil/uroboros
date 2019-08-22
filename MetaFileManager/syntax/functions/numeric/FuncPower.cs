@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
+using System.Collections;
 
 namespace Uroboros.syntax.functions.numeric
 {
@@ -19,7 +20,46 @@ namespace Uroboros.syntax.functions.numeric
 
         public override decimal ToNumber()
         {
-            return (decimal)Math.Pow((double)arg0.ToNumber(), (double)arg1.ToNumber());
+            decimal basis = arg0.ToNumber();
+            decimal power = arg1.ToNumber();
+
+
+            if (power == 0)
+                return 1;
+
+            if (basis == 0)
+                return 0;
+
+            if (power == 1)
+                return basis;
+
+            if (IsInteger(power))
+                return PowerDecimalToInt(basis, (uint)power);
+
+            // need to thing about last return
+            return (decimal)Math.Pow((double)basis, (double)power);
+        }
+
+        public static bool IsInteger(decimal number)
+        {
+            return number == Math.Truncate(number);
+        }
+
+        public static decimal PowerDecimalToInt(decimal x, uint y)
+        {
+            decimal A = 1m;
+            BitArray e = new BitArray(BitConverter.GetBytes(y));
+            int t = e.Count;
+
+            for (int i = t - 1; i >= 0; --i)
+            {
+                A *= A;
+                if (e[i] == true)
+                {
+                    A *= x;
+                }
+            }
+            return A;
         }
     }
 }

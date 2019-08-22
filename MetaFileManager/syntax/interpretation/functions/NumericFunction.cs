@@ -69,16 +69,15 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("round"))
                 return new FuncRound(inu);
             else if (name.Equals("floor"))
-                return new FuncRound(inu);
+                return new FuncFloor(inu);
             else if (name.Equals("ceil") || name.Equals("ceiling"))
-                return new FuncRound(inu);
+                return new FuncCeil(inu);
             else if (name.Equals("sqrt"))
                 return new FuncSqrt(inu);
             else if (name.Equals("ln") || name.Equals("log"))
                 return new FuncLn(inu);
             else if (name.Equals("log10"))
                 return new FuncLog10(inu);
-
             else if (name.Equals("kb"))
                 return new Func__SizeUnit(inu, SizeSufix.KB);
             else if (name.Equals("mb"))

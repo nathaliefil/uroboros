@@ -6,11 +6,11 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.numeric
 {
-    class FloorCeil : DefaultNumerable
+    class FuncFloor : DefaultNumerable
     {
         private INumerable arg0;
 
-        public FloorCeil(INumerable arg0)
+        public FuncFloor(INumerable arg0)
         {
             this.arg0 = arg0;
         }

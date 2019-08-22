@@ -17,8 +17,7 @@ namespace Uroboros.syntax.functions.numeric
 
         public override decimal ToNumber()
         {
-            return Decimal.Floor(arg0.ToNumber()) + 1;
-            // function Decimal.Ceiling do not work - don't know why
+            return Decimal.Ceiling(arg0.ToNumber());
         }
     }
 }

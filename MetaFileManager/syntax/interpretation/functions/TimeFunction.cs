@@ -32,6 +32,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNum(name, args);
             else if (name.Equals("access") || name.Equals("creation") || name.Equals("modification"))
                 return BuildStr(name, args);
+            else if (name.Equals("tomorrow") || name.Equals("yesterday") || name.Equals("now"))
+                return BuildEmpty(name, args);
 
             return null;
         }
@@ -98,6 +100,21 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncCreation(istr);
             else if (name.Equals("modification"))
                 return new FuncModification(istr);
+
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static ITimeable BuildEmpty(string name, List<Argument> args)
+        {
+            if (args.Count != 0)
+                throw new SyntaxErrorException("ERROR! Function " + name + " cannot have arguments.");
+
+            if (name.Equals("tomorrow"))
+                return new FuncTomorrow();
+            else if (name.Equals("yesterday"))
+                return new FuncYesterday();
+            else if (name.Equals("now"))
+                return new FuncNow();
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }

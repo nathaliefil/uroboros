@@ -165,8 +165,8 @@
     <Compile Include="syntax\functions\numeric\FuncYear.cs" />
     <Compile Include="syntax\functions\numeric\FuncLn.cs" />
     <Compile Include="syntax\functions\numeric\FuncYearday.cs" />
-    <Compile Include="syntax\functions\strings\FuncAfter.cs" />
-    <Compile Include="syntax\functions\strings\FuncBefore.cs" />
+    <Compile Include="syntax\functions\strings\FuncAfterText.cs" />
+    <Compile Include="syntax\functions\strings\FuncBeforeText.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonbeginning.cs" />
     <Compile Include="syntax\functions\strings\FuncCommonending.cs" />
     <Compile Include="syntax\functions\strings\FuncMonth.cs" />
@@ -179,6 +179,9 @@
     <Compile Include="syntax\functions\time\FuncEaster.cs" />
     <Compile Include="syntax\functions\time\FuncModification.cs" />
     <Compile Include="syntax\functions\time\FuncNewyear.cs" />
+    <Compile Include="syntax\functions\time\FuncNow.cs" />
+    <Compile Include="syntax\functions\time\FuncTomorrow.cs" />
+    <Compile Include="syntax\functions\time\FuncYesterday.cs" />
     <Compile Include="syntax\interpretation\CommandListFactory.cs" />
     <Compile Include="syntax\commands\core\Copy.cs" />
     <Compile Include="syntax\commands\core\CopyTo.cs" />
