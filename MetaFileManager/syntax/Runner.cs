@@ -8,7 +8,7 @@ using Uroboros.syntax.commands.structures;
 using Uroboros.syntax.structures;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.interpretation.vars_range;
-using Uroboros.syntax.reading;
+using Uroboros.syntax.lexer;
 using Uroboros.syntax.interpretation;
 
 namespace Uroboros.syntax

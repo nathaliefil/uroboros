@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Uroboros.syntax.reading;
+using Uroboros.syntax.lexer;
 
 namespace Uroboros.syntax.interpretation.functions.arg
 {

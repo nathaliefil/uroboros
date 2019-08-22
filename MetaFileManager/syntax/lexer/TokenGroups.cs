@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax.expressions.bools;
 using Uroboros.syntax.expressions.numeric;
 
-namespace Uroboros.syntax.reading
+namespace Uroboros.syntax.lexer
 {
     class TokenGroups
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Uroboros.syntax.reading
+namespace Uroboros.syntax.lexer
 {
     class Brackets
     {
@@ -95,12 +95,5 @@ namespace Uroboros.syntax.reading
             }
             return false;
         }
-    }
-
-    public enum BracketsType
-    {
-        Normal,
-        Curly,
-        Square
     }
 }

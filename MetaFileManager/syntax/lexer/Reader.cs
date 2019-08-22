@@ -5,7 +5,7 @@ using System.Text;
 using Uroboros.syntax;
 using Uroboros.syntax.runtime;
 
-namespace Uroboros.syntax.reading
+namespace Uroboros.syntax.lexer
 {
     class Reader
     {

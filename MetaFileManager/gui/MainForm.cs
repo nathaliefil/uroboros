@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Uroboros.syntax;
 using Uroboros.syntax.commands;
-using Uroboros.syntax.reading;
+using Uroboros.syntax.lexer;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.commands.core;
 using Uroboros.syntax.variables.abstracts;

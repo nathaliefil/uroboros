@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Uroboros.syntax.expressions.list.subcommands;
-using Uroboros.syntax.reading;
+using Uroboros.syntax.lexer;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.expressions.list.subcommands.orderby;
 using Uroboros.syntax.variables;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.variables;
-using Uroboros.syntax.reading;
+using Uroboros.syntax.lexer;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.variables.refers;
 using Uroboros.syntax.expressions.list;
