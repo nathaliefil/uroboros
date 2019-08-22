@@ -411,22 +411,43 @@ This function returns time of last modification of to file or directory with spe
 
 This function returns time of New Year (arg1).
 
+### Now
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| now  | ( ) | (Time)
+
+This function returns current system time.
+
+### Tomorrow
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| tomorrow  | ( ) | (Time)
+
+This function returns tomorrow date with current system time.
+
+### Yesterday
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| yesterday  | ( ) | (Time)
+
+This function returns yesterday date with current system time.
+
 ---
 
 # **Text Functions**
 
-### After
+### AfterText
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| after  | (Text, Text) | (Text)
+| aftertext, textafter  | (Text, Text) | (Text)
 
 This function returns part of base text (arg1), which appears after first occurance of phrase (arg2) inside base text (arg1). If text (arg2) cannot be found inside base text (arg1), empty text "" is returned.
 
 
-### Before
+### BeforeText
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| before  | (Text, Text) | (Text)
+| beforetext, textbefore  | (Text, Text) | (Text)
 
 This function returns part of base text (arg1), which appears before first occurance of phrase (arg2) inside base text (arg1). If text (arg2) cannot be found inside base text (arg1), empty text "" is returned.
 
