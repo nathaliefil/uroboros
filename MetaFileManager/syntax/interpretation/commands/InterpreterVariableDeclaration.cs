@@ -9,6 +9,7 @@ using Uroboros.syntax.interpretation.expressions;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.commands.var;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.interpretation.commands
 {
@@ -22,6 +23,9 @@ namespace Uroboros.syntax.interpretation.commands
 
             if(tokens.Count == 0)
                 throw new SyntaxErrorException("ERROR! Variable " + name +" has no assigned value.");
+
+            if (name.Contains('.'))
+                return BuildWithPoint(tokens, name);
 
             if (!InterVariables.GetInstance().Contains(name))
             {
@@ -113,6 +117,54 @@ namespace Uroboros.syntax.interpretation.commands
                     }
                 }
             }
+        }
+
+        private static ICommand BuildWithPoint(List<Token> tokens, string name)
+        {
+            if (name.Count(c => c == '.') > 1)
+                throw new SyntaxErrorException("ERROR! Variable " + name + " contains multiple dot signs and because of that misguides compiler.");
+
+            string leftSide = name.Substring(0, name.IndexOf('.')).ToLower();
+            string rightSide = name.Substring(name.IndexOf('.') + 1).ToLower();
+
+            if (leftSide.Length == 0 || rightSide.Length == 0)
+                return null;
+
+            if (InterVariables.GetInstance().Contains(leftSide, InterVarType.Time))
+            {
+                if (!InterVariables.GetInstance().ContainsChangable(leftSide, InterVarType.Time))
+                    throw new SyntaxErrorException("ERROR! Variable " + leftSide + " cannot be modified.");
+
+                INumerable inum = NumerableBuilder.Build(tokens);
+                if (inum.IsNull())
+                    return null;
+
+                switch (rightSide)
+                {
+                    case "year":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Year, inum);
+                    case "month":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Month, inum);
+                    case "day":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Day, inum);
+                    case "weekday":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.WeekDay, inum);
+                    case "hour":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Hour, inum);
+                    case "minute":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Minute, inum);
+                    case "second":
+                        return new TimeElementDeclaration(leftSide, TimeVariableType.Second, inum);
+                    case "clock":
+                        throw new SyntaxErrorException("ERROR! Clock of variable " + leftSide + " can be changed only by actualizing hours, minutes and seconds separately.");
+                    case "date":
+                        throw new SyntaxErrorException("ERROR! Date of variable " + leftSide + " can be changed only by actualizing year, month and day separately.");
+                    default:
+                        throw new SyntaxErrorException("ERROR! Property " + rightSide + " of variable " + leftSide + " do not exist.");
+                }
+            }
+            else
+                throw new SyntaxErrorException("ERROR! Variable " + leftSide + " do not exist.");
         }
     }
 }

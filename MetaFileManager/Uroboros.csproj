@@ -108,6 +108,7 @@
     <Compile Include="syntax\commands\var\ListElementDeclaration.cs" />
     <Compile Include="syntax\commands\var\Swap.cs" />
     <Compile Include="syntax\commands\var\TimeDeclaration.cs" />
+    <Compile Include="syntax\commands\var\TimeElementDeclaration.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperator.cs" />
     <Compile Include="syntax\expressions\bools\BoolExpressionOperatorType.cs" />
     <Compile Include="syntax\expressions\bools\BoolTernary.cs" />

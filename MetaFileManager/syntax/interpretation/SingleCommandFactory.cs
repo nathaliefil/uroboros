@@ -60,12 +60,14 @@ namespace Uroboros.syntax.interpretation
                     return InterpreterSwap.Build(tokens);
             }
 
-            // commands for variables
+            // commands for variables actualization
             if (tokens.Count >= 2 && tokens[0].GetTokenType().Equals(TokenType.Variable))
             {
                 if (tokens[1].GetTokenType().Equals(TokenType.Equals))
                 {
-                    return InterpreterVariableDeclaration.Build(tokens);
+                    ICommand icom = InterpreterVariableDeclaration.Build(tokens);
+                    if (!icom.IsNull())
+                        return icom;
                 }
                 if (tokens[1].GetTokenType().Equals(TokenType.PlusPlus)
                     || tokens[1].GetTokenType().Equals(TokenType.MinusMinus))

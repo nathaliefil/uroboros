@@ -208,5 +208,15 @@ namespace Uroboros.syntax.runtime
                 }
             }
         }
+
+        public void SetElementOfTime(string name, decimal value, TimeVariableType type)
+        {
+            if (variables.Where(v => v.GetName().Equals(name)).Count() == 1)
+            {
+                Named nv = variables.First(v => v.GetName().Equals(name));
+                if (nv is TimeVariable)
+                    (nv as TimeVariable).SetElementValue(value, type);
+            }
+        }
     }
 }
