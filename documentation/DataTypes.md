@@ -24,6 +24,11 @@ Logic type can have only two values: "true" and "false". When treated as number,
 
 The easiest way to initiate value of logic type is to use two keywords: "true" and "false". They are insensitive to case size.
 
+| Structure | Returns |
+| --------- | ------- |
+| **true** | (Logic) |
+| **false** | (Logic) |
+
 ### Logic Variable
 
 Logic variable can be called by simply typing its name.
