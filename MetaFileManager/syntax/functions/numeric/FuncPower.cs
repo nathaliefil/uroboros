@@ -34,10 +34,31 @@ namespace Uroboros.syntax.functions.numeric
                 return basis;
 
             if (IsInteger(power))
-                return PowerDecimalToInt(basis, (uint)power);
+            {
+                if (basis > 0)
+                {
+                    if (power > 0)
+                        return PowerDecimalToInt(basis, (uint)power);
+                    else
+                        return 1 / PowerDecimalToInt(basis, (uint)-power);
+                }
+                else
+                {
+                    decimal sign = power % 2 == 0 ? 1M : -1M;
 
-            // need to thing about last return
-            return (decimal)Math.Pow((double)basis, (double)power);
+                    if (power > 0)
+                        return sign * PowerDecimalToInt(-basis, (uint)power);
+                    else
+                        return sign / PowerDecimalToInt(-basis, (uint)-power);
+                }
+            }
+            else
+            {
+                if (basis < 0)
+                    throw new RuntimeException("RUNTIME ERROR! Exponentiation of a negative number resulted in complex number.");
+                else
+                    return (decimal)Math.Pow((double)basis, (double)power);
+            }
         }
 
         public static bool IsInteger(decimal number)

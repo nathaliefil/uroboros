@@ -31,7 +31,8 @@ namespace Uroboros.syntax.interpretation.functions
             if (name.Equals("round") || name.Equals("floor") || name.Equals("ceil") || name.Equals("ceiling")
                 || name.Equals("sqrt") || name.Equals("ln") || name.Equals("log")
                 || name.Equals("log10") || name.Equals("kb") || name.Equals("mb")
-                || name.Equals("gb") || name.Equals("tb") || name.Equals("pb"))
+                || name.Equals("gb") || name.Equals("tb") || name.Equals("pb") || name.Equals("k")
+                || name.Equals("kk") || name.Equals("factorial"))
                 return BuildNum(name, args);
             else if (name.Equals("power") || name.Equals("pow"))
                 return BuildNumNum(name, args);
@@ -74,10 +75,16 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncCeil(inu);
             else if (name.Equals("sqrt"))
                 return new FuncSqrt(inu);
+            else if (name.Equals("factorial"))
+                return new FuncFactorial(inu);
             else if (name.Equals("ln") || name.Equals("log"))
                 return new FuncLn(inu);
             else if (name.Equals("log10"))
                 return new FuncLog10(inu);
+            else if (name.Equals("k"))
+                return new Func__SizeUnit(inu, SizeSufix.K);
+            else if (name.Equals("kk"))
+                return new Func__SizeUnit(inu, SizeSufix.KK);
             else if (name.Equals("kb"))
                 return new Func__SizeUnit(inu, SizeSufix.KB);
             else if (name.Equals("mb"))

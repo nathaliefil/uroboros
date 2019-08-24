@@ -148,6 +148,7 @@
     <Compile Include="syntax\functions\bools\FuncIsDirectory.cs" />
     <Compile Include="syntax\functions\bools\FuncIsFile.cs" />
     <Compile Include="syntax\functions\numeric\FuncAverage.cs" />
+    <Compile Include="syntax\functions\numeric\FuncFactorial.cs" />
     <Compile Include="syntax\functions\numeric\FuncGoldenratio.cs" />
     <Compile Include="syntax\functions\numeric\FuncIndexof.cs" />
     <Compile Include="syntax\functions\numeric\FuncLengthoflongest.cs" />

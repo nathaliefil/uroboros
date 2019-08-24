@@ -31,8 +31,9 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNum(name, args);
             else if (name.Equals("substring"))
                 return BuildSubstring(name, args);
-            else if (name.Equals("upper") || name.Equals("lower") || name.Equals("digits") || name.Equals("letters") 
-                || name.Equals("trim") || name.Equals("name") || name.Equals("fullname") || name.Equals("extension"))
+            else if (name.Equals("upper") || name.Equals("lower") || name.Equals("tolower") || name.Equals("toupper")
+                || name.Equals("digits") || name.Equals("letters") || name.Equals("trim") || name.Equals("name") 
+                || name.Equals("fullname") || name.Equals("extension"))
                 return BuildStr(name, args);
             else if (name.Equals("commonbeginning") || name.Equals("commonending"))
                 return BuildLis(name, args);
@@ -77,9 +78,9 @@ namespace Uroboros.syntax.interpretation.functions
             if (istr.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as text.");
 
-            if (name.Equals("upper"))
+            if (name.Equals("upper") || name.Equals("toupper"))
                 return new FuncUpper(istr);
-            else if (name.Equals("lower"))
+            else if (name.Equals("lower") || name.Equals("tolower"))
                 return new FuncLower(istr);
             else if (name.Equals("digits"))
                 return new FuncDigits(istr);
