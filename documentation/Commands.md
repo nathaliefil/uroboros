@@ -206,7 +206,7 @@ These commands are used to modify values of existing numeric variables.
 This command swaps values of two variables. They have to be of the same data type.
  
 | Name  | Structure | Alternative Structure |
-| ------------- | ------------- | 
+| ------------- | ------------- | ------------- | 
 | logic variables swap | **swap** [logic variable] **and** [logic variable] | **swap** [logic variable] **with** [logic variable] |
 | numeric variables swap | **swap** [numeric variable] **and** [numeric variable] | **swap** [numeric variable] **with** [numeric variable] |
 | time variables swap |  **swap** [time variable] **and** [time variable] | **swap** [time variable] **with** [time variable] |
