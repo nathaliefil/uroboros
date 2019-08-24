@@ -114,6 +114,14 @@ This function returns number of days (as integer) between two dates: (arg1) and 
 This function returns Euler's number - the base of the natural logarithm.
 
 
+### Factorial
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| factorial  | (Number) | (Number)
+
+This function returns factorial of (arg1).
+
+
 ### Floor
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -154,12 +162,29 @@ This function returns number of hours (as integer) between two dates: (arg1) and
 This function returns the zero-based index of the first occurrence of a text (arg2) within the base text (arg1). If text (arg2) cannot be found inside base text (arg1), -1 is returned.
 
 
+### K
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| k  | (Number) | (Number)
+
+This function returns number (arg1) multiplied by 1000.
+
+
 ### Kb
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | kb  | (Number) | (Number)
 
 This function returns number of bytes in (arg1) of kilobytes.
+
+
+### Kk
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| kk  | (Number) | (Number)
+
+This function returns number (arg1) multiplied by 1000000 (one million).
+
 
 ### Length
 | Names  | Arguments | Returns |
@@ -527,7 +552,7 @@ This function takes all letters from text (arg1) and returns it as a new text.
 ### Lower
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| lower  | (Text) | (Text)
+| lower, tolower  | (Text) | (Text)
 
 This function returns text (arg1) with all letters transformed into lowercase.
 
@@ -583,7 +608,7 @@ This function returns text (arg1) with removed all white characters (spaces, tab
 ### Upper
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| upper  | (Text) | (Text)
+| upper, toupper  | (Text) | (Text)
 
 This function returns text (arg1) with all letters transformed into uppercase.
 
