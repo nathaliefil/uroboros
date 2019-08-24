@@ -172,9 +172,24 @@ This command removes elements (arg1) from list variable (arg2). First argument o
 This command reverses order of elements in list variable (arg1).
 
 
-# **Arithmetic commands**
+# **Variables**
 
-Arithmetic commands are used to modify values of numeric variables.
+### Declaration Of Variable
+
+This command assigns value to variable. First assignment of variable sets its type: [logic], [number], [time], [text] or [list]. After that it is not possible to change type of variable - there is only one exception (command Add To). For more information about stored data visit [data types](DataTypes.md).
+
+| Name  | Structure |
+| ------------- | ------------- | 
+| logic variable declaration | [variable name] **=** [logic] |
+| numeric variable declaration |[variable name] **=** [number] |
+| time variable declaration | [variable name] **=** [time] |
+| text variable declaration | [variable name] **=** [text] |
+| list variable declaration | [variable name] **=** [list] | 
+
+
+### Arithmetic Commands
+
+These commands are used to modify values of existing numeric variables.
 
 | Structure | Effect |
 | ------------- | ------------- | 
@@ -186,18 +201,17 @@ Arithmetic commands are used to modify values of numeric variables.
 | [numeric variable] **++** | Increment variable (arg1) by 1. |
 | [numeric variable] **--** | Decrement variable (arg1) by 1. |
 
+### Swap
 
-# **Variable declaration commands**
-
-These commands assign values to variables. First assignment of variable sets its type: [logic], [number], [time], [text] or [list]. After that it is not possible to change type of variable - there is only one exception (command Add To). For more information visit "DataStructures.md".
-
-| Structure | Effect |
+This command swaps values of two variables. They have to be of the same data type.
+ 
+| Name  | Structure | Alternative Structure |
 | ------------- | ------------- | 
-| [variable name] **=** [logic] | Declaration of logic variable. |
-| [variable name] **=** [number] | Declaration of numeric variable. |
-| [variable name] **=** [time] | Declaration of time variable. |
-| [variable name] **=** [text] | Declaration of text variable. |
-| [variable name] **=** [list] | Declaration of list variable. |
+| logic variables swap | **swap** [logic variable] **and** [logic variable] | **swap** [logic variable] **with** [logic variable] |
+| numeric variables swap | **swap** [numeric variable] **and** [numeric variable] | **swap** [numeric variable] **with** [numeric variable] |
+| time variables swap |  **swap** [time variable] **and** [time variable] | **swap** [time variable] **with** [time variable] |
+| text variables swap |  **swap** [text variable] **and** [text variable] | **swap** [text variable] **with** [text variable] |
+| list variables swap |  **swap** [list variable] **and** [list variable] | **swap** [list variable] **with** [list variable] |
 
 
 # **Two-word commands**
