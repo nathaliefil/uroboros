@@ -36,17 +36,17 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 paths.Add(location);
+                DataObject data = new DataObject();
+                data.SetFileDropList(paths);
+                data.SetData("Preferred DropEffect", DragDropEffects.Move);
+                Clipboard.SetDataObject(data, true);
+
                 Logger.GetInstance().LogCommand("Cut " + fileName);
             }
             catch (Exception)
             {
                 throw new CommandException("Action ignored! Something went wrong during cutting " + fileName + ".");
             }
-
-            DataObject data = new DataObject();
-            data.SetFileDropList(paths);
-            data.SetData("Preferred DropEffect", DragDropEffects.Move);
-            Clipboard.SetDataObject(data, true);
         }
     }
 }
