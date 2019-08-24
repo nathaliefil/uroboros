@@ -87,5 +87,51 @@ namespace Uroboros.syntax.lexer
         {
             return VARIABLE_OPERATION.Contains(type);
         }
+
+        public static bool ContainsTokenOutsideBrackets(List<Token> tokens, TokenType type)
+        {
+            int index = IndexOfTokenOutsideBrackets(tokens, type);
+            return index != -1;
+        }
+
+        public static int IndexOfTokenOutsideBrackets(List<Token> tokens, TokenType type)
+        {
+            int level = 0;
+            int index = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+                else if (tok.GetTokenType().Equals(type))
+                {
+                    if (level == 0)
+                        return index;
+                }
+                index++;
+            }
+            return -1;
+        }
+
+        public static bool ContainsArithmeticTokensOutsideBrackets(List<Token> tokens)
+        {
+            int level = 0;
+
+            foreach (Token tok in tokens)
+            {
+                if (tok.GetTokenType().Equals(TokenType.BracketOn))
+                    level++;
+                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
+                    level--;
+                else if (IsArithmeticSign(tok.GetTokenType()))
+                {
+                    if (level == 0)
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -12,8 +12,8 @@ namespace Uroboros.syntax.interpretation.expressions
     {
         public static bool IsPossibleTernary(List<Token> tokens)
         {
-            int questionIndex = IndexOfQuestionMark(tokens);
-            int colonIndex = IndexOfColon(tokens);
+            int questionIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.QuestionMark);
+            int colonIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Colon);
 
             // there is not question mark / colon
             if (questionIndex == -1 || colonIndex == -1)
@@ -34,65 +34,22 @@ namespace Uroboros.syntax.interpretation.expressions
             return true;
         }
 
-        private static int IndexOfQuestionMark(List<Token> tokens)
-        {
-            int level = 0;
-            int index = 0;
-
-            foreach (Token tok in tokens)
-            {
-                if (tok.GetTokenType().Equals(TokenType.BracketOn))
-                    level++;
-                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
-                    level--;
-                else if (tok.GetTokenType().Equals(TokenType.QuestionMark))
-                {
-                    if (level == 0)
-                        return index;
-                }
-                index++;
-            }
-            return -1;
-        }
-
-
-        private static int IndexOfColon(List<Token> tokens)
-        {
-            int level = 0;
-            int index = 0;
-
-            foreach (Token tok in tokens)
-            {
-                if (tok.GetTokenType().Equals(TokenType.BracketOn))
-                    level++;
-                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
-                    level--;
-                else if (tok.GetTokenType().Equals(TokenType.Colon))
-                {
-                    if (level == 0)
-                        return index;
-                }
-                index++;
-            }
-            return -1;
-        }
-
         private static List<Token> GetTernaryCondition(List<Token> tokens)
         {
-            int questionIndex = IndexOfQuestionMark(tokens);
+            int questionIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.QuestionMark);
             return tokens.Take(questionIndex).ToList();
         }
 
         private static List<Token> GetTernaryConfirmation(List<Token> tokens)
         {
-            int questionIndex = IndexOfQuestionMark(tokens);
-            int colonIndex = IndexOfColon(tokens);
+            int questionIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.QuestionMark);
+            int colonIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Colon);
             return tokens.GetRange(questionIndex + 1, colonIndex - questionIndex - 1);
         }
 
         private static List<Token> GetTernaryNegation(List<Token> tokens)
         {
-            int colonIndex = IndexOfColon(tokens);
+            int colonIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Colon);
             return tokens.Skip(colonIndex + 1).ToList();
         }
 

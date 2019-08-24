@@ -249,6 +249,7 @@
     <Compile Include="syntax\interpretation\functions\arg\ArgumentsExtractor.cs" />
     <Compile Include="syntax\interpretation\functions\arg\Argument.cs" />
     <Compile Include="syntax\interpretation\functions\BoolFunction.cs" />
+    <Compile Include="syntax\interpretation\functions\Functions.cs" />
     <Compile Include="syntax\interpretation\functions\NumericFunction.cs" />
     <Compile Include="syntax\interpretation\functions\StringFunction.cs" />
     <Compile Include="syntax\interpretation\functions\TimeFunction.cs" />

@@ -58,8 +58,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             //try to build string function
-            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
-                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            if (Functions.IsPossibleFunction(tokens))
             {
                 IStringable istr = StringFunction.Build(tokens);
                 if (!istr.IsNull())
@@ -84,7 +83,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build concatenated string -> text merged by +
-            if(ContainsPluses(tokens))
+            if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.Plus) && !TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.Comma))
                 return BuildConcatenated(tokens);
             else
                 return null;
@@ -206,28 +205,6 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new StringExpression(elements);
 
             return null;
-        }
-
-
-        private static bool ContainsPluses(List<Token> tokens)
-        {
-            int level = 0;
-            int index = 0;
-
-            foreach (Token tok in tokens)
-            {
-                if (tok.GetTokenType().Equals(TokenType.BracketOn))
-                    level++;
-                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
-                    level--;
-                else if (tok.GetTokenType().Equals(TokenType.Plus))
-                {
-                    if (level == 0)
-                        return true;
-                }
-                index++;
-            }
-            return false;
         }
 
         public static IStringable BuildListElement(List<Token> tokens)

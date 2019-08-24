@@ -68,7 +68,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build listed lists/strings: many Listables/Stringables divided by commas
-            if (ContainsCommas(tokens))
+            if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.Comma))
             {
                 IListable listed = BuildListed(tokens);
                 if (!listed.IsNull())
@@ -166,10 +166,10 @@ namespace Uroboros.syntax.interpretation.expressions
             {
                 if (tokens[i].GetTokenType().Equals(TokenType.BracketOn))
                     level++;
-                else if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
+                if (tokens[i].GetTokenType().Equals(TokenType.BracketOff))
                     level--;
 
-                else if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
+                if (tokens[i].GetTokenType().Equals(TokenType.Comma) && level == 0)
                 {
                     if (currentTokens.Count > 0)
                     {
@@ -211,27 +211,6 @@ namespace Uroboros.syntax.interpretation.expressions
                 else
                     return new ListedListables(elements);
             }
-        }
-
-        private static bool ContainsCommas(List<Token> tokens)
-        {
-            int level = 0;
-            int index = 0;
-
-            foreach (Token tok in tokens)
-            {
-                if (tok.GetTokenType().Equals(TokenType.BracketOn))
-                    level++;
-                else if (tok.GetTokenType().Equals(TokenType.BracketOff))
-                    level--;
-                else if (tok.GetTokenType().Equals(TokenType.Comma))
-                {
-                    if (level == 0)
-                        return true;
-                }
-                index++;
-            }
-            return false;
         }
     }
 }

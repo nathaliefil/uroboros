@@ -61,8 +61,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build numeric function
-            if (tokens.Count > 2 && tokens[0].GetTokenType().Equals(TokenType.Variable) && tokens[1].GetTokenType().Equals(TokenType.BracketOn)
-                && tokens[tokens.Count - 1].GetTokenType().Equals(TokenType.BracketOff))
+            if (Functions.IsPossibleFunction(tokens))
             {
                 INumerable inu = NumericFunction.Build(tokens);
                 if (!inu.IsNull())
@@ -70,16 +69,10 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build expression: many elements with operators +, -, *, /, %
-            if (ContainsArithmeticTokens(tokens))
+            if (TokenGroups.ContainsArithmeticTokensOutsideBrackets(tokens))
                 return BuildExpression(tokens);
-                //return null;
             else
                 return null;
-        }
-
-        private static bool ContainsArithmeticTokens(List<Token> tokens)
-        {
-            return tokens.Where(x => TokenGroups.IsArithmeticSign(x.GetTokenType())).Any();
         }
 
         private static INumerable BuildTimeVariableRefer(Token token)
