@@ -213,6 +213,26 @@ This command swaps values of two variables. They have to be of the same data typ
 | text variables swap |  **swap** [text variable] **and** [text variable] | **swap** [text variable] **with** [text variable] |
 | list variables swap |  **swap** [list variable] **and** [list variable] | **swap** [list variable] **with** [list variable] |
 
+### Declaration Of List Variable Element
+
+This command assigns value to element of list at specified index (number inside square brackets).
+
+| Name  | Structure |
+| ------------- | ------------- | 
+| declaration of list variable element | [list variable] [ [number] ] *=* [text] |
+
+### Declaration Of Time Variable Element
+
+This command assigns value to specified part of time variable. For example day or hour can be changed.
+
+| Name  | Structure |
+| ------------- | ------------- | 
+| declaration of time variable year | [time variable]**.year** = [number] |
+| declaration of time variable month | [time variable]**.month** = [number] |
+| declaration of time variable day | [time variable]**.day** = [number] |
+| declaration of time variable hour | [time variable]**.hour** = [number] |
+| declaration of time variable minute | [time variable]**.minute** = [number] |
+| declaration of time variable second | [time variable]**.second** = [number] |
 
 # **Two-word commands**
 
