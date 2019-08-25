@@ -40,7 +40,8 @@ namespace Uroboros.gui
 
             // paint strings
             Range allRange = (sender as FastColoredTextBox).Range;
-            allRange.SetStyle(StringStyle, "\".*?\"");
+            allRange.ClearStyle(StringStyle);
+            allRange.SetStyle(StringStyle, new Regex("\".*?\"", RegexOptions.Singleline));
 
 
             // paint usual keywords

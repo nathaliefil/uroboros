@@ -114,7 +114,7 @@ namespace Uroboros.syntax.interpretation.expressions
                 return null;
             }
             else
-                throw new SyntaxErrorException("ERROR! Variable " + leftSide + " do not exist.");
+                throw new SyntaxErrorException("ERROR! Time variable " + leftSide + " do not exist.");
         }
 
         private static INumerable BuildExpression(List<Token> tokens)

@@ -45,7 +45,7 @@ namespace FastColoredTextBoxNS
         /// </summary>
         [Description("Scale")]
         [DefaultValue(0.3f)]
-        public new float Scale // added "new"
+        public new float Scale // add new
         {
             get { return scale; }
             set

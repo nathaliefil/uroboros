@@ -192,6 +192,7 @@
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStructDate.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStructTime.cs" />
     <Compile Include="syntax\expressions\list\subcommands\With.cs" />
+    <Compile Include="syntax\expressions\numeric\Count.cs" />
     <Compile Include="syntax\expressions\numeric\INumericExpressionElement.cs" />
     <Compile Include="syntax\expressions\numeric\NegatedNumerable.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperator.cs" />
@@ -454,6 +455,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
