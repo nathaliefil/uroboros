@@ -36,6 +36,11 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildLis(name, args);
             else if (name.Equals("contain") || name.Equals("contains"))
                 return BuildLisStr(name, args);
+            else if (name.Equals("samedate") || name.Equals("samedates")
+                || name.Equals("thesamedate") || name.Equals("thesamedates")
+                || name.Equals("sameclock") || name.Equals("sameclocks")
+                || name.Equals("thesameclock") || name.Equals("thesameclocks"))
+                return BuildTimTim(name, args);
 
             return null;
         }
@@ -79,6 +84,29 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("existinside") || name.Equals("existsinside"))
                 return new FuncExistinside(istr1, istr2);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static IBoolable BuildTimTim(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 time arguments.");
+
+            ITimeable itim1 = TimeableBuilder.Build(args[0].tokens);
+            ITimeable itim2 = TimeableBuilder.Build(args[1].tokens);
+
+            if (itim1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as time.");
+            if (itim2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as time.");
+
+            if (name.Equals("samedate") || name.Equals("samedates")
+                || name.Equals("thesamedate") || name.Equals("thesamedates"))
+                return new FuncSameDates(itim1, itim2);
+            else if (name.Equals("sameclock") || name.Equals("sameclocks")
+                || name.Equals("thesameclock") || name.Equals("thesameclocks"))
+                return new FuncSameDates(itim1, itim2);
+
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
