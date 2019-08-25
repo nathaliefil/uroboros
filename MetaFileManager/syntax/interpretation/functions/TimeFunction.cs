@@ -32,8 +32,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return BuildNum(name, args);
             else if (name.Equals("access") || name.Equals("creation") || name.Equals("modification"))
                 return BuildStr(name, args);
-            else if (name.Equals("tomorrow") || name.Equals("yesterday") || name.Equals("now"))
-                return BuildEmpty(name, args);
+            else if (name.Equals("tomorrow") || name.Equals("yesterday") || name.Equals("today"))
+                return BuildWithArgs023(name, args);
 
             return null;
         }
@@ -60,6 +60,34 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("date"))
                 return new FuncDate(inu1, inu2, inu3);
+            else if (name.Equals("tomorrow"))
+                return new FuncTomorrow__3args(inu1, inu2, inu3);
+            else if (name.Equals("yesterday"))
+                return new FuncYesterday__3args(inu1, inu2, inu3);
+            else if (name.Equals("today"))
+                return new FuncToday__3args(inu1, inu2, inu3);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static ITimeable BuildNumNum(string name, List<Argument> args)
+        {
+            if (args.Count != 2)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 2 numeric arguments.");
+
+            INumerable inu1 = NumerableBuilder.Build(args[0].tokens);
+            INumerable inu2 = NumerableBuilder.Build(args[1].tokens);
+
+            if (inu1.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as number.");
+            if (inu2.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
+
+            if (name.Equals("tomorrow"))
+                return new FuncTomorrow__2args(inu1, inu2);
+            else if (name.Equals("yesterday"))
+                return new FuncYesterday__2args(inu1, inu2);
+            else if (name.Equals("today"))
+                return new FuncToday__2args(inu1, inu2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
@@ -110,13 +138,26 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function " + name + " cannot have arguments.");
 
             if (name.Equals("tomorrow"))
-                return new FuncTomorrow();
+                return new FuncTomorrow__0args();
             else if (name.Equals("yesterday"))
-                return new FuncYesterday();
-            else if (name.Equals("now"))
-                return new FuncNow();
+                return new FuncYesterday__0args();
+            else if (name.Equals("today"))
+                return new FuncToday__0args();
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        // these functions can have 0, 2 or 3 arguments
+        public static ITimeable BuildWithArgs023(string name, List<Argument> args)
+        {
+            if (args.Count == 0)
+                return BuildEmpty(name, args);
+            else if (args.Count == 2)
+                return BuildNumNum(name, args);
+            else if (args.Count == 3)
+                return BuildNumNumNum(name, args);
+
+            throw new SyntaxErrorException("ERROR! Function " + name + " has to have 0, 2 or 3 numeric arguments.");
         }
     }
 }

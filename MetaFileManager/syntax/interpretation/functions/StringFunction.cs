@@ -115,6 +115,29 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncFilled(istr, inu);
             else if (name.Equals("repeat") || name.Equals("repeated"))
                 return new FuncRepeat(istr, inu);
+            else if (name.Equals("substring"))
+                return new FuncSubstring__2args(istr, inu);
+            throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
+        }
+
+        public static IStringable BuildStrNumNum(string name, List<Argument> args)
+        {
+            if (args.Count != 3)
+                throw new SyntaxErrorException("ERROR! Function " + name + " has to have 3 arguments: one text and two numbers.");
+
+            IStringable istr = StringableBuilder.Build(args[0].tokens);
+            INumerable inu1 = NumerableBuilder.Build(args[1].tokens);
+            INumerable inu2 = NumerableBuilder.Build(args[2].tokens);
+
+            if (istr.IsNull())
+                throw new SyntaxErrorException("ERROR! First argument of function " + name + " cannot be read as text.");
+            if (inu1.IsNull())
+                throw new SyntaxErrorException("ERROR! Second argument of function " + name + " cannot be read as number.");
+            if (inu2.IsNull())
+                throw new SyntaxErrorException("ERROR! Third argument of function " + name + " cannot be read as number.");
+
+            if (name.Equals("substring"))
+                return new FuncSubstring__3args(istr, inu1, inu2);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
@@ -160,38 +183,9 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Function substring has to have 2 or 3 arguments.");
 
             if (args.Count == 2)
-                return BuildSubstringWithTwoArgs(args);
+                return BuildStrNum(name, args);
             else
-                return BuildSubstringWithThreeArgs(args);
-        }
-
-        public static IStringable BuildSubstringWithTwoArgs(List<Argument> args)
-        {
-            IStringable istr = StringableBuilder.Build(args[0].tokens);
-            INumerable inu = NumerableBuilder.Build(args[1].tokens);
-
-            if (istr.IsNull())
-                throw new SyntaxErrorException("ERROR! First argument of function substring cannot be read as text.");
-            if (inu.IsNull())
-                throw new SyntaxErrorException("ERROR! Second argument of function substring cannot be read as number.");
-
-            return new FuncSubstring(istr, inu);
-        }
-
-        public static IStringable BuildSubstringWithThreeArgs(List<Argument> args)
-        {
-            IStringable istr = StringableBuilder.Build(args[0].tokens);
-            INumerable inu1 = NumerableBuilder.Build(args[1].tokens);
-            INumerable inu2 = NumerableBuilder.Build(args[2].tokens);
-
-            if (istr.IsNull())
-                throw new SyntaxErrorException("ERROR! First argument of function substring cannot be read as text.");
-            if (inu1.IsNull())
-                throw new SyntaxErrorException("ERROR! Second argument of function substring cannot be read as number.");
-            if (inu2.IsNull())
-                throw new SyntaxErrorException("ERROR! Third argument of function substring cannot be read as number.");
-
-            return new FuncSubstring(istr, inu1, inu2);
+                return BuildStrNumNum(name, args);
         }
     }
 }
