@@ -101,7 +101,7 @@
             this.codeBox.CharWidth = 15;
             this.codeBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.codeBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.codeBox.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.codeBox.Font = new System.Drawing.Font("Consolas", 20.25F);
             this.codeBox.IsReplaceMode = false;
             this.codeBox.Location = new System.Drawing.Point(12, 50);
             this.codeBox.Name = "codeBox";
@@ -111,6 +111,7 @@
             this.codeBox.Size = new System.Drawing.Size(727, 522);
             this.codeBox.TabIndex = 5;
             this.codeBox.Zoom = 100;
+            this.codeBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.codeBox_TextChanged);
             // 
             // MainForm
             // 

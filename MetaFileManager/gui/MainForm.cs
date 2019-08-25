@@ -23,8 +23,6 @@ namespace Uroboros.gui
 {
     public partial class MainForm : Form
     {
-        private const int MIN_WINDOW_WIDTH = 600;
-        private const int MIN_WINDOW_HEIGHT = 200;
 
         public MainForm()
         {
@@ -49,7 +47,7 @@ namespace Uroboros.gui
             }
             else
             {
-                if (codeBox.Text.Length == 0)
+                if (codeBox.Text.Trim().Equals(""))
                 {
                     Log("ERROR! No command found.");
                 }
@@ -61,14 +59,11 @@ namespace Uroboros.gui
                 }
             }
             Log("------------------------------------");
-            //System.GC.Collect();
         }
 
-        private void CodeBoxSettings()
+        private void Log(string text)
         {
-            codeBox.AcceptsTab = true;
-            codeBox.AutoIndent = true;
-
+            Logger.GetInstance().Log(text);
         }
 
         private void directoryButton_Click(object sender, EventArgs e)
@@ -80,37 +75,6 @@ namespace Uroboros.gui
                     locationBox.Text = fldrDlg.SelectedPath;
                 }
             }
-        }
-
-        private void Log(string text)
-        {
-            Logger.GetInstance().Log(text);
-        }
-
-        /*private void codeBox_TextChanged(object sender, EventArgs e)
-        {
-            RefreshCodeBoxGraphics();
-        }*/
-
-        private void MainForm_Resize(object sender, System.EventArgs e)
-        {
-            Control control = (Control)sender;
-
-            codeBox.Height = 522 - 619 + control.Height;
-            logBox.Height = 522 - 619 + control.Height;
-            codeBox.Width = 730 - 1130 + control.Width;
-            logBox.Left = 745 - 1130 + control.Width;
-            locationBox.Width = 978 - 1130 + control.Width;
-            directoryButton.Left = 1068 - 1130 + control.Width;
-
-            // a lot of magic numbers
-            /// to refactor
-
-            if (this.Width < MIN_WINDOW_WIDTH)
-                this.Width = MIN_WINDOW_WIDTH;
-
-            if (this.Height < MIN_WINDOW_HEIGHT)
-                this.Height = MIN_WINDOW_HEIGHT;
         }
     }
 }
