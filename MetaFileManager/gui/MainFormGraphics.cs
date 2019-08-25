@@ -19,6 +19,7 @@ namespace Uroboros.gui
         Style UsualStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         Style InnerVariablesStyle = new TextStyle(Brushes.DarkViolet, null, FontStyle.Regular);
         Style StringStyle = new TextStyle(Brushes.Brown, null, FontStyle.Regular);
+        Style TimeStyle = new TextStyle(Brushes.Crimson, null, FontStyle.Regular);
 
         private void CodeBoxSettings()
         {
@@ -64,8 +65,12 @@ namespace Uroboros.gui
                 |extension|everything|files|fullname|index|iscorrect|isdirectory|isfile|location|modification|
                 |name|now|size|this|path|wholelocation)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(false|true)(?-i)\b");
-            e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(century|decade|year|month|weekday|day|hour|
-                |minute|second|centuries|decades|years|months|days|hours|minutes|seconds)(?-i)\b");
+
+            // paint time keywords
+            e.ChangedRange.ClearStyle(TimeStyle);
+            e.ChangedRange.SetStyle(TimeStyle, @"\b(?i)(century|decade|year|month|weekday|day|hour|
+                |minute|second|centuries|decades|years|months|days|hours|minutes|seconds|january|february|
+                |march|april|may|june|july|august|september|october|november|december)(?-i)\b");
 
         }
 
