@@ -18,7 +18,7 @@ namespace Uroboros.gui
         Style CardinalStyle = new TextStyle(Brushes.Black, null, FontStyle.Bold);
         Style UsualStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         Style InnerVariablesStyle = new TextStyle(Brushes.DarkViolet, null, FontStyle.Regular);
-
+        Style StringStyle = new TextStyle(Brushes.Brown, null, FontStyle.Regular);
 
         private void CodeBoxSettings()
         {
@@ -38,6 +38,9 @@ namespace Uroboros.gui
             wideRange.SetStyle(CommentStyle, @"(/\*.*?\*/)|(.*\*/)", RegexOptions.Singleline |
                         RegexOptions.RightToLeft);
 
+            // paint strings
+            Range allRange = (sender as FastColoredTextBox).Range;
+            allRange.SetStyle(StringStyle, "\".*?\"");
 
 
             // paint usual keywords
@@ -62,10 +65,6 @@ namespace Uroboros.gui
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(false|true)(?-i)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(century|decade|year|month|weekday|day|hour|
                 |minute|second|centuries|decades|years|months|days|hours|minutes|seconds)(?-i)\b");
-
-
-
-
         }
 
         private void MainForm_Resize(object sender, System.EventArgs e)

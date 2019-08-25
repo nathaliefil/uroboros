@@ -105,7 +105,6 @@
     <Compile Include="gui\FastColoredTextBox\MacrosManager.cs" />
     <Compile Include="gui\FastColoredTextBox\Place.cs" />
     <Compile Include="gui\FastColoredTextBox\PlatformType.cs" />
-    <Compile Include="gui\FastColoredTextBox\Properties\AssemblyInfo.cs" />
     <Compile Include="gui\FastColoredTextBox\Range.cs" />
     <Compile Include="gui\FastColoredTextBox\ReplaceForm.cs">
       <SubType>Form</SubType>
