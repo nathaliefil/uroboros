@@ -25,6 +25,7 @@ namespace Uroboros.gui
             codeBox.AcceptsTab = true;
             codeBox.AutoIndent = true;
             codeBox.AutoIndentChars = false;
+            codeBox.BracketsHighlightStrategy = BracketsHighlightStrategy.Strategy2;
         }
 
         private void codeBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -38,18 +39,19 @@ namespace Uroboros.gui
                         RegexOptions.RightToLeft);
 
 
+
+            // paint usual keywords
+            e.ChangedRange.ClearStyle(UsualStyle);
+            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|by|desc|each|else|empty list|
+                |first|for|force|from|if|in|inside|is|last|like|not|or|order by|skip|to|unique|where|while|with|
+                |without|xor)(?-i)\b");
+
+
             // paint cardinal keywords
             e.ChangedRange.ClearStyle(CardinalStyle);
             e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|ask|clear bin|clear log|copy|create|cut|delete|
                 |directory|drop|file|log off|log on|move|open|order|paste|print|reaccess|recreate|remodify|
-                |remove|rename|reverse|run|select|sleep|swap)(?-i)\b");
-
-
-            // paint usual keywords
-            e.ChangedRange.ClearStyle(UsualStyle);
-            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|by|desc|each|else|
-                |first|for|force|from|if|in|inside|is|last|like|not|or|order by|skip|to|unique|where|while|with|
-                |without|xor)(?-i)\b");
+                |remove|rename|reverse|run|select|sleep|swap|uroboros stop)(?-i)\b");
 
 
             // paint inner variables keywords, (true,false), time elements
@@ -62,7 +64,8 @@ namespace Uroboros.gui
                 |minute|second|centuries|decades|years|months|days|hours|minutes|seconds)(?-i)\b");
 
 
-            // todo: clear bin, clear log, log on, log off, uroboros stop, empty list, order by
+
+
         }
 
         private void MainForm_Resize(object sender, System.EventArgs e)

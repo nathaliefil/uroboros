@@ -128,7 +128,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="gui\FastColoredTextBox\VisualMarker.cs" />
-    <Compile Include="gui\HighlightKeywords.cs" />
     <Compile Include="gui\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
