@@ -9,7 +9,7 @@ namespace Uroboros.gui
 {
     partial class MainForm : Form
     {
-        private void RefreshCodeBoxGraphics()
+        /*private void RefreshCodeBoxGraphics()
         {
             ClearGraphics();
 
@@ -105,6 +105,6 @@ namespace Uroboros.gui
                     return indexes;
                 indexes.Add(index);
             }
-        }
+        }*/
     }
 }

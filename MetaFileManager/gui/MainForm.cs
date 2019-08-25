@@ -29,6 +29,7 @@ namespace Uroboros.gui
         public MainForm()
         {
             InitializeComponent();
+            CodeBoxSettings();
             locationBox.Text = "";
             locationBox.TextAlign = HorizontalAlignment.Right;
             logBox.ScrollBars = ScrollBars.Vertical;
@@ -63,6 +64,13 @@ namespace Uroboros.gui
             //System.GC.Collect();
         }
 
+        private void CodeBoxSettings()
+        {
+            codeBox.AcceptsTab = true;
+            codeBox.AutoIndent = true;
+
+        }
+
         private void directoryButton_Click(object sender, EventArgs e)
         {
             using (var fldrDlg = new FolderBrowserDialog())
@@ -79,10 +87,10 @@ namespace Uroboros.gui
             Logger.GetInstance().Log(text);
         }
 
-        private void codeBox_TextChanged(object sender, EventArgs e)
+        /*private void codeBox_TextChanged(object sender, EventArgs e)
         {
             RefreshCodeBoxGraphics();
-        }
+        }*/
 
         private void MainForm_Resize(object sender, System.EventArgs e)
         {

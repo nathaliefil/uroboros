@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.runButton = new System.Windows.Forms.Button();
             this.locationBox = new System.Windows.Forms.TextBox();
             this.directoryButton = new System.Windows.Forms.Button();
             this.logBox = new System.Windows.Forms.TextBox();
-            this.codeBox = new System.Windows.Forms.RichTextBox();
+            this.codeBox = new FastColoredTextBoxNS.FastColoredTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.codeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // runButton
@@ -78,15 +81,36 @@
             // 
             // codeBox
             // 
-            this.codeBox.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.codeBox.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.codeBox.AutoIndentCharsPatterns = "^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;=]+);\n^\\s*(case|default)\\s*[^:]*(" +
+    "?<range>:)\\s*(?<range>[^;]+);";
+            this.codeBox.AutoScrollMinSize = new System.Drawing.Size(41, 31);
+            this.codeBox.BackBrush = null;
+            this.codeBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.codeBox.CharHeight = 31;
+            this.codeBox.CharWidth = 15;
+            this.codeBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.codeBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.codeBox.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.codeBox.IsReplaceMode = false;
             this.codeBox.Location = new System.Drawing.Point(12, 50);
-            this.codeBox.Margin = new System.Windows.Forms.Padding(0);
             this.codeBox.Name = "codeBox";
-            this.codeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.codeBox.Size = new System.Drawing.Size(730, 522);
+            this.codeBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.codeBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.codeBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("codeBox.ServiceColors")));
+            this.codeBox.Size = new System.Drawing.Size(727, 522);
             this.codeBox.TabIndex = 5;
-            this.codeBox.Text = "";
-            this.codeBox.TextChanged += new System.EventHandler(this.codeBox_TextChanged);
+            this.codeBox.Zoom = 100;
             // 
             // MainForm
             // 
@@ -101,6 +125,7 @@
             this.Name = "MainForm";
             this.Text = "Meta File Manager";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.codeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +137,7 @@
         private System.Windows.Forms.TextBox locationBox;
         private System.Windows.Forms.Button directoryButton;
         private System.Windows.Forms.TextBox logBox;
-        private System.Windows.Forms.RichTextBox codeBox;
+        private FastColoredTextBoxNS.FastColoredTextBox codeBox;
     }
 }
 
