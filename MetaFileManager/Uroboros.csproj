@@ -135,7 +135,7 @@
     <Compile Include="gui\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\RefreshCodeBox.cs">
+    <Compile Include="gui\MainBoxGraphics.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
