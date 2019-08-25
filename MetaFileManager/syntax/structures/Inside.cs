@@ -26,24 +26,28 @@ namespace Uroboros.syntax.structures
 
         public override bool HasNext()
         {
-            if (list.Count == 0)
+            while (true)
             {
-                RuntimeVariables.GetInstance().Actualize("this", previousThis);
-                RuntimeVariables.GetInstance().Actualize("index", previousIndex);
-                RuntimeVariables.GetInstance().RetreatLocation();
+                if (list.Count == 0)
+                {
+                    RuntimeVariables.GetInstance().Actualize("this", previousThis);
+                    RuntimeVariables.GetInstance().Actualize("index", previousIndex);
+                    RuntimeVariables.GetInstance().RetreatLocation();
+                    return false;
+                }
+                else
+                {
+                    string value = list[0];
+                    list.RemoveAt(0);
+                    RuntimeVariables.GetInstance().ReplaceLocationEnding(value);
 
-                return false;
-            }
-            else
-            {
-                string value = list[0];
-                list.RemoveAt(0);
-
-                RuntimeVariables.GetInstance().Actualize("this", value);
-                RuntimeVariables.GetInstance().ReplaceLocationEnding(value);
-                RuntimeVariables.GetInstance().IncrementBy("index", 1);
-
-                return true;
+                    if (RuntimeVariables.GetInstance().WholeLocationExists())
+                    {
+                        RuntimeVariables.GetInstance().Actualize("this", value);
+                        RuntimeVariables.GetInstance().IncrementBy("index", 1);
+                        return true;
+                    }
+                }
             }
         }
     }

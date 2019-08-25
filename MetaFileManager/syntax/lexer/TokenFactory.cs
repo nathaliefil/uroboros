@@ -49,6 +49,7 @@ namespace Uroboros.syntax.lexer
                 case "before": return new Token(TokenType.Before);
                 case "by": return new Token(TokenType.By);
                 case "copy": return new Token(TokenType.Copy);
+                case "count": return new Token(TokenType.Count);
                 case "create": return new Token(TokenType.Create);
                 case "cut": return new Token(TokenType.Cut);
                 case "delete": return new Token(TokenType.Delete);

@@ -133,7 +133,7 @@
     <Compile Include="gui\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\MainBoxGraphics.cs">
+    <Compile Include="gui\MainFormGraphics.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -193,6 +193,7 @@
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStructTime.cs" />
     <Compile Include="syntax\expressions\list\subcommands\With.cs" />
     <Compile Include="syntax\expressions\numeric\Count.cs" />
+    <Compile Include="syntax\expressions\numeric\CountInside.cs" />
     <Compile Include="syntax\expressions\numeric\INumericExpressionElement.cs" />
     <Compile Include="syntax\expressions\numeric\NegatedNumerable.cs" />
     <Compile Include="syntax\expressions\numeric\NumericExpressionOperator.cs" />
@@ -271,7 +272,6 @@
     <Compile Include="syntax\commands\abstracts\ICommand.cs" />
     <Compile Include="syntax\commands\var\StringDeclaration.cs" />
     <Compile Include="syntax\functions\numeric\FuncCeil.cs" />
-    <Compile Include="syntax\functions\numeric\FuncCount.cs" />
     <Compile Include="syntax\functions\numeric\FuncE.cs" />
     <Compile Include="syntax\functions\numeric\FuncFloor.cs" />
     <Compile Include="syntax\functions\numeric\FuncLength.cs" />
@@ -375,7 +375,9 @@
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByStruct.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByVariable.cs" />
     <Compile Include="syntax\variables\constants\ListedListables.cs" />
+    <Compile Include="syntax\variables\from_directory\Location.cs" />
     <Compile Include="syntax\variables\from_directory\Path.cs" />
+    <Compile Include="syntax\variables\from_directory\WholeLocation.cs" />
     <Compile Include="syntax\variables\from_file\Access.cs" />
     <Compile Include="syntax\variables\from_file\IsCorrect.cs" />
     <Compile Include="syntax\variables\from_file\IsDirectory.cs" />

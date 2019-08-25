@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Uroboros.syntax.runtime
 {
     public partial class RuntimeVariables
     {
 
-        public string GetLocation()
+        public string GetWholeLocation()
         {
             if (additionalLocationPath.Count == 0)
                 return GetValueString("location");
@@ -22,6 +23,17 @@ namespace Uroboros.syntax.runtime
                 }
                 return path.ToString();
             }
+        }
+
+        public bool WholeLocationExists()
+        {
+            string location = GetWholeLocation();
+            return Directory.Exists(@location);
+        }
+
+        public void ClearPath()
+        {
+            additionalLocationPath.Clear();
         }
 
         public void ExpandLocation(string directory)
@@ -40,6 +52,22 @@ namespace Uroboros.syntax.runtime
             int count = additionalLocationPath.Count;
             if (count > 0)
                 additionalLocationPath[count - 1] = directory;
+        }
+
+        public string GetPath()
+        {
+            if (additionalLocationPath.Count == 0)
+                return "\\";
+            else
+            {
+                StringBuilder path = new StringBuilder();
+                foreach (string str in additionalLocationPath)
+                {
+                    path.Append("\\");
+                    path.Append(str);
+                }
+                return path.ToString();
+            }
         }
     }
 }

@@ -184,7 +184,8 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Everything());
 
             variables.Add(new StringVariable("this", ""));
-            variables.Add(new StringVariable("location", ""));
+            variables.Add(new Location());
+            variables.Add(new WholeLocation());
             variables.Add(new NumericVariable("index", 0));
 
             variables.Add(new Name());

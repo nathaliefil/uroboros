@@ -78,6 +78,7 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("this", InterVarType.String, true));
             variables.Add(new InterVar("path", InterVarType.String, false));
             variables.Add(new InterVar("location", InterVarType.String, true));
+            variables.Add(new InterVar("wholelocation", InterVarType.String, false));
             variables.Add(new InterVar("index", InterVarType.Number, true));
 
             variables.Add(new InterVar("name", InterVarType.String, false));

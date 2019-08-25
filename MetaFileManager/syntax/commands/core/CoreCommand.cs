@@ -31,7 +31,7 @@ namespace Uroboros.syntax.commands.core
         {
             if (FileValidator.IsNameCorrect(element))
             {
-                string rawLocation = RuntimeVariables.GetInstance().GetLocation();
+                string rawLocation = RuntimeVariables.GetInstance().GetWholeLocation();
                 string location = rawLocation + "//" + element;
 
                 if (FileValidator.IsDirectory(element))

@@ -43,7 +43,7 @@ namespace Uroboros.syntax.interpretation.functions
             else if (name.Equals("min") || name.Equals("max") || name.Equals("average") || name.Equals("avg")
                 || name.Equals("mean") || name.Equals("sum") || name.Equals("product"))
                 return BuildNums(name, args);
-            else if (name.Equals("count") || name.Equals("lengthofshortest") || name.Equals("lengthoflongest"))
+            else if (name.Equals("lengthofshortest") || name.Equals("lengthoflongest"))
                 return BuildLis(name, args);
             else if (name.Equals("indexof"))
                 return BuildStrStr(name, args);
@@ -237,8 +237,6 @@ namespace Uroboros.syntax.interpretation.functions
             if (ilis.IsNull())
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
 
-            if (name.Equals("count"))
-                return new FuncCount(ilis);
             else if (name.Equals("lengthofshortest"))
                 return new FuncLengthofshortest(ilis);
             else if (name.Equals("lengthoflongest"))

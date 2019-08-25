@@ -7,16 +7,16 @@ using Uroboros.syntax.runtime;
 
 namespace Uroboros.syntax.variables.from_file
 {
-    class Path : NamedStringable
+    class WholeLocation : NamedStringable
     {
-        public Path()
+        public WholeLocation()
         {
-            name = "path";
+            name = "wholelocation";
         }
 
         public override string ToString()
         {
-            return RuntimeVariables.GetInstance().GetPath();
+            return RuntimeVariables.GetInstance().GetWholeLocation();
         }
     }
 }

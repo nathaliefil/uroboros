@@ -60,6 +60,14 @@ namespace Uroboros.syntax.interpretation.expressions
                     return inum;
             }
 
+            // try to build "count" and "count inside"
+            if (tokens[0].GetTokenType().Equals(TokenType.Count))
+            {
+                INumerable inum = BuildCount(tokens);
+                if (!inum.IsNull())
+                    return inum;
+            }
+
             // try to build numeric function
             if (Functions.IsPossibleFunction(tokens))
             {
@@ -73,6 +81,46 @@ namespace Uroboros.syntax.interpretation.expressions
                 return BuildExpression(tokens);
             else
                 return null;
+        }
+
+        private static INumerable BuildCount(List<Token> tokens)
+        {
+            List<Token> laterTokens = tokens.Skip(1).ToList();
+
+            if (laterTokens.Count == 0)
+                throw new SyntaxErrorException("ERROR! Expression 'count' do not contain all necessary information.");
+
+            if (TokenGroups.ContainsTokenOutsideBrackets(laterTokens, TokenType.Inside))
+                return BuildCountInside(laterTokens);
+            else
+            {
+                IListable ilist = ListableBuilder.Build(laterTokens);
+                if (ilist.IsNull())
+                    return null;
+                else
+                    return new Count(ilist);
+            }
+        }
+
+        private static INumerable BuildCountInside(List<Token> tokens)
+        {
+            int index = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Inside);
+
+            if (index == tokens.Count - 1)
+                throw new SyntaxErrorException("ERROR! Expression 'count inside' do not contain information about referent location.");
+
+            if (index == 0)
+                throw new SyntaxErrorException("ERROR! Expression 'count inside' do not contain information about referent list of elements.");
+
+            IListable ilist = ListableBuilder.Build(tokens.Take(index).ToList());
+            if (ilist.IsNull())
+                return null;
+
+            IStringable istr = StringableBuilder.Build(tokens.Skip(index + 1).ToList());
+            if (istr.IsNull())
+                return null;
+
+            return new CountInside(ilist, istr);
         }
 
         private static INumerable BuildTimeVariableRefer(Token token)

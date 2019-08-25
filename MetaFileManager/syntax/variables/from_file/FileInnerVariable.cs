@@ -51,7 +51,7 @@ namespace Uroboros.syntax.variables.from_file
             if (file.Equals(""))
                 return DateTime.MinValue;
 
-            string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string address = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
 
             try
             {
@@ -71,7 +71,7 @@ namespace Uroboros.syntax.variables.from_file
             if (file.Equals(""))
                 return DateTime.MinValue;
 
-            string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string address = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
 
             try
             {
@@ -91,7 +91,7 @@ namespace Uroboros.syntax.variables.from_file
             if (file.Equals(""))
                 return DateTime.MinValue;
 
-            string address = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string address = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
 
             try
             {
@@ -111,7 +111,7 @@ namespace Uroboros.syntax.variables.from_file
             if (file.Equals(""))
                 return 0;
 
-            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string location = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
 
             try
             {
@@ -147,33 +147,22 @@ namespace Uroboros.syntax.variables.from_file
             if (file.Equals(""))
                 return false;
 
-            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string location = RuntimeVariables.GetInstance().GetWholeLocation() +"//" + file;
 
             if (FileValidator.IsDirectory(file))
-            {
-                if (Directory.Exists(@location))
-                    return true;
-                else
-                    return false;
-            }
+                return Directory.Exists(@location);
             else
-            {
-                if (File.Exists(@location))
-                    return true;
-                else
-                    return false;
-            }
+                return File.Exists(@location);
         }
 
         public static bool Empty(string file)
         {
             // need to thing about thie method
-            /// todo
 
             if (file.Equals(""))
                 return true;
 
-            string location = RuntimeVariables.GetInstance().GetValueString("location") + "//" + file;
+            string location = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
 
             if (FileValidator.IsDirectory(file))
             {
@@ -222,7 +211,7 @@ namespace Uroboros.syntax.variables.from_file
 
         public static bool ExistInside(string file, string directory)
         {
-            string directoryLocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + directory;
+            string directoryLocation = RuntimeVariables.GetInstance().GetWholeLocation() +"//" + directory;
 
             if (!Directory.Exists(@directoryLocation))
                 return false;

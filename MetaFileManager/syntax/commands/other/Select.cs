@@ -28,7 +28,7 @@ namespace Uroboros.syntax.commands.other
         
         public void Run()
         {
-            string location = RuntimeVariables.GetInstance().GetValueString("location");
+            string location = RuntimeVariables.GetInstance().GetWholeLocation();
 
             IntPtr nativeFolder;
             uint psfgaoOut;

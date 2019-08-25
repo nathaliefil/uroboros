@@ -25,7 +25,7 @@ namespace Uroboros.gui
             codeBox.AcceptsTab = true;
             codeBox.AutoIndent = true;
             codeBox.AutoIndentChars = false;
-            codeBox.BracketsHighlightStrategy = BracketsHighlightStrategy.Strategy2;
+            codeBox.LineNumberColor = Color.Gray;
         }
 
         private void codeBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -46,14 +46,14 @@ namespace Uroboros.gui
 
             // paint usual keywords
             e.ChangedRange.ClearStyle(UsualStyle);
-            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|by|desc|each|else|empty list|
+            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|by|count|desc|each|else|empty list|
                 |first|for|force|from|if|in|inside|is|last|like|not|or|order by|skip|to|unique|where|while|with|
                 |without|xor)(?-i)\b");
 
 
             // paint cardinal keywords
             e.ChangedRange.ClearStyle(CardinalStyle);
-            e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|ask|clear bin|clear log|copy|create|cut|delete|
+            e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|ask|clear bin|clear log|copy|count|create|cut|delete|
                 |directory|drop|file|log off|log on|move|open|order|paste|print|reaccess|recreate|remodify|
                 |remove|rename|reverse|run|select|sleep|swap|uroboros stop)(?-i)\b");
 
@@ -62,10 +62,11 @@ namespace Uroboros.gui
             e.ChangedRange.ClearStyle(InnerVariablesStyle);
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(access|creation|directories|empty|exist|
                 |extension|everything|files|fullname|index|iscorrect|isdirectory|isfile|location|modification|
-                |name|now|size|this)\b");
+                |name|now|size|this|path|wholelocation)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(false|true)(?-i)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(century|decade|year|month|weekday|day|hour|
                 |minute|second|centuries|decades|years|months|days|hours|minutes|seconds)(?-i)\b");
+
         }
 
         private void MainForm_Resize(object sender, System.EventArgs e)

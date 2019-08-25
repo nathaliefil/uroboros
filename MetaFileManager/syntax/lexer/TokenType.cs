@@ -14,6 +14,7 @@ namespace Uroboros.syntax.lexer
         Before,
         By,
         Copy,
+        Count,
         Create,
         Cut,
         Delete,
