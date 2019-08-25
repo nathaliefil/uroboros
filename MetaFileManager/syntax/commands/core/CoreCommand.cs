@@ -37,20 +37,29 @@ namespace Uroboros.syntax.commands.core
                 if (FileValidator.IsDirectory(element))
                 {
                     if (!Directory.Exists(@location))
+                    {
+                        RuntimeVariables.GetInstance().Failure();
                         throw new CommandException("Action ignored! Directory " + element + " not found.");
+                    }
                     else
                         DirectoryAction(element, rawLocation);
                 }
                 else
                 {
                     if (!File.Exists(@location))
+                    {
+                        RuntimeVariables.GetInstance().Failure();
                         throw new CommandException("Action ignored! File " + element + " not found.");
+                    }
                     else
                         FileAction(element, rawLocation);
                 }
             }
             else
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + element + " contains not allowed characters.");
+            }
         }
 
         protected virtual void DirectoryAction(string element, string location)

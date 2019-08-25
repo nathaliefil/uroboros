@@ -25,7 +25,10 @@ namespace Uroboros.syntax.commands.core
                         if (forced)
                             Directory.Delete(@location, true);
                         else
+                        {
+                            RuntimeVariables.GetInstance().Failure();
                             throw new CommandException("Action ignored! Directory " + element + " already exists and thus cannot be created.");
+                        }
                     }
                     DirectoryAction(element, location);
                 }
@@ -36,13 +39,19 @@ namespace Uroboros.syntax.commands.core
                         if (forced)
                             File.Delete(@location);
                         else
+                        {
+                            RuntimeVariables.GetInstance().Failure();
                             throw new CommandException("Action ignored! File " + element + " already exists and thus cannot be created.");
+                        }
                     }
                     FileAction(element, location);
                 }
             }
             else
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + element + " contains not allowed characters.");
+            }
         }
     }
 }

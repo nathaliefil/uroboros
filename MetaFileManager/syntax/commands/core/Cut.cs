@@ -30,6 +30,7 @@ namespace Uroboros.syntax.commands.core
             if (paths.Contains(location))
             {
                 string s = FileValidator.IsDirectory(fileName) ? "Directory " : "File ";
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + s + fileName + " is already cut.");
             }
 
@@ -41,10 +42,12 @@ namespace Uroboros.syntax.commands.core
                 data.SetData("Preferred DropEffect", DragDropEffects.Move);
                 Clipboard.SetDataObject(data, true);
 
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Cut " + fileName);
             }
             catch (Exception)
             {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Something went wrong during cutting " + fileName + ".");
             }
         }

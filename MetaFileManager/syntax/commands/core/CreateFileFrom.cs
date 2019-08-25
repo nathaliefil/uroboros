@@ -21,6 +21,7 @@ namespace Uroboros.syntax.commands.core
 
         protected override void DirectoryAction(string directoryName, string newLocation)
         {
+            RuntimeVariables.GetInstance().Failure();
             throw new CommandException("Action ignored! Name for file " + directoryName + " is not suitable.");
         }
 
@@ -30,19 +31,28 @@ namespace Uroboros.syntax.commands.core
             string sourceLocation = RuntimeVariables.GetInstance().GetValueString("location") + "//" + source;
 
             if (!FileValidator.IsNameCorrect(source))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Source file name in creation of file " + fileName + " contains not allowed characters.");
+            }
 
             if (!File.Exists(sourceLocation))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Source file " + source + " do not exist.");
+            }
 
 
             try
             {
                 File.Copy(@sourceLocation, @newLocation);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Create file " + fileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during creating file " + fileName + ".");
                 else

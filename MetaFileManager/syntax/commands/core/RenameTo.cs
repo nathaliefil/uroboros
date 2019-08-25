@@ -25,7 +25,10 @@ namespace Uroboros.syntax.commands.core
         {
             string newFileName = destination.ToString();
             if (!FileValidator.IsNameCorrect(newFileName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + newFileName + " contains not allowed characters.");
+            }
 
             if (FileValidator.IsDirectory(newFileName))
             {
@@ -34,7 +37,10 @@ namespace Uroboros.syntax.commands.core
             }
 
             if (oldFileName.Equals(newFileName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Old name and new name for " + newFileName + " are the same and renaming is unnecessary.");
+            }
 
 
             string slocation = rawLocation + "//" + oldFileName;
@@ -45,10 +51,13 @@ namespace Uroboros.syntax.commands.core
                 if (forced && File.Exists(nlocation))
                     File.Delete(@nlocation);
                 File.Move(@slocation, @nlocation);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Rename " + oldFileName + " to " + newFileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during renaming " + oldFileName + " to " + newFileName + ".");
                 else
@@ -60,13 +69,22 @@ namespace Uroboros.syntax.commands.core
         {
             string newDirectoryName = destination.ToString();
             if (!FileValidator.IsNameCorrect(newDirectoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + newDirectoryName + " contains not allowed characters.");
+            }
 
             if (!FileValidator.IsDirectory(newDirectoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + newDirectoryName + ", the new name for directory " + oldDirectoryName + " is unsuitable. ");
+            }
 
             if (oldDirectoryName.Equals(newDirectoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Old name and new name for " + newDirectoryName + " are the same and renaming is unnecessary.");
+            }
 
             string slocation = rawLocation + "//" + oldDirectoryName;
             string nlocation = rawLocation + "//" + newDirectoryName;
@@ -76,10 +94,13 @@ namespace Uroboros.syntax.commands.core
                 if (forced && Directory.Exists(nlocation))
                     Directory.Delete(@nlocation, true);
                 Directory.Move(@slocation, @nlocation);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Rename " + oldDirectoryName + " to " + newDirectoryName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during renaming " + oldDirectoryName + " to " + newDirectoryName + ".");
                 else

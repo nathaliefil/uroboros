@@ -28,10 +28,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 Process.Start(@location);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Open " + fileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during openning " + fileName + ".");
                 else

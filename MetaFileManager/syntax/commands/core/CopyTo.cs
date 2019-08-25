@@ -24,7 +24,10 @@ namespace Uroboros.syntax.commands.core
         {
             string directoryName = destination.ToString();
             if (!FileValidator.IsNameCorrect(directoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + directoryName + " contains not allowed characters.");
+            }
 
 
             string oldLocation = rawLocation + "//" + fileName;
@@ -40,10 +43,13 @@ namespace Uroboros.syntax.commands.core
                 if (forced && File.Exists(newLocation))
                     File.Delete(@newLocation);
                 File.Copy(@oldLocation, @newLocation);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Copy " + fileName + " to " + directoryName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during copying " + fileName + " to " + directoryName + ".");
                 else
@@ -55,11 +61,17 @@ namespace Uroboros.syntax.commands.core
         {
             string directoryName = destination.ToString();
             if (directoryName.Equals(movingDirectoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Directory " + directoryName + " cannot be copied to itself.");
+            }
 
 
             if (!FileValidator.IsNameCorrect(directoryName))
+            {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + directoryName + " contains not allowed characters.");
+            }
 
 
             string oldLocation = rawLocation + "//" + movingDirectoryName;
@@ -78,10 +90,13 @@ namespace Uroboros.syntax.commands.core
                 if (forced && Directory.Exists(newLocation))
                     Directory.Delete(@newLocation, true);
                 DirectoryCopy(@oldLocation, @newLocation);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Copy " + movingDirectoryName + " to " + directoryName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during coping " + movingDirectoryName + " to " + directoryName + ".");
                 else

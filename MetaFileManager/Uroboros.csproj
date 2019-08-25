@@ -338,6 +338,7 @@
     <Compile Include="syntax\lexer\Reader.cs" />
     <Compile Include="syntax\Runner.cs" />
     <Compile Include="syntax\runtime\RuntimeLocation.cs" />
+    <Compile Include="syntax\runtime\RuntimeResults.cs" />
     <Compile Include="syntax\SizeSufix.cs" />
     <Compile Include="syntax\lexer\Token.cs" />
     <Compile Include="syntax\lexer\TokenFactory.cs" />
@@ -391,6 +392,7 @@
     <Compile Include="syntax\variables\from_file\IsCorrect.cs" />
     <Compile Include="syntax\variables\from_file\IsDirectory.cs" />
     <Compile Include="syntax\variables\from_file\IsFile.cs" />
+    <Compile Include="syntax\variables\from_file\Success.cs" />
     <Compile Include="syntax\variables\time\modules\ClockNumerables.cs" />
     <Compile Include="syntax\variables\time\modules\ClockConstant.cs" />
     <Compile Include="syntax\variables\time\modules\ClockEmpty.cs" />

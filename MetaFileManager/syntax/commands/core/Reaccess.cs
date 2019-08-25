@@ -26,10 +26,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 File.SetLastAccessTime(@location, newTime.ToTime());
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Access of " + fileName + " is now " + newTime.ToString());
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during changing access time of " + fileName + ".");
                 else
@@ -44,10 +47,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 Directory.SetLastAccessTime(@location, newTime.ToTime());
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Access of " + directoryName + " is now " + newTime.ToString());
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during changing access time of " + directoryName + ".");
                 else

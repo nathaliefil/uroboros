@@ -21,10 +21,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 Directory.Delete(@location, true);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Drop " + directoryName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during dropping " + directoryName + ".");
                 else
@@ -38,10 +41,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 File.Delete(@location);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Drop " + fileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during dropping " + fileName + ".");
                 else

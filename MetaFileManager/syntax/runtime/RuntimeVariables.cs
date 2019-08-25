@@ -184,9 +184,10 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Everything());
 
             variables.Add(new StringVariable("this", ""));
+            variables.Add(new NumericVariable("index", 0));
             variables.Add(new Location());
             variables.Add(new WholeLocation());
-            variables.Add(new NumericVariable("index", 0));
+            variables.Add(new Path());
 
             variables.Add(new Name());
             variables.Add(new Fullname());
@@ -198,10 +199,10 @@ namespace Uroboros.syntax.runtime
             variables.Add(new Creation());
             variables.Add(new Now());
             variables.Add(new Size());
-            variables.Add(new Path());
             variables.Add(new IsFile());
             variables.Add(new IsDirectory());
             variables.Add(new IsCorrect());
+            variables.Add(new Success());
         }
     }
 }

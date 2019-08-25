@@ -59,11 +59,11 @@ namespace Uroboros.gui
                 |remove|rename|reverse|run|select|sleep|swap|uroboros stop)(?-i)\b");
 
 
-            // paint inner variables keywords, (true,false), time elements
+            // paint inner variables keywords, (true,false)
             e.ChangedRange.ClearStyle(InnerVariablesStyle);
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(access|creation|directories|empty|exist|
                 |extension|everything|files|fullname|index|iscorrect|isdirectory|isfile|location|modification|
-                |name|now|size|this|path|wholelocation)\b");
+                |name|now|size|success|this|path|wholelocation)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(false|true)(?-i)\b");
 
             // paint time keywords

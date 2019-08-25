@@ -18,6 +18,7 @@ namespace Uroboros.syntax.commands.core
 
         protected override void DirectoryAction(string directoryName, string location)
         {
+            RuntimeVariables.GetInstance().Failure();
             throw new CommandException("Action ignored! Name for file " + directoryName + " is not suitable.");
         }
 
@@ -26,10 +27,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 File.Create(@location);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Create file " + fileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during creating file " + fileName + ".");
                 else

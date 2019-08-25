@@ -21,10 +21,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 Directory.CreateDirectory(@location);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Create directory " + directoryName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during creating directory " + directoryName + ".");
                 else
@@ -34,6 +37,7 @@ namespace Uroboros.syntax.commands.core
 
         protected override void FileAction(string fileName, string location)
         {
+            RuntimeVariables.GetInstance().Failure();
             throw new CommandException("Action ignored! Name for directory " + fileName + " is not suitable.");
         }
     }

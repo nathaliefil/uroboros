@@ -56,10 +56,13 @@ namespace Uroboros.syntax.commands.core
                 shf.pFrom = @location;
                 SHFileOperation(ref shf);
 
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Delete " + fileName);
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during deleting " + fileName + ".");
                 else

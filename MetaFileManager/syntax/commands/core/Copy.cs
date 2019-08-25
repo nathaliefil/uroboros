@@ -30,16 +30,19 @@ namespace Uroboros.syntax.commands.core
             if (paths.Contains(location))
             {
                 string s = FileValidator.IsDirectory(fileName) ? "Directory " : "File ";
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! " + s + fileName + " is already copied.");
             }
 
             try
             {
                 paths.Add(location);
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Copy " + fileName);
             }
             catch (Exception)
             {
+                RuntimeVariables.GetInstance().Failure();
                 throw new CommandException("Action ignored! Something went wrong during copying " + fileName + ".");
             }
 

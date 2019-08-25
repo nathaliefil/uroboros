@@ -26,10 +26,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 File.SetCreationTime(@location, newTime.ToTime());
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Modification of " + fileName + " is now " + newTime.ToString());
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during changing creation time of " + fileName + ".");
                 else
@@ -44,10 +47,13 @@ namespace Uroboros.syntax.commands.core
             try
             {
                 Directory.SetCreationTime(@location, newTime.ToTime());
+                RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Creation of " + directoryName + " is now " + newTime.ToString());
             }
             catch (Exception ex)
             {
+                RuntimeVariables.GetInstance().Failure();
+
                 if (ex is IOException || ex is UnauthorizedAccessException)
                     throw new CommandException("Action ignored! Access denied during changing creation time of " + directoryName + ".");
                 else
