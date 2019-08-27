@@ -14,9 +14,15 @@ namespace Uroboros.syntax.commands.core
 
         public void Run()
         {
+            decimal previousIndex = RuntimeVariables.GetInstance().GetValueNumber("index");
+            string previousThis = RuntimeVariables.GetInstance().GetValueString("this");
+            RuntimeVariables.GetInstance().Actualize("index", 0);
+
             List<string> elements = list.ToList();
             foreach (string element in elements)
             {
+                RuntimeVariables.GetInstance().Actualize("this", element);
+
                 try
                 {
                     Action(element);
@@ -25,7 +31,12 @@ namespace Uroboros.syntax.commands.core
                 {
                     Logger.GetInstance().LogCommandError(ce.GetMessage());
                 }
+
+                RuntimeVariables.GetInstance().IncrementBy("index", 1);
             }
+
+            RuntimeVariables.GetInstance().Actualize("index", previousIndex);
+            RuntimeVariables.GetInstance().Actualize("this", previousThis);
         }
 
         public virtual void Action(string element)
