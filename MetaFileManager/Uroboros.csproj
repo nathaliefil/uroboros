@@ -146,6 +146,8 @@
     <Compile Include="syntax\commands\arithmetic\MultiplyBy.cs" />
     <Compile Include="syntax\commands\arithmetic\PlusPlus.cs" />
     <Compile Include="syntax\commands\abstracts\CommandException.cs" />
+    <Compile Include="syntax\commands\core\CopyToAs.cs" />
+    <Compile Include="syntax\commands\core\MoveToAs.cs" />
     <Compile Include="syntax\commands\list\AddList.cs" />
     <Compile Include="syntax\commands\list\AddString.cs" />
     <Compile Include="syntax\commands\list\RemoveList.cs" />

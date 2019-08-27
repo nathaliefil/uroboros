@@ -47,16 +47,16 @@ namespace Uroboros.gui
 
             // paint usual keywords
             e.ChangedRange.ClearStyle(UsualStyle);
-            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|between|by|count|desc|each|else|empty list|
+            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|as|asc|before|between|by|count|desc|each|else|empty list|
                 |first|for|force|from|if|in|inside|is|last|like|not|or|order by|skip|to|unique|where|while|with|
                 |without|xor)(?-i)\b");
 
 
             // paint cardinal keywords
             e.ChangedRange.ClearStyle(CardinalStyle);
-            e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|ask|clear bin|clear log|copy|count|create|cut|delete|
-                |directory|drop|file|log off|log on|move|open|order|paste|print|reaccess|recreate|remodify|
-                |remove|rename|reverse|run|select|sleep|swap|uroboros stop)(?-i)\b");
+            e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|clear bin|clear log|copy|count|create|cut|delete|
+                |directory|drop|file|log off|log on|move|open|order|print|reaccess|recreate|remodify|
+                |remove|rename|reverse|select|sleep|swap|uroboros stop)(?-i)\b");
 
 
             // paint inner variables keywords, (true,false)
