@@ -35,7 +35,7 @@ namespace Uroboros.gui
 
 
             Log("Welcome to Meta File Manager");
-            Log("Uroboros version: alpha");
+            Log("Uroboros version: 0.9 beta");
             Log("------------------------------------");
         }
 
