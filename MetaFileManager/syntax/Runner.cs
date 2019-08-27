@@ -129,10 +129,7 @@ namespace Uroboros.syntax
                         {
                             int repeats = (int)(takenCommand as NumericLoopOpenning).ToNumber();
                             if (repeats <= 0)
-                            {
-                                structures.Add(new EmptyBlock());
                                 pointer = JumpOverBlockOfCode(commands, pointer);
-                            }
                             else
                             {
                                 repeats--;
