@@ -305,6 +305,7 @@
     <Compile Include="syntax\interpretation\commands\InterpreterAdd.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterCore.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterCoreTo.cs" />
+    <Compile Include="syntax\interpretation\commands\InterpreterCoreToAs.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterCoreToTime.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterOrder.cs" />
     <Compile Include="syntax\interpretation\commands\InterpreterPrint.cs" />

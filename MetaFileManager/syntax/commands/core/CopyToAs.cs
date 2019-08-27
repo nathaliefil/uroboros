@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using System.IO;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.variables.from_file;
 
 namespace Uroboros.syntax.commands.core
 {
@@ -39,8 +40,8 @@ namespace Uroboros.syntax.commands.core
             }
             if (FileValidator.IsDirectory(newFileName))
             {
-                RuntimeVariables.GetInstance().Failure();
-                throw new CommandException("Action ignored! " + newFileName + " is not allowed name for file.");
+                string extension = FileInnerVariable.GetExtension(fileName);
+                newFileName += "." + extension;
             }
 
 
@@ -58,16 +59,16 @@ namespace Uroboros.syntax.commands.core
                     File.Delete(@newLocation);
                 File.Copy(@oldLocation, @newLocation);
                 RuntimeVariables.GetInstance().Success();
-                Logger.GetInstance().LogCommand("Copy " + fileName + " to " + directoryName + "as" + newFileName);
+                Logger.GetInstance().LogCommand("Copy " + fileName + " to " + directoryName + " as " + newFileName);
             }
             catch (Exception ex)
             {
                 RuntimeVariables.GetInstance().Failure();
 
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                    throw new CommandException("Action ignored! Access denied during copying " + fileName + " to " + directoryName + "as" + newFileName + ".");
+                    throw new CommandException("Action ignored! Access denied during copying " + fileName + " to " + directoryName + " as " + newFileName + ".");
                 else
-                    throw new CommandException("Action ignored! Something went wrong during copying " + fileName + " to " + directoryName + "as" + newFileName + ".");
+                    throw new CommandException("Action ignored! Something went wrong during copying " + fileName + " to " + directoryName + " as " + newFileName + ".");
             }
         }
 
@@ -107,8 +108,8 @@ namespace Uroboros.syntax.commands.core
             if (!Directory.Exists(rawLocation + "//" + directoryName))
                 Directory.CreateDirectory(rawLocation + "//" + directoryName);
 
-            if (!Directory.Exists(rawLocation + "//" + directoryName + "//" + movingDirectoryName))
-                Directory.CreateDirectory(rawLocation + "//" + directoryName + "//" + movingDirectoryName);
+            if (!Directory.Exists(rawLocation + "//" + directoryName + "//" + newMovingDirectoryName))
+                Directory.CreateDirectory(rawLocation + "//" + directoryName + "//" + newMovingDirectoryName);
 
 
             try
@@ -117,16 +118,16 @@ namespace Uroboros.syntax.commands.core
                     Directory.Delete(@newLocation, true);
                 DirectoryCopy(@oldLocation, @newLocation);
                 RuntimeVariables.GetInstance().Success();
-                Logger.GetInstance().LogCommand("Copy " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName);
+                Logger.GetInstance().LogCommand("Copy " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName);
             }
             catch (Exception ex)
             {
                 RuntimeVariables.GetInstance().Failure();
 
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                    throw new CommandException("Action ignored! Access denied during coping " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName + ".");
+                    throw new CommandException("Action ignored! Access denied during coping " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName + ".");
                 else
-                    throw new CommandException("Action ignored! Something went wrong during coping " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName + ".");
+                    throw new CommandException("Action ignored! Something went wrong during coping " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName + ".");
             }
         }
 
@@ -134,17 +135,17 @@ namespace Uroboros.syntax.commands.core
         {
             foreach (var directory in Directory.GetDirectories(root))
             {
-                string dirName = Path.GetFileName(directory);
-                if (!Directory.Exists(Path.Combine(dest, dirName)))
+                string dirName = System.IO.Path.GetFileName(directory);
+                if (!Directory.Exists(System.IO.Path.Combine(dest, dirName)))
                 {
-                    Directory.CreateDirectory(Path.Combine(dest, dirName));
+                    Directory.CreateDirectory(System.IO.Path.Combine(dest, dirName));
                 }
-                DirectoryCopy(directory, Path.Combine(dest, dirName));
+                DirectoryCopy(directory, System.IO.Path.Combine(dest, dirName));
             }
 
             foreach (var file in Directory.GetFiles(root))
             {
-                File.Copy(file, Path.Combine(dest, Path.GetFileName(file)));
+                File.Copy(file, System.IO.Path.Combine(dest, System.IO.Path.GetFileName(file)));
             }
         }
     }

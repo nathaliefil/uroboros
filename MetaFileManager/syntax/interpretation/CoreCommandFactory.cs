@@ -16,15 +16,25 @@ namespace Uroboros.syntax.interpretation
             {
                 case TokenType.Copy:
                 {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterpreterCoreTo.Build(tokens, forced);
+                    if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.To))
+                    {
+                        if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.As))
+                            return InterpreterCoreToAs.Build(tokens, forced);
+                        else
+                            return InterpreterCoreTo.Build(tokens, forced);
+                    }
                     else
                         return InterpreterCore.Build(tokens);
                 }
                 case TokenType.Cut:
                 {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterpreterCoreTo.Build(tokens, forced);
+                    if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.To))
+                    {
+                        if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.As))
+                            return InterpreterCoreToAs.Build(tokens, forced);
+                        else
+                            return InterpreterCoreTo.Build(tokens, forced);
+                    }
                     else
                         return InterpreterCore.Build(tokens);
                 }
@@ -50,8 +60,13 @@ namespace Uroboros.syntax.interpretation
                 }
                 case TokenType.Move:
                 {
-                    if (tokens.Any(t => t.GetTokenType().Equals(TokenType.To)))
-                        return InterpreterCoreTo.Build(tokens, forced);
+                    if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.To))
+                    {
+                        if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.As))
+                            return InterpreterCoreToAs.Build(tokens, forced);
+                        else
+                            return InterpreterCoreTo.Build(tokens, forced);
+                    }
                     else
                         throw new SyntaxErrorException("ERROR! Move command do not contain destination directory.");
                 }

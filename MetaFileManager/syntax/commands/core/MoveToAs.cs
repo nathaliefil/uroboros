@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using Uroboros.syntax.runtime;
 using System.IO;
+using Uroboros.syntax.variables.from_file;
 
 namespace Uroboros.syntax.commands.core
 {
@@ -39,8 +40,8 @@ namespace Uroboros.syntax.commands.core
             }
             if (FileValidator.IsDirectory(newFileName))
             {
-                RuntimeVariables.GetInstance().Failure();
-                throw new CommandException("Action ignored! " + newFileName + " is not allowed name for file.");
+                string extension = FileInnerVariable.GetExtension(fileName);
+                newFileName += "." + extension;
             }
 
             string oldLocation = rawLocation + "//" + fileName;
@@ -58,16 +59,16 @@ namespace Uroboros.syntax.commands.core
                 File.Move(@oldLocation, @newLocation);
 
                 RuntimeVariables.GetInstance().Success();
-                Logger.GetInstance().LogCommand("Move " + fileName + " to " + directoryName + "as" + newFileName);
+                Logger.GetInstance().LogCommand("Move " + fileName + " to " + directoryName + " as " + newFileName);
             }
             catch (Exception ex)
             {
                 RuntimeVariables.GetInstance().Failure();
 
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                    throw new CommandException("Action ignored! Access denied during moving " + fileName + " to " + directoryName + "as" + newFileName + ".");
+                    throw new CommandException("Action ignored! Access denied during moving " + fileName + " to " + directoryName + " as " + newFileName + ".");
                 else
-                    throw new CommandException("Action ignored! Something went wrong during moving " + fileName + " to " + directoryName + "as" + newFileName + ".");
+                    throw new CommandException("Action ignored! Something went wrong during moving " + fileName + " to " + directoryName + " as " + newFileName + ".");
             }
         }
 
@@ -113,16 +114,16 @@ namespace Uroboros.syntax.commands.core
                     Directory.Delete(@newLocation, true);
                 Directory.Move(@oldLocation, @newLocation);
                 RuntimeVariables.GetInstance().Success();
-                Logger.GetInstance().LogCommand("Move " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName);
+                Logger.GetInstance().LogCommand("Move " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName);
             }
             catch (Exception ex)
             {
                 RuntimeVariables.GetInstance().Failure();
 
                 if (ex is IOException || ex is UnauthorizedAccessException)
-                    throw new CommandException("Action ignored! Access denied during moving " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName + ".");
+                    throw new CommandException("Action ignored! Access denied during moving " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName + ".");
                 else
-                    throw new CommandException("Action ignored! Something went wrong during moving " + movingDirectoryName + " to " + directoryName + "as" + newMovingDirectoryName + ".");
+                    throw new CommandException("Action ignored! Something went wrong during moving " + movingDirectoryName + " to " + directoryName + " as " + newMovingDirectoryName + ".");
             }
         }
     }

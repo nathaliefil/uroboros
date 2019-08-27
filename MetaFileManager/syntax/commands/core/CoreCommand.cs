@@ -30,6 +30,9 @@ namespace Uroboros.syntax.commands.core
 
         public virtual void Action(string element)
         {
+            if (element.Trim().Equals(""))
+                throw new CommandException("Action ignored! Impossible to perform action on empty element.");
+
             if (FileValidator.IsNameCorrect(element))
             {
                 string rawLocation = RuntimeVariables.GetInstance().GetWholeLocation();
