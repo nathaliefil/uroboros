@@ -8,13 +8,14 @@ using System.IO;
 
 namespace Uroboros.syntax.commands.core
 {
-    abstract class CoreCommand: DefaultBoolable, ICommand
+    abstract class CoreCommand: ICommand
     {
         protected IListable list;
 
         public void Run()
         {
-            foreach (string element in list.ToList())
+            List<string> elements = list.ToList();
+            foreach (string element in elements)
             {
                 try
                 {
@@ -22,7 +23,7 @@ namespace Uroboros.syntax.commands.core
                 }
                 catch (CommandException ce)
                 {
-                    Logger.GetInstance().LogCommand(ce.GetMessage());
+                    Logger.GetInstance().LogCommandError(ce.GetMessage());
                 }
             }
         }
@@ -72,19 +73,6 @@ namespace Uroboros.syntax.commands.core
         {
             // to be overridden
             // but not necessarily
-        }
-
-        public override bool ToBool()
-        {
-            try
-            {
-                Run();
-            }
-            catch (CommandException)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

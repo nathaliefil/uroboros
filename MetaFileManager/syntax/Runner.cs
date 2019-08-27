@@ -30,7 +30,7 @@ namespace Uroboros.syntax
             }
             catch (Uroboros.syntax.SyntaxErrorException te)
             {
-                Logger.GetInstance().Log(te.GetMessage());
+                Logger.GetInstance().LogSyntaxError(te.GetMessage());
             }
         }
 

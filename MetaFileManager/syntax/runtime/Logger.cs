@@ -35,6 +35,16 @@ namespace Uroboros.syntax.runtime
                 outputBox.AppendText(Environment.NewLine + text);
         }
 
+        public void LogSyntaxError(string text)
+        {
+            Log(text);
+        }
+
+        public void LogCommandError(string text)
+        {
+            Log(text);
+        }
+
         public void LogCommand(string text)
         {
             if (logCommands)
