@@ -92,9 +92,6 @@ namespace Uroboros.syntax.lexer
             if (i < tokens.Count)
                 newTokens.Add(tokens[tokens.Count-1]);
 
-            foreach (Token tok in newTokens)
-                tok.ChangeTokenType();
-
             return newTokens;
         }
 
@@ -136,7 +133,7 @@ namespace Uroboros.syntax.lexer
         static TokenModifier()
         {
             // first and second token is merged to third token
-            TOKENS_TO_MERGE = new TokenType[24][]; //   TOKEN     +     TOKEN    =>      MERGED TWO
+            TOKENS_TO_MERGE = new TokenType[25][]; //   TOKEN     +     TOKEN    =>      MERGED TWO
             TOKENS_TO_MERGE[0] = new TokenType[] { TokenType.Plus, TokenType.Plus, TokenType.PlusPlus };
             TOKENS_TO_MERGE[1] = new TokenType[] { TokenType.Minus, TokenType.Minus, TokenType.MinusMinus };
             TOKENS_TO_MERGE[2] = new TokenType[] { TokenType.Equals, TokenType.Equals, TokenType.Equals };
@@ -148,7 +145,7 @@ namespace Uroboros.syntax.lexer
             TOKENS_TO_MERGE[8] = new TokenType[] { TokenType.Equals, TokenType.Bigger, TokenType.BigArrow };
             TOKENS_TO_MERGE[9] = new TokenType[] { TokenType.Minus, TokenType.Bigger, TokenType.SmallArrow };
             TOKENS_TO_MERGE[10] = new TokenType[] { TokenType.Exclamation, TokenType.Equals, TokenType.NotEquals };
-            TOKENS_TO_MERGE[11] = new TokenType[] { TokenType.Is, TokenType.Exclamation, TokenType.NotEquals };
+            TOKENS_TO_MERGE[11] = new TokenType[] { TokenType.Is, TokenType.Not, TokenType.NotEquals };
             TOKENS_TO_MERGE[12] = new TokenType[] { TokenType.Force, TokenType.To, TokenType.ForceTo };
             TOKENS_TO_MERGE[13] = new TokenType[] { TokenType.Create, TokenType.File, TokenType.CreateFile };
             TOKENS_TO_MERGE[14] = new TokenType[] { TokenType.Create, TokenType.Directory, TokenType.CreateDirectory };
@@ -161,6 +158,7 @@ namespace Uroboros.syntax.lexer
             TOKENS_TO_MERGE[21] = new TokenType[] { TokenType.Percent, TokenType.Equals, TokenType.PercentEquals };
             TOKENS_TO_MERGE[22] = new TokenType[] { TokenType.Is, TokenType.Before, TokenType.IsBefore };
             TOKENS_TO_MERGE[23] = new TokenType[] { TokenType.Is, TokenType.After, TokenType.IsAfter };
+            TOKENS_TO_MERGE[24] = new TokenType[] { TokenType.Is, TokenType.Between, TokenType.Between };
         }
     }
 }

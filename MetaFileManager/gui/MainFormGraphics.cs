@@ -47,7 +47,7 @@ namespace Uroboros.gui
 
             // paint usual keywords
             e.ChangedRange.ClearStyle(UsualStyle);
-            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|by|count|desc|each|else|empty list|
+            e.ChangedRange.SetStyle(UsualStyle, @"\b(?i)(after|and|asc|before|between|by|count|desc|each|else|empty list|
                 |first|for|force|from|if|in|inside|is|last|like|not|or|order by|skip|to|unique|where|while|with|
                 |without|xor)(?-i)\b");
 

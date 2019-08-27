@@ -51,12 +51,6 @@ namespace Uroboros.syntax.lexer
             content = content.Replace('.', ',');
         }
 
-        public void ChangeTokenType()
-        {
-            if (type.Equals(TokenType.Is))
-                type = TokenType.Equals;
-        }
-
         public void SetToNumericConstant(SizeSufix sizeU)
         {
             this.sizeSufix = sizeU;

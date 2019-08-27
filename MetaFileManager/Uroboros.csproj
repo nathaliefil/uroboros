@@ -184,6 +184,8 @@
     <Compile Include="syntax\expressions\bools\comparisons\TimeComparison.cs" />
     <Compile Include="syntax\expressions\bools\IBoolExpressionElement.cs" />
     <Compile Include="syntax\expressions\bools\NegatedBoolable.cs" />
+    <Compile Include="syntax\expressions\bools\other\BetweenNumbers.cs" />
+    <Compile Include="syntax\expressions\bools\other\BetweenTimes.cs" />
     <Compile Include="syntax\expressions\bools\other\In.cs" />
     <Compile Include="syntax\expressions\bools\other\Like.cs" />
     <Compile Include="syntax\expressions\list\ListTernary.cs" />

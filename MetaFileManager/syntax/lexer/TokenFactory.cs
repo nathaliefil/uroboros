@@ -47,6 +47,7 @@ namespace Uroboros.syntax.lexer
                 case "and": return new Token(TokenType.And);
                 case "ask": return new Token(TokenType.Ask);
                 case "before": return new Token(TokenType.Before);
+                case "between": return new Token(TokenType.Between);
                 case "by": return new Token(TokenType.By);
                 case "copy": return new Token(TokenType.Copy);
                 case "count": return new Token(TokenType.Count);
@@ -70,7 +71,7 @@ namespace Uroboros.syntax.lexer
                 case "last": return new Token(TokenType.Last);
                 case "like": return new Token(TokenType.Like);
                 case "move": return new Token(TokenType.Move);
-                case "not": return new Token(TokenType.Exclamation);
+                case "not": return new Token(TokenType.Not);
                 case "open": return new Token(TokenType.Open);
                 case "or": return new Token(TokenType.Or);
                 case "order": return new Token(TokenType.Order);

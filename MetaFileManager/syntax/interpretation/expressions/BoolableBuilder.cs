@@ -71,7 +71,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build IN function
-            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.In)).Count() == 1)
+            if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.In))
             {
                 IBoolable iboo = BuildIn(tokens);
                 if (!iboo.IsNull())
@@ -79,9 +79,18 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build LIKE function
-            if (tokens.Where(t => t.GetTokenType().Equals(TokenType.Like)).Count() == 1)
+            if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.Like))
             {
                 IBoolable iboo = BuildLike(tokens);
+                if (!iboo.IsNull())
+                    return iboo;
+            }
+
+            // try to build BETWEEN function
+            if (TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.And)
+                && TokenGroups.ContainsTokenOutsideBrackets(tokens, TokenType.Between))
+            {
+                IBoolable iboo = BuildBetween(tokens);
                 if (!iboo.IsNull())
                     return iboo;
             }
@@ -95,7 +104,7 @@ namespace Uroboros.syntax.interpretation.expressions
             }
 
             // try to build comparison = != > < >= <=
-            if (ContainsOneComparingToken(tokens) && !ContainsLogicTokens(tokens))
+            if (ContainsOneComparingToken(tokens))
             {
                 IBoolable iboo = BuildComparison(tokens);
                 if (!iboo.IsNull())
@@ -190,6 +199,60 @@ namespace Uroboros.syntax.interpretation.expressions
                 return new ListComparison(leftL as IListable, rightL as IListable, type);
 
             return null;
+        }
+
+        private static IBoolable BuildBetween(List<Token> tokens)
+        {
+            int betweenIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Between);
+            int andIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.And);
+
+            if (andIndex < betweenIndex)
+                return null;
+
+            if (betweenIndex == andIndex - 1)
+                throw new SyntaxErrorException("ERROR! Expression 'between' do not contain definition of value of left boundary.");
+
+            if (betweenIndex == 0)
+                throw new SyntaxErrorException("ERROR! Expression 'between' starts with keyword 'between' and thus do not contain comparing value.");
+
+            if (andIndex == tokens.Count - 1)
+                throw new SyntaxErrorException("ERROR! Expression 'between' ends with keyword 'and' and thus do not contain definition of value of right boundary.");
+
+            List<Token> valueTokens = tokens.Take(betweenIndex).ToList();
+            List<Token> leftTokens = tokens.GetRange(betweenIndex + 1, andIndex - betweenIndex - 1);
+            List<Token> rightTokens = tokens.Skip(andIndex + 1).ToList();
+
+            INumerable inum = NumerableBuilder.Build(valueTokens);
+            if (!inum.IsNull())
+                return BuildBetweenNumbers(inum, leftTokens, rightTokens);
+
+            ITimeable itim = TimeableBuilder.Build(valueTokens);
+            if (!itim.IsNull())
+                return BuildBetweenTimes(itim, leftTokens, rightTokens);
+
+            return null;
+        }
+
+        private static IBoolable BuildBetweenNumbers(INumerable num, List<Token> left, List<Token> right)
+        {
+            INumerable numLeft = NumerableBuilder.Build(left);
+            INumerable numRight = NumerableBuilder.Build(right);
+
+            if (numLeft.IsNull() || numRight.IsNull())
+                return null;
+            else
+                return new BetweenNumbers(num, numLeft, numRight);
+        }
+
+        private static IBoolable BuildBetweenTimes(ITimeable tim, List<Token> left, List<Token> right)
+        {
+            ITimeable timLeft = TimeableBuilder.Build(left);
+            ITimeable timRight = TimeableBuilder.Build(right);
+
+            if (timLeft.IsNull() || timRight.IsNull())
+                return null;
+            else
+                return new BetweenTimes(tim, timLeft, timRight);
         }
 
         private static IBoolable BuildTimeComparison(List<Token> tokens)

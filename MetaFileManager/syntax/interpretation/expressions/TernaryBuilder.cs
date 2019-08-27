@@ -15,7 +15,7 @@ namespace Uroboros.syntax.interpretation.expressions
             int questionIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.QuestionMark);
             int colonIndex = TokenGroups.IndexOfTokenOutsideBrackets(tokens, TokenType.Colon);
 
-            // there is not question mark / colon
+            // there is no question mark / colon
             if (questionIndex == -1 || colonIndex == -1)
                 return false;
 
