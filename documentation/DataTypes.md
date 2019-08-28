@@ -231,7 +231,22 @@ Some data like year or day of week can be outstretched from existing time variab
 | [time variable]**.minute** | (Number) |
 | [time variable]**.second** | (Number) |
 
-        
+### Count List Elements
+
+This command returns number of elements in list (arg1).
+
+| Structure | Returns |
+| --------- | ------- |
+| **count** [list] | (Number) |
+
+### Count List Elements Inside
+
+This command returns number of elements in list (arg1) inside specified directory (arg2).
+
+| Structure | Returns |
+| --------- | ------- |
+| **count** [list] **inside** [text] | (Number) |
+
 ### Numeric Functions
 
 See: [functions](Functions.md).
@@ -515,7 +530,7 @@ Subcommand Last takes last (arg1) elements of list.
 Subcommand OrderBy changes order of list elements by (arg1) (visit [order by](OrderBy.md) for more information).  
 Subcommand Skip removes first (arg1) elements of list.  
 Subcommand Where takes only those elements of list, which satisfy condition (arg1).  
-Subcommand With add new elements (arg1) at the end of list.   
+Subcommand With adds new elements (arg1) at the end of list.   
 Subcommand Without removes all particular elements (arg1) from list.  
 
 
