@@ -133,7 +133,7 @@ namespace Uroboros.syntax.lexer
         static TokenModifier()
         {
             // first and second token is merged to third token
-            TOKENS_TO_MERGE = new TokenType[25][]; //   TOKEN     +     TOKEN    =>      MERGED TWO
+            TOKENS_TO_MERGE = new TokenType[26][]; //   TOKEN     +     TOKEN    =>      MERGED TWO
             TOKENS_TO_MERGE[0] = new TokenType[] { TokenType.Plus, TokenType.Plus, TokenType.PlusPlus };
             TOKENS_TO_MERGE[1] = new TokenType[] { TokenType.Minus, TokenType.Minus, TokenType.MinusMinus };
             TOKENS_TO_MERGE[2] = new TokenType[] { TokenType.Equals, TokenType.Equals, TokenType.Equals };
@@ -159,6 +159,7 @@ namespace Uroboros.syntax.lexer
             TOKENS_TO_MERGE[22] = new TokenType[] { TokenType.Is, TokenType.Before, TokenType.IsBefore };
             TOKENS_TO_MERGE[23] = new TokenType[] { TokenType.Is, TokenType.After, TokenType.IsAfter };
             TOKENS_TO_MERGE[24] = new TokenType[] { TokenType.Is, TokenType.Between, TokenType.Between };
+            TOKENS_TO_MERGE[25] = new TokenType[] { TokenType.Is, TokenType.Like, TokenType.Like };
         }
     }
 }
