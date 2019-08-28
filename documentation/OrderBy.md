@@ -25,13 +25,15 @@ default, but user can reverse order by typing keyword 'desc' after variable.
 
 ### Allowed Variables For Order
 
-Currently there are 37 variables which can be used to order elements. They are all [inner variables](InnerVariables.md). In future
+Currently there are 39 variables which can be used to order elements. They are all [inner variables](InnerVariables.md). In future
 development Uroboros will allow any data structre to be used for ordering - even if it is not related to property of file or directory
 
 | Variable For Order |
 | --------- |
 | access |
 | creation |
+| empty |
+| exist |
 | extension |
 | fullname |
 | modification |
