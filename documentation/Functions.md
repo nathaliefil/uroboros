@@ -62,12 +62,29 @@ This function returns true if name (arg0) is proper for file or directory - do n
 
 This function returns true if name (arg0) could be name for directory - do not contain any dots.
 
+
 ### IsFile
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | iscorrect  | (Text) | (Logic)
 
 This function returns true if name (arg0) could be name for file - contains at least one dot.
+
+
+### SameClocks
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| sameclock, sameclocks, thesameclock, thesameclocks  | (Time, Time) | (Logic)
+
+This function returns true, if hours, minutes and seconds are the same in (arg1) and (arg2).
+
+
+### SameDates
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| samedate, samedates, thesamedate, thesamedates  | (Time, Time) | (Logic)
+
+This function returns true, if years, months and days are the same in (arg1) and (arg2).
 
 
 ---
@@ -436,26 +453,77 @@ This function returns time of last modification of to file or directory with spe
 
 This function returns time of New Year (arg1).
 
-### Now
+
+### Today
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
-| now  | ( ) | (Time)
+| today  | ( ) | (Time)
 
-This function returns current system time.
+This function returns current date with clock 00:00:00.
+
+
+### Today
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| today | (Number, Number) | (Time)
+
+This function returns current date with (arg1) as hour, (arg2) as minutes and 0 seconds.
+
+
+### Today
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| today | (Number, Number, Number) | (Time)
+
+This function returns current date with (arg1) as hour, (arg2) as minutes and (arg3) as seconds.
+
 
 ### Tomorrow
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | tomorrow  | ( ) | (Time)
 
-This function returns tomorrow date with current system time.
+This function returns tomorrow date with clock 00:00:00.
+
+
+### Tomorrow
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| tomorrow  | (Number, Number) | (Time)
+
+This function returns tomorrow date with (arg1) as hour, (arg2) as minutes and 0 seconds.
+
+
+### Tomorrow
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| tomorrow  | (Number, Number, Number) | (Time)
+
+This function returns tomorrow date with (arg1) as hour, (arg2) as minutes (arg3) as seconds.
+
 
 ### Yesterday
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | yesterday  | ( ) | (Time)
 
-This function returns yesterday date with current system time.
+This function returns yesterday date with clock 00:00:00.
+
+
+### Yesterday
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| yesterday  | (Number, Number) | (Time)
+
+This function returns yesterday date with (arg1) as hour, (arg2) as minutes and 0 seconds.
+
+
+### Yesterday
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| yesterday  | (Number, Number, Number) | (Time)
+
+This function returns yesterday date with (arg1) as hour, (arg2) as minutes and (arg3) as seconds.
 
 ---
 
@@ -499,6 +567,14 @@ This function returns common beginning of all elements in list (arg1). If all te
 | commonending  | (List) | (Text)
 
 This function returns common ending of all elements in list (arg1). If all texts in list (arg1) end with a different phrase, empty text "" is returned.
+
+
+### Concatenate
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| concatenate, concatenated  | (List) | (Text)
+
+This function returns concatenated all texts from list (arg1).
 
 
 ### Digits
