@@ -28,6 +28,14 @@ This command adds every file and directory from list (arg1) to clipboard. If cli
 This command copies every file and directory from list (arg1) into directory (arg2). This is done without use of the clipboard.
 
 
+### Copy To As
+| Name  | Structure |
+| ------------- | ------------- |
+| copy to | **copy** [list] **to** [text] **as** [text] |
+
+This command copies every file and directory from list (arg1) into directory (arg2) meanwhile renaming it to (arg3). This is done without use of the clipboard.
+
+
 ### Create Directory
 | Name  | Structure |
 | ------------- | ------------- |
@@ -91,6 +99,15 @@ This command deletes "without return" every file and directory from list (arg1).
 |         | **cut** [list] **to** [text] |
 
 This command moves every file and directory from list (arg1) into directory (arg2). This is done without use of the clipboard.
+
+
+### Move To As
+| Name  | Structure |
+| ------------- | ------------- |
+| move to | **move** [list] **to** [text] **as** [text] |
+|         | **cut** [list] **to** [text] **as** [text] |
+
+This command moves every file and directory from list (arg1) into directory (arg2) meanwhile renaming it to (arg3). This is done without use of the clipboard.
 
 
 ### Open
