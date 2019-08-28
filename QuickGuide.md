@@ -7,10 +7,9 @@ Welcome to Quick Guide, the easiest way to start with Uroboros.
 
 # **Let's Go**
 
-Run gui application. When it is opened, you have to select one directory from your drive. It is necessary, because Uroboros actions are 
-based on manipulating files and directories from selected location. You can select location by the top right button.
+Run gui application. When it is opened, you have to select one directory from your drive - do it by the top right button.
 
-![Start image not found](documentation/resources/start.png)
+![Start image not found](documentation/resources/QuickStart.png)
 
 When location is selected, everything is ready.
 
@@ -28,8 +27,7 @@ Try to run this code. This is Print, the basic command. It can print anything in
 "hello world";
 ```
 
-Print is default command and you can omit first keyword, however it is recommended to keep it for greater readability. Two first codes
-make the same result.
+Print is default command and you can omit first keyword, however it is recommended to keep it for greater readability. As you can see two first codes make the same result.
 
 ```
 print 2+2*2;
@@ -85,11 +83,11 @@ Variable "files" returns list of all files from current location (location selec
 files, nothing is printed from command above. Location can be changed by user any time.
 
 ```
-print "-------------------- directories:";
+print "Directories:", "";
 print directories;
-print "-------------------- files:";
+print "", "Files:", "";
 print files;
-print "-------------------- everything:";
+print "", "Everything:", "";
 print everything;
 ```
 
@@ -155,13 +153,13 @@ Structure If executes commands in curly brackets only if condition is satisfied.
 
 ```
 files{
-   print size + "  " + this;
-   if size > 1MB{
-      print "  It is so big!";
-   }
-   else{
-      print "  It is small.";
-   }
+    print size + "  " + this;
+    if size > 1MB{
+        print "  It is so big!";
+    }
+    else{
+        print "  It is small.";
+    }
 }
 ```
 
@@ -169,7 +167,6 @@ Aditional structure Else executes commands only if condition in If is not satisf
 
 ```
 variable = 1;
-
 while variable <= 10{
    print variable;
    variable++;
@@ -228,7 +225,7 @@ l = 2, 3+6, "ghg";
 print l;
 ```
 
-Lists can be created by mentioning all elements with commas between them.
+Lists can be created by mentioning all elements with commas between them. They can be both texts and lists.
 
 ```
 l = 2, 3+6, "ghg";
@@ -283,7 +280,8 @@ creation year of every file.
 
 ```
 e = files -> unique extension;
-print e;
+print "Extensions in directory:";
+e => print "- " + this;
 ```
 
 Keyword "unique" is used to mark, that new list cannot have duplicates.
@@ -295,7 +293,7 @@ print sizes;
 ```
 
 Numbers can have sufixes. They are their multipliers. For example sufix KB multiplies number by 1024. It is the number of bytes in
-one kilobyte. Sufixes are useful for comparing sizes of files, because variable "size" returns integer (number of bytes). All 
+one kilobyte. Sufixes are useful for comparing sizes of files, because variable "size" returns number of bytes. All 
 sufixes are explained [here](documentation/DataTypes.md), in chapter "Number".
 
 ```
@@ -367,16 +365,47 @@ Structure "in" checks, if text can be found in list (above - if it is one of thr
 ```
 a = 4 june 2002;
 b = 2 december 2001;
-print a is after b ? "is after" : "is before";
+print a is after b ? "AAA" : "BBB";
 ```
 
-Two times can be compared by the use of "is after" and "is before". Code above contains one more structure - If Ternary. It can
-be found in other languages and returns first element (here: "is after") if condition before quotation mark is satifsied. Otherwise
-it returns second element (here: "is before").
+Two times can be compared by the use of "is after" and "is before". Code above contains one more structure - If Ternary. It returns first element (here: "AAA") if condition before quotation mark is satifsied. Otherwise it returns second element (here: "BBB").
 
 ---
 
 # **Commands**
 
-If you know the basics of syntax, we can now start the real job!
+If you know the basics of syntax, we can now start the real job! Prepare some files in directory for actions.
 
+```
+open files 
+    where extension is "txt"
+    first 5;
+```
+
+This code opened first five text files. As you can see it very similar to Print command - the only difference is first word "open" instead of "print". There are few more commands with this property.
+
+```
+delete files 
+    where extension is "txt"
+    first 1;
+drop files 
+    where extension is "txt"
+    last 1;
+```
+
+Commands Delete and Drop are used to remove files and directories. Delete moves them to recycle bin. Drop is more dangerous and erases files and directories completely.
+
+```
+clear clipboard;
+copy files 
+    where extension is "txt";
+```
+
+Copy and Cut are used to add files and directories to clipboard. Clipboard is thus expanded. This is why command Clear Clipboard preceded Copy in code above - it cleaned everything in memory.
+
+```
+clear clipboard;
+files where extension is "txt" => copy;
+```
+
+These 5 basic command have one important property - they can be written without definition of list. In this case command contains only one word and action is performed on element taken from variable "this". This is how List Loop can be used in practice.
