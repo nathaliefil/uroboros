@@ -113,6 +113,7 @@ Structure "in" returns true, is text (arg1) can be found inside list (arg2).
 | Structure | Returns |
 | --------- | ------- |
 | [text] **in** [list] | (Logic) |
+| [text] **is** **in** [list] | (Logic) |
 
 
 ### Like
@@ -127,6 +128,27 @@ Other characters represent appearance of themselves.
 | Structure | Returns |
 | --------- | ------- |
 | [text] **like** [text constant] | (Logic) |
+| [text] **is** **like** [text constant] | (Logic) |
+
+
+### Between Numbers
+
+Structure "between numbers" returns true if value of base number (arg1) is between two other numbers : (arg2) and (arg3).
+
+| Structure | Returns |
+| --------- | ------- |
+| [number] **between** [number] **and** [number] | (Logic) |
+| [number] **is** **between** [number] **and** [number] | (Logic) |
+
+
+### Between Times
+
+Structure "between time" returns true if value of base time (arg1) is between two other times : (arg2) and (arg3).
+
+| Structure | Returns |
+| --------- | ------- |
+| [time] **between** [time] **and** [time] | (Logic) |
+| [time] **is** **between** [time] **and** [time] | (Logic) |
 
 
 ### Logic Functions
@@ -492,9 +514,9 @@ Subcommand First takes first (arg1) elements of list.
 Subcommand Last takes last (arg1) elements of list.  
 Subcommand OrderBy changes order of list elements by (arg1) (visit [order by](OrderBy.md) for more information).  
 Subcommand Skip removes first (arg1) elements of list.  
-Subcommand Where takes only those elements of list, which satisfy condition (arg1).
-Subcommand With add new elements (arg1) at the end of list.
-Subcommand Without removes all particular elements (arg1) from list.
+Subcommand Where takes only those elements of list, which satisfy condition (arg1).  
+Subcommand With add new elements (arg1) at the end of list.   
+Subcommand Without removes all particular elements (arg1) from list.  
 
 
 
