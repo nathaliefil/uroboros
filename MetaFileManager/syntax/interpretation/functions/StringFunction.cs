@@ -35,7 +35,8 @@ namespace Uroboros.syntax.interpretation.functions
                 || name.Equals("digits") || name.Equals("letters") || name.Equals("trim") || name.Equals("name") 
                 || name.Equals("fullname") || name.Equals("extension"))
                 return BuildStr(name, args);
-            else if (name.Equals("commonbeginning") || name.Equals("commonending"))
+            else if (name.Equals("commonbeginning") || name.Equals("commonending") || name.Equals("concatenate")
+                 || name.Equals("concatenated"))
                 return BuildLis(name, args);
             else if (name.Equals("filled") || name.Equals("fill") || name.Equals("repeat") || name.Equals("repeated"))
                 return BuildStrNum(name, args);
@@ -174,6 +175,8 @@ namespace Uroboros.syntax.interpretation.functions
                 return new FuncCommonbeginning(ilis);
             else if (name.Equals("commonending"))
                 return new FuncCommonending(ilis);
+            else if (name.Equals("concatenate") || name.Equals("concatenated"))
+                return new FuncConcatenate(ilis);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 

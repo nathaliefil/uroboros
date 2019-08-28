@@ -233,6 +233,7 @@
     <Compile Include="syntax\functions\numeric\FuncSqrt.cs" />
     <Compile Include="syntax\functions\numeric\Func__TimeBetween.cs" />
     <Compile Include="syntax\functions\numeric\FuncSum.cs" />
+    <Compile Include="syntax\functions\strings\FuncConcatenate.cs" />
     <Compile Include="syntax\functions\strings\FuncExtension.cs" />
     <Compile Include="syntax\functions\strings\FuncFullname.cs" />
     <Compile Include="syntax\functions\strings\FuncName.cs" />
