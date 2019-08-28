@@ -374,7 +374,7 @@ Two times can be compared by the use of "is after" and "is before". Code above c
 
 # **Commands**
 
-If you know the basics of syntax, we can now start the real job! Prepare some files in directory for actions.
+If you know the basics of syntax, we can now start the real job! Prepare some "txt" files in directory for actions.
 
 ```
 open files 
@@ -388,9 +388,9 @@ This code opened first five text files. As you can see it very similar to Print 
 delete files 
     where extension is "txt"
     first 1;
-drop files 
-    where extension is "txt"
-    last 1;
+```
+```
+drop directories where empty;
 ```
 
 Commands Delete and Drop are used to remove files and directories. Delete moves them to recycle bin. Drop is more dangerous and erases files and directories completely.
@@ -404,8 +404,87 @@ copy files
 Copy and Cut are used to add files and directories to clipboard. Clipboard is thus expanded. This is why command Clear Clipboard preceded Copy in code above - it cleaned everything in memory.
 
 ```
+15 { 
+    var = index + 1;
+    create directory "directory"
+        + filled (var, 2);
+}
+```
+
+Command Create Directory and Create File can be used to create new empty file / directory.
+
+
+```
 clear clipboard;
 files where extension is "txt" => copy;
 ```
 
-These 5 basic command have one important property - they can be written without definition of list. In this case command contains only one word and action is performed on element taken from variable "this". This is how List Loop can be used in practice.
+These 7 basic command have one important property - they can be written as 1-2 words without definition of list. In this case action is performed on element taken from variable "this". This is how List Loop can be used in practice.
+
+```
+!exist("txt") => create directory "txt";
+
+texts = files where extension is "txt";
+texts => copy to "txt";
+//copy texts to "txt";
+```
+
+Command Copy To creates copy of file/directory in specified location. Code above contains alternative way to copy texts in comment - after two slashes (//). Commands Move To and Cut To work analogically, but they delete source file after successful action.
+
+```
+!exist("copies1") => create directory "copies1";
+!exist("copies2") => create directory "copies2";
+
+texts = files where extension is "txt";
+
+texts {
+    copy to "copies1";
+    s1 = success;
+    copy to "copies2";
+    s2 = success;
+    
+    s1 and s2 => drop;
+}
+```
+
+Command have one variable related with them - success. Its value is logic information, if last performed command was executed without problems. Code above uses this to create two copies of text files - in directories "copies1" and "copies2". If both action were fine, source file is finally deleted.
+
+```
+texts = files 
+    where extension is "txt"
+    order by size desc;
+    
+texts { 
+    id = filled(index,3);
+    rename to "text " + id;
+}
+```
+
+Code above shows example of renaming files. Text files are numbered from the biggest to the smallest.
+
+
+```
+texts = files where extension is "txt";
+time = 10 years after now;
+
+recreate texts to time;
+```
+
+There are 3 commands that allow user to change metadata of file - its creation, modification and access time. They are - Recreate To, Remodify To and Reaccess To. 
+
+```
+create directory "directory";
+force to create directory "directory";
+```
+
+Words "force to" before command forces it to be executed at any cost. For example, forced creating directory creates it even if it already exists - previous directory is erased.
+
+```
+files{
+    e = "_" + lower(extension);
+    !exist(e) => create directory e;
+    move to e;
+}
+```
+
+I think this is all you should know about the basics of Uroboros. The last presented code is amazing distributor - it groups files based on their extension.
