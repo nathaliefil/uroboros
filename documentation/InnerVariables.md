@@ -39,7 +39,7 @@ Location is text variable and its value is path to current working directory. In
 | ----- | -----| ----------- |
 | path | [text] | **false**  |
 
-Path is text variable and its value is initially set to "\". When structure Inside is executed, value of 'path' is expanded by new directories divided by backslashes. Value of "path" can be interpreted as the current relative path exapanded from 'location'.
+Path is text variable and its value is initially set to "\\". When structure Inside is executed, value of 'path' is expanded by new directories divided by backslashes. Value of "path" can be interpreted as the current relative path exapanded from 'location'.
 
 
 ### WholeLocation
