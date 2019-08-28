@@ -95,5 +95,4 @@ If List Loop is finished, value of index and this returns to the value before st
 | --------- | ------- |
 | **inside** [list] { [structure] } | (Structure) |
 
-To do
-
+This structure expands current working location. It allows user to go one level deeper in directory tree. Structure inside curly brackets (arg2) is repeated for every directory in list (if this particular directory exists). Variable 'this' is set to the name of current element. The same goes for variable 'index', which is set to 0 initially and increased by one for every next directory. In these properties Inside is similar to List Loop. 
