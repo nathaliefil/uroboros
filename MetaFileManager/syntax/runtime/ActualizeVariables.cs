@@ -171,35 +171,35 @@ namespace Uroboros.syntax.runtime
                 Named left = variables.First(v => v.GetName().Equals(leftName));
                 Named right = variables.First(v => v.GetName().Equals(rightName));
 
-                if (left is BoolVariable)
+                if (left is BoolVariable && right is BoolVariable)
                 {
                     bool leftValue = (left as IBoolable).ToBool();
                     bool rightValue = (right as IBoolable).ToBool();
                     Actualize(leftName, rightValue);
                     Actualize(rightName, leftValue);
                 }
-                else if (left is NumericVariable)
+                else if (left is NumericVariable && right is NumericVariable)
                 {
                     decimal leftValue = (left as INumerable).ToNumber();
                     decimal rightValue = (right as INumerable).ToNumber();
                     Actualize(leftName, rightValue);
                     Actualize(rightName, leftValue);
                 }
-                else if (left is TimeVariable)
+                else if (left is TimeVariable && right is TimeVariable)
                 {
                     DateTime leftValue = (left as ITimeable).ToTime();
                     DateTime rightValue = (right as ITimeable).ToTime();
                     Actualize(leftName, rightValue);
                     Actualize(rightName, leftValue);
                 }
-                else if (left is StringVariable)
+                else if (left is StringVariable && right is StringVariable)
                 {
                     string leftValue = (left as IStringable).ToString();
                     string rightValue = (right as IStringable).ToString();
                     Actualize(leftName, rightValue);
                     Actualize(rightName, leftValue);
                 }
-                else if (left is ListVariable)
+                else if (left is ListVariable && right is ListVariable)
                 {
                     List<string> leftValue = (left as IListable).ToList();
                     List<string> rightValue = (right as IListable).ToList();

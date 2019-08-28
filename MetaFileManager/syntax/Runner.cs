@@ -174,7 +174,7 @@ namespace Uroboros.syntax
             }
             catch (Uroboros.syntax.RuntimeException re)
             {
-                Logger.GetInstance().Log(re.GetMessage());
+                Logger.GetInstance().LogRuntimeError(re.GetMessage());
             }
         }
 

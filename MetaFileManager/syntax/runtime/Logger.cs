@@ -45,6 +45,16 @@ namespace Uroboros.syntax.runtime
             Log(text);
         }
 
+        public void LogRuntimeError(string text)
+        {
+            Log(text);
+        }
+
+        public void LogLine()
+        {
+            Log("------------------------------------");
+        }
+
         public void LogCommand(string text)
         {
             if (logCommands)

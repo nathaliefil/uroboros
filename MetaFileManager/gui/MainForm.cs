@@ -18,38 +18,45 @@ using Uroboros.syntax.interpretation;
 using Uroboros.syntax.commands.structures;
 using Uroboros.syntax.structures.abstracts;
 using Uroboros.syntax.structures;
+using System.Reflection;
 
 namespace Uroboros.gui
 {
     public partial class MainForm : Form
     {
+        string version;
 
         public MainForm()
         {
             InitializeComponent();
+            InitialSettings();
+
+            Log("Welcome to Meta File Manager");
+            Log("Uroboros ver. " + version);
+            LogLine();
+        }
+
+        private void InitialSettings()
+        {
             CodeBoxSettings();
             locationBox.Text = "";
             locationBox.TextAlign = HorizontalAlignment.Right;
             logBox.ScrollBars = ScrollBars.Vertical;
             Logger.GetInstance().SetOutputBox(logBox);
-
-
-            Log("Welcome to Meta File Manager");
-            Log("Uroboros version: 0.9 beta");
-            Log("------------------------------------");
+            version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void runButton_Click(object sender, EventArgs e)
         {
             if (locationBox.Text.Equals(""))
             {
-                Log("ERROR! Location not found.");
+                LogSyntaxError("ERROR! Location not found.");
             }
             else
             {
                 if (codeBox.Text.Trim().Equals(""))
                 {
-                    Log("ERROR! No command found.");
+                    LogSyntaxError("ERROR! No command found.");
                 }
                 else
                 {
@@ -58,12 +65,22 @@ namespace Uroboros.gui
                     Runner.Run(code, location);
                 }
             }
-            Log("------------------------------------");
+            LogLine();
         }
 
         private void Log(string text)
         {
             Logger.GetInstance().Log(text);
+        }
+
+        private void LogLine()
+        {
+            Logger.GetInstance().LogLine();
+        }
+
+        private void LogSyntaxError(string text)
+        {
+            Logger.GetInstance().LogSyntaxError(text);
         }
 
         private void directoryButton_Click(object sender, EventArgs e)
