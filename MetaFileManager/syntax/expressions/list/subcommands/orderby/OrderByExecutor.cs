@@ -57,6 +57,14 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         {
             switch (order.GetVariable())
             {
+                case OrderByVariable.Empty:
+                    source = source.OrderBy(s => FileInnerVariable.Empty(s)).ToList();
+                    break;
+
+                case OrderByVariable.Exist:
+                    source = source.OrderBy(s => FileInnerVariable.Exist(s)).ToList();
+                    break;
+
                 case OrderByVariable.Extension:
                     source = source.OrderBy(s => FileInnerVariable.GetExtension(s)).ToList();
                     break;

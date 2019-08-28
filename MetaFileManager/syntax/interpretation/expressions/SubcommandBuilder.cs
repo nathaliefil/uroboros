@@ -153,6 +153,10 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new OrderByStruct(OrderByVariable.Access);
                 case "creation":
                     return new OrderByStruct(OrderByVariable.Creation);
+                case "empty":
+                    return new OrderByStruct(OrderByVariable.Empty);
+                case "exist":
+                    return new OrderByStruct(OrderByVariable.Exist);
                 case "extension":
                     return new OrderByStruct(OrderByVariable.Extension);
                 case "fullname":
@@ -163,9 +167,14 @@ namespace Uroboros.syntax.interpretation.expressions
                     return new OrderByStruct(OrderByVariable.Name);
                 case "size":
                     return new OrderByStruct(OrderByVariable.Size);
+                case "iscorrect":
+                    return new OrderByStruct(OrderByVariable.IsCorrect);
+                case "isdirectory":
+                    return new OrderByStruct(OrderByVariable.IsDirectory);
             }
 
-            // struct - element of time variable (creation/modification)
+            // build element of time variable (access/creation/modification)
+
             string name = tok.GetContent();
             int count = name.Count(c => c == '.');
 

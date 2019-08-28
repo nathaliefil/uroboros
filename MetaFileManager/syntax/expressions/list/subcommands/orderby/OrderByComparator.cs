@@ -13,6 +13,12 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
 
             switch (order.GetVariable())
             {
+                case OrderByVariable.Empty:
+                    return FileInnerVariable.Empty(s1).Equals(FileInnerVariable.Empty(s2));
+
+                case OrderByVariable.Exist:
+                    return FileInnerVariable.Exist(s1).Equals(FileInnerVariable.Exist(s2));
+
                 case OrderByVariable.Extension:
                     return FileInnerVariable.GetExtension(s1).Equals(FileInnerVariable.GetExtension(s2));
 

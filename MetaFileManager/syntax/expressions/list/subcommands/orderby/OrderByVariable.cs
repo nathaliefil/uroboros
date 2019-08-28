@@ -10,6 +10,8 @@ namespace Uroboros.syntax.expressions.list.subcommands.orderby
         None,
         Access,
         Creation,
+        Empty,
+        Exist,
         Extension,
         Fullname,
         Modification,
