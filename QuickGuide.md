@@ -487,4 +487,15 @@ files{
 }
 ```
 
-I think this is all you should know about the basics of Uroboros. The last presented code is amazing distributor - it groups files based on their extension.
+I think this is all you should know about the basics of Uroboros. Now you can rely on documentation :D.   
+The last presented code is nice distributor - it groups files based on their extension.  
+
+-----
+
+If you want to know more about commands, go to [commands](documentation/Commands.md).   
+If you want to know more about variables and used data types, go to [data types](documentation/DataTypes.md).    
+If you want to use some functions in your code, go to [functions](documentation/Functions.md).  
+If you want to know more about structures in code, go to [structures](documentation/Structures.md).   
+If you want to listen to amazing music, go to [Popol Vuh](https://www.youtube.com/results?search_query=popol+vuh).    
+
+-----
