@@ -20,14 +20,14 @@ namespace Uroboros.syntax.lexer
             TokenType.Exclamation, TokenType.NotEquals,  TokenType.Variable, TokenType.StringConstant, 
             TokenType.NumericConstant, TokenType.BoolConstant, TokenType.In, TokenType.Like, TokenType.Is,
             TokenType.After, TokenType.Before, TokenType.IsAfter, TokenType.IsBefore, TokenType.SmallArrow,
-            TokenType.Unique, TokenType.QuestionMark, TokenType.Between};
+            TokenType.Unique, TokenType.QuestionMark, TokenType.Between, TokenType.Not};
 
         private static TokenType[] COMPARING = new TokenType[] { TokenType.Equals, TokenType.NotEquals, 
             TokenType.Smaller, TokenType.SmallerOrEquals,  TokenType.Bigger, TokenType.BiggerOrEquals, TokenType.Is};
 
         private static TokenType[] TIME_COMPARING = new TokenType[] { TokenType.IsAfter, TokenType.IsBefore };
 
-        private static TokenType[] LOGIC= new TokenType[] { TokenType.Exclamation, TokenType.Or, 
+        private static TokenType[] LOGIC= new TokenType[] { TokenType.Not, TokenType.Exclamation, TokenType.Or, 
             TokenType.Xor, TokenType.And};
 
         private static TokenType[] NUMERIC_OPERATION = new TokenType[] { TokenType.Plus, TokenType.Minus, 

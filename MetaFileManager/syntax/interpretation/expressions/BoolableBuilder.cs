@@ -48,7 +48,7 @@ namespace Uroboros.syntax.interpretation.expressions
             if (tokens.Count == 0)
                 throw new SyntaxErrorException("ERROR! Variable declaration is empty.");
 
-            /// BOOL CHECKING
+            /// BOOL BUILDING
 
             // try to build simple one-element Boolable
             if (tokens.Count == 1)
@@ -602,6 +602,8 @@ namespace Uroboros.syntax.interpretation.expressions
                 case TokenType.Xor:
                     return BoolExpressionOperatorType.Xor;
                 case TokenType.Exclamation:
+                    return BoolExpressionOperatorType.Not;
+                case TokenType.Not:
                     return BoolExpressionOperatorType.Not;
             }
             return BoolExpressionOperatorType.And;
