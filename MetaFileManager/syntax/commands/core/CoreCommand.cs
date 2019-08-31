@@ -14,6 +14,31 @@ namespace Uroboros.syntax.commands.core
 
         public void Run()
         {
+            if (list is IStringable)
+                RunOneFile();
+            else
+                RunListOfFiles();
+        }
+
+        public void RunOneFile()
+        {
+            string previousThis = RuntimeVariables.GetInstance().GetValueString("this");
+            string element = (list as IStringable).ToString();
+
+            try
+            {
+                Action(element);
+            }
+            catch (CommandException ce)
+            {
+                Logger.GetInstance().LogCommandError(ce.GetMessage());
+            }
+
+            RuntimeVariables.GetInstance().Actualize("this", previousThis);
+        }
+
+        public void RunListOfFiles()
+        {
             decimal previousIndex = RuntimeVariables.GetInstance().GetValueNumber("index");
             string previousThis = RuntimeVariables.GetInstance().GetValueString("this");
             RuntimeVariables.GetInstance().Actualize("index", 0);
