@@ -92,6 +92,22 @@ This command moves every file and directory from list (arg1) to recycle bin.
 This command deletes "without return" every file and directory from list (arg1). Sometimes it is not possible to rescue deleted files and directories.
 
 
+### Hide
+| Name  | Structure |
+| ------------- | ------------- |
+| hide | **hide** [list] |
+
+This command sets attribute "hidden" to every file and directory from list (arg1).
+
+
+### Lock
+| Name  | Structure |
+| ------------- | ------------- |
+| lock | **lock** [list] |
+
+This command sets attribute "read-only" to every file and directory from list (arg1).
+
+
 ### Move To
 | Name  | Structure |
 | ------------- | ------------- |
@@ -148,6 +164,22 @@ This command changes modification time of every file and directory from list (ar
 | rename to | **rename** [list] **to** [text] |
 
 This command renames every file and directory from list (arg1). New name is (arg2).
+
+
+### Unhide
+| Name  | Structure |
+| ------------- | ------------- |
+| unhide | **unhide** [list] |
+
+This command sets attribute "not hidden" to every file and directory from list (arg1).
+
+
+### Unlock
+| Name  | Structure |
+| ------------- | ------------- |
+| unlock | **unlock** [list] |
+
+This command sets attribute "not read-only" to every file and directory from list (arg1).
 
 
 ---
