@@ -6,11 +6,11 @@ using Uroboros.syntax.variables.abstracts;
 
 namespace Uroboros.syntax.functions.bools
 {
-    class FuncEmptyList : DefaultBoolable
+    class FuncEmptylist : DefaultBoolable
     {
         private IListable arg0;
 
-        public FuncEmptyList(IListable arg0)
+        public FuncEmptylist(IListable arg0)
         {
             this.arg0 = arg0;
         }

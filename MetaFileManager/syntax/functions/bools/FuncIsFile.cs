@@ -7,11 +7,11 @@ using Uroboros.syntax.variables.from_file;
 
 namespace Uroboros.syntax.functions.bools
 {
-    class FuncIsFile : DefaultBoolable
+    class FuncIsfile : DefaultBoolable
     {
         private IStringable arg0;
 
-        public FuncIsFile(IStringable arg0)
+        public FuncIsfile(IStringable arg0)
         {
             this.arg0 = arg0;
         }

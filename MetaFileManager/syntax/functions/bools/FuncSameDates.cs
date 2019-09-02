@@ -8,12 +8,12 @@ using Uroboros.syntax.variables;
 
 namespace Uroboros.syntax.functions.bools
 {
-    class FuncSameDates : DefaultBoolable
+    class FuncSamedates : DefaultBoolable
     {
         private ITimeable arg0;
         private ITimeable arg1;
 
-        public FuncSameDates(ITimeable arg0, ITimeable arg1)
+        public FuncSamedates(ITimeable arg0, ITimeable arg1)
         {
             this.arg0 = arg0;
             this.arg1 = arg1;

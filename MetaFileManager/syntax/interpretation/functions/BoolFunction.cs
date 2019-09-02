@@ -62,11 +62,11 @@ namespace Uroboros.syntax.interpretation.functions
             else if (name.Equals("empty") || name.Equals("emptydirectory"))
                 return new FuncEmpty(istr);
             else if (name.Equals("iscorrect"))
-                return new FuncIsCorrect(istr);
+                return new FuncIscorrect(istr);
             else if (name.Equals("isdirectory"))
-                return new FuncIsDirectory(istr);
+                return new FuncIsdirectory(istr);
             else if (name.Equals("isfile"))
-                return new FuncIsFile(istr);
+                return new FuncIsfile(istr);
             else if (name.Equals("hidden"))
                 return new FuncHidden(istr);
             else if (name.Equals("readonly"))
@@ -108,10 +108,10 @@ namespace Uroboros.syntax.interpretation.functions
 
             if (name.Equals("samedate") || name.Equals("samedates")
                 || name.Equals("thesamedate") || name.Equals("thesamedates"))
-                return new FuncSameDates(itim1, itim2);
+                return new FuncSamedates(itim1, itim2);
             else if (name.Equals("sameclock") || name.Equals("sameclocks")
                 || name.Equals("thesameclock") || name.Equals("thesameclocks"))
-                return new FuncSameDates(itim1, itim2);
+                return new FuncSamedates(itim1, itim2);
 
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
@@ -126,7 +126,7 @@ namespace Uroboros.syntax.interpretation.functions
                 throw new SyntaxErrorException("ERROR! Argument of function " + name + " cannot be read as list.");
 
             if (name.Equals("emptylist") || name.Equals("listisempty"))
-                return new FuncEmptyList(ilis);
+                return new FuncEmptylist(ilis);
             throw new SyntaxErrorException("ERROR! Function " + name + " not identified.");
         }
 
