@@ -112,7 +112,7 @@ This variable returns true if file or directory is empty. If it does not exist, 
 | ----- | -----| ----------- |
 | exist | [logic] | **false**  |
 
-This variable returns true if file or directory with name from variable 'this' exists.
+This variable returns true if file or directory with specific name exists.
 
 
 ### Extension
@@ -129,6 +129,14 @@ This variable returns extension of file. If current element is directory, empty 
 | fullname | [text] | **false**  |
 
 This variable returns name of file/directory including its extension.
+
+
+### Hidden
+| Name  | Type | Modificable |
+| ----- | -----| ----------- |
+| hidden | [logic] | **false**  |
+
+This variable returns true if file or directory with specific name is hidden.
 
 
 ### IsCorrect
@@ -169,6 +177,14 @@ This variable is modification time of file or directory.
 | name | [text] | **false**  |
 
 This variable returns name of file/directory excluding its extension.
+
+
+### ReadOnly
+| Name  | Type | Modificable |
+| ----- | -----| ----------- |
+| readonly | [logic] | **false**  |
+
+This variable returns true if file or directory with specific name is read-only.
 
 
 ### Size
