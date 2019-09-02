@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.runtime;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.other
 {

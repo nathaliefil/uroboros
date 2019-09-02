@@ -5,6 +5,7 @@ using System.Text;
 using Uroboros.syntax.variables.abstracts;
 using System.IO;
 using Uroboros.syntax.runtime;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.core
 {

@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections.Specialized;
 using System.Windows.Forms;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.core
 {

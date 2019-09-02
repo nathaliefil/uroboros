@@ -6,6 +6,7 @@ using Uroboros.syntax.variables.abstracts;
 using System.IO;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.variables.from_file;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.core
 {

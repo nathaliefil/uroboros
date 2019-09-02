@@ -7,6 +7,7 @@ using Uroboros.syntax.runtime;
 using System.Runtime.InteropServices;
 using System.IO;
 using Uroboros.syntax.variables.from_file;
+using Uroboros.syntax.log;
 
 
 namespace Uroboros.syntax.commands.other

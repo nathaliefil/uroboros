@@ -19,6 +19,7 @@ using Uroboros.syntax.commands.structures;
 using Uroboros.syntax.structures.abstracts;
 using Uroboros.syntax.structures;
 using System.Reflection;
+using Uroboros.syntax.log;
 
 namespace Uroboros.gui
 {

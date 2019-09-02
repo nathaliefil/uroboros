@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Uroboros.syntax.runtime;
 using Uroboros.syntax.variables.abstracts;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.other
 {

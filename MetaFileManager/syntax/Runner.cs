@@ -10,6 +10,7 @@ using Uroboros.syntax.runtime;
 using Uroboros.syntax.interpretation.vars_range;
 using Uroboros.syntax.lexer;
 using Uroboros.syntax.interpretation;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax
 {

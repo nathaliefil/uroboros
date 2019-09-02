@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using Uroboros.syntax.runtime;
 using System.IO;
 using System.Windows.Forms;
+using Uroboros.syntax.log;
 
 namespace Uroboros.syntax.commands.core
 {

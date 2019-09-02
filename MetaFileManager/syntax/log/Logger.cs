@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Uroboros.syntax.runtime
+namespace Uroboros.syntax.log
 {
     public class Logger
     {

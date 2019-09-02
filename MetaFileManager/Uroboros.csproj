@@ -359,7 +359,7 @@
     <Compile Include="syntax\lexer\TokenType.cs" />
     <Compile Include="syntax\runtime\ActualizeVariables.cs" />
     <Compile Include="syntax\runtime\ListOperations.cs" />
-    <Compile Include="syntax\runtime\Logger.cs" />
+    <Compile Include="syntax\log\Logger.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByComparator.cs" />
     <Compile Include="syntax\expressions\list\subcommands\orderby\OrderByExecutor.cs" />
     <Compile Include="syntax\runtime\RuntimeException.cs" />
