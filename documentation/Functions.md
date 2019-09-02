@@ -577,7 +577,7 @@ This function converts base 10 number (arg1) into binary and returns it as text.
 This function returns common beginning of all elements in list (arg1). If all texts in list (arg1) start with a different phrase, empty text "" is returned.
 
 
-### Commonbeginning
+### Commonending
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
 | commonending  | (List) | (Text)
