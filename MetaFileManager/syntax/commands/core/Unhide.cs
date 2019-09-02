@@ -20,12 +20,8 @@ namespace Uroboros.syntax.commands.core
             string location = rawLocation + "\\" + directoryName;
             try
             {
-                /*var attributes = Directory.Attributes(location);
-                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
-                {
-                    attributes &= ~FileAttributes.Hidden;
-                    File.SetAttributes(location, attributes);
-                }*/
+                DirectoryInfo di = new DirectoryInfo(location);
+                di.Attributes &= ~FileAttributes.Hidden;
 
                 RuntimeVariables.GetInstance().Success();
                 Logger.GetInstance().LogCommand("Unhide " + directoryName);
