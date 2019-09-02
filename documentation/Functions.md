@@ -47,6 +47,14 @@ This function returns true if a file or a catalog of name (arg1) exists in curre
 This function returns true if a file or a catalog of name (arg1) exists in directory of name (arg2) in current location. Otherwise it returns false. If directory (arg2) do not exist, also false is returned.
 
 
+### Hidden
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| hidden  | (Text) | (Logic)
+
+This function returns true if file or directory with specific name (arg1) is hidden. Otherwise it returns false.
+
+
 ### IsCorrect
 | Names  | Arguments | Returns |
 | ------------- | ------------- | ------------- |
@@ -69,6 +77,14 @@ This function returns true if name (arg0) could be name for directory - do not c
 | iscorrect  | (Text) | (Logic)
 
 This function returns true if name (arg0) could be name for file - contains at least one dot.
+
+
+### ReadOnly
+| Names  | Arguments | Returns |
+| ------------- | ------------- | ------------- |
+| readonly  | (Text) | (Logic)
+
+This function returns true if file or directory with specific name (arg1) is read-only. Otherwise it returns false.
 
 
 ### SameClocks
