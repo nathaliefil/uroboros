@@ -62,8 +62,8 @@ namespace Uroboros.gui
             // paint inner variables keywords, (true,false)
             e.ChangedRange.ClearStyle(InnerVariablesStyle);
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(access|creation|directories|empty|exist|
-                |extension|everything|files|fullname|index|iscorrect|isdirectory|isfile|location|modification|
-                |name|now|size|success|this|path|wholelocation)\b");
+                |extension|everything|files|fullname|hidden|index|iscorrect|isdirectory|isfile|location|modification|
+                |name|now|path|readonly|size|success|this|wholelocation)\b");
             e.ChangedRange.SetStyle(InnerVariablesStyle, @"\b(?i)(false|true)(?-i)\b");
 
             // paint time keywords

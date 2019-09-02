@@ -95,6 +95,8 @@ namespace Uroboros.syntax.interpretation.vars_range
             variables.Add(new InterVar("isfile", InterVarType.Bool, false));
             variables.Add(new InterVar("isdirectory", InterVarType.Bool, false));
             variables.Add(new InterVar("iscorrect", InterVarType.Bool, false));
+            variables.Add(new InterVar("hidden", InterVarType.Bool, false));
+            variables.Add(new InterVar("readonly", InterVarType.Bool, false));
         }
 
         public bool Contains(string name)

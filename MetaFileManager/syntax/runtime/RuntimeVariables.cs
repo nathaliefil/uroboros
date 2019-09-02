@@ -203,6 +203,8 @@ namespace Uroboros.syntax.runtime
             variables.Add(new IsDirectory());
             variables.Add(new IsCorrect());
             variables.Add(new Success());
+            variables.Add(new ReadOnly());
+            variables.Add(new Hidden());
         }
     }
 }

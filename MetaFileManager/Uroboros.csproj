@@ -215,9 +215,11 @@
     <Compile Include="syntax\functions\bools\FuncEmptyList.cs" />
     <Compile Include="syntax\functions\bools\FuncExist.cs" />
     <Compile Include="syntax\functions\bools\FuncExistinside.cs" />
+    <Compile Include="syntax\functions\bools\FuncHidden.cs" />
     <Compile Include="syntax\functions\bools\FuncIsCorrect.cs" />
     <Compile Include="syntax\functions\bools\FuncIsDirectory.cs" />
     <Compile Include="syntax\functions\bools\FuncIsFile.cs" />
+    <Compile Include="syntax\functions\bools\FuncReadonly.cs" />
     <Compile Include="syntax\functions\bools\FuncSameClocks.cs" />
     <Compile Include="syntax\functions\bools\FuncSameDates.cs" />
     <Compile Include="syntax\functions\numeric\FuncAverage.cs" />
@@ -395,9 +397,11 @@
     <Compile Include="syntax\variables\from_directory\Path.cs" />
     <Compile Include="syntax\variables\from_directory\WholeLocation.cs" />
     <Compile Include="syntax\variables\from_file\Access.cs" />
+    <Compile Include="syntax\variables\from_file\Hidden.cs" />
     <Compile Include="syntax\variables\from_file\IsCorrect.cs" />
     <Compile Include="syntax\variables\from_file\IsDirectory.cs" />
     <Compile Include="syntax\variables\from_file\IsFile.cs" />
+    <Compile Include="syntax\variables\from_file\ReadOnly.cs" />
     <Compile Include="syntax\variables\from_file\Success.cs" />
     <Compile Include="syntax\variables\time\modules\ClockNumerables.cs" />
     <Compile Include="syntax\variables\time\modules\ClockConstant.cs" />

@@ -218,5 +218,55 @@ namespace Uroboros.syntax.variables.from_file
 
             return Exist(directory + "//" + file);
         }
+
+        public static bool Hidden(string file)
+        {
+            if (file.Equals(""))
+                return false;
+
+            string location = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
+
+            if (FileValidator.IsDirectory(file))
+            {
+                if (!Directory.Exists(location))
+                    return false;
+
+                DirectoryInfo info = new DirectoryInfo(location);
+                return (info.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+            }
+            else
+            {
+                if (!File.Exists(location))
+                    return false;
+
+                return File.GetAttributes(location).HasFlag(FileAttributes.Hidden);
+            }
+        }
+
+        public static bool ReadOnly(string file)
+        {
+            if (file.Equals(""))
+                return false;
+
+            string location = RuntimeVariables.GetInstance().GetWholeLocation() + "//" + file;
+
+            if (FileValidator.IsDirectory(file))
+            {
+                if (!Directory.Exists(location))
+                    return false;
+
+                DirectoryInfo info = new DirectoryInfo(location);
+                return (info.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly;
+            }
+            else
+            {
+                if (!File.Exists(location))
+                    return false;
+
+                FileInfo info = new FileInfo(location);
+                return info.IsReadOnly;
+            }
+        }
+
     }
 }
