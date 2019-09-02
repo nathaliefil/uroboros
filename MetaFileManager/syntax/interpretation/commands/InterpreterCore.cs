@@ -40,8 +40,16 @@ namespace Uroboros.syntax.interpretation.commands
                     return new Delete(new StringVariableRefer("this"));
                 case TokenType.Drop:
                     return new Drop(new StringVariableRefer("this"));
+                case TokenType.Hide:
+                    return new Hide(new StringVariableRefer("this"));
+                case TokenType.Lock:
+                    return new Lock(new StringVariableRefer("this"));
                 case TokenType.Open:
                     return new Open(new StringVariableRefer("this"));
+                case TokenType.Unhide:
+                    return new Unhide(new StringVariableRefer("this"));
+                case TokenType.Unlock:
+                    return new Unlock(new StringVariableRefer("this"));
             }
             throw new SyntaxErrorException("ERROR! Command not indentified."); // this is never thrown
         }
@@ -58,8 +66,16 @@ namespace Uroboros.syntax.interpretation.commands
                     return new Delete(ilist);
                 case TokenType.Drop:
                     return new Drop(ilist);
+                case TokenType.Hide:
+                    return new Hide(ilist);
+                case TokenType.Lock:
+                    return new Lock(ilist);
                 case TokenType.Open:
                     return new Open(ilist);
+                case TokenType.Unhide:
+                    return new Unhide(ilist);
+                case TokenType.Unlock:
+                    return new Unlock(ilist);
             }
             throw new SyntaxErrorException("ERROR! Command not indentified."); // this is never thrown
         }
@@ -76,8 +92,16 @@ namespace Uroboros.syntax.interpretation.commands
                     return "delete";
                 case TokenType.Drop:
                     return "drop";
+                case TokenType.Hide:
+                    return "hide";
+                case TokenType.Lock:
+                    return "lock";
                 case TokenType.Open:
                     return "open";
+                case TokenType.Unhide:
+                    return "unhide";
+                case TokenType.Unlock:
+                    return "unlock";
             }
             throw new SyntaxErrorException("ERROR! Command not indentified.");
         }

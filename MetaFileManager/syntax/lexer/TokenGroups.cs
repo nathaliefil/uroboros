@@ -35,7 +35,8 @@ namespace Uroboros.syntax.lexer
 
         private static TokenType[] CORE_COMMAND = new TokenType[] { TokenType.Copy, TokenType.Cut, 
             TokenType.Delete, TokenType.Drop,  TokenType.Open, TokenType.Move, TokenType.Reaccess, TokenType.Recreate,
-            TokenType.Remodify, TokenType.Rename , TokenType.CreateFile, TokenType.CreateDirectory};
+            TokenType.Remodify, TokenType.Rename , TokenType.CreateFile, TokenType.CreateDirectory,
+            TokenType.Hide, TokenType.Unhide, TokenType.Lock, TokenType.Unlock};
 
         private static TokenType[] VARIABLE_OPERATION = new TokenType[] { TokenType.PlusEquals, TokenType.MinusEquals, 
             TokenType.MultiplyEquals, TokenType.DivideEquals, TokenType.PercentEquals };

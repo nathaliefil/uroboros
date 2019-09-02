@@ -54,6 +54,14 @@ namespace Uroboros.syntax.interpretation
                 {
                     return InterpreterCore.Build(tokens);
                 }
+                case TokenType.Hide:
+                {
+                    return InterpreterCore.Build(tokens);
+                }
+                case TokenType.Lock:
+                {
+                    return InterpreterCore.Build(tokens);
+                }
                 case TokenType.Open:
                 {
                     return InterpreterCore.Build(tokens);
@@ -97,6 +105,14 @@ namespace Uroboros.syntax.interpretation
                         return InterpreterCoreTo.Build(tokens, forced);
                     else
                         throw new SyntaxErrorException("ERROR! Rename command do not contain definition of new name.");
+                }
+                case TokenType.Unhide:
+                {
+                    return InterpreterCore.Build(tokens);
+                }
+                case TokenType.Unlock:
+                {
+                    return InterpreterCore.Build(tokens);
                 }
             }
             return null;

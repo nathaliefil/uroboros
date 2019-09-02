@@ -55,8 +55,8 @@ namespace Uroboros.gui
             // paint cardinal keywords
             e.ChangedRange.ClearStyle(CardinalStyle);
             e.ChangedRange.SetStyle(CardinalStyle, @"\b(?i)(add|clear bin|clear clipboard|clear log|copy|count|create|cut|delete|
-                |directory|drop|file|log off|log on|move|open|order|print|reaccess|recreate|remodify|
-                |remove|rename|reverse|select|sleep|swap|uroboros stop)(?-i)\b");
+                |directory|drop|file|hide|lock|log off|log on|move|open|order|print|reaccess|recreate|remodify|
+                |remove|rename|reverse|select|sleep|swap|unhide|unlock|uroboros stop)(?-i)\b");
 
 
             // paint inner variables keywords, (true,false)
